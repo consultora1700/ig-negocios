@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Pista de efectos del reel 01 → video/assets/audio/efectos.wav (estéreo 48 kHz). Tiempos en segundos del video."""
 import subprocess, pathlib, numpy as np
-A = pathlib.Path(__file__).resolve().parent; SR = 48000; DUR = 91.0
+A = pathlib.Path(__file__).resolve().parent; SR = 48000; DUR = 102.0
 def leer(n):
     pcm = subprocess.run(["ffmpeg","-v","error","-i",str(A/"sfx"/f"{n}.wav"),"-f","s16le","-ac","1","-ar",str(SR),"-"],capture_output=True,check=True).stdout
     return np.frombuffer(pcm, np.int16).astype(np.float32) / 32768
@@ -15,50 +15,49 @@ W = ["whoosh", "whoosh2", "whoosh3"]; Pp = ["pop", "pop2", "pop3"]; k = [0]
 def wh(t, g=0.8): e(W[k[0] % 3], t, g); k[0] += 1
 def po(t, g=0.8): e(Pp[k[0] % 3], t, g); k[0] += 1
 # Gancho
-wh(0.25, 0.6); po(1.5); po(2.55); po(3.82); wh(5.05, 0.9)
-for i in range(5): e("tick", 5.15 + i * 0.22, 0.7)
-po(6.75); po(7.05); e("stamp2", 8.5, 1.0); po(9.1, 0.7)
-e("buzz", 9.5, 0.7); wh(9.65, 0.7); e("stamp", 9.85, 0.8)
-wh(10.65, 0.7); e("stamp2", 11.2, 1.0); e("ding", 11.8, 0.5)
-for i in range(7): e("tick", 11.9 + i * 0.06, 0.5)
-# contador de decisiones (golpe en cada número)
-for t in (12.8, 21.48, 28.83, 37.6, 45.8, 53.45, 62.28): e("stamp", t, 0.55)
-# 1 · ponerle el cuerpo
-wh(12.5, 0.5); po(14.1); po(14.5); wh(15.4, 0.5); po(17.4); po(18.6); wh(19.3, 0.6)
-# 2 · cuaderno o sistema
-wh(22.2, 0.7); e("scribble", 22.6, 0.6); e("scribble", 23.2, 0.5); wh(23.55, 0.6)
-for t in (26.3, 27.15, 28.05, 28.35, 28.5): e("tap" if t % 2 else "tap1", t, 0.9)
-# 3 · qué deja plata
-wh(28.85, 0.7); e("ding", 30.95, 0.6); e("buzz", 32.4, 0.4); wh(33.6, 0.7)
-for i in range(16): e("tap2", 34.1 + i * 0.1, 0.6)
-po(36.6)
-# 4 · nunca decir «no hay»
-wh(37.4, 0.6); e("ding", 38.4, 0.6); for_ = [e("tap", 39.95 + q * 0.07, 0.7) for q in range(7)]; po(40.0)
-wh(40.2, 0.6); po(41.7); e("buzz", 43.05, 0.9); wh(43.5, 0.7); e("ding", 45.05, 0.7); po(45.1)
-# 5 · cerrar la caja
-wh(46.5, 0.6); e("tap", 47.25, 0.8); e("tap1", 47.6, 0.8); e("stamp", 49.65, 0.9); wh(50.5, 0.6)
-for d in range(30): e("tick", 50.78 + d * 0.03, 0.35)
-e("buzz", 52.25, 0.7)
-for i in range(6): e("coin" if i % 2 else "coin2", 51.4 + i * 0.12, 0.45)
-# 6 · precio de reposición
-wh(54.15, 0.6); wh(56.35, 0.6); po(58.95); wh(58.6, 0.7)
-for i in range(10): e("tap" if i % 2 else "tap1", 59.35 + i * 0.05, 0.8)
-e("stamp", 60.3, 0.9); po(60.88, 0.7); po(61.45, 0.7)
-# 7 · sueldo fijo y reinversión
-wh(62.25, 0.7)
-for i in range(8): e("coin" if i % 2 else "coin2", 63.0 + i * 0.1, 0.5)
-wh(63.7, 0.7); po(65.25); e("coin", 66.1); e("coin2", 66.2); po(67.45); wh(67.2, 0.5)
-wh(68.5, 0.9)
-for i in range(0, 27, 3): po(69.0 + i * 0.06, 0.45)
-e("ding", 70.5, 0.6); e("stamp2", 71.0, 1.0)
+wh(0.25, 0.6); po(1.33); po(2.32); po(3.36); wh(4.65, 0.9)
+for i in range(5): e("tick", 4.75 + i * 0.22, 0.7)
+po(6.35); po(6.65); e("stamp2", 8.2, 1.0); po(8.75, 0.7)
+e("buzz", 9.02, 0.7); wh(9.15, 0.7); e("stamp", 9.36, 0.8)
+wh(9.9, 0.7); e("stamp2", 10.17, 1.0); po(11.32, 0.8)
+for i in range(7): e("tick", 10.7 + i * 0.06, 0.5)
+# contador de decisiones
+for t in (13.28, 22.41, 33.54, 42.0, 50.96, 60.82, 72.18): e("stamp", t, 0.55)
+# 1 · margen
+wh(13.0, 0.5); po(14.05); po(16.15); wh(17.62, 0.6); e("tick", 17.95, 0.6); e("coin", 19.6, 0.7); e("tick", 21.05, 0.6); e("ding", 22.05, 0.6)
+# 2 · capital de trabajo
+wh(22.2, 0.7)
+for i in range(16): e("tap2", 23.65 + i * 0.09, 0.6)
+po(25.85); e("buzz", 28.15, 0.6); wh(29.9, 0.6)
+for i in range(3): e("tap", 30.6 + i * 0.65, 0.9)
+po(32.1)
+# 3 · reposición
+wh(34.45, 0.6); wh(36.85, 0.6); po(38.89); wh(38.5, 0.7)
+for i in range(10): e("tap" if i % 2 else "tap1", 39.25 + i * 0.05, 0.8)
+e("stamp", 40.25, 0.9); po(40.65, 0.7); po(41.2, 0.7)
+# 4 · fiado
+wh(42.6, 0.6); po(43.0); po(43.3)
+for d in range(0, 30, 3): e("tick", 44.8 + d * 0.06, 0.4)
+e("stamp2", 46.95, 0.9); e("buzz", 47.65, 0.6); wh(48.6, 0.6); po(48.7)
+# 5 · sueldo
+wh(50.75, 0.6)
+for i in range(7): e("coin" if i % 2 else "coin2", 52.9 + i * 0.12, 0.5)
+e("buzz", 54.8, 0.6); wh(57.5, 0.6); e("coin", 58.5); e("coin2", 58.6); po(58.4)
+# 6 · costos fijos
+wh(60.7, 0.6); po(62.85); po(63.2); wh(63.5, 0.9); e("stamp", 65.25, 0.7)
+wh(65.45, 0.6); e("tick", 65.9, 0.6); e("buzz", 67.25, 0.6); wh(69.45, 0.9); e("stamp2", 71.0, 1.0)
+# 7 · productos que traen gente
+wh(72.1, 0.6); po(73.55); e("buzz", 74.45, 0.9); po(75.85); wh(77.25, 0.7); po(79.2); e("ding", 80.9, 0.7)
 # giro
-wh(73.4, 0.8); po(75.2); po(75.45); po(75.7)
-wh(76.65, 0.7); e("stamp", 78.25, 0.9); e("buzz", 79.3, 0.7)
-# cierre
-wh(80.45, 0.7); po(80.65)
-for q in range(7): e("tick", 80.95 + q * 0.16, 0.6)
-e("stamp2", 82.85, 0.9); po(83.25); po(84.4); e("ding", 85.4, 0.5)
-wh(87.95, 0.6); e("ding", 88.75, 0.45); po(88.95, 0.7)
+wh(82.35, 0.8); po(83.95); po(84.3)
+wh(85.35, 0.7); e("stamp", 86.4, 0.9); e("buzz", 87.1, 0.7)
+# regla y cierre
+wh(87.95, 0.7); e("tick", 88.08, 0.6); po(88.98); e("stamp2", 90.45, 0.9); po(91.6)
+wh(93.25, 0.6)
+for q in range(7): e("tick", 93.45 + q * 0.12, 0.55)
+e("stamp2", 95.08, 0.9); po(95.4)
+wh(96.55, 0.6); e("ding", 96.9, 0.5); po(96.95, 0.8)
+for q in range(6): e("tick", 97.8 + q * 0.7, 0.3)
 fx = np.zeros(int(DUR * SR), np.float32)
 for n, t, g in ev:
     s = x(n) * g; a = int((t + 1 / 30) * SR)   # el sonido llega un cuadro después de la imagen

@@ -18,37 +18,40 @@
     #g-num { font-weight: 900; font-size: 420px; line-height: 0.9; background: linear-gradient(110deg, #0057D9 0%, #007BFF 35%, #009DFF 70%, #00CFFF 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
     #g-dec { font-weight: 800; font-size: 86px; letter-spacing: 0.14em; background: linear-gradient(180deg, #FFFFFF 0%, #E5E7EB 35%, #BFC4CC 70%, #9299A3 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
     #g-barra { display: grid; grid-template-columns: repeat(7, 92px); gap: 16px; justify-content: center; margin-top: 40px; }
+    #g-vos { margin-top: 46px; font-weight: 800; font-size: 54px; letter-spacing: 0.04em; color: #FFFFFF; }
+    #g-vos b { background: linear-gradient(110deg, #0057D9 0%, #007BFF 35%, #009DFF 70%, #00CFFF 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
     #g-barra i { height: 16px; border-radius: 8px; background: linear-gradient(110deg, #0057D9 0%, #007BFF 35%, #009DFF 70%, #00CFFF 100%); }
   </style>
   <div id="root" data-composition-id="o-gancho" data-width="1080" data-height="1920">
-    <div id="g-titulo" class="g-t clip" data-start="0" data-duration="5.05"><span class="sm">DOS</span><br /><span id="g-w2">ALMACENES</span></div>
-    <div id="g-i1" class="g-igual clip" data-start="1.4" data-duration="3.65"><span>MISMA <i>CUADRA</i></span></div>
-    <div id="g-i2" class="g-igual clip" data-start="2.45" data-duration="2.6"><span>MISMA <i>PLATA</i></span></div>
-    <div id="g-i3" class="g-igual clip" data-start="3.75" data-duration="1.3"><span>MISMO <i>DÍA</i></span></div>
-    <div id="g-cinco" class="g-t clip" data-start="5.1" data-duration="1.4"><b>5 AÑOS</b><br /><span>DESPUÉS</span></div>
-    <div id="g-suerte" class="g-t clip" data-start="9.45" data-duration="1.2"><span>¿SUERTE?</span></div>
-    <div id="g-raya" class="clip" data-start="9.45" data-duration="1.2"></div>
-    <div id="g-fondo" class="clip" data-start="10.6" data-duration="2.2"></div>
-    <div id="g-siete" class="clip" data-start="10.6" data-duration="2.2"><div id="g-num">7</div><div id="g-dec">DECISIONES</div><div id="g-barra"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+    <div id="g-titulo" class="g-t clip" data-start="0" data-duration="4.85"><span class="sm">DOS</span><br /><span id="g-w2">ALMACENES</span></div>
+    <div id="g-i1" class="g-igual clip" data-start="1.25" data-duration="3.6"><span>MISMA <i>CUADRA</i></span></div>
+    <div id="g-i2" class="g-igual clip" data-start="2.25" data-duration="2.6"><span>MISMA <i>PLATA</i></span></div>
+    <div id="g-i3" class="g-igual clip" data-start="3.3" data-duration="1.55"><span>MISMO <i>DÍA</i></span></div>
+    <div id="g-cinco" class="g-t clip" data-start="4.7" data-duration="1.4"><b>5 AÑOS</b><br /><span>DESPUÉS</span></div>
+    <div id="g-suerte" class="g-t clip" data-start="8.95" data-duration="1.05"><span>¿SUERTE?</span></div>
+    <div id="g-raya" class="clip" data-start="8.95" data-duration="1.05"></div>
+    <div id="g-fondo" class="clip" data-start="9.9" data-duration="3.4"></div>
+    <div id="g-siete" class="clip" data-start="9.9" data-duration="3.4"><div id="g-num">7</div><div id="g-dec">DECISIONES</div><div id="g-barra"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><div id="g-vos">Y SEGURO TOMASTE <b>ALGUNA</b></div></div>
   </div>
   <script>
     // tiempo local: 0 = 0 s del video
     const tl = gsap.timeline({ paused: true });
     gsap.set("#g-fondo", { opacity: 0 });
     tl.fromTo("#g-w2", { scale: 1 }, { scale: 1.06, duration: 0.12, ease: "power2.out", yoyo: true, repeat: 1 }, 0.44);
-    [["#g-i1", 1.52], ["#g-i2", 2.57], ["#g-i3", 3.85]].forEach(([s, a]) => tl.fromTo(s + " span", { opacity: 0, y: 26, scale: 0.9, filter: "blur(6px)" }, { opacity: 1, y: 0, scale: 1, filter: "blur(0px)", duration: 0.32, ease: "expo.out" }, a - 0.08));
-    tl.to(["#g-titulo", "#g-i1 span", "#g-i2 span", "#g-i3 span"], { opacity: 0, filter: "blur(10px)", duration: 0.2, ease: "power3.in", stagger: 0.03 }, 4.82);
-    tl.fromTo("#g-cinco", { opacity: 0, scale: 1.5, filter: "blur(14px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.35, ease: "expo.out" }, 5.12);
-    tl.to("#g-cinco", { opacity: 0, y: -40, filter: "blur(10px)", duration: 0.22, ease: "power3.in" }, 6.25);
-    tl.fromTo("#g-suerte", { opacity: 0, scale: 0.7 }, { opacity: 1, scale: 1, duration: 0.3, ease: "back.out(2)" }, 9.5);
-    tl.fromTo("#g-raya", { scaleX: 0 }, { scaleX: 1, duration: 0.22, ease: "power4.out" }, 9.83);
-    tl.to(["#g-suerte", "#g-raya"], { opacity: 0, filter: "blur(10px)", duration: 0.18, ease: "power3.in" }, 10.45);
-    tl.fromTo("#g-fondo", { opacity: 0 }, { opacity: 0.86, duration: 0.25, ease: "power2.out" }, 10.6);
-    tl.fromTo("#g-num", { opacity: 0, scale: 1.6, filter: "blur(16px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.3, ease: "power4.in" }, 11.15);
-    tl.fromTo("#g-dec", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.35, ease: "expo.out" }, 11.75);
-    tl.fromTo("#g-barra i", { scaleX: 0 }, { scaleX: 1, duration: 0.2, ease: "power3.out", stagger: 0.06 }, 11.85);
-    tl.to("#g-siete", { scale: 0.42, y: -330, opacity: 0, duration: 0.45, ease: "power3.in" }, 12.3);
-    tl.to("#g-fondo", { opacity: 0, duration: 0.3 }, 12.45);
+    [["#g-i1", 1.35], ["#g-i2", 2.34], ["#g-i3", 3.38]].forEach(([s, a]) => tl.fromTo(s + " span", { opacity: 0, y: 26, scale: 0.9, filter: "blur(6px)" }, { opacity: 1, y: 0, scale: 1, filter: "blur(0px)", duration: 0.32, ease: "expo.out" }, a - 0.08));
+    tl.to(["#g-titulo", "#g-i1 span", "#g-i2 span", "#g-i3 span"], { opacity: 0, filter: "blur(10px)", duration: 0.2, ease: "power3.in", stagger: 0.03 }, 4.6);
+    tl.fromTo("#g-cinco", { opacity: 0, scale: 1.5, filter: "blur(14px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.35, ease: "expo.out" }, 4.72);
+    tl.to("#g-cinco", { opacity: 0, y: -40, filter: "blur(10px)", duration: 0.22, ease: "power3.in" }, 5.85);
+    tl.fromTo("#g-suerte", { opacity: 0, scale: 0.7 }, { opacity: 1, scale: 1, duration: 0.3, ease: "back.out(2)" }, 9.02);
+    tl.fromTo("#g-raya", { scaleX: 0 }, { scaleX: 1, duration: 0.22, ease: "power4.out" }, 9.34);
+    tl.to(["#g-suerte", "#g-raya"], { opacity: 0, filter: "blur(10px)", duration: 0.18, ease: "power3.in" }, 9.8);
+    tl.fromTo("#g-fondo", { opacity: 0 }, { opacity: 0.86, duration: 0.25, ease: "power2.out" }, 9.9);
+    tl.fromTo("#g-num", { opacity: 0, scale: 1.6, filter: "blur(16px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.3, ease: "power4.in" }, 10.15);
+    tl.fromTo("#g-dec", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.35, ease: "expo.out" }, 10.55);
+    tl.fromTo("#g-barra i", { scaleX: 0 }, { scaleX: 1, duration: 0.2, ease: "power3.out", stagger: 0.06 }, 10.65);
+    tl.fromTo("#g-vos", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.35, ease: "expo.out" }, 11.3);
+    tl.to("#g-siete", { scale: 0.42, y: -330, opacity: 0, duration: 0.45, ease: "power3.in" }, 12.8);
+    tl.to("#g-fondo", { opacity: 0, duration: 0.3 }, 12.95);
     window.__timelines["o-gancho"] = tl;
   </script>
 </template>

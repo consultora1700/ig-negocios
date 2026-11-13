@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """Genera video/compositions/subtitulos.html: una palabra por vez, texto del guion + tiempos de Whisper."""
 import json, re, difflib, unicodedata, html
-G = open("voz/guion-v2.txt").read().split()
-W = json.load(open("voz/voz-v2-palabras.json"))
+G = open("voz/guion-v3.txt").read().split()
+W = json.load(open("voz/voz-v3-palabras.json"))
 norm = lambda s: re.sub(r"[^a-z0-9ñ]", "", unicodedata.normalize("NFD", s.lower()).encode("ascii", "ignore").decode())
 a = [norm(x) for x in G]; b = [norm(w["text"]) for w in W]
 T = [None] * len(G)
