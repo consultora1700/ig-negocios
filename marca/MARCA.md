@@ -57,3 +57,10 @@ buena jerarquía y espacio libre. Tiene que funcionar igual en un post educativo
 - Evitar efectos exagerados, brillos artificiales, sombras excesivas y apariencia de diseño genérico generado por IA.
 - Debe sentirse como una publicación empresarial premium, una consultora estratégica, un medio especializado en negocios.
 - Objetivo: identidad reconocible, consistente, profesional y escalable en todos los canales. Se mantiene en todas las piezas futuras.
+
+## 8. Aplicación en video (aprobado 2026-11-13)
+- **Capa de marca** (textos, datos, gráficos, botones, logo): estrictamente esta paleta.
+- **Capa del mundo** (escenarios, personajes, objetos de la historia): color real y con vida, preferentemente al atardecer/noche
+  (cielo azul noche) para convivir con el negro de la marca. Sus colores nunca se usan en la capa de marca.
+- Azul eléctrico = lo que crece / lo que conviene hacer. Plata/gris = lo que se apaga.
+- Todo video cierra con el logo completo y «+ SEGUIME · PARA MÁS ESTRATEGIAS».

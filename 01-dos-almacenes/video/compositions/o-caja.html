@@ -1,0 +1,49 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; pointer-events: none; font-family: "Montserrat"; }
+    #k-fondo { position: absolute; inset: 0; background: #000000; }
+    .k-card { position: absolute; left: 70px; right: 70px; border-radius: 22px; background: #0E0F12; border: 2px solid #3A3E46; overflow: hidden; }
+    .k-head { height: 84px; line-height: 84px; padding: 0 30px; font-weight: 800; font-size: 32px; letter-spacing: 0.1em; }
+    #k-lucas { top: 300px; height: 560px; } #k-lucas .k-head { background: linear-gradient(110deg, #0057D9 0%, #007BFF 35%, #009DFF 70%, #00CFFF 100%); color: #FFFFFF; }
+    .k-fila { display: flex; justify-content: space-between; padding: 22px 36px; font-family: "Inter", "Montserrat"; font-weight: 600; font-size: 38px; color: #E5E7EB; border-bottom: 2px solid #1B1E23; font-variant-numeric: tabular-nums; }
+    .k-fila b { font-family: "Montserrat"; font-weight: 800; color: #FFFFFF; }
+    #k-alerta { margin: 30px 36px 0; padding: 22px 26px; border-radius: 14px; border: 3px solid #00CFFF; background: rgba(0,157,255,.12); font-weight: 900; font-size: 46px; color: #FFFFFF; display: flex; justify-content: space-between; align-items: center; }
+    #k-alerta small { font-family: "Inter", "Montserrat"; font-weight: 600; font-size: 24px; color: #BFC4CC; display: block; }
+    #k-martin { top: 280px; height: 460px; } #k-martin .k-head { background: #1B1E23; color: #BFC4CC; }
+    #k-cal { display: grid; grid-template-columns: repeat(7, 1fr); gap: 8px; padding: 20px 30px; }
+    .k-d { height: 50px; border-radius: 8px; background: #1B1E23; color: #9299A3; font-weight: 800; font-size: 24px; line-height: 50px; text-align: center; }
+    #k-q { position: absolute; right: 50px; bottom: 20px; font-weight: 900; font-size: 96px; color: #FFFFFF; transform: rotate(-8deg); }
+  </style>
+  <div id="root" data-composition-id="o-caja" data-width="1080" data-height="1920">
+    <div id="k-fondo" class="clip" data-start="0" data-duration="7.65"></div>
+    <div id="k-lucas" class="k-card clip" data-start="0.7" data-duration="4.2">
+      <div class="k-head">LUCAS · CIERRE DE CAJA · HOY</div>
+      <div class="k-fila" id="k-r1"><span>Ventas del día</span><b>$ 184.300</b></div>
+      <div class="k-fila" id="k-r2"><span>Efectivo en caja</span><b>$ 181.300</b></div>
+      <div id="k-alerta"><span>FALTAN $ 3.000<small>Lo ve hoy, no a fin de mes · ejemplo</small></span><span>!</span></div>
+    </div>
+    <div id="k-martin" class="k-card clip" data-start="4.75" data-duration="2.9">
+      <div class="k-head">MARTÍN · ¿CUÁNTO FALTA?</div>
+      <div id="k-cal"><div class="k-d" id="k-d1">1</div><div class="k-d" id="k-d2">2</div><div class="k-d" id="k-d3">3</div><div class="k-d" id="k-d4">4</div><div class="k-d" id="k-d5">5</div><div class="k-d" id="k-d6">6</div><div class="k-d" id="k-d7">7</div><div class="k-d" id="k-d8">8</div><div class="k-d" id="k-d9">9</div><div class="k-d" id="k-d10">10</div><div class="k-d" id="k-d11">11</div><div class="k-d" id="k-d12">12</div><div class="k-d" id="k-d13">13</div><div class="k-d" id="k-d14">14</div><div class="k-d" id="k-d15">15</div><div class="k-d" id="k-d16">16</div><div class="k-d" id="k-d17">17</div><div class="k-d" id="k-d18">18</div><div class="k-d" id="k-d19">19</div><div class="k-d" id="k-d20">20</div><div class="k-d" id="k-d21">21</div><div class="k-d" id="k-d22">22</div><div class="k-d" id="k-d23">23</div><div class="k-d" id="k-d24">24</div><div class="k-d" id="k-d25">25</div><div class="k-d" id="k-d26">26</div><div class="k-d" id="k-d27">27</div><div class="k-d" id="k-d28">28</div><div class="k-d" id="k-d29">29</div><div class="k-d" id="k-d30">30</div></div>
+      <div id="k-q">¿?</div>
+    </div>
+  </div>
+  <script>
+    // tiempo local: 0 = 45,75 s del video
+    const tl = gsap.timeline({ paused: true });
+    gsap.set("#k-fondo", { opacity: 0 });
+    tl.fromTo("#k-fondo", { opacity: 0 }, { opacity: 0.55, duration: 0.3 }, 0.6);
+    tl.fromTo("#k-lucas", { opacity: 0, y: 80 }, { opacity: 1, y: 0, duration: 0.5, ease: "expo.out" }, 0.75);
+    tl.fromTo(["#k-r1", "#k-r2"], { opacity: 0, x: -30 }, { opacity: 1, x: 0, duration: 0.3, ease: "expo.out", stagger: 0.35 }, 1.5);
+    tl.fromTo("#k-alerta", { opacity: 0, scale: 0.85 }, { opacity: 1, scale: 1, duration: 0.3, ease: "back.out(2)" }, 3.9);
+    tl.to("#k-lucas", { opacity: 0, y: -60, filter: "blur(10px)", duration: 0.2, ease: "power3.in" }, 4.7);
+    tl.to("#k-fondo", { opacity: 0.15, duration: 0.3 }, 4.7);
+    tl.fromTo("#k-martin", { opacity: 0, y: 80 }, { opacity: 1, y: 0, duration: 0.45, ease: "expo.out" }, 4.8);
+    // el mes pasa entero hasta el 30 («a fin de mes»)
+    for (let d = 1; d <= 30; d++) tl.to("#k-d" + d, { backgroundColor: d === 30 ? "#E5E7EB" : "#3A3E46", color: d === 30 ? "#000000" : "#E5E7EB", duration: 0.05 }, 5.0 + d * 0.03);
+    tl.fromTo("#k-q", { opacity: 0, scale: 1.8 }, { opacity: 1, scale: 1, duration: 0.25, ease: "power4.in" }, 6.5);
+    tl.to("#k-martin", { opacity: 0, filter: "blur(10px)", duration: 0.2, ease: "power3.in" }, 7.4);
+    tl.to("#k-fondo", { opacity: 0, duration: 0.25 }, 7.4);
+    window.__timelines["o-caja"] = tl;
+  </script>
+</template>

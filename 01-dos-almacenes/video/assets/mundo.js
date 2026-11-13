@@ -13,13 +13,25 @@ const C = {
 };
 // ---------- tiempos (anclados a la voz) ----------
 export const T = {
-  cuadra: 1.48, plata: 2.32, dia: 3.28, cinco: 4.8, tres: 6.36, persiana: 8.55, suerte: 10.3,
-  cajero: 12.42, repositor: 13.02, desde: 13.4, lucasNo: 14.48, atendio: 15.33, anio: 16.77, noLoEs: 18.73,
-  vende: 20.35, fiarle: 21.33, escapa: 22.37, contrato: 24.01, sabia: 24.97, sueldos: 26.77, nunca: 29.14,
-  cuaderno: 31.02, deposito: 43.02, parada: 44.27, vencidas: 45.75, repetidas: 46.79, lucasCompra: 47.66,
-  segunda: 49.94, tercio: 52.26, abrio: 55.41, pero: 56.11, diez: 66.36, plataY: 67.57, ocho: 69.46,
-  cadaVez: 70.05, sentia: 72.48, llena: 74.27, loco: 75.64, primer: 76.55, mas1: 79.07, mas2: 80.14, mas3: 81.13,
-  dif: 82.22, cual: 93.97, FIN: 97,
+  // gancho
+  cuadra: 1.52, plata: 2.57, dia: 3.85, cinco: 5.12, tres: 6.64, persiana: 8.72, suerte: 9.5, siete: 10.68,
+  // 1 · ponerle el cuerpo
+  d1: 12.87, contrato1: 14.02, lucas1: 15.64, anio: 17.49, contrato: 18.36, sabia: 19.37,
+  // 2 · cuaderno o sistema
+  d2: 21.54, cuaderno: 22.39, sistema: 23.62, venta: 26.32, compra: 27.16, fiado: 28.05,
+  // 3 · qué deja plata
+  d3: 28.89, veinte: 30.95, deTodo: 33.91, deposito: 35.49, parada: 36.71,
+  // 4 · nunca decir «no hay»
+  d4: 37.66, avisa: 38.4, pedian: 41.07, yerbaP: 41.76, nohay: 43.09, cruza: 43.61, deLucas: 45.13,
+  // 5 · cerrar la caja todos los días
+  d5: 45.87, cierra: 46.78, faltante: 49.68, finMes: 50.61, mes: 51.66, siSe: 52.31,
+  // 6 · precio de reposición
+  d6: 53.51, mPrecio: 54.16, lPrecio: 56.38, inflacion: 58.95, achica: 61.12,
+  // 7 · sueldo fijo y reinversión
+  d7: 62.34, casa: 62.99, sueldo: 65.23, reinv: 67.5, datos: 68.7, tercio: 69.0, abrio: 70.99, pedidos: 72.44,
+  // giro y cierre
+  loco: 73.51, primer: 74.86, mas: 75.1, dif: 76.86, anio3: 78.25, tarde: 79.3,
+  cierre: 80.65, numero: 82.76, guarda: 84.39, revisa: 85.38, marca: 88.0, FIN: 91,
 };
 
 // ---------- utilidades ----------
@@ -189,13 +201,16 @@ function manzana(cx, cz, nuestra, plaza, hueco) {
 for (let i = -3; i <= 3; i++) for (let j = -3; j <= 2; j++) manzana(i * BX, j * BZ - 4.5, i === 0 && j === 0, i === 0 && j === 1, (i === 1 && j === -1) || (i === -1 && j === 0));
 
 // ---------- personas ----------
+const gente = [];
 function persona(remera, delantal) {
   const g = new THREE.Group();
   const cuerpo = new THREE.Mesh(new THREE.CapsuleGeometry(0.34, 0.62, 6, 16), mat(remera)); cuerpo.position.y = 0.68; cuerpo.castShadow = true; g.add(cuerpo);
   if (delantal) { const dl = box(0.5, 0.62, 0.08, mat(C.delantal), 0.03); dl.position.set(0, 0.62, 0.31); g.add(dl); }
   const cabeza = new THREE.Mesh(new THREE.SphereGeometry(0.3, 24, 16), mat("#E8B48F")); cabeza.position.y = 1.36; cabeza.castShadow = true; g.add(cabeza);
   const pelo = new THREE.Mesh(new THREE.SphereGeometry(0.31, 24, 12, 0, Math.PI * 2, 0, Math.PI * 0.45), mat("#3A2A22")); pelo.position.y = 1.38; g.add(pelo);
-  for (const s of [-1, 1]) { const ojo = new THREE.Mesh(new THREE.SphereGeometry(0.045, 10, 8), mat(C.tinta)); ojo.position.set(0.1 * s, 1.38, 0.27); g.add(ojo); }
+  const ojos = [];
+  for (const s of [-1, 1]) { const ojo = new THREE.Mesh(new THREE.SphereGeometry(0.045, 10, 8), mat(C.tinta)); ojo.position.set(0.1 * s, 1.38, 0.27); g.add(ojo); ojos.push(ojo); }
+  g.userData.ojos = ojos; g.userData.semilla = gente.length * 0.37 + 0.11; gente.push(g);
   return g;
 }
 
@@ -285,7 +300,7 @@ for (let i = 0; i < 27; i++) {
   let x, z;
   if (enZona) { x = BX + 2 + (rp() - 0.5) * 14; z = -BZ + 0.6 + (rp() - 0.5) * 10; }
   else { const a = rp() * Math.PI * 2, rr = 12 + rp() * 48; x = Math.cos(a) * rr; z = Math.sin(a) * rr * 0.8 - 4; }
-  g.position.set(x, 0, z); g.scale.setScalar(2.2); g.userData = { enZona, t0: T.tercio + 0.05 + i * 0.085 }; scene.add(g); pines.push(g);
+  g.position.set(x, 0, z); g.scale.setScalar(2.2); g.userData = { enZona, t0: T.tercio + i * 0.06 }; scene.add(g); pines.push(g);
 }
 const anillo = new THREE.Mesh(new THREE.TorusGeometry(10, 0.35, 12, 64), mat("#00CFFF", { emissive: "#009DFF", emissiveIntensity: 0.5 }));
 anillo.rotation.x = Math.PI / 2; anillo.position.set(BX + 2, 0.4, -BZ + 0.6); scene.add(anillo);
@@ -293,224 +308,321 @@ anillo.rotation.x = Math.PI / 2; anillo.position.set(BX + 2, 0.4, -BZ + 0.6); sc
 const polvo = []; const rpo = rng(5);
 for (let i = 0; i < 34; i++) { const p = new THREE.Mesh(new THREE.SphereGeometry(0.06 + rpo() * 0.09, 8, 6), new THREE.MeshStandardMaterial({ color: "#6B7079", transparent: true, opacity: 0.8, roughness: 1 })); p.userData = { a: rpo() * Math.PI, v: 0.6 + rpo() * 1.4 }; M.g.add(p); polvo.push(p); }
 
+
 // ---------- estado por tiempo ----------
 const posDueno = new THREE.Vector3(2.15, 0.5, -0.35);
 const posCajero = new THREE.Vector3(1.6, 0.5, -0.35), posRepo = new THREE.Vector3(-2.4, 0.5, -1.0), posEmp3 = new THREE.Vector3(-0.2, 0.5, 0.2);
-const BILL_CAJA = new THREE.Vector3(2.45, 1.95, 0.6);
+const LX = (S) => S.g.position.x, LZ = (S) => S.g.position.z;
 
 function persianaAbierta(s, u) { // u: 0 abierta (enrollada) .. 1 cerrada
   s.lam.scale.y = Math.max(0.001, u); s.lam.position.y = -1.575 * u; s.lam.visible = u > 0.002;
 }
 function aparecer(o, t, a, d = 0.55) { const u = P(t, a, d, E.back); o.visible = t >= a; o.scale.setScalar(Math.max(0.001, u)); }
+// caminar: rebote y balanceo mientras se mueve; mira hacia donde va
+function caminar(o, x0, z0, x1, z1, u, y = 0.5) {
+  const x = lerp(x0, x1, u), z = lerp(z0, z1, u);
+  const mov = u > 0 && u < 1;
+  o.position.set(x, y + (mov ? Math.abs(Math.sin(u * Math.hypot(x1 - x0, z1 - z0) * 4.2)) * 0.07 : 0), z);
+  o.rotation.z = mov ? Math.sin(u * Math.hypot(x1 - x0, z1 - z0) * 4.2) * 0.07 : 0;
+  if (mov) o.rotation.y = Math.atan2(x1 - x0, z1 - z0);
+}
 
 // cuánto se "apagó" el almacén de Martín (0 = vivo, 1 = gris y sin luz)
-export const apagado = (t) => track(t, 0, [[T.tres, 1, 2.2, E.io], [T.suerte + 0.1, 0, 1.1, E.io], [T.sueldos, 0.15, 1.0], [T.cuaderno, 0.25, 1.0], [T.deposito, 0.4, 1.0], [T.pero, 0.5, 1.0], [T.cadaVez, 0.7, 1.5], [T.loco, 0, 0.8], [T.dif, 0.6, 1.2], [T.cual, 1, 1.0]]);
+export const apagado = (t) => track(t, 0, [[T.tres, 1, 2.0, E.io], [T.suerte + 0.1, 0, 1.0, E.io], [T.contrato1, 0.1, 1.0], [T.cuaderno, 0.2, 1.0], [T.deTodo, 0.35, 1.0], [T.nohay, 0.5, 0.8], [T.finMes, 0.6, 1.0], [T.achica - 1, 0.75, 1.0], [T.casa, 0.85, 1.0], [T.loco, 0, 0.8], [T.anio3, 0.9, 1.0], [T.cierre, 1, 1.0]]);
 const gris = new THREE.Color();
 function apagar(t) {
   const d = apagado(t);
   for (const { m, c0 } of apagables) { const l = c0.r * 0.3 + c0.g * 0.59 + c0.b * 0.11; gris.setRGB(l * 0.7, l * 0.7, l * 0.72); m.color.copy(c0).lerp(gris, d); }
   luzLocal[0].intensity = 14 * (1 - 0.75 * d);
 }
+// timelapse: cuando corren los años, el cielo pasa por día y noche
+const cielos = [[T.cinco, 1.2, 5], [T.suerte + 0.1, 1.0, 5], [T.anio, 0.6, 1], [T.abrio + 0.2, 0.8, 2], [T.primer - 0.3, 0.6, 2], [T.anio3, 0.6, 2], [T.cierre, 0.8, 2]];
+const cNoche = new THREE.Color(C.cielo), cDia = new THREE.Color("#7DB0E0"), cTmp = new THREE.Color();
+const hemi = scene.children.find((o) => o.isHemisphereLight);
+function cielo(t) {
+  let dia = 0;
+  for (const [a, d, n] of cielos) if (t >= a && t < a + d) dia = 0.5 - 0.5 * Math.cos(((t - a) / d) * n * Math.PI * 2);
+  cTmp.copy(cNoche).lerp(cDia, dia); scene.background.copy(cTmp); scene.fog.color.copy(cTmp);
+  hemi.intensity = 1.15 + dia * 0.9; sol.intensity = 1.9 + dia * 1.6;
+}
+function parpadeo(t) {
+  for (const g of gente) { const f = (t / 3.1 + g.userData.semilla) % 1; const s = f < 0.035 ? 0.15 : 1; g.userData.ojos.forEach((o) => (o.scale.y = s)); }
+}
+
 function estado(t) {
-  apagar(t);
-  // AÑO (para la HUD y estados de “futuro”)
+  apagar(t); cielo(t); parpadeo(t);
   const futuro = t >= T.cinco && t < T.suerte + 0.15;                 // gancho en el año 5
-  const rew = P(t, T.suerte + 0.1, 1.1, E.io3);                         // rebobinado
-  const fin = t >= T.cual;
+  const rew = P(t, T.suerte + 0.1, 1.0, E.io3);                         // rebobinado
+  const fin = t >= T.cierre;
   // persianas: suben al inicio; la de Martín cae en el año 5 y al final
   const subir = 1 - P(t, 0.25, 1.1, E.io3);
-  let pM = subir, pL = subir;
-  if (futuro || fin) { const a = fin ? T.cual + 0.15 : T.persiana - 0.35; pM = Math.max(pM, P(t, a, 0.38, E.bounce)); }
+  let pM = subir;
+  if (futuro || fin) { const a = fin ? T.cierre + 0.15 : T.persiana - 0.35; pM = Math.max(pM, P(t, a, 0.38, E.bounce)); }
   if (t >= T.suerte + 0.1 && !fin) pM = Math.max(subir, 1 - rew);
-  persianaAbierta(M, pM); persianaAbierta(L, pL);
-  // golpe + polvo
-  const golpe = fin ? T.cual + 0.5 : T.persiana;
+  persianaAbierta(M, pM); persianaAbierta(L, subir);
+  const golpe = fin ? T.cierre + 0.5 : T.persiana;
   polvo.forEach((p) => { const u = clamp((t - golpe) / 1.3); const ok = u > 0 && u < 1 && (fin || futuro); p.visible = ok; if (ok) { const r = 0.4 + E.o3(u) * 2.4 * p.userData.v; p.position.set(Math.cos(p.userData.a) * r * 1.6, 0.3 + E.o3(u) * 0.9, 3.0 + Math.sin(p.userData.a) * 0.8); p.material.opacity = 0.85 * (1 - u); p.scale.setScalar(1 + u * 0.6); } });
-  // cartel SE ALQUILA (se balancea)
-  const ta = fin ? T.cual + 0.7 : T.persiana + 0.35;
+  const ta = fin ? T.cierre + 0.7 : T.persiana + 0.35;
   const alqOn = (futuro || fin) && t >= ta && !(t >= T.suerte + 0.1 && !fin);
   M.alqPiv.visible = alqOn; if (alqOn) { const u = t - ta; M.alqPiv.rotation.z = Math.sin(u * 6) * 0.35 * Math.exp(-u * 1.6); M.alqPiv.scale.setScalar(P(t, ta, 0.3, E.back)); }
   L.alqPiv.visible = false;
   // sucursales de Lucas
-  const s3 = (futuro ? P(t, T.tres + 0.4, 0.6, E.back) : 0) * (1 - rew * (t < T.cual ? 1 : 0)) + (fin ? P(t, T.cual + 0.3, 0.6, E.back) : 0);
-  const s2 = futuro ? P(t, T.tres + 0.1, 0.6, E.back) * (1 - rew) : t >= T.abrio - 0.4 ? 1 : 0;
+  const s3 = futuro ? P(t, T.tres + 0.4, 0.6, E.back) * (1 - rew) : fin ? P(t, T.cierre + 0.3, 0.6, E.back) : 0;
   S3.g.visible = s3 > 0.001; S3.g.scale.setScalar(Math.max(0.001, s3));
-  S2.g.visible = s2 > 0.001;
-  if (!futuro && t >= T.abrio - 0.4 && t < T.abrio + 0.6) { const u = P(t, T.abrio - 0.4, 0.55, E.i3); S2.g.position.y = 30 * (1 - u); S2.g.scale.setScalar(1); }
-  else { S2.g.position.y = 0; S2.g.scale.setScalar(Math.max(0.001, futuro ? s2 : 1)); }
+  if (futuro) { const s2 = P(t, T.tres + 0.1, 0.6, E.back) * (1 - rew); S2.g.visible = s2 > 0.001; S2.g.position.y = 0; S2.g.scale.setScalar(Math.max(0.001, s2)); }
+  else if (t >= T.abrio - 0.4) { const u = P(t, T.abrio - 0.4, 0.55, E.i3); S2.g.visible = true; S2.g.position.y = 30 * (1 - u); S2.g.scale.setScalar(1); }
+  else S2.g.visible = false;
   persianaAbierta(S2, 0); persianaAbierta(S3, 0);
-  // dueños / empleados de Martín
-  const sale = P(t, T.desde, 1.0, E.io);
-  const vuelve = t >= T.loco; // año 1 en el bloque G: Martín no está, sí 3 empleados
-  M.dueno.visible = t < T.desde + 1.0 || fin;
-  const pd = lerp3([posDueno.x, posDueno.y, posDueno.z], [6.5, 0.5, 4.2], sale);
-  M.dueno.position.set(...pd); M.dueno.rotation.y = sale > 0 && sale < 1 ? 0.9 : 0;
-  if (t < T.cajero) { M.emp[0].visible = false; M.emp[1].visible = false; }
-  else { M.emp[0].position.copy(posCajero); aparecer(M.emp[0], t, T.cajero); M.emp[1].position.copy(posRepo); aparecer(M.emp[1], t, T.repositor); }
-  M.emp[2].position.copy(posEmp3); aparecer(M.emp[2], t, T.mas1 + 0.2);
-  if (t < T.mas1) M.emp[2].visible = false;
-  if (t < T.loco && t > T.cual) {}
+  // Martín: detrás del mostrador; contrata y se va; vuelve a sacar plata «para la casa»
+  const sale = P(t, T.contrato1 + 0.5, 1.3, E.lin);
+  const enCasa = t >= T.casa - 0.3 && t < T.sueldo;
+  if (t < T.contrato1 + 0.5 || fin) { M.dueno.visible = true; M.dueno.position.copy(posDueno); M.dueno.rotation.set(0, 0, 0); }
+  else if (sale < 1) { M.dueno.visible = true; caminar(M.dueno, posDueno.x, posDueno.z, 4.4, 4.6, sale); }
+  else if (enCasa) { M.dueno.visible = true; M.dueno.position.set(2.9, 0.5, -0.2); M.dueno.rotation.set(0, -0.4, 0); }
+  else M.dueno.visible = false;
+  if (t < T.contrato1) { M.emp[0].visible = false; M.emp[1].visible = false; }
+  else { M.emp[0].position.copy(posCajero); aparecer(M.emp[0], t, T.contrato1 + 0.05); M.emp[1].position.copy(posRepo); aparecer(M.emp[1], t, T.contrato1 + 0.45); }
+  if (enCasa) M.emp[0].position.set(1.2, 0.5, -0.35);
+  M.emp[2].position.copy(posEmp3); if (t >= T.mas && t < T.dif + 0.2) aparecer(M.emp[2], t, T.mas); else M.emp[2].visible = false;
   // Lucas
-  L.dueno.position.copy(posDueno); L.dueno.visible = true;
-  L.emp[0].position.set(0.9, 0.5, -0.1); aparecer(L.emp[0], t, T.contrato + 0.3); if (t < T.contrato + 0.3) L.emp[0].visible = false;
+  L.dueno.position.copy(posDueno); L.dueno.visible = true; L.dueno.rotation.set(0, 0, 0);
+  L.emp[0].position.set(0.9, 0.5, -0.1); if (t >= T.contrato + 0.25) aparecer(L.emp[0], t, T.contrato + 0.25); else L.emp[0].visible = false;
   L.emp[1].visible = false; L.emp[2].visible = false;
-  // Lucas atiende: producto que cruza el mostrador
-  // monedas (capital)
-  const nM0 = 10, nL0 = 10;
-  let nM = nM0, nL = nL0;
+  // monedas: solo en el gancho («misma plata», año 5) y en el final
+  let nM = 10, nL = 10;
   if (futuro) { const u = P(t, T.cinco, 1.2, E.io); nM = Math.round(lerp(10, 0, u)); nL = Math.round(lerp(10, 24, u)); }
-  if (t >= T.suerte + 0.1 && t < T.sueldos) { nM = Math.round(lerp(0, 10, rew)); nL = Math.round(lerp(24, 10, rew)); }
-  if (t >= T.sueldos + 0.4) { const k = Math.min(3, Math.floor((t - T.sueldos - 0.4) / 0.5) + 1); nM = 10 - 2 * k; }
-  const showCoins = t < T.cuaderno || fin;
+  if (t >= T.suerte + 0.1) { nM = Math.round(lerp(0, 10, rew)); nL = Math.round(lerp(24, 10, rew)); }
   if (fin) { nM = 0; nL = 24; }
+  const showCoins = t < T.d1 || fin;
   coins(M, nM, showCoins, t); coins(L, nL, showCoins, t);
-  // yerba de Martín (fila 1)
-  yerba(M, t); yerbaLucas(L, t);
-  // billetes de la caja de Martín
-  billetesM(t); L.billetes.forEach((b) => (b.visible = false));
-  // pines
-  pines.forEach((p) => { const a = p.userData.t0; const u = P(t, a, 0.45, E.bounce); p.visible = t >= a && t < T.pero + 0.5; p.position.y = 14 * (1 - u); let z = t > T.tercio + 2.6 && !p.userData.enZona ? 1.3 : 2.2; if (p.userData.enZona) z *= 1 - P(t, T.abrio - 0.5, 0.35, E.i3); p.visible = p.visible && z > 0.01; p.scale.setScalar(Math.max(0.001, z)); });
-  anillo.visible = t >= T.tercio + 2.4 && t < T.pero + 0.5; anillo.scale.setScalar(Math.max(0.001, P(t, T.tercio + 2.4, 0.5, E.back)));
-  // cajón de Martín abierto y billetes que se escapan (B)
-  M.cajon.position.z = 0.1 + 0.35 * (P(t, T.nunca, 0.35) * (1 - P(t, T.cuaderno - 0.3, 0.3)));
-  // depósitos
+  yerbaM(t); yerbaL(t);
+  billetesM(t); billetesL(t);
+  // cajón de Martín: se abre y se escapa la plata («si se enteraba»)
+  M.cajon.position.z = 0.1 + 0.35 * (P(t, T.finMes + 0.5, 0.35) * (1 - P(t, T.d6 - 0.3, 0.3)));
+  // pedidos del barrio
+  pines.forEach((p) => { const a = p.userData.t0; const u = P(t, a, 0.45, E.bounce); p.visible = t >= a && t < T.loco; p.position.y = 14 * (1 - u); let z = t > T.tercio + 1.7 && !p.userData.enZona ? 1.3 : 2.2; if (p.userData.enZona) z *= 1 - P(t, T.abrio - 0.5, 0.35, E.i3); p.visible = p.visible && z > 0.01; p.scale.setScalar(Math.max(0.001, z)); });
+  anillo.visible = t >= T.tercio + 1.5 && t < T.loco; anillo.scale.setScalar(Math.max(0.001, P(t, T.tercio + 1.5, 0.5, E.back)));
   deposito(t);
-  // clientes (movimiento, bloque G)
-  clientes(t);
+  clientesG(t); flujo(t); elCliente(t); autos(t);
 }
 function coins(S, n, show, t) {
   S.monedas.forEach((m, i) => {
-    const vis = show && i < n; m.visible = vis;
+    m.visible = show && i < n;
     const col = Math.floor(i / 13), k = i % 13;
     m.position.set(-4.6 + col * 0.95, 0.36 + k * 0.115, 2.9 - col * 0.2);
   });
-  // aparición inicial al decir «misma plata»
   const u = P(t, T.plata - 0.1, 0.5, E.back);
   S.monedas.forEach((m) => m.scale.setScalar(t < T.cinco ? Math.max(0.001, u) : 1));
   if (t < T.plata - 0.1) S.monedas.forEach((m) => (m.visible = false));
 }
-// Yerba de Martín: 10 → vendidas → vuelven 8 → 6 → 5 → 4
-function yerba(S, t) {
-  const fila = S.prods.filter((p) => p.fila === 1);
+// Yerba de Martín: vacía cuando le piden («no hay»); en el 6, vende 10 y repone 8 → 6 → 5
+export function yerbaEnEstanteM(t) {
+  if (t >= T.pedian - 0.3 && t < T.d5) return 0;
+  if (t >= T.inflacion - 0.2 && t < T.loco) {
+    let n = 10; for (let i = 0; i < 10; i++) { if (t >= T.inflacion + 0.35 + i * 0.05 + 0.25) n--; if (i < 8 && t >= T.inflacion + 1.35 + i * 0.05 + 0.2) n++; }
+    if (t >= T.achica - 0.2) n = Math.min(n, 6); if (t >= T.achica + 0.35) n = Math.min(n, 5);
+    return n;
+  }
+  return 10;
+}
+function yerbaM(t) {
+  const fila = M.prods.filter((p) => p.fila === 1);
   fila.forEach(({ m }, i) => {
     const b = m.userData.base; let x = b.x, y = b.y, z = b.z, s = 1, vis = true;
-    const vende = T.diez - 0.3 + i * 0.1;               // se van al mostrador
-    const vuelve = T.plataY + 1.25 + i * 0.09;          // 8 vuelven
-    const sale2 = i >= 6 ? T.cadaVez + 0.3 + (9 - i) * 0.12 : i === 5 ? T.cadaVez + 0.85 : i === 4 ? T.cadaVez + 1.35 : 1e9;
-    const enG = t >= T.loco; // año 1: estante lleno otra vez
-    if (!enG && t >= vende) {
-      const u = P(t, vende, 0.4, E.io);
-      if (u < 1) { x = lerp(b.x, 3.3, u); y = b.y + Math.sin(u * Math.PI) * 1.2; z = lerp(b.z, 2.6, u); s = 1 - u * 0.7; }
-      else vis = false;
-      if (i < 8 && t >= vuelve) { const v = P(t, vuelve, 0.35, E.bounce); vis = true; x = b.x; z = b.z; y = b.y + 1.6 * (1 - v); s = 1; }
-      if (t >= sale2) { const w = P(t, sale2, 0.3, E.io); if (w < 1) { x = b.x; y = b.y + w * 0.9; z = b.z + w * 1.5; s = 1 - w; } else vis = false; }
+    if (t >= T.pedian - 0.3 && t < T.d5) vis = false;
+    if (t >= T.inflacion - 0.2 && t < T.loco) {
+      const vende = T.inflacion + 0.35 + i * 0.05, vuelve = T.inflacion + 1.35 + i * 0.05;
+      const sale2 = i === 7 || i === 6 ? T.achica - 0.25 + (7 - i) * 0.08 : i === 5 ? T.achica + 0.3 : 1e9;
+      if (t >= vende) {
+        const u = P(t, vende, 0.35, E.io);
+        if (u < 1) { x = lerp(b.x, 3.3, u); y = b.y + Math.sin(u * Math.PI) * 1.0; z = lerp(b.z, 2.6, u); s = 1 - u * 0.7; } else vis = false;
+        if (i < 8 && t >= vuelve) { const v = P(t, vuelve, 0.3, E.bounce); vis = true; x = b.x; z = b.z; y = b.y + 1.4 * (1 - v); s = 1; }
+        if (t >= sale2) { const w = P(t, sale2, 0.28, E.io); if (w < 1) { x = b.x; y = b.y + w * 0.9; z = b.z + w * 1.5; s = 1 - w; } else vis = false; }
+      }
     }
     m.position.set(x, y, z); m.scale.setScalar(Math.max(0.001, s)); m.visible = vis;
   });
 }
-function yerbaLucas(S, t) { S.prods.forEach(({ m }) => { m.position.copy(m.userData.base); m.scale.setScalar(1); m.visible = true; }); }
-function billetesM(t) {
-  const enCaja = (i) => [2.45 + ((i * 37) % 7 - 3) * 0.04, 1.93 + Math.floor(i / 3) * 0.03, 0.6 + ((i * 53) % 5 - 2) * 0.05];
-  M.billetes.forEach((b, i) => {
-    let vis = false, p = [0, 0, 0], ry = (i * 0.7) % 1.2 - 0.6;
-    // F: entran 10 billetes al vender
-    const entra = T.diez - 0.1 + i * 0.1, salen = T.plataY + 0.15 + i * 0.05;
-    if (i < 10 && t >= entra && t < T.loco) {
-      const u = P(t, entra, 0.35, E.o3); vis = true; p = lerp3([2.45, 3.0, 1.4], enCaja(i), u);
-      if (t >= salen && t < T.sentia) { const w = P(t, salen, 0.5, E.i3); p = lerp3(enCaja(i), [9, 3.5, 3], w); vis = w < 1; }
+// Yerba de Lucas: el sistema avisa que quedan 3 y repone
+function yerbaL(t) {
+  L.prods.forEach(({ m, fila, i }) => {
+    const b = m.userData.base; m.position.copy(b); m.scale.setScalar(1); m.visible = true;
+    if (fila === 1 && i >= 3 && t >= T.avisa - 0.3 && t < T.pedian) {
+      const a = T.avisa + 1.55 + (i - 3) * 0.07; // reposición
+      if (t < a) m.visible = false; else { const v = P(t, a, 0.3, E.bounce); m.position.y = b.y + 1.3 * (1 - v); }
     }
-    // caja llena (ilusión): se apilan 26 billetes
-    const llena = T.sentia + 0.1 + i * 0.07;
-    if (t >= llena && t < T.loco) { const u = P(t, llena, 0.3, E.bounce); vis = true; const k = enCaja(i); p = [k[0], k[1] + 0.25 + 0.8 * (1 - u) + i * 0.012, k[2]]; }
-    // B: billetes que se escapan del cajón
-    const esc = T.nunca + 0.45 + i * 0.12;
-    if (i < 8 && t >= esc && t < T.cuaderno) { const u = P(t, esc, 0.9, E.i3); vis = u < 1; p = [2.45 + Math.sin(i) * 0.2, 1.7 - u * 1.4, 0.95 + u * 0.8]; ry = u * 4 + i; }
-    b.visible = vis; b.position.set(...p); b.rotation.set(vis && t < T.cuaderno ? 0.6 : 0, ry, 0);
   });
 }
-// Depósitos: Martín desordenado (vencidas + repetidas), Lucas ordenado (poco y seguido)
-const cajasM = [], cajasL = [];
+const enCaja = (i) => [2.45 + ((i * 37) % 7 - 3) * 0.04, 1.93 + Math.floor(i / 3) * 0.03, 0.6 + ((i * 53) % 5 - 2) * 0.05];
+function billetesM(t) {
+  M.billetes.forEach((b, i) => {
+    let vis = false, p = [0, 0, 0], ry = (i * 0.7) % 1.2 - 0.6, rx = 0;
+    // 5: la plata se escapa del cajón y nadie se entera
+    const esc = T.finMes + 0.8 + i * 0.12;
+    if (i < 8 && t >= esc && t < T.d6) { const u = P(t, esc, 0.9, E.i3); vis = u < 1; p = [2.45 + Math.sin(i) * 0.2, 1.7 - u * 1.4, 0.95 + u * 0.8]; ry = u * 4 + i; rx = 0.6; }
+    // 7: la caja se llena y la plata se va «para la casa»
+    const llega = T.casa - 0.2 + i * 0.03, va = T.casa + 0.7 + i * 0.06;
+    if (i < 14 && t >= llega && t < T.sueldo) {
+      const u = P(t, llega, 0.25, E.bounce); vis = true; const k = enCaja(i); p = [k[0], k[1] + 0.2 + 0.6 * (1 - u) + i * 0.012, k[2]];
+      if (t >= va) { const w = P(t, va, 0.7, E.i3); p = lerp3(p, [9.5, 3.2, 3.5], w); vis = w < 1; ry = w * 5 + i; }
+    }
+    b.visible = vis; b.position.set(...p); b.rotation.set(rx, ry, 0);
+  });
+}
+function billetesL(t) {
+  L.billetes.forEach((b, i) => {
+    let vis = false, p = [0, 0, 0], ry = (i * 0.7) % 1.2 - 0.6;
+    const llega = T.sueldo - 0.1 + i * 0.03;
+    if (i < 14 && t >= llega && t < T.datos) {
+      const u = P(t, llega, 0.25, E.bounce); vis = true; const k = enCaja(i); p = [k[0], k[1] + 0.2 + 0.6 * (1 - u) + i * 0.012, k[2]];
+      if (i < 3) { const w = P(t, T.sueldo + 0.9 + i * 0.08, 0.5, E.io); p = lerp3(p, [2.15, 1.25 + i * 0.03, -0.1], w); }        // sueldo fijo
+      else { const w = P(t, T.reinv - 0.3 + i * 0.05, 0.7, E.io); p = lerp3(p, [-0.7 + ((i % 5) - 2) * 0.6, 3.4, -1.9], w); vis = w < 0.98; ry += w * 4; } // reinversión
+    }
+    b.visible = vis; b.position.set(...p); b.rotation.set(0, ry, 0);
+  });
+}
+// Depósitos: Martín compra de todo (las cajas llueven) y se llena de plata parada
+const cajasM = [];
 {
   const r = rng(41);
   for (let i = 0; i < 16; i++) {
-    const v = i === 2 || i === 7 || i === 11; // vencidas
+    const v = i === 2 || i === 7 || i === 11;
     const m = new THREE.Mesh(new RoundedBoxGeometry(0.95, 0.75, 0.75, 2, 0.04), [0, 1, 2, 3, 4, 5].map((f) => new THREE.MeshStandardMaterial({ map: f === 2 && v ? texVencido : texCarton, roughness: 0.9 })));
     m.castShadow = m.receiveShadow = true;
     const col = i % 6, row = Math.floor(i / 6);
     m.position.set(-2.7 + col * 1.05 + (r() - 0.5) * 0.4, 0.88 + row * 0.76 - (row ? 0.02 : 0), -4.6 + (r() - 0.5) * 1.8);
-    m.rotation.y = (r() - 0.5) * 0.9; m.userData = { v, base: m.position.clone(), rep: i === 4 || i === 9 };
+    m.rotation.y = (r() - 0.5) * 0.9; m.userData = { v, base: m.position.clone() };
     M.g.add(m); cajasM.push(m);
-  }
-  for (let i = 0; i < 6; i++) {
-    const m = new THREE.Mesh(new RoundedBoxGeometry(0.95, 0.75, 0.75, 2, 0.04), new THREE.MeshStandardMaterial({ map: texCarton, roughness: 0.9 }));
-    m.castShadow = m.receiveShadow = true; m.position.set(-2.4 + (i % 3) * 1.1, 0.88 + Math.floor(i / 3) * 0.78, -5.6); m.userData = { base: m.position.clone() };
-    L.g.add(m); cajasL.push(m);
-  }
-  for (let i = 0; i < 3; i++) { // entregas chicas y seguidas
-    const m = new THREE.Mesh(new RoundedBoxGeometry(0.7, 0.55, 0.55, 2, 0.04), new THREE.MeshStandardMaterial({ map: texCarton, roughness: 0.9 }));
-    m.castShadow = true; m.userData = { base: new THREE.Vector3(1.4 + i * 0.85, 0.78, -4.3) }; L.g.add(m); cajasL.push(m);
   }
 }
 function deposito(t) {
-  cajasM.forEach((m) => { const pulse = m.userData.v && t >= T.vencidas ? 1 + 0.12 * Math.sin(clamp((t - T.vencidas) / 0.5) * Math.PI) : 1; m.scale.setScalar(pulse); });
-  cajasL.slice(6).forEach((m, i) => { const a = T.lucasCompra + 0.5 + i * 0.55; const u = P(t, a, 0.45, E.o3); m.visible = t >= a; const b = m.userData.base; m.position.set(b.x, b.y, lerp(b.z + 6, b.z, u)); });
+  cajasM.forEach((m, i) => {
+    const b = m.userData.base; const a = T.deTodo + 0.15 + i * 0.1;
+    if (t >= T.deTodo - 0.2 && t < T.d4) { const u = P(t, a, 0.4, E.bounce); m.visible = t >= a; m.position.set(b.x, b.y + 5 * (1 - u), b.z); }
+    else { m.visible = true; m.position.copy(b); }
+    const pulse = m.userData.v && t >= T.parada ? 1 + 0.12 * Math.sin(clamp((t - T.parada) / 0.5) * Math.PI) : 1; m.scale.setScalar(pulse);
+  });
 }
+// Bloque «el año 1 engaña»: el de Martín se llena de gente
 const clientes3 = [persona("#5FA8D3"), persona("#D9644A"), persona("#9C89B8")]; clientes3.forEach((c) => M.g.add(c));
-function clientes(t) {
-  clientes3.forEach((c, i) => { const a = T.mas3 + i * 0.25; const u = P(t, a, 1.1, E.io); c.visible = t >= a && t < T.dif + 0.2; c.position.set(lerp(-6 + i * 1.2, -1.5 + i * 1.3, u), 0.5, lerp(4.8, 1.2 + (i % 2) * 0.6, u)); c.rotation.y = Math.PI * (u < 1 ? -0.15 : 1); });
+function clientesG(t) {
+  clientes3.forEach((c, i) => { const a = T.mas + 0.2 + i * 0.25; const u = P(t, a, 1.0, E.lin); c.visible = t >= a && t < T.dif + 0.2; caminar(c, -6 + i * 1.2, 4.8, -1.5 + i * 1.3, 1.2 + (i % 2) * 0.6, u); if (u >= 1) c.rotation.y = Math.PI; });
+}
+// Flujo de clientes: a lo de Lucas entra cada vez más gente; a lo de Martín, cada vez menos
+const flujoL = [persona("#E9724C"), persona("#2A9D8F"), persona("#8E5BD0")].map((g, k) => ({ g, k, S: L }));
+const flujoM = [persona("#F2B33D"), persona("#264653")].map((g, k) => ({ g, k, S: M }));
+[...flujoL, ...flujoM].forEach((c) => c.S.g.add(c.g));
+const cuantosL = (t) => (t < T.d1 || t >= T.datos - 0.3 ? 0 : t < T.d3 ? 1 : t < T.d5 ? 2 : 3);
+const cuantosM = (t) => (t < T.d1 || t >= T.loco - 0.1 ? 0 : t < T.d3 ? 2 : t < T.pedian - 0.6 ? 1 : 0);
+// en los planos de adentro de cada local, el flujo de clientes no pasa por delante de la cámara
+const adentroM = [[T.d1 - 0.5, T.d2 - 0.2], [T.pedian - 1.0, T.cruza - 0.1], [T.finMes - 0.4, T.d6 - 0.1], [T.inflacion - 0.5, T.loco]];
+const adentroL = [[T.lucas1 - 0.4, T.d2 - 0.2], [T.d4 - 0.3, T.pedian - 0.3], [T.d5 - 0.3, T.d6 - 0.1], [T.sueldo - 0.4, T.datos]];
+const dentro = (t, w) => w.some(([a, b]) => t >= a && t < b);
+function flujo(t) {
+  const paso = (c, n) => {
+    const { g, k } = c; if (k >= n) { g.visible = false; return; }
+    const ph = (((t - T.d1) / 7.0 + k * 0.37) % 1 + 1) % 1; g.visible = ph < 0.95;
+    const sx = -2.2 + k * 1.6, B = [0.6 + k * 0.45, 1.85];
+    if (ph < 0.35) caminar(g, sx, 4.7, B[0], B[1], ph / 0.35);
+    else if (ph < 0.6) { g.position.set(B[0], 0.5, B[1]); g.rotation.set(0, Math.PI, 0); }
+    else caminar(g, B[0], B[1], sx + 1.2, 4.9, (ph - 0.6) / 0.35);
+  };
+  flujoL.forEach((c) => paso(c, dentro(t, adentroL) ? 0 : cuantosL(t))); flujoM.forEach((c) => paso(c, dentro(t, adentroM) ? 0 : cuantosM(t)));
+}
+// «Cuatro»: el cliente que pide yerba a Martín, escucha «no hay» y se va a lo de Lucas
+const cliente = persona("#C9785B"); scene.add(cliente);
+function elCliente(t) {
+  const mx = LX(M), mz = LZ(M), lx = LX(L), lz = LZ(L);
+  if (t < T.pedian - 0.9 || t >= T.d5 + 0.5) { cliente.visible = false; return; }
+  cliente.visible = true;
+  if (t < T.pedian) caminar(cliente, mx + 1.6, mz + 4.4, mx + 1.6, mz + 1.75, P(t, T.pedian - 0.9, 0.9, E.lin));
+  else if (t < T.cruza + 0.1) { cliente.position.set(mx + 1.6, 0.5, mz + 1.75); cliente.rotation.set(0, Math.PI, 0); }
+  else if (t < T.cruza + 0.9) caminar(cliente, mx + 1.6, mz + 1.75, mx + 2.6, mz + 4.3, P(t, T.cruza + 0.1, 0.8, E.lin));
+  else if (t < T.deLucas) caminar(cliente, mx + 2.6, mz + 4.3, lx + 1.0, lz + 4.3, P(t, T.cruza + 0.9, T.deLucas - T.cruza - 0.9, E.lin));
+  else caminar(cliente, lx + 1.0, lz + 4.3, lx + 1.2, lz + 1.9, P(t, T.deLucas, 0.8, E.lin));
+}
+// Autos con faros que pasan por la calle (en los planos abiertos)
+const autos_ = [];
+{
+  const cols = ["#3A86FF", "#E04F3F", "#ECE6DA", "#2A9D8F"];
+  for (let k = 0; k < 4; k++) {
+    const g = new THREE.Group();
+    const cuerpo = box(2.4, 0.6, 1.15, mat(cols[k], { metalness: 0.3, roughness: 0.4 }), 0.15); cuerpo.position.y = 0.55; g.add(cuerpo);
+    const cab = box(1.3, 0.5, 1.0, mat("#1B1E23", { metalness: 0.5, roughness: 0.2 }), 0.12); cab.position.set(-0.15, 1.05, 0); g.add(cab);
+    for (const [x, z] of [[0.8, 0.55], [-0.8, 0.55], [0.8, -0.55], [-0.8, -0.55]]) { const r = new THREE.Mesh(new THREE.CylinderGeometry(0.24, 0.24, 0.16, 14), mat("#111111")); r.rotation.x = Math.PI / 2; r.position.set(x, 0.26, z); g.add(r); }
+    for (const z of [0.35, -0.35]) { const f = new THREE.Mesh(new THREE.SphereGeometry(0.09, 10, 8), new THREE.MeshStandardMaterial({ color: "#FFFFFF", emissive: "#FFF6E8", emissiveIntensity: 2.5 })); f.position.set(1.21, 0.62, z); g.add(f); }
+    g.userData = { carril: k % 2 ? 8.7 : 6.5, dir: k % 2 ? -1 : 1, off: k * 31 };
+    scene.add(g); autos_.push(g);
+  }
+}
+const ventanasAutos = [[0, T.cinco - 0.2], [T.cruza - 0.4, T.d5]];
+function autos(t) {
+  const activo = ventanasAutos.some(([a, b]) => t >= a && t < b);
+  autos_.forEach((g) => {
+    const { carril, dir, off } = g.userData; const x = ((t * 11 + off) % 120) - 60;
+    g.visible = activo; g.position.set(dir * x, 0, carril); g.rotation.y = dir > 0 ? 0 : Math.PI;
+  });
 }
 
 // ---------- cámaras ----------
 const cxM = -4.6, cxL = 4.6;
 const front = (cx) => ({ p: [cx, 5.6, 14.5], l: [cx, 1.9, 0.6], f: 46 });
+const frontB = (cx) => ({ p: [cx, 4.3, 14.5], l: [cx, 4.5, 0.6], f: 46 });
 const kTop0 = { p: [0, 6.2, 19.5], l: [0, 2.5, 1.5], f: 52 };
+const interiorM = { p: [cxM - 0.2, 2.9, 4.2], l: [cxM + 0.1, 1.5, -1.0], f: 70 };
+const cajaL = { p: [cxL + 0.6, 2.7, 3.4], l: [cxL + 1.5, 1.4, -0.5], f: 70 };
+const aereo = { p: [14, 40, 26], l: [16, 0, -12], f: 62 };
 const topMoves = [
   [T.cuadra - 0.3, { p: [0, 7.4, 17.5], l: [0, 1.6, 2.5], f: 56 }, 2.6],
   [T.cinco - 0.1, front(cxM), 0.9],
   [T.persiana - 0.9, { p: [cxM, 3.4, 10.5], l: [cxM, 2.0, 2.6], f: 52 }, 0.7],
-  [T.suerte + 0.1, front(cxM), 1.1],
-  [T.cajero - 0.6, { p: [cxM - 0.2, 2.9, 4.2], l: [cxM + 0.1, 1.5, -1.0], f: 70 }, 0.9],
-  [T.sueldos - 0.3, { p: [cxM - 1.6, 3.6, 8.6], l: [cxM - 1.4, 1.3, 1.6], f: 62 }, 0.9],
-  [T.nunca, { p: [cxM + 2.4, 3.6, 5.6], l: [cxM + 2.4, 1.6, 0.6], f: 46 }, 0.8],
-  [T.cuaderno, front(cxM), 0.8],
-  [T.deposito - 0.2, { p: [cxM, 13.5, 1.2], l: [cxM, 0.6, -4.4], f: 50 }, 1.2],
-  [T.pero - 0.1, front(cxM), 1.2],
-  [T.diez - 0.75, { p: [cxM - 0.7, 1.9, 3.0], l: [cxM - 0.7, 1.35, -2.0], f: 62 }, 0.9],
-  [T.sentia - 0.1, { p: [cxM + 0.4, 2.9, 3.4], l: [cxM + 0.7, 1.55, -0.8], f: 74 }, 0.9],
-  [T.loco, front(cxM), 1.0],
-  [T.mas1 - 0.4, { p: [cxM - 0.3, 4.0, 10.0], l: [cxM - 0.3, 1.7, 0.6], f: 58 }, 0.9],
-  [T.cual - 0.3, { p: [cxM, 5.0, 13.0], l: [cxM, 2.0, 1.5], f: 46 }, 0.8],
+  [T.suerte + 0.1, front(cxM), 1.0],
+  [T.d1 - 0.4, interiorM, 0.9],
+  [T.d2 - 0.2, front(cxM), 0.8],
+  [T.deTodo - 0.3, { p: [cxM, 13.5, 1.2], l: [cxM, 0.6, -4.4], f: 50 }, 1.0],
+  [T.d4 - 0.2, front(cxM), 0.8],
+  [T.pedian - 0.9, { p: [cxM - 0.9, 2.4, 3.6], l: [cxM + 0.9, 1.45, -0.2], f: 70 }, 0.8],
+  [T.nohay - 0.05, { p: [cxM + 0.2, 2.3, 4.0], l: [cxM + 1.5, 1.6, -0.2], f: 50 }, 0.3, E.o5],
+  [T.cruza - 0.1, { p: [0, 6.5, 17.0], l: [0, 1.2, 3.2], f: 60 }, 0.9],
+  [T.d5 - 0.2, front(cxM), 0.8],
+  [T.finMes - 0.3, { p: [cxM + 2.0, 2.7, 3.4], l: [cxM + 2.4, 1.5, 0.4], f: 56 }, 0.8],
+  [T.d6 - 0.1, front(cxM), 0.8],
+  [T.inflacion - 0.4, { p: [cxM - 0.7, 1.9, 3.0], l: [cxM - 0.7, 1.35, -2.0], f: 62 }, 0.8],
+  [T.d7 - 0.1, { p: [cxM + 1.0, 2.6, 3.4], l: [cxM + 2.2, 1.6, 0.2], f: 62 }, 0.8],
+  [T.loco - 0.1, front(cxM), 0.9],
+  [T.mas - 0.4, { p: [cxM - 0.3, 4.0, 10.0], l: [cxM - 0.3, 1.7, 0.6], f: 58 }, 0.9],
+  [T.cierre - 0.3, { p: [cxM, 5.0, 13.0], l: [cxM, 2.0, 1.5], f: 46 }, 0.8],
 ];
-const frontB = (cx) => ({ p: [cx, 4.3, 14.5], l: [cx, 4.5, 0.6], f: 46 });
 const kBot0 = frontB(cxL);
 const botMoves = [
   [T.tres - 0.5, { p: [14, 46, 38], l: [2, 0, -10], f: 62 }, 1.2],
-  [T.suerte + 0.1, frontB(cxL), 1.1],
-  [T.lucasNo - 0.3, { p: [cxL + 0.9, 2.5, 2.9], l: [cxL + 2.0, 1.55, -0.4], f: 62 }, 0.9],
-  [T.noLoEs, { p: [cxL + 1.4, 2.2, 1.9], l: [cxL + 2.1, 1.75, -0.4], f: 50 }, 0.35, E.o5],
-  [T.vende - 0.3, { p: [cxL + 0.2, 2.5, 3.0], l: [cxL + 1.7, 1.7, -0.6], f: 66 }, 0.8],
-  [T.contrato, { p: [cxL + 0.6, 2.7, 3.4], l: [cxL + 1.5, 1.4, -0.5], f: 70 }, 0.8],
-  [T.cuaderno, frontB(cxL), 0.8],
-  [T.lucasCompra - 0.2, { p: [cxL, 13.5, 1.2], l: [cxL, 0.6, -4.4], f: 50 }, 1.0],
-  [T.segunda - 0.1, { p: [14, 40, 26], l: [16, 0, -12], f: 62 }, 1.8],
+  [T.suerte + 0.1, frontB(cxL), 1.0],
+  [T.lucas1 - 0.3, { p: [cxL + 0.9, 2.5, 2.9], l: [cxL + 2.0, 1.55, -0.4], f: 62 }, 0.9],
+  [T.contrato - 0.1, cajaL, 0.8],
+  [T.d2 - 0.2, frontB(cxL), 0.8],
+  [T.d4 - 0.2, { p: [cxL - 0.7, 2.2, 2.6], l: [cxL - 0.7, 1.95, -2.0], f: 58 }, 0.8],
+  [T.pedian - 0.3, frontB(cxL), 0.6],
+  [T.d5 - 0.2, { p: [cxL + 1.0, 2.6, 3.2], l: [cxL + 2.2, 1.6, 0.2], f: 60 }, 0.8],
+  [T.d6 - 0.1, frontB(cxL), 0.8],
+  [T.sueldo - 0.3, cajaL, 0.8],
+  [T.datos - 0.2, aereo, 1.6],
   [T.abrio - 0.7, { p: [BX + 2, 30, 8], l: [BX + 2, 1, -BZ + 1.5], f: 50 }, 0.9],
-  [T.pero - 0.1, frontB(cxL), 1.2],
-  [T.llena - 0.3, { p: [cxL - 0.7, 2.2, 2.6], l: [cxL - 0.7, 1.95, -2.0], f: 58 }, 0.8],
-  [T.loco, frontB(cxL), 1.0],
-  [T.cual - 0.3, { p: [-4, 40, 44], l: [0, 0, -6], f: 62 }, 1.2],
+  [T.loco - 0.1, frontB(cxL), 0.9],
+  [T.cierre - 0.3, { p: [-4, 40, 44], l: [0, 0, -6], f: 62 }, 1.2],
 ];
 // divisor: alto en px de la cámara de arriba
 const divMoves = [
-  [T.cinco - 0.1, 960, 0.6], [T.cajero - 0.7, 1120, 0.5], [T.lucasNo - 0.25, 760, 0.5], [T.sueldos - 0.3, 1120, 0.5],
-  [T.cuaderno - 0.2, 960, 0.5], [T.deposito - 0.2, 1120, 0.5], [T.lucasCompra - 0.25, 760, 0.5], [T.segunda - 0.1, 0, 0.8],
-  [T.pero - 0.2, 960, 0.7], [T.diez - 0.75, 1920, 0.6], [T.llena - 0.3, 1060, 0.5], [T.loco - 0.1, 960, 0.6],
+  [T.cinco - 0.1, 960, 0.6], [T.d1 - 0.4, 1120, 0.5], [T.lucas1 - 0.25, 760, 0.5], [T.d2 - 0.2, 960, 0.5],
+  [T.deTodo - 0.3, 1120, 0.5], [T.d4 - 0.25, 760, 0.5], [T.pedian - 0.9, 1920, 0.6], [T.d5 - 0.25, 960, 0.6],
+  [T.finMes - 0.3, 1120, 0.5], [T.d6 - 0.15, 960, 0.5], [T.inflacion - 0.4, 1920, 0.6], [T.d7 - 0.1, 1120, 0.5],
+  [T.sueldo - 0.3, 760, 0.5], [T.datos - 0.2, 0, 0.8], [T.loco - 0.15, 960, 0.6],
 ];
 export const divisor = (t) => track(t, 1920, divMoves);
-// año que muestra el contador
-export const anio = (t) => track(t, 0, [[T.cinco, 5, 1.1, E.io], [T.suerte + 0.1, 0, 1.1, E.io], [T.anio, 1, 0.6, E.io], [T.segunda + 0.3, 3, 0.8, E.io], [T.primer - 0.3, 1, 0.6, E.io], [T.cual, 5, 0.8, E.io]]);
-// atenuación de la mitad que no protagoniza (0..1)
-export const dimTop = (t) => track(t, 0, [[T.lucasNo - 0.25, 0.42, 0.4], [T.sueldos - 0.3, 0, 0.4], [T.lucasCompra - 0.25, 0.42, 0.4], [T.segunda, 0, 0.3]]);
-export const dimBot = (t) => track(t, 0, [[T.cajero - 0.7, 0.42, 0.4], [T.lucasNo - 0.25, 0, 0.4], [T.sueldos - 0.3, 0.42, 0.4], [T.cuaderno - 0.2, 0, 0.4], [T.deposito - 0.2, 0.42, 0.4], [T.lucasCompra - 0.25, 0, 0.4]]);
+export const anio = (t) => track(t, 0, [[T.cinco, 5, 1.1, E.io], [T.suerte + 0.1, 0, 1.0, E.io], [T.anio, 1, 0.6, E.io], [T.abrio + 0.2, 3, 0.8, E.io], [T.primer - 0.3, 1, 0.6, E.io], [T.anio3, 3, 0.6, E.io], [T.cierre, 5, 0.8, E.io]]);
+export const dimTop = (t) => track(t, 0, [[T.lucas1 - 0.25, 0.42, 0.4], [T.d2 - 0.2, 0, 0.4], [T.d4 - 0.25, 0.42, 0.4], [T.pedian - 0.9, 0, 0.4], [T.sueldo - 0.3, 0.42, 0.4], [T.datos, 0, 0.3]]);
+export const dimBot = (t) => track(t, 0, [[T.d1 - 0.4, 0.42, 0.4], [T.lucas1 - 0.25, 0, 0.4], [T.deTodo - 0.3, 0.42, 0.4], [T.d4 - 0.25, 0, 0.4], [T.finMes - 0.3, 0.42, 0.4], [T.d6 - 0.15, 0, 0.4], [T.d7 - 0.1, 0.42, 0.4], [T.sueldo - 0.3, 0, 0.4]]);
+// decisión que se está contando (0 = ninguna)
+export const decision = (t) => (t < T.d1 - 0.1 || t >= T.loco - 0.1 ? 0 : t < T.d2 - 0.1 ? 1 : t < T.d3 - 0.1 ? 2 : t < T.d4 - 0.1 ? 3 : t < T.d5 - 0.1 ? 4 : t < T.d6 - 0.1 ? 5 : t < T.d7 - 0.1 ? 6 : 7);
 
 function aplicaCam(cam, k, h) {
   cam.position.set(...k.p); cam.lookAt(...k.l);
@@ -529,7 +641,6 @@ export function render(t) {
   if (H - d > 1) { renderer.setViewport(0, 0, W, H - d); renderer.setScissor(0, 0, W, H - d); renderer.render(scene, camBot); }
   return { d };
 }
-// proyección de un punto local de un objeto a px de pantalla en su mitad
 const v = new THREE.Vector3();
 export function aPantalla(obj, local, mitad, t) {
   const d = Math.round(divisor(t));
@@ -537,4 +648,4 @@ export function aPantalla(obj, local, mitad, t) {
   obj.updateWorldMatrix(true, false); v.set(...local).applyMatrix4(obj.matrixWorld).project(cam);
   return { x: (v.x * 0.5 + 0.5) * W, y: y0 + (-v.y * 0.5 + 0.5) * h, vis: h > 40 && v.z < 1, y0, h };
 }
-export const objetos = { M, L, S2, S3, scene, anillo, mundo: scene };
+export const objetos = { M, L, S2, S3, scene, anillo, cliente, mundo: scene };

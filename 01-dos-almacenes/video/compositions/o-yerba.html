@@ -2,32 +2,31 @@
   <style>
     #root { position: absolute; inset: 0; pointer-events: none; font-family: "Montserrat"; }
     .y-linea { position: absolute; left: 0; right: 0; text-align: center; font-weight: 900; color: #FFFFFF; -webkit-text-stroke: 12px #000000; paint-order: stroke fill; white-space: nowrap; }
-    #y-l1 { top: 150px; font-size: 84px; }
+    #y-infla { position: absolute; left: 0; right: 0; top: 440px; text-align: center; }
+    #y-infla span { display: inline-block; font-weight: 800; font-size: 44px; letter-spacing: 0.08em; color: #FFFFFF; background: #000000; border: 2px solid #9299A3; padding: 8px 26px; border-radius: 12px; }
+    #y-flecha { display: inline-block; width: 0; height: 0; border-left: 16px solid transparent; border-right: 16px solid transparent; border-bottom: 26px solid #00CFFF; margin-right: 14px; vertical-align: 3px; }
+    #y-l1 { top: 300px; font-size: 80px; }
     #y-l1 span { display: inline-block; }
-    #y-l1 .rojo { color: #9299A3; }
-    #y-prov { position: absolute; left: 0; right: 0; top: 300px; text-align: center; }
-    #y-prov span { display: inline-block; font-weight: 800; font-size: 38px; letter-spacing: 0.04em; color: #FFFFFF; background: #000000; border: 2px solid #009DFF; border-radius: 12px; padding: 8px 22px; }
-    #y-prov small { font-family: "Inter", "Montserrat"; font-weight: 600; font-size: 24px; color: #9299A3; margin-left: 10px; }
-    #y-seq { position: absolute; left: 0; right: 0; top: 300px; text-align: center; font-weight: 900; font-size: 76px; color: #BFC4CC; -webkit-text-stroke: 12px #000000; paint-order: stroke fill; }
+    #y-l1 .gris { color: #BFC4CC; }
+    #y-seq { position: absolute; left: 0; right: 0; top: 420px; text-align: center; font-weight: 900; font-size: 76px; color: #BFC4CC; -webkit-text-stroke: 12px #000000; paint-order: stroke fill; }
     #y-seq span { display: inline-block; margin: 0 6px; }
   </style>
   <div id="root" data-composition-id="o-yerba" data-width="1080" data-height="1920">
-    <div id="y-l1" class="y-linea clip" data-start="0.5" data-duration="6.0"><span id="y-a">VENDIÓ 10</span> <span id="y-b">→</span> <span id="y-c" class="rojo">REPONE 8</span></div>
-    <div id="y-prov" class="clip" data-start="1.7" data-duration="2.3"><span>EL PROVEEDOR YA AUMENTÓ <small>ejemplo</small></span></div>
-    <div id="y-seq" class="clip" data-start="4.2" data-duration="2.3"><span id="y-s1">10</span><span id="y-s2">→ 8</span><span id="y-s3">→ 6</span><span id="y-s4">→ 5</span><span id="y-s5">→ 4</span></div>
+    <div id="y-infla" class="clip" data-start="0" data-duration="1.55"><span><i id="y-flecha"></i>CON INFLACIÓN</span></div>
+    <div id="y-l1" class="y-linea clip" data-start="0.4" data-duration="2.9"><span id="y-a">VENDE 10</span> <span id="y-b">→</span> <span id="y-c" class="gris">REPONE 8</span></div>
+    <div id="y-seq" class="clip" data-start="1.6" data-duration="1.7"><span id="y-s1">→ 6</span><span id="y-s2">→ 5</span></div>
   </div>
   <script>
-    // tiempo local: 0 = 65,8 s del video
+    // tiempo local: 0 = 59,0 s del video
     const tl = gsap.timeline({ paused: true });
-    tl.fromTo("#y-a", { opacity: 0, y: 30, filter: "blur(8px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.3, ease: "expo.out" }, 0.55);
-    tl.fromTo("#y-prov span", { opacity: 0, scale: 0.8 }, { opacity: 1, scale: 1, duration: 0.3, ease: "back.out(2)" }, 1.8);
-    tl.to("#y-prov", { opacity: 0, filter: "blur(8px)", duration: 0.2, ease: "power3.in" }, 3.75);
-    tl.fromTo("#y-b", { opacity: 0, x: -30 }, { opacity: 1, x: 0, duration: 0.25, ease: "expo.out" }, 3.2);
-    tl.fromTo("#y-c", { opacity: 0, scale: 1.6 }, { opacity: 1, scale: 1, duration: 0.25, ease: "power4.in" }, 3.55);
-    tl.to("#y-l1", { y: -20, scale: 0.86, duration: 0.35, ease: "power2.inOut" }, 4.15);
-    [4.45, 4.75, 5.35, 5.85].forEach((a, i) => tl.fromTo("#y-s" + (i + 2), { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.2, ease: "expo.out" }, a));
-    tl.fromTo("#y-s1", { opacity: 0 }, { opacity: 1, duration: 0.2 }, 4.25);
-    tl.to(["#y-l1", "#y-seq"], { opacity: 0, filter: "blur(10px)", duration: 0.22, ease: "power3.in" }, 6.3);
+    tl.fromTo("#y-infla span", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.3, ease: "expo.out" }, 0.0);
+    tl.to("#y-infla", { opacity: 0, filter: "blur(8px)", duration: 0.18, ease: "power3.in" }, 1.35);
+    tl.fromTo("#y-a", { opacity: 0, y: 30, filter: "blur(8px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.3, ease: "expo.out" }, 0.45);
+    tl.fromTo("#y-b", { opacity: 0, x: -30 }, { opacity: 1, x: 0, duration: 0.2, ease: "expo.out" }, 1.15);
+    tl.fromTo("#y-c", { opacity: 0, scale: 1.6 }, { opacity: 1, scale: 1, duration: 0.22, ease: "power4.in" }, 1.3);
+    tl.fromTo("#y-s1", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.2, ease: "expo.out" }, 1.9);
+    tl.fromTo("#y-s2", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.2, ease: "expo.out" }, 2.45);
+    tl.to(["#y-l1", "#y-seq"], { opacity: 0, filter: "blur(10px)", duration: 0.2, ease: "power3.in" }, 3.05);
     window.__timelines["o-yerba"] = tl;
   </script>
 </template>

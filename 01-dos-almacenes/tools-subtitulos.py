@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """Genera video/compositions/subtitulos.html: una palabra por vez, texto del guion + tiempos de Whisper."""
 import json, re, difflib, unicodedata, html
-G = open("voz/guion.txt").read().split()
-W = json.load(open("voz/voz-palabras.json"))
+G = open("voz/guion-v2.txt").read().split()
+W = json.load(open("voz/voz-v2-palabras.json"))
 norm = lambda s: re.sub(r"[^a-z0-9ñ]", "", unicodedata.normalize("NFD", s.lower()).encode("ascii", "ignore").decode())
 a = [norm(x) for x in G]; b = [norm(w["text"]) for w in W]
 T = [None] * len(G)
@@ -22,8 +22,9 @@ for i, (w, (s, e)) in enumerate(zip(G, T)):
     nxt = T[i + 1][0] - 0.03 if i + 1 < len(G) else e + 1.6
     end = max(e, min(nxt, e + 0.45))
     if i + 1 < len(G): end = min(end, nxt)
+    end = max(end, s + 0.08)  # nunca un clip de duración 0: quedaría visible para siempre
     cls = "w" + (" em-m" if "Martín" in w else " em-l" if "Lucas" in w else "")
-    txt = w.strip("—").replace("…", "")
+    txt = w.strip("—").replace("…", "").replace("«", "").replace("»", "")
     if not txt: continue
     els.append(f'    <div id="w{i}" class="clip {cls}" data-start="{s:.3f}" data-duration="{end - s:.3f}"><span>{html.escape(txt)}</span></div>')
     js.append(f'tl.fromTo("#w{i} span",{{scale:0.82,opacity:0}},{{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"}},{s:.3f});')
