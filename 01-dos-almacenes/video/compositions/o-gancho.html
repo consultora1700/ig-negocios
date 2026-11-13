@@ -1,24 +1,26 @@
 <template>
   <style>
     #root { position: absolute; inset: 0; pointer-events: none; font-family: "Montserrat"; }
-    .g-t { position: absolute; left: 0; right: 0; text-align: center; font-weight: 900; color: #FFF9EE; -webkit-text-stroke: 16px #17161A; paint-order: stroke fill; letter-spacing: -0.02em; }
-    #g-titulo { top: 150px; font-size: 150px; line-height: 0.95; }
-    #g-titulo span { display: inline-block; }
-    .g-igual { position: absolute; left: 0; right: 0; text-align: center; font-weight: 900; font-size: 70px; color: #17161A; }
-    .g-igual span { display: inline-block; background: #FFF9EE; padding: 6px 22px; border-radius: 14px; box-shadow: 0 7px 0 rgba(23,22,26,.18); }
-    .g-igual b { color: #E0482F; } .g-igual em { font-style: normal; color: #12A06B; }
+    .g-t { position: absolute; left: 0; right: 0; text-align: center; font-weight: 900; letter-spacing: -0.01em; }
+    .g-t span, .g-t b { display: inline-block; background: linear-gradient(180deg, #FFFFFF 0%, #E5E7EB 35%, #BFC4CC 70%, #9299A3 100%); -webkit-background-clip: text; background-clip: text; color: transparent; -webkit-text-stroke: 0; filter: drop-shadow(0 4px 0 #000000); }
+    #g-titulo { top: 150px; font-size: 140px; line-height: 0.98; }
+    #g-titulo .sm { font-size: 78px; font-weight: 600; letter-spacing: 0.18em; }
+    .g-igual { position: absolute; left: 0; right: 0; text-align: center; font-weight: 800; font-size: 58px; letter-spacing: 0.06em; }
+    .g-igual span { display: inline-block; color: #FFFFFF; background: #0E0F12; padding: 8px 26px; border-radius: 12px; border: 2px solid #3A3E46; }
+    .g-igual i { font-style: normal; background: linear-gradient(110deg, #0057D9 0%, #007BFF 35%, #009DFF 70%, #00CFFF 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
     #g-i1 { top: 470px; } #g-i2 { top: 570px; } #g-i3 { top: 670px; }
     #g-cinco { top: 250px; font-size: 128px; line-height: 1; }
+    #g-cinco b { background: linear-gradient(110deg, #0057D9 0%, #007BFF 35%, #009DFF 70%, #00CFFF 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
     #g-suerte { top: 640px; font-size: 150px; }
-    #g-raya { position: absolute; left: 230px; width: 620px; top: 735px; height: 26px; background: #D7261E; border-radius: 13px; transform-origin: left center; box-shadow: 0 0 0 6px #17161A; }
+    #g-raya { position: absolute; left: 230px; width: 620px; top: 735px; height: 18px; background: linear-gradient(110deg, #0057D9 0%, #007BFF 35%, #009DFF 70%, #00CFFF 100%); border-radius: 9px; transform-origin: left center; }
   </style>
   <div id="root" data-composition-id="o-gancho" data-width="1080" data-height="1920">
-    <div id="g-titulo" class="g-t clip" data-start="0" data-duration="4.75"><span id="g-w1">DOS</span><br /><span id="g-w2">ALMACENES</span></div>
-    <div id="g-i1" class="g-igual clip" data-start="1.4" data-duration="3.35"><span>MISMA CUADRA</span></div>
-    <div id="g-i2" class="g-igual clip" data-start="2.25" data-duration="2.5"><span>MISMA PLATA</span></div>
-    <div id="g-i3" class="g-igual clip" data-start="3.2" data-duration="1.55"><span>MISMO DÍA</span></div>
-    <div id="g-cinco" class="g-t clip" data-start="4.8" data-duration="1.5">5 AÑOS<br />DESPUÉS</div>
-    <div id="g-suerte" class="g-t clip" data-start="10.25" data-duration="1.5">¿SUERTE?</div>
+    <div id="g-titulo" class="g-t clip" data-start="0" data-duration="4.75"><span id="g-w1" class="sm">DOS</span><br /><span id="g-w2">ALMACENES</span></div>
+    <div id="g-i1" class="g-igual clip" data-start="1.4" data-duration="3.35"><span>MISMA <i>CUADRA</i></span></div>
+    <div id="g-i2" class="g-igual clip" data-start="2.25" data-duration="2.5"><span>MISMA <i>PLATA</i></span></div>
+    <div id="g-i3" class="g-igual clip" data-start="3.2" data-duration="1.55"><span>MISMO <i>DÍA</i></span></div>
+    <div id="g-cinco" class="g-t clip" data-start="4.8" data-duration="1.5"><b>5 AÑOS</b><br /><span>DESPUÉS</span></div>
+    <div id="g-suerte" class="g-t clip" data-start="10.25" data-duration="1.5"><span>¿SUERTE?</span></div>
     <div id="g-raya" class="clip" data-start="10.25" data-duration="1.5"></div>
   </div>
   <script>

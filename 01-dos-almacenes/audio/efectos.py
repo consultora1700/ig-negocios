@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Pista de efectos del reel 01 → video/assets/audio/efectos.wav (estéreo 48 kHz). Tiempos en segundos del video."""
 import subprocess, pathlib, numpy as np
-A = pathlib.Path(__file__).resolve().parent; SR = 48000; DUR = 97.0
+A = pathlib.Path(__file__).resolve().parent; SR = 48000; DUR = 100.0
 def leer(n):
     pcm = subprocess.run(["ffmpeg","-v","error","-i",str(A/"sfx"/f"{n}.wav"),"-f","s16le","-ac","1","-ar",str(SR),"-"],capture_output=True,check=True).stdout
     return np.frombuffer(pcm, np.int16).astype(np.float32) / 32768
@@ -50,7 +50,7 @@ wh(81.95, 0.7); e("stamp", 83.8, 0.9); e("buzz", 84.5, 0.7)
 # H · cierre
 wh(85.55, 0.7); po(85.7)
 for i in range(5): e("tick", 87.15 + i * 0.18, 0.7)
-wh(90.95, 0.6); e("stamp2", 92.42, 1.0); e("stamp2", 94.0, 0.9); po(94.35); po(94.6); e("ding", 95.0, 0.6)
+wh(90.95, 0.6); e("stamp2", 92.42, 1.0); e("stamp2", 94.0, 0.9); po(94.35); po(94.6); e("ding", 95.0, 0.6); wh(96.95, 0.6); e("ding", 97.75, 0.45); po(97.95, 0.7)
 fx = np.zeros(int(DUR * SR), np.float32)
 for n, t, g in ev:
     s = x(n) * g; a = int((t + 1 / 30) * SR)   # el sonido llega un cuadro después de la imagen

@@ -1,22 +1,22 @@
 <template>
   <style>
     #root { position: absolute; inset: 0; pointer-events: none; font-family: "Montserrat"; }
-    #p-fondo { position: absolute; inset: 0; background: #17161A; }
-    #p-titulo { position: absolute; left: 0; right: 0; top: 330px; text-align: center; font-weight: 900; font-size: 120px; line-height: 1.02; color: #FFF9EE; letter-spacing: -0.02em; }
-    #p-titulo span { display: inline-block; }
-    #p-titulo .oro { color: #F2B630; }
-    #p-lupa { position: absolute; left: 700px; top: 760px; width: 150px; height: 150px; border-radius: 50%; border: 22px solid #F2B630; }
-    #p-lupa::after { content: ""; position: absolute; left: 112px; top: 120px; width: 26px; height: 90px; background: #F2B630; border-radius: 13px; transform: rotate(-45deg); }
+    #p-fondo { position: absolute; inset: 0; background: #000000; }
+    #p-titulo { position: absolute; left: 0; right: 0; top: 330px; text-align: center; font-weight: 900; font-size: 116px; line-height: 1.02; letter-spacing: -0.01em; }
+    #p-titulo span { display: inline-block; background: linear-gradient(180deg, #FFFFFF 0%, #E5E7EB 35%, #BFC4CC 70%, #9299A3 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    #p-titulo span.oro { background: linear-gradient(110deg, #0057D9 0%, #007BFF 35%, #009DFF 70%, #00CFFF 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    #p-lupa { position: absolute; left: 700px; top: 760px; width: 150px; height: 150px; border-radius: 50%; border: 18px solid #009DFF; }
+    #p-lupa::after { content: ""; position: absolute; left: 112px; top: 120px; width: 22px; height: 90px; background: #007BFF; border-radius: 11px; transform: rotate(-45deg); }
     #p-infla { position: absolute; left: 0; right: 0; top: 150px; text-align: center; }
-    #p-infla span { display: inline-block; font-weight: 900; font-size: 54px; color: #fff; background: #D7261E; padding: 8px 26px 8px 22px; border-radius: 14px; box-shadow: 0 7px 0 rgba(0,0,0,.25); }
-    #p-flecha { display: inline-block; width: 0; height: 0; border-left: 18px solid transparent; border-right: 18px solid transparent; border-bottom: 30px solid #fff; margin-right: 14px; vertical-align: 4px; }
-    .p-tag { position: absolute; left: 90px; width: 900px; height: 300px; border-radius: 26px 70px 70px 26px; background: #FFF9EE; box-shadow: 0 12px 0 rgba(0,0,0,.25); }
-    .p-tag::before { content: ""; position: absolute; right: 46px; top: 124px; width: 52px; height: 52px; border-radius: 50%; background: #17161A; opacity: .85; }
-    .p-quien { position: absolute; left: 44px; top: 34px; font-weight: 900; font-size: 44px; color: #fff; padding: 4px 18px; border-radius: 10px; }
-    .p-regla { position: absolute; left: 44px; top: 116px; right: 140px; font-weight: 900; font-size: 64px; line-height: 1.05; color: #17161A; letter-spacing: -0.01em; }
-    #p-tm { top: 300px; border-left: 22px solid #E0482F; } #p-tm .p-quien { background: #E0482F; }
-    #p-tl { top: 650px; border-left: 22px solid #12A06B; } #p-tl .p-quien { background: #12A06B; }
-    #p-tl .p-regla b { color: #12A06B; } #p-tm .p-regla b { color: #E0482F; }
+    #p-infla span { display: inline-block; font-weight: 800; font-size: 48px; letter-spacing: 0.08em; color: #FFFFFF; background: #0E0F12; border: 2px solid #9299A3; padding: 8px 26px 8px 22px; border-radius: 12px; }
+    #p-flecha { display: inline-block; width: 0; height: 0; border-left: 18px solid transparent; border-right: 18px solid transparent; border-bottom: 30px solid #00CFFF; margin-right: 14px; vertical-align: 4px; }
+    .p-tag { position: absolute; left: 90px; width: 900px; height: 300px; border-radius: 22px 64px 64px 22px; background: #0E0F12; }
+    .p-tag::before { content: ""; position: absolute; right: 46px; top: 124px; width: 52px; height: 52px; border-radius: 50%; background: #000000; border: 2px solid #3A3E46; }
+    .p-quien { position: absolute; left: 44px; top: 34px; font-weight: 800; font-size: 38px; letter-spacing: 0.1em; padding: 4px 18px; border-radius: 8px; }
+    .p-regla { position: absolute; left: 44px; top: 116px; right: 140px; font-weight: 900; font-size: 62px; line-height: 1.05; color: #FFFFFF; }
+    #p-tm { top: 300px; border: 3px solid #9299A3; } #p-tm .p-quien { background: #1B1E23; color: #BFC4CC; }
+    #p-tl { top: 650px; border: 3px solid #009DFF; } #p-tl .p-quien { background: linear-gradient(110deg, #0057D9 0%, #007BFF 35%, #009DFF 70%, #00CFFF 100%); color: #FFFFFF; }
+    #p-tl .p-regla b { background: linear-gradient(110deg, #0057D9 0%, #007BFF 35%, #009DFF 70%, #00CFFF 100%); -webkit-background-clip: text; background-clip: text; color: transparent; } #p-tm .p-regla b { color: #9299A3; }
   </style>
   <div id="root" data-composition-id="o-precio" data-width="1080" data-height="1920">
     <div id="p-fondo" class="clip" data-start="0" data-duration="9.8"></div>
