@@ -7,9 +7,9 @@ const W = 1080, H = 1920;
 const C = {
   // Mundo con vida dentro del marco de marca: la cuadra de noche (negro/carbón de la marca) y los locales iluminados con color real.
   // Azul eléctrico = Lucas y lo que crece; plata = Martín. El color del local de Martín se apaga con cada mala decisión.
-  cielo: "#07080B", baldosa: "#3A3D44", junta: "#2A2D33", calle: "#121418", tinta: "#000000",
-  martin: "#9299A3", lucas: "#007BFF", oro: "#E5E7EB", carton: "#C49A6C", madera: "#8A6A4E",
-  pared: "#D9D2C6", piso: "#BDB4A5", gris: "#9299A3", delantal: "#5B6470",
+  cielo: "#1A2238", baldosa: "#8C8577", junta: "#6E685C", calle: "#23252B", tinta: "#000000",
+  martin: "#9299A3", lucas: "#007BFF", oro: "#E5E7EB", carton: "#C49A6C", madera: "#A0703F",
+  pared: "#F1E6D2", piso: "#E9E2D4", gris: "#9299A3", delantal: "#5B6470",
 };
 // ---------- tiempos (anclados a la voz) ----------
 export const T = {
@@ -88,8 +88,8 @@ const texAlquila = tex(512, 320, (g, w, h) => {
   g.fillText("SE", w / 2, 102); g.fillText("ALQUILA", w / 2, 216);
 });
 const texYerba = tex(256, 384, (g, w, h) => {
-  g.fillStyle = "#2E6B47"; g.fillRect(0, 0, w, h); g.fillStyle = "#E3C46A"; g.fillRect(0, h * 0.34, w, h * 0.34);
-  g.fillStyle = "#2E6B47"; g.font = "900 68px Montserrat"; g.textAlign = "center"; g.textBaseline = "middle"; g.fillText("YERBA", w / 2, h * 0.51);
+  g.fillStyle = "#1F7A3A"; g.fillRect(0, 0, w, h); g.fillStyle = "#F5C518"; g.fillRect(0, h * 0.34, w, h * 0.34);
+  g.fillStyle = "#1F7A3A"; g.font = "900 68px Montserrat"; g.textAlign = "center"; g.textBaseline = "middle"; g.fillText("YERBA", w / 2, h * 0.51);
   g.fillStyle = "#FFFFFF"; g.font = "800 34px Montserrat"; g.fillText("1 kg", w / 2, h * 0.82);
 });
 const texVencido = tex(256, 256, (g, w, h) => {
@@ -107,6 +107,9 @@ const texBillete = tex(256, 128, (g, w, h) => {
   g.fillStyle = "#FFFFFF"; g.font = "900 44px Montserrat"; g.textAlign = "center"; g.textBaseline = "middle"; g.fillText("$", w / 2, h / 2 + 2);
 });
 
+const texDamero = tex(256, 256, (g, w, h) => {
+  for (let x = 0; x < 8; x++) for (let y = 0; y < 8; y++) { g.fillStyle = (x + y) % 2 ? "#1E1E22" : "#EFEAE0"; g.fillRect(x * 32, y * 32, 32, 32); }
+}, [2.5, 2]);
 // ---------- materiales ----------
 const mats = {};
 function mat(color, o = {}) {
@@ -124,10 +127,10 @@ const canvas = document.getElementById("gl");
 const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, preserveDrawingBuffer: true });
 renderer.setPixelRatio(1); renderer.setSize(W, H, false);
 renderer.shadowMap.enabled = true; renderer.shadowMap.type = THREE.PCFSoftShadowMap; renderer.shadowMap.autoUpdate = false;
-renderer.outputColorSpace = THREE.SRGBColorSpace; renderer.toneMapping = THREE.ACESFilmicToneMapping; renderer.toneMappingExposure = 1.0;
+renderer.outputColorSpace = THREE.SRGBColorSpace; renderer.toneMapping = THREE.ACESFilmicToneMapping; renderer.toneMappingExposure = 1.1;
 const scene = new THREE.Scene(); scene.background = new THREE.Color(C.cielo);
 scene.fog = new THREE.Fog(C.cielo, 55, 140);
-scene.add(new THREE.HemisphereLight("#9FB4D9", "#0B0D12", 0.7));
+scene.add(new THREE.HemisphereLight("#AFC2EE", "#2A2230", 1.15));
 // luz de estudio dentro de cada local, para que la maqueta se lea sobre el negro
 const luzLocal = [-4.6, 4.6].map((x) => { const lz = new THREE.PointLight("#FFF1DE", 14, 12, 1.5); lz.position.set(x, 3.3, 1.2); scene.add(lz); return lz; });
 // faroles de la vereda
@@ -136,7 +139,7 @@ for (const x of [-13, 0, 13]) {
   const foco = new THREE.Mesh(new THREE.SphereGeometry(0.22, 14, 10), new THREE.MeshStandardMaterial({ color: "#FFFFFF", emissive: "#FFF6E8", emissiveIntensity: 2 })); foco.position.set(x, 4.65, 4.7); scene.add(foco);
   const lf = new THREE.PointLight("#FFF6E8", 16, 13, 1.6); lf.position.set(x, 4.4, 5.0); scene.add(lf);
 }
-const sol = new THREE.DirectionalLight("#BFD0FF", 1.1); sol.position.set(-14, 26, 18); sol.castShadow = true;
+const sol = new THREE.DirectionalLight("#FFC9A0", 1.9); sol.position.set(-14, 26, 18); sol.castShadow = true;
 sol.shadow.mapSize.set(2048, 2048); Object.assign(sol.shadow.camera, { left: -40, right: 40, top: 40, bottom: -40, near: 1, far: 90 }); sol.shadow.bias = -0.0006; sol.shadow.normalBias = 0.03;
 scene.add(sol, sol.target);
 const camTop = new THREE.PerspectiveCamera(40, 1, 0.1, 400), camBot = new THREE.PerspectiveCamera(40, 1, 0.1, 400);
@@ -149,12 +152,12 @@ for (let i = -12; i <= 12; i++) { const l = box(2.2, 0.02, 0.22, mat("#3A3E46"),
 // ---------- barrio ----------
 const BX = 30, BZ = 24; // paso entre manzanas
 const rnd = rng(7);
-const tonos = ["#1A1D24", "#20242C", "#262A33", "#1D2129", "#232730", "#2A2E37"];
+const tonos = ["#C9785B", "#D8B26E", "#7FA7A1", "#B5A48B", "#9E6B5C", "#6E8CA0", "#D9CBB2", "#A6876A"];
 function manzana(cx, cz, nuestra, plaza, hueco) {
   const base = box(BX - 7, 0.3, BZ - 7, mat(C.baldosa, { map: texBaldosa }), 0.05); base.position.set(cx, 0.15, cz); scene.add(base);
   const piezas = [];
   if (plaza) {
-    const pasto = box(BX - 10, 0.12, BZ - 10, mat("#22382B"), 0.05); pasto.position.set(cx, 0.36, cz); scene.add(pasto);
+    const pasto = box(BX - 10, 0.12, BZ - 10, mat("#4E7D52"), 0.05); pasto.position.set(cx, 0.36, cz); scene.add(pasto);
     const ra = rng(3);
     for (let k = 0; k < 9; k++) {
       const x = cx + (k % 2 ? 1 : -1) * (8.5 + (ra() - 0.5) * 1.5), z = cz - 5.5 + Math.floor(k / 2) * 3 + (ra() - 0.5);
@@ -178,7 +181,7 @@ function manzana(cx, cz, nuestra, plaza, hueco) {
     const h = 2.6 + rnd() * 5.5, col = tonos[Math.floor(rnd() * tonos.length)];
     const b = box(w - 0.8, h, d - 0.8, mat(col), 0.12); b.position.set(x, 0.3 + h / 2, z); scene.add(b);
     for (let k = 0; k < 3; k++) if (rnd() < 0.55) { const v = new THREE.Mesh(new THREE.PlaneGeometry(0.9, 0.7), mat(rnd() < 0.5 ? "#FFF3E0" : "#DCE8FF", { emissive: rnd() < 0.5 ? "#FFE9C7" : "#CFE0FF", emissiveIntensity: 0.9 })); v.position.set(x - w / 3 + k * (w / 3), 0.3 + 1.4 + rnd() * (h - 2), z + (d - 0.8) / 2 + 0.02); scene.add(v); }
-    const techo = box(w - 0.5, 0.25, d - 0.5, mat("#33373E"), 0.06); techo.position.set(x, 0.3 + h + 0.12, z); scene.add(techo);
+    const techo = box(w - 0.5, 0.25, d - 0.5, mat("#5B4E44"), 0.06); techo.position.set(x, 0.3 + h + 0.12, z); scene.add(techo);
     piezas.push(b, techo);
   }
   return piezas;
@@ -199,7 +202,7 @@ function persona(remera, delantal) {
 // ---------- almacén ----------
 function almacen(nombre, color, seed) {
   const g = new THREE.Group(); const r = rng(seed);
-  const piso = box(7, 0.2, 5, mat(C.piso), 0.03); piso.position.set(0, 0.4, 0); g.add(piso);
+  const piso = box(7, 0.2, 5, mat("#FFFFFF", { map: texDamero }), 0.03); piso.position.set(0, 0.4, 0); g.add(piso);
   const fondo = box(7, 3.6, 0.25, mat(C.pared)); fondo.position.set(0, 2.1, -2.4); g.add(fondo);
   for (const s of [-1, 1]) { const lat = box(0.25, 3.6, 5, mat(C.pared)); lat.position.set(3.4 * s, 2.1, 0); g.add(lat); }
   // fachada: columnas + viga + cartel
@@ -221,12 +224,12 @@ function almacen(nombre, color, seed) {
   const lado = box(0.14, 3.0, 0.75, mat("#ECE6DA")); lado.position.set(-gx / 2, 2.0, 0); gond.add(lado);
   const lado2 = lado.clone(); lado2.position.x = gx / 2; gond.add(lado2);
   const prods = [];
-  const colores = ["#D9644A", "#E8C27A", "#6FA58A", "#3D405B", "#5FA8D3", "#ECE6DA", "#9C89B8", "#D98A5F"];
+  const colores = ["#E04F3F", "#F2B33D", "#2A9D8F", "#264653", "#3A86FF", "#F4F1E8", "#8E5BD0", "#E9724C"];
   [1.05, 1.95, 2.85].forEach((y, fila) => {
     const est = box(gx, 0.08, 0.75, mat("#ECE6DA"), 0.02); est.position.set(0, y - 0.04, 0); gond.add(est);
     for (let i = 0; i < 10; i++) {
       let p;
-      if (fila === 1) { p = new THREE.Mesh(new THREE.BoxGeometry(0.4, 0.62, 0.26), [mat("#2E6B47"), mat("#2E6B47"), mat("#2E6B47"), mat("#2E6B47"), new THREE.MeshStandardMaterial({ map: texYerba, roughness: 0.8 }), mat("#2E6B47")]); p.position.set(-gx / 2 + 0.3 + i * 0.49, y + 0.31, 0.05); }
+      if (fila === 1) { p = new THREE.Mesh(new THREE.BoxGeometry(0.4, 0.62, 0.26), [mat("#1F7A3A"), mat("#1F7A3A"), mat("#1F7A3A"), mat("#1F7A3A"), new THREE.MeshStandardMaterial({ map: texYerba, roughness: 0.8 }), mat("#1F7A3A")]); p.position.set(-gx / 2 + 0.3 + i * 0.49, y + 0.31, 0.05); }
       else { const h = 0.35 + r() * 0.35; p = box(0.36, h, 0.36, mat(colores[Math.floor(r() * colores.length)]), 0.05); p.position.set(-gx / 2 + 0.3 + i * 0.49, y + h / 2, 0.02); }
       p.castShadow = true; p.userData.base = p.position.clone(); gond.add(p); prods.push({ m: p, fila, i });
     }
