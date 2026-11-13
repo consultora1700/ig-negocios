@@ -5,10 +5,11 @@ import { RoundedBoxGeometry } from "./lib/RoundedBoxGeometry.js";
 
 const W = 1080, H = 1920;
 const C = {
-  // EL MÉTODO EMPRESARIAL: negro dominante, plata para la materia, azul eléctrico solo para Lucas y el crecimiento
-  cielo: "#000000", baldosa: "#1A1C21", junta: "#272A31", calle: "#07080A", tinta: "#000000",
-  martin: "#9299A3", lucas: "#007BFF", oro: "#E5E7EB", carton: "#3A3E46", madera: "#2A2D33",
-  pared: "#2E3138", piso: "#1E2126", gris: "#9299A3", delantal: "#2A2D33",
+  // Mundo con vida dentro del marco de marca: la cuadra de noche (negro/carbón de la marca) y los locales iluminados con color real.
+  // Azul eléctrico = Lucas y lo que crece; plata = Martín. El color del local de Martín se apaga con cada mala decisión.
+  cielo: "#07080B", baldosa: "#3A3D44", junta: "#2A2D33", calle: "#121418", tinta: "#000000",
+  martin: "#9299A3", lucas: "#007BFF", oro: "#E5E7EB", carton: "#C49A6C", madera: "#8A6A4E",
+  pared: "#D9D2C6", piso: "#BDB4A5", gris: "#9299A3", delantal: "#5B6470",
 };
 // ---------- tiempos (anclados a la voz) ----------
 export const T = {
@@ -87,12 +88,9 @@ const texAlquila = tex(512, 320, (g, w, h) => {
   g.fillText("SE", w / 2, 102); g.fillText("ALQUILA", w / 2, 216);
 });
 const texYerba = tex(256, 384, (g, w, h) => {
-  g.fillStyle = "#0E0F12"; g.fillRect(0, 0, w, h);
-  const gr = g.createLinearGradient(0, h * 0.34, 0, h * 0.68); gr.addColorStop(0, "#FFFFFF"); gr.addColorStop(0.35, "#E5E7EB"); gr.addColorStop(0.7, "#BFC4CC"); gr.addColorStop(1, "#9299A3");
-  g.fillStyle = gr; g.fillRect(0, h * 0.34, w, h * 0.34);
-  g.fillStyle = "#000000"; g.font = "900 68px Montserrat"; g.textAlign = "center"; g.textBaseline = "middle"; g.fillText("YERBA", w / 2, h * 0.51);
-  g.fillStyle = "#E5E7EB"; g.font = "800 34px Montserrat"; g.fillText("1 kg", w / 2, h * 0.82);
-  g.fillStyle = "#009DFF"; g.fillRect(w * 0.2, h * 0.16, w * 0.6, 10);
+  g.fillStyle = "#2E6B47"; g.fillRect(0, 0, w, h); g.fillStyle = "#E3C46A"; g.fillRect(0, h * 0.34, w, h * 0.34);
+  g.fillStyle = "#2E6B47"; g.font = "900 68px Montserrat"; g.textAlign = "center"; g.textBaseline = "middle"; g.fillText("YERBA", w / 2, h * 0.51);
+  g.fillStyle = "#FFFFFF"; g.font = "800 34px Montserrat"; g.fillText("1 kg", w / 2, h * 0.82);
 });
 const texVencido = tex(256, 256, (g, w, h) => {
   g.fillStyle = C.carton; g.fillRect(0, 0, w, h); g.save(); g.translate(w / 2, h / 2); g.rotate(-0.35);
@@ -100,7 +98,7 @@ const texVencido = tex(256, 256, (g, w, h) => {
   g.fillStyle = "#FFFFFF"; g.font = "900 46px Montserrat"; g.textAlign = "center"; g.textBaseline = "middle"; g.fillText("VENCIDO", 0, 3); g.restore();
 });
 const texCarton = tex(256, 256, (g, w, h) => {
-  g.fillStyle = C.carton; g.fillRect(0, 0, w, h); g.fillStyle = "#9299A3"; g.fillRect(w * 0.42, 0, w * 0.16, h);
+  g.fillStyle = C.carton; g.fillRect(0, 0, w, h); g.fillStyle = "#B0865A"; g.fillRect(w * 0.42, 0, w * 0.16, h);
   g.strokeStyle = "rgba(0,0,0,.35)"; g.lineWidth = 3; g.strokeRect(2, 2, w - 4, h - 4);
 });
 const texBillete = tex(256, 128, (g, w, h) => {
@@ -126,13 +124,19 @@ const canvas = document.getElementById("gl");
 const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, preserveDrawingBuffer: true });
 renderer.setPixelRatio(1); renderer.setSize(W, H, false);
 renderer.shadowMap.enabled = true; renderer.shadowMap.type = THREE.PCFSoftShadowMap; renderer.shadowMap.autoUpdate = false;
-renderer.outputColorSpace = THREE.SRGBColorSpace; renderer.toneMapping = THREE.ACESFilmicToneMapping; renderer.toneMappingExposure = 1.35;
+renderer.outputColorSpace = THREE.SRGBColorSpace; renderer.toneMapping = THREE.ACESFilmicToneMapping; renderer.toneMappingExposure = 1.0;
 const scene = new THREE.Scene(); scene.background = new THREE.Color(C.cielo);
 scene.fog = new THREE.Fog(C.cielo, 55, 140);
-scene.add(new THREE.HemisphereLight("#E5E7EB", "#1B1E23", 1.25));
+scene.add(new THREE.HemisphereLight("#9FB4D9", "#0B0D12", 0.7));
 // luz de estudio dentro de cada local, para que la maqueta se lea sobre el negro
-for (const x of [-4.6, 4.6]) { const lz = new THREE.PointLight("#FFFFFF", 22, 11, 1.6); lz.position.set(x, 3.4, 1.4); scene.add(lz); }
-const sol = new THREE.DirectionalLight("#FFFFFF", 3.0); sol.position.set(-14, 26, 18); sol.castShadow = true;
+const luzLocal = [-4.6, 4.6].map((x) => { const lz = new THREE.PointLight("#FFF1DE", 14, 12, 1.5); lz.position.set(x, 3.3, 1.2); scene.add(lz); return lz; });
+// faroles de la vereda
+for (const x of [-13, 0, 13]) {
+  const poste = new THREE.Mesh(new THREE.CylinderGeometry(0.08, 0.1, 4.6, 10), new THREE.MeshStandardMaterial({ color: "#2A2D33", roughness: 0.6, metalness: 0.4 })); poste.position.set(x, 2.3, 4.7); scene.add(poste);
+  const foco = new THREE.Mesh(new THREE.SphereGeometry(0.22, 14, 10), new THREE.MeshStandardMaterial({ color: "#FFFFFF", emissive: "#FFF6E8", emissiveIntensity: 2 })); foco.position.set(x, 4.65, 4.7); scene.add(foco);
+  const lf = new THREE.PointLight("#FFF6E8", 16, 13, 1.6); lf.position.set(x, 4.4, 5.0); scene.add(lf);
+}
+const sol = new THREE.DirectionalLight("#BFD0FF", 1.1); sol.position.set(-14, 26, 18); sol.castShadow = true;
 sol.shadow.mapSize.set(2048, 2048); Object.assign(sol.shadow.camera, { left: -40, right: 40, top: 40, bottom: -40, near: 1, far: 90 }); sol.shadow.bias = -0.0006; sol.shadow.normalBias = 0.03;
 scene.add(sol, sol.target);
 const camTop = new THREE.PerspectiveCamera(40, 1, 0.1, 400), camBot = new THREE.PerspectiveCamera(40, 1, 0.1, 400);
@@ -145,16 +149,16 @@ for (let i = -12; i <= 12; i++) { const l = box(2.2, 0.02, 0.22, mat("#3A3E46"),
 // ---------- barrio ----------
 const BX = 30, BZ = 24; // paso entre manzanas
 const rnd = rng(7);
-const tonos = ["#16181C", "#1B1E23", "#202328", "#26292F", "#1D2025", "#23262C"];
+const tonos = ["#1A1D24", "#20242C", "#262A33", "#1D2129", "#232730", "#2A2E37"];
 function manzana(cx, cz, nuestra, plaza, hueco) {
   const base = box(BX - 7, 0.3, BZ - 7, mat(C.baldosa, { map: texBaldosa }), 0.05); base.position.set(cx, 0.15, cz); scene.add(base);
   const piezas = [];
   if (plaza) {
-    const pasto = box(BX - 10, 0.12, BZ - 10, mat("#101215"), 0.05); pasto.position.set(cx, 0.36, cz); scene.add(pasto);
+    const pasto = box(BX - 10, 0.12, BZ - 10, mat("#22382B"), 0.05); pasto.position.set(cx, 0.36, cz); scene.add(pasto);
     const ra = rng(3);
     for (let k = 0; k < 9; k++) {
       const x = cx + (k % 2 ? 1 : -1) * (8.5 + (ra() - 0.5) * 1.5), z = cz - 5.5 + Math.floor(k / 2) * 3 + (ra() - 0.5);
-      if (k >= 0) continue; // sin árboles: la marca no admite verdes
+      if (k > 7) continue;
       const tronco = box(0.35, 1.4, 0.35, mat("#7A5A3E"), 0.05); tronco.position.set(x, 1.1, z); scene.add(tronco);
       const copa = new THREE.Mesh(new THREE.SphereGeometry(1.3 + ra() * 0.5, 18, 14), mat(ra() > 0.5 ? "#5E9E4A" : "#6FAE55")); copa.position.set(x, 2.7, z); copa.castShadow = true; scene.add(copa);
     }
@@ -173,6 +177,7 @@ function manzana(cx, cz, nuestra, plaza, hueco) {
     if (hueco && j === 1 && (i === 1 || i === 2)) continue; // lugar de una sucursal
     const h = 2.6 + rnd() * 5.5, col = tonos[Math.floor(rnd() * tonos.length)];
     const b = box(w - 0.8, h, d - 0.8, mat(col), 0.12); b.position.set(x, 0.3 + h / 2, z); scene.add(b);
+    for (let k = 0; k < 3; k++) if (rnd() < 0.55) { const v = new THREE.Mesh(new THREE.PlaneGeometry(0.9, 0.7), mat(rnd() < 0.5 ? "#FFF3E0" : "#DCE8FF", { emissive: rnd() < 0.5 ? "#FFE9C7" : "#CFE0FF", emissiveIntensity: 0.9 })); v.position.set(x - w / 3 + k * (w / 3), 0.3 + 1.4 + rnd() * (h - 2), z + (d - 0.8) / 2 + 0.02); scene.add(v); }
     const techo = box(w - 0.5, 0.25, d - 0.5, mat("#33373E"), 0.06); techo.position.set(x, 0.3 + h + 0.12, z); scene.add(techo);
     piezas.push(b, techo);
   }
@@ -185,8 +190,8 @@ function persona(remera, delantal) {
   const g = new THREE.Group();
   const cuerpo = new THREE.Mesh(new THREE.CapsuleGeometry(0.34, 0.62, 6, 16), mat(remera)); cuerpo.position.y = 0.68; cuerpo.castShadow = true; g.add(cuerpo);
   if (delantal) { const dl = box(0.5, 0.62, 0.08, mat(C.delantal), 0.03); dl.position.set(0, 0.62, 0.31); g.add(dl); }
-  const cabeza = new THREE.Mesh(new THREE.SphereGeometry(0.3, 24, 16), mat("#E5E7EB", { metalness: 0.25, roughness: 0.45 })); cabeza.position.y = 1.36; cabeza.castShadow = true; g.add(cabeza);
-  const pelo = new THREE.Mesh(new THREE.SphereGeometry(0.31, 24, 12, 0, Math.PI * 2, 0, Math.PI * 0.45), mat("#0E0F12")); pelo.position.y = 1.38; g.add(pelo);
+  const cabeza = new THREE.Mesh(new THREE.SphereGeometry(0.3, 24, 16), mat("#E8B48F")); cabeza.position.y = 1.36; cabeza.castShadow = true; g.add(cabeza);
+  const pelo = new THREE.Mesh(new THREE.SphereGeometry(0.31, 24, 12, 0, Math.PI * 2, 0, Math.PI * 0.45), mat("#3A2A22")); pelo.position.y = 1.38; g.add(pelo);
   for (const s of [-1, 1]) { const ojo = new THREE.Mesh(new THREE.SphereGeometry(0.045, 10, 8), mat(C.tinta)); ojo.position.set(0.1 * s, 1.38, 0.27); g.add(ojo); }
   return g;
 }
@@ -213,15 +218,15 @@ function almacen(nombre, color, seed) {
   // góndola contra la pared del fondo: 3 estantes x 10 productos; el del medio es yerba
   const gond = new THREE.Group(); gond.position.set(-0.7, 0, -1.95); g.add(gond);
   const gx = 5.0;
-  const lado = box(0.14, 3.0, 0.75, mat("#9299A3", { metalness: 0.5, roughness: 0.4 })); lado.position.set(-gx / 2, 2.0, 0); gond.add(lado);
+  const lado = box(0.14, 3.0, 0.75, mat("#ECE6DA")); lado.position.set(-gx / 2, 2.0, 0); gond.add(lado);
   const lado2 = lado.clone(); lado2.position.x = gx / 2; gond.add(lado2);
   const prods = [];
-  const colores = ["#E5E7EB", "#BFC4CC", "#9299A3", "#FFFFFF", "#BFC4CC", "#9299A3", "#E5E7EB", "#0057D9"];
+  const colores = ["#D9644A", "#E8C27A", "#6FA58A", "#3D405B", "#5FA8D3", "#ECE6DA", "#9C89B8", "#D98A5F"];
   [1.05, 1.95, 2.85].forEach((y, fila) => {
-    const est = box(gx, 0.08, 0.75, mat("#9299A3", { metalness: 0.5, roughness: 0.4 }), 0.02); est.position.set(0, y - 0.04, 0); gond.add(est);
+    const est = box(gx, 0.08, 0.75, mat("#ECE6DA"), 0.02); est.position.set(0, y - 0.04, 0); gond.add(est);
     for (let i = 0; i < 10; i++) {
       let p;
-      if (fila === 1) { p = new THREE.Mesh(new THREE.BoxGeometry(0.4, 0.62, 0.26), [mat("#0E0F12"), mat("#0E0F12"), mat("#0E0F12"), mat("#0E0F12"), new THREE.MeshStandardMaterial({ map: texYerba, roughness: 0.8 }), mat("#0E0F12")]); p.position.set(-gx / 2 + 0.3 + i * 0.49, y + 0.31, 0.05); }
+      if (fila === 1) { p = new THREE.Mesh(new THREE.BoxGeometry(0.4, 0.62, 0.26), [mat("#2E6B47"), mat("#2E6B47"), mat("#2E6B47"), mat("#2E6B47"), new THREE.MeshStandardMaterial({ map: texYerba, roughness: 0.8 }), mat("#2E6B47")]); p.position.set(-gx / 2 + 0.3 + i * 0.49, y + 0.31, 0.05); }
       else { const h = 0.35 + r() * 0.35; p = box(0.36, h, 0.36, mat(colores[Math.floor(r() * colores.length)]), 0.05); p.position.set(-gx / 2 + 0.3 + i * 0.49, y + h / 2, 0.02); }
       p.castShadow = true; p.userData.base = p.position.clone(); gond.add(p); prods.push({ m: p, fila, i });
     }
@@ -245,7 +250,7 @@ function almacen(nombre, color, seed) {
   const dfondo = box(7, 2.4, 0.25, mat(C.pared)); dfondo.position.set(0, 1.5, -6.5); g.add(dfondo);
   // personas
   const dueno = persona(color); g.add(dueno);
-  const emp = [persona("#BFC4CC", true), persona("#BFC4CC", true), persona("#BFC4CC", true)]; emp.forEach((e) => g.add(e));
+  const emp = [persona("#ECE6DA", true), persona("#ECE6DA", true), persona("#ECE6DA", true)]; emp.forEach((e) => g.add(e));
   // monedas (capital) en la vereda
   const monedas = [];
   for (let i = 0; i < 26; i++) {
@@ -258,6 +263,8 @@ function almacen(nombre, color, seed) {
 // Nuestra manzana: frentes de los almacenes mirando a la calle (z = 3.4 en mundo)
 const ZF = 0.6; // centro del local en z
 const M = almacen("MARTÍN", C.martin, 11); M.g.position.set(-4.6, 0, ZF); scene.add(M.g);
+const apagables = [];
+M.g.traverse((o) => { if (o.isMesh) { const ms = Array.isArray(o.material) ? o.material : [o.material]; const cl = ms.map((m) => { const c = m.clone(); apagables.push({ m: c, c0: c.color.clone() }); return c; }); o.material = Array.isArray(o.material) ? cl : cl[0]; } });
 const L = almacen("LUCAS", C.lucas, 23); L.g.position.set(4.6, 0, ZF); scene.add(L.g);
 // sucursales de Lucas
 const S2 = almacen("LUCAS", C.lucas, 31); S2.g.position.set(BX + 2, 0, -BZ + 0.6); scene.add(S2.g);
@@ -293,7 +300,16 @@ function persianaAbierta(s, u) { // u: 0 abierta (enrollada) .. 1 cerrada
 }
 function aparecer(o, t, a, d = 0.55) { const u = P(t, a, d, E.back); o.visible = t >= a; o.scale.setScalar(Math.max(0.001, u)); }
 
+// cuánto se "apagó" el almacén de Martín (0 = vivo, 1 = gris y sin luz)
+export const apagado = (t) => track(t, 0, [[T.tres, 1, 2.2, E.io], [T.suerte + 0.1, 0, 1.1, E.io], [T.sueldos, 0.15, 1.0], [T.cuaderno, 0.25, 1.0], [T.deposito, 0.4, 1.0], [T.pero, 0.5, 1.0], [T.cadaVez, 0.7, 1.5], [T.loco, 0, 0.8], [T.dif, 0.6, 1.2], [T.cual, 1, 1.0]]);
+const gris = new THREE.Color();
+function apagar(t) {
+  const d = apagado(t);
+  for (const { m, c0 } of apagables) { const l = c0.r * 0.3 + c0.g * 0.59 + c0.b * 0.11; gris.setRGB(l * 0.7, l * 0.7, l * 0.72); m.color.copy(c0).lerp(gris, d); }
+  luzLocal[0].intensity = 14 * (1 - 0.75 * d);
+}
 function estado(t) {
+  apagar(t);
   // AÑO (para la HUD y estados de “futuro”)
   const futuro = t >= T.cinco && t < T.suerte + 0.15;                 // gancho en el año 5
   const rew = P(t, T.suerte + 0.1, 1.1, E.io3);                         // rebobinado
@@ -436,7 +452,7 @@ function deposito(t) {
   cajasM.forEach((m) => { const pulse = m.userData.v && t >= T.vencidas ? 1 + 0.12 * Math.sin(clamp((t - T.vencidas) / 0.5) * Math.PI) : 1; m.scale.setScalar(pulse); });
   cajasL.slice(6).forEach((m, i) => { const a = T.lucasCompra + 0.5 + i * 0.55; const u = P(t, a, 0.45, E.o3); m.visible = t >= a; const b = m.userData.base; m.position.set(b.x, b.y, lerp(b.z + 6, b.z, u)); });
 }
-const clientes3 = [persona("#E5E7EB"), persona("#9299A3"), persona("#BFC4CC")]; clientes3.forEach((c) => M.g.add(c));
+const clientes3 = [persona("#5FA8D3"), persona("#D9644A"), persona("#9C89B8")]; clientes3.forEach((c) => M.g.add(c));
 function clientes(t) {
   clientes3.forEach((c, i) => { const a = T.mas3 + i * 0.25; const u = P(t, a, 1.1, E.io); c.visible = t >= a && t < T.dif + 0.2; c.position.set(lerp(-6 + i * 1.2, -1.5 + i * 1.3, u), 0.5, lerp(4.8, 1.2 + (i % 2) * 0.6, u)); c.rotation.y = Math.PI * (u < 1 ? -0.15 : 1); });
 }
