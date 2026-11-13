@@ -1,0 +1,48 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; pointer-events: none; font-family: "Montserrat"; }
+    #t-fondo { position: absolute; inset: 0; background: #17161A; }
+    #t-card { position: absolute; left: 40px; right: 40px; top: 150px; height: 1000px; border-radius: 28px; background: #FFF9EE; box-shadow: 0 14px 0 rgba(0,0,0,.25); }
+    #t-card h2 { position: absolute; left: 50px; top: 40px; font-weight: 900; font-size: 52px; color: #17161A; }
+    #t-ej { position: absolute; right: 40px; top: 52px; font-weight: 800; font-size: 26px; color: #8E8B86; border: 3px solid #CFC6B8; border-radius: 10px; padding: 2px 12px; }
+    #t-svg { position: absolute; left: 30px; top: 140px; width: 940px; height: 820px; overflow: visible; }
+    .t-eje { font-weight: 800; font-size: 30px; fill: #8E8B86; }
+    .t-nom { font-weight: 900; font-size: 40px; }
+  </style>
+  <div id="root" data-composition-id="o-tijera" data-width="1080" data-height="1920">
+    <div id="t-fondo" class="clip" data-start="0" data-duration="3.7"></div>
+    <div id="t-card" class="clip" data-start="0" data-duration="3.7">
+      <h2>CÓMO LE FUE A CADA UNO</h2><div id="t-ej">ejemplo</div>
+      <svg id="t-svg" viewBox="0 0 940 820">
+        <!-- zona "tarde": del año 3 en adelante -->
+        <rect id="t-tarde" x="482" y="20" width="408" height="660" fill="#E0482F" opacity="0.12" />
+        <line x1="60" y1="680" x2="890" y2="680" stroke="#CFC6B8" stroke-width="5" />
+        <g class="t-eje"><text x="60" y="730" text-anchor="middle">0</text><text x="226" y="730" text-anchor="middle">1</text><text x="392" y="730" text-anchor="middle">2</text><text x="558" y="730" text-anchor="middle">3</text><text x="724" y="730" text-anchor="middle">4</text><text x="890" y="730" text-anchor="middle">5</text><text x="475" y="790" text-anchor="middle">AÑOS</text></g>
+        <!-- valor 100 = y 520; escala 2,2 px por punto -->
+        <path id="t-m" d="M60 520 C143 476 160 476 226 476 S330 465 392 465 S490 500 558 520 S680 600 724 597 S850 670 890 680" fill="none" stroke="#E0482F" stroke-width="16" stroke-linecap="round" pathLength="100" stroke-dasharray="100 120" stroke-dashoffset="110" />
+        <path id="t-l" d="M60 520 C143 502 160 502 226 502 S330 465 392 465 S490 408 558 410 S680 318 724 300 S850 175 890 168" fill="none" stroke="#12A06B" stroke-width="16" stroke-linecap="round" pathLength="100" stroke-dasharray="100 120" stroke-dashoffset="110" />
+        <text id="t-nm" class="t-nom" x="590" y="655" fill="#E0482F">MARTÍN</text>
+        <text id="t-nl" class="t-nom" x="640" y="200" fill="#12A06B">LUCAS</text>
+        <line id="t-a3" x1="558" y1="40" x2="558" y2="680" stroke="#17161A" stroke-width="5" stroke-dasharray="14 12" />
+        <g id="t-et3"><rect x="430" y="30" width="256" height="66" rx="14" fill="#17161A" /><text x="558" y="76" text-anchor="middle" font-weight="900" font-size="36" fill="#FFF9EE">AÑO 3</text></g>
+        <g id="t-et1"><rect x="70" y="360" width="320" height="62" rx="14" fill="#E0482F" /><text x="230" y="403" text-anchor="middle" font-weight="900" font-size="30" fill="#fff">MARTÍN, ARRIBA</text></g>
+        <text id="t-tt" x="724" y="120" text-anchor="middle" font-weight="900" font-size="54" fill="#E0482F">TARDE</text>
+      </svg>
+    </div>
+  </div>
+  <script>
+    // tiempo local: 0 = 82,0 s del video
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#t-fondo", { opacity: 0 }, { opacity: 0.6, duration: 0.25 }, 0);
+    tl.fromTo("#t-card", { opacity: 0, y: 100, scale: 0.94 }, { opacity: 1, y: 0, scale: 1, duration: 0.45, ease: "expo.out" }, 0.0);
+    tl.fromTo(["#t-m", "#t-l"], { strokeDashoffset: 110 }, { strokeDashoffset: 0, duration: 1.7, ease: "power1.inOut" }, 0.3);
+    tl.fromTo("#t-et1", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.25, ease: "expo.out" }, 0.7);
+    tl.to("#t-et1", { opacity: 0, duration: 0.18 }, 1.5);
+    tl.fromTo(["#t-a3", "#t-et3"], { opacity: 0 }, { opacity: 1, duration: 0.2, ease: "power2.out" }, 1.6);
+    tl.fromTo(["#t-nm", "#t-nl"], { opacity: 0, x: -20 }, { opacity: 1, x: 0, duration: 0.25, ease: "expo.out" }, 1.95);
+    tl.fromTo("#t-tarde", { opacity: 0 }, { opacity: 0.16, duration: 0.3, ease: "power2.out" }, 2.4);
+    tl.fromTo("#t-tt", { opacity: 0, scale: 1.6 }, { opacity: 1, scale: 1, duration: 0.25, ease: "power4.in", transformOrigin: "50% 50%" }, 2.45);
+    tl.to(["#t-card", "#t-fondo"], { opacity: 0, filter: "blur(8px)", duration: 0.2, ease: "power3.in" }, 3.45);
+    window.__timelines["o-tijera"] = tl;
+  </script>
+</template>

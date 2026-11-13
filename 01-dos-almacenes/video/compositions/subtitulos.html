@@ -1,0 +1,616 @@
+<template>
+  <style>
+    #root { position:absolute; inset:0; pointer-events:none; }
+    .w { position:absolute; left:0; right:0; top:1200px; text-align:center; overflow:visible; }
+    .w span { display:inline-block; font-family:"Montserrat"; font-weight:800; font-size:66px; letter-spacing:-0.01em; color:#fff;
+      -webkit-text-stroke:12px #17161A; paint-order:stroke fill; text-shadow:0 6px 0 rgba(23,22,26,.35); }
+    .em-m span { color:#FF6A4D; }
+    .em-l span { color:#3FD48F; }
+  </style>
+  <div id="root" data-composition-id="subtitulos" data-width="1080" data-height="1920">
+    <div id="w0" class="clip w" data-start="0.000" data-duration="0.412"><span>Dos</span></div>
+    <div id="w1" class="clip w" data-start="0.412" data-duration="1.034"><span>almacenes.</span></div>
+    <div id="w2" class="clip w" data-start="1.446" data-duration="0.173"><span>Misma</span></div>
+    <div id="w3" class="clip w" data-start="1.619" data-duration="0.673"><span>cuadra,</span></div>
+    <div id="w4" class="clip w" data-start="2.292" data-duration="0.154"><span>misma</span></div>
+    <div id="w5" class="clip w" data-start="2.446" data-duration="0.788"><span>plata,</span></div>
+    <div id="w6" class="clip w" data-start="3.254" data-duration="0.231"><span>mismo</span></div>
+    <div id="w7" class="clip w" data-start="3.485" data-duration="0.211"><span>día</span></div>
+    <div id="w8" class="clip w" data-start="3.696" data-duration="0.212"><span>de</span></div>
+    <div id="w9" class="clip w" data-start="3.908" data-duration="0.867"><span>apertura.</span></div>
+    <div id="w10" class="clip w" data-start="4.775" data-duration="0.269"><span>Cinco</span></div>
+    <div id="w11" class="clip w" data-start="5.044" data-duration="0.174"><span>años</span></div>
+    <div id="w12" class="clip w" data-start="5.218" data-duration="0.788"><span>después,</span></div>
+    <div id="w13" class="clip w" data-start="6.006" data-duration="0.058"><span>uno</span></div>
+    <div id="w14" class="clip w" data-start="6.064" data-duration="0.269"><span>tiene</span></div>
+    <div id="w15" class="clip w" data-start="6.333" data-duration="0.308"><span>tres</span></div>
+    <div id="w16" class="clip w" data-start="6.641" data-duration="0.946"><span>sucursales</span></div>
+    <div id="w17" class="clip w" data-start="7.587" data-duration="0.134"><span>y</span></div>
+    <div id="w18" class="clip w" data-start="7.721" data-duration="0.135"><span>el</span></div>
+    <div id="w19" class="clip w" data-start="7.856" data-duration="0.307"><span>otro</span></div>
+    <div id="w20" class="clip w" data-start="8.163" data-duration="0.289"><span>bajó</span></div>
+    <div id="w21" class="clip w" data-start="8.452" data-duration="0.154"><span>la</span></div>
+    <div id="w22" class="clip w" data-start="8.606" data-duration="0.760"><span>persiana.</span></div>
+    <div id="w23" class="clip w" data-start="9.366" data-duration="0.327"><span>Y</span></div>
+    <div id="w24" class="clip w" data-start="9.693" data-duration="0.577"><span>no:</span></div>
+    <div id="w25" class="clip w" data-start="10.270" data-duration="0.288"><span>ninguno</span></div>
+    <div id="w26" class="clip w" data-start="10.558" data-duration="0.212"><span>tuvo</span></div>
+    <div id="w27" class="clip w" data-start="10.770" data-duration="0.211"><span>mala</span></div>
+    <div id="w28" class="clip w" data-start="10.981" data-duration="0.774"><span>suerte.</span></div>
+    <div id="w29" class="clip w em-m" data-start="11.755" data-duration="0.211"><span>Martín</span></div>
+    <div id="w30" class="clip w" data-start="11.966" data-duration="0.423"><span>contrató</span></div>
+    <div id="w31" class="clip w" data-start="12.389" data-duration="0.423"><span>cajero</span></div>
+    <div id="w32" class="clip w" data-start="12.812" data-duration="0.173"><span>y</span></div>
+    <div id="w33" class="clip w" data-start="12.985" data-duration="0.385"><span>repositor</span></div>
+    <div id="w34" class="clip w" data-start="13.370" data-duration="0.192"><span>desde</span></div>
+    <div id="w35" class="clip w" data-start="13.562" data-duration="0.154"><span>el</span></div>
+    <div id="w36" class="clip w" data-start="13.716" data-duration="0.154"><span>primer</span></div>
+    <div id="w37" class="clip w" data-start="13.870" data-duration="0.581"><span>mes.</span></div>
+    <div id="w38" class="clip w em-l" data-start="14.451" data-duration="0.231"><span>Lucas</span></div>
+    <div id="w39" class="clip w" data-start="14.682" data-duration="0.619"><span>no:</span></div>
+    <div id="w40" class="clip w" data-start="15.301" data-duration="0.289"><span>atendió</span></div>
+    <div id="w41" class="clip w" data-start="15.590" data-duration="0.173"><span>la</span></div>
+    <div id="w42" class="clip w" data-start="15.763" data-duration="0.192"><span>caja</span></div>
+    <div id="w43" class="clip w" data-start="15.955" data-duration="0.173"><span>él</span></div>
+    <div id="w44" class="clip w" data-start="16.128" data-duration="0.616"><span>mismo,</span></div>
+    <div id="w45" class="clip w" data-start="16.744" data-duration="0.153"><span>un</span></div>
+    <div id="w46" class="clip w" data-start="16.897" data-duration="0.154"><span>año</span></div>
+    <div id="w47" class="clip w" data-start="17.051" data-duration="0.767"><span>entero.</span></div>
+    <div id="w48" class="clip w" data-start="17.818" data-duration="0.173"><span>Parece</span></div>
+    <div id="w49" class="clip w" data-start="17.991" data-duration="0.193"><span>un</span></div>
+    <div id="w50" class="clip w" data-start="18.184" data-duration="0.519"><span>detalle.</span></div>
+    <div id="w51" class="clip w" data-start="18.703" data-duration="0.173"><span>No</span></div>
+    <div id="w52" class="clip w" data-start="18.876" data-duration="0.135"><span>lo</span></div>
+    <div id="w53" class="clip w" data-start="19.011" data-duration="0.543"><span>es.</span></div>
+    <div id="w54" class="clip w em-l" data-start="19.554" data-duration="0.250"><span>Lucas</span></div>
+    <div id="w55" class="clip w" data-start="19.804" data-duration="0.519"><span>aprendió</span></div>
+    <div id="w56" class="clip w" data-start="20.323" data-duration="0.154"><span>qué</span></div>
+    <div id="w57" class="clip w" data-start="20.477" data-duration="0.211"><span>se</span></div>
+    <div id="w58" class="clip w" data-start="20.688" data-duration="0.616"><span>vende,</span></div>
+    <div id="w59" class="clip w" data-start="21.304" data-duration="0.077"><span>a</span></div>
+    <div id="w60" class="clip w" data-start="21.381" data-duration="0.134"><span>quién</span></div>
+    <div id="w61" class="clip w" data-start="21.515" data-duration="0.827"><span>fiarle,</span></div>
+    <div id="w62" class="clip w" data-start="22.342" data-duration="0.154"><span>y</span></div>
+    <div id="w63" class="clip w" data-start="22.496" data-duration="0.250"><span>por</span></div>
+    <div id="w64" class="clip w" data-start="22.746" data-duration="0.192"><span>dónde</span></div>
+    <div id="w65" class="clip w" data-start="22.938" data-duration="0.212"><span>se</span></div>
+    <div id="w66" class="clip w" data-start="23.150" data-duration="0.173"><span>escapa</span></div>
+    <div id="w67" class="clip w" data-start="23.323" data-duration="0.173"><span>la</span></div>
+    <div id="w68" class="clip w" data-start="23.496" data-duration="0.484"><span>plata.</span></div>
+    <div id="w69" class="clip w" data-start="23.980" data-duration="0.270"><span>Cuando</span></div>
+    <div id="w70" class="clip w" data-start="24.250" data-duration="0.692"><span>contrató,</span></div>
+    <div id="w71" class="clip w" data-start="24.942" data-duration="0.173"><span>sabía</span></div>
+    <div id="w72" class="clip w" data-start="25.115" data-duration="0.635"><span>exactamente</span></div>
+    <div id="w73" class="clip w" data-start="25.750" data-duration="0.288"><span>qué</span></div>
+    <div id="w74" class="clip w" data-start="26.038" data-duration="0.692"><span>controlar.</span></div>
+    <div id="w75" class="clip w em-m" data-start="26.740" data-duration="0.173"><span>Martín</span></div>
+    <div id="w76" class="clip w" data-start="26.913" data-duration="0.289"><span>pagaba</span></div>
+    <div id="w77" class="clip w" data-start="27.202" data-duration="0.173"><span>dos</span></div>
+    <div id="w78" class="clip w" data-start="27.375" data-duration="0.365"><span>sueldos</span></div>
+    <div id="w79" class="clip w" data-start="27.740" data-duration="0.116"><span>el</span></div>
+    <div id="w80" class="clip w" data-start="27.856" data-duration="0.173"><span>año</span></div>
+    <div id="w81" class="clip w" data-start="28.029" data-duration="0.173"><span>que</span></div>
+    <div id="w82" class="clip w" data-start="28.202" data-duration="0.154"><span>menos</span></div>
+    <div id="w83" class="clip w" data-start="28.356" data-duration="0.749"><span>vendía</span></div>
+    <div id="w84" class="clip w" data-start="29.105" data-duration="0.173"><span>y</span></div>
+    <div id="w85" class="clip w" data-start="29.278" data-duration="0.192"><span>nunca</span></div>
+    <div id="w86" class="clip w" data-start="29.470" data-duration="0.192"><span>supo</span></div>
+    <div id="w87" class="clip w" data-start="29.662" data-duration="0.116"><span>qué</span></div>
+    <div id="w88" class="clip w" data-start="29.778" data-duration="0.173"><span>le</span></div>
+    <div id="w89" class="clip w" data-start="29.951" data-duration="0.269"><span>faltaba</span></div>
+    <div id="w90" class="clip w" data-start="30.220" data-duration="0.115"><span>en</span></div>
+    <div id="w91" class="clip w" data-start="30.335" data-duration="0.154"><span>la</span></div>
+    <div id="w92" class="clip w" data-start="30.489" data-duration="0.500"><span>caja.</span></div>
+    <div id="w93" class="clip w em-m" data-start="30.989" data-duration="0.308"><span>Martín</span></div>
+    <div id="w94" class="clip w" data-start="31.297" data-duration="0.404"><span>anotaba</span></div>
+    <div id="w95" class="clip w" data-start="31.701" data-duration="0.250"><span>todo</span></div>
+    <div id="w96" class="clip w" data-start="31.951" data-duration="0.173"><span>en</span></div>
+    <div id="w97" class="clip w" data-start="32.124" data-duration="0.154"><span>un</span></div>
+    <div id="w98" class="clip w" data-start="32.278" data-duration="0.825"><span>cuaderno.</span></div>
+    <div id="w99" class="clip w em-l" data-start="33.103" data-duration="0.346"><span>Lucas</span></div>
+    <div id="w100" class="clip w" data-start="33.449" data-duration="0.654"><span>cargaba</span></div>
+    <div id="w101" class="clip w" data-start="34.103" data-duration="0.308"><span>cada</span></div>
+    <div id="w102" class="clip w" data-start="34.411" data-duration="0.667"><span>venta.</span></div>
+    <div id="w103" class="clip w" data-start="35.078" data-duration="0.173"><span>Al</span></div>
+    <div id="w104" class="clip w" data-start="35.251" data-duration="0.250"><span>tercer</span></div>
+    <div id="w105" class="clip w" data-start="35.501" data-duration="0.462"><span>mes,</span></div>
+    <div id="w106" class="clip w em-l" data-start="35.963" data-duration="0.231"><span>Lucas</span></div>
+    <div id="w107" class="clip w" data-start="36.194" data-duration="0.192"><span>vio</span></div>
+    <div id="w108" class="clip w" data-start="36.386" data-duration="0.134"><span>lo</span></div>
+    <div id="w109" class="clip w" data-start="36.520" data-duration="0.097"><span>que</span></div>
+    <div id="w110" class="clip w em-m" data-start="36.617" data-duration="0.288"><span>Martín</span></div>
+    <div id="w111" class="clip w" data-start="36.905" data-duration="0.289"><span>nunca</span></div>
+    <div id="w112" class="clip w" data-start="37.194" data-duration="0.603"><span>vio:</span></div>
+    <div id="w113" class="clip w" data-start="37.797" data-duration="0.327"><span>veinte</span></div>
+    <div id="w114" class="clip w" data-start="38.124" data-duration="0.519"><span>productos</span></div>
+    <div id="w115" class="clip w" data-start="38.643" data-duration="0.346"><span>le</span></div>
+    <div id="w116" class="clip w" data-start="38.989" data-duration="0.327"><span>dejaban</span></div>
+    <div id="w117" class="clip w" data-start="39.316" data-duration="0.423"><span>casi</span></div>
+    <div id="w118" class="clip w" data-start="39.739" data-duration="0.269"><span>toda</span></div>
+    <div id="w119" class="clip w" data-start="40.008" data-duration="0.193"><span>la</span></div>
+    <div id="w120" class="clip w" data-start="40.201" data-duration="0.738"><span>ganancia</span></div>
+    <div id="w121" class="clip w" data-start="40.939" data-duration="0.192"><span>y</span></div>
+    <div id="w122" class="clip w" data-start="41.131" data-duration="0.154"><span>otros</span></div>
+    <div id="w123" class="clip w" data-start="41.285" data-duration="0.596"><span>cuarenta</span></div>
+    <div id="w124" class="clip w" data-start="41.881" data-duration="0.500"><span>juntaban</span></div>
+    <div id="w125" class="clip w" data-start="42.381" data-duration="0.610"><span>polvo.</span></div>
+    <div id="w126" class="clip w" data-start="42.991" data-duration="0.173"><span>En</span></div>
+    <div id="w127" class="clip w" data-start="43.164" data-duration="0.135"><span>el</span></div>
+    <div id="w128" class="clip w" data-start="43.299" data-duration="0.288"><span>depósito</span></div>
+    <div id="w129" class="clip w" data-start="43.587" data-duration="0.173"><span>de</span></div>
+    <div id="w130" class="clip w em-m" data-start="43.760" data-duration="0.481"><span>Martín,</span></div>
+    <div id="w131" class="clip w" data-start="44.241" data-duration="0.173"><span>eso</span></div>
+    <div id="w132" class="clip w" data-start="44.414" data-duration="0.269"><span>era</span></div>
+    <div id="w133" class="clip w" data-start="44.683" data-duration="0.269"><span>plata</span></div>
+    <div id="w134" class="clip w" data-start="44.952" data-duration="0.770"><span>parada:</span></div>
+    <div id="w135" class="clip w" data-start="45.722" data-duration="0.211"><span>cajas</span></div>
+    <div id="w136" class="clip w" data-start="45.933" data-duration="0.654"><span>vencidas</span></div>
+    <div id="w137" class="clip w" data-start="46.587" data-duration="0.173"><span>y</span></div>
+    <div id="w138" class="clip w" data-start="46.760" data-duration="0.289"><span>compras</span></div>
+    <div id="w139" class="clip w" data-start="47.049" data-duration="0.576"><span>repetidas.</span></div>
+    <div id="w140" class="clip w em-l" data-start="47.625" data-duration="0.513"><span>Lucas</span></div>
+    <div id="w141" class="clip w" data-start="48.138" data-duration="0.519"><span>compraba</span></div>
+    <div id="w142" class="clip w" data-start="48.657" data-duration="0.250"><span>poco</span></div>
+    <div id="w143" class="clip w" data-start="48.907" data-duration="0.366"><span>y</span></div>
+    <div id="w144" class="clip w" data-start="49.273" data-duration="0.635"><span>seguido.</span></div>
+    <div id="w145" class="clip w" data-start="49.908" data-duration="0.135"><span>Y</span></div>
+    <div id="w146" class="clip w" data-start="50.043" data-duration="0.134"><span>la</span></div>
+    <div id="w147" class="clip w" data-start="50.177" data-duration="0.193"><span>segunda</span></div>
+    <div id="w148" class="clip w" data-start="50.370" data-duration="0.500"><span>sucursal</span></div>
+    <div id="w149" class="clip w" data-start="50.870" data-duration="0.173"><span>no</span></div>
+    <div id="w150" class="clip w" data-start="51.043" data-duration="0.134"><span>la</span></div>
+    <div id="w151" class="clip w" data-start="51.177" data-duration="0.116"><span>abrió</span></div>
+    <div id="w152" class="clip w" data-start="51.293" data-duration="0.153"><span>por</span></div>
+    <div id="w153" class="clip w" data-start="51.446" data-duration="0.787"><span>intuición:</span></div>
+    <div id="w154" class="clip w" data-start="52.233" data-duration="0.212"><span>un</span></div>
+    <div id="w155" class="clip w" data-start="52.445" data-duration="0.307"><span>tercio</span></div>
+    <div id="w156" class="clip w" data-start="52.752" data-duration="0.135"><span>de</span></div>
+    <div id="w157" class="clip w" data-start="52.887" data-duration="0.096"><span>sus</span></div>
+    <div id="w158" class="clip w" data-start="52.983" data-duration="0.269"><span>pedidos</span></div>
+    <div id="w159" class="clip w" data-start="53.252" data-duration="0.154"><span>por</span></div>
+    <div id="w160" class="clip w" data-start="53.406" data-duration="0.289"><span>WhatsApp</span></div>
+    <div id="w161" class="clip w" data-start="53.695" data-duration="0.480"><span>venía</span></div>
+    <div id="w162" class="clip w" data-start="54.175" data-duration="0.193"><span>del</span></div>
+    <div id="w163" class="clip w" data-start="54.368" data-duration="0.288"><span>mismo</span></div>
+    <div id="w164" class="clip w" data-start="54.656" data-duration="0.720"><span>barrio.</span></div>
+    <div id="w165" class="clip w" data-start="55.376" data-duration="0.192"><span>Abrió</span></div>
+    <div id="w166" class="clip w" data-start="55.568" data-duration="0.511"><span>ahí.</span></div>
+    <div id="w167" class="clip w" data-start="56.079" data-duration="0.173"><span>Pero</span></div>
+    <div id="w168" class="clip w" data-start="56.252" data-duration="0.192"><span>hubo</span></div>
+    <div id="w169" class="clip w" data-start="56.444" data-duration="0.231"><span>una</span></div>
+    <div id="w170" class="clip w" data-start="56.675" data-duration="0.384"><span>diferencia</span></div>
+    <div id="w171" class="clip w" data-start="57.059" data-duration="0.193"><span>que</span></div>
+    <div id="w172" class="clip w" data-start="57.252" data-duration="0.288"><span>pesó</span></div>
+    <div id="w173" class="clip w" data-start="57.540" data-duration="0.212"><span>más</span></div>
+    <div id="w174" class="clip w" data-start="57.752" data-duration="0.192"><span>que</span></div>
+    <div id="w175" class="clip w" data-start="57.944" data-duration="0.653"><span>todas</span></div>
+    <div id="w176" class="clip w" data-start="58.597" data-duration="0.135"><span>y</span></div>
+    <div id="w177" class="clip w" data-start="58.732" data-duration="0.250"><span>casi</span></div>
+    <div id="w178" class="clip w" data-start="58.982" data-duration="0.250"><span>nadie</span></div>
+    <div id="w179" class="clip w" data-start="59.232" data-duration="0.173"><span>la</span></div>
+    <div id="w180" class="clip w" data-start="59.405" data-duration="0.417"><span>ve.</span></div>
+    <div id="w181" class="clip w" data-start="59.822" data-duration="0.192"><span>Con</span></div>
+    <div id="w182" class="clip w" data-start="60.014" data-duration="0.923"><span>inflación,</span></div>
+    <div id="w183" class="clip w em-m" data-start="60.937" data-duration="0.116"><span>Martín</span></div>
+    <div id="w184" class="clip w" data-start="61.053" data-duration="0.211"><span>le</span></div>
+    <div id="w185" class="clip w" data-start="61.264" data-duration="0.231"><span>ponía</span></div>
+    <div id="w186" class="clip w" data-start="61.495" data-duration="0.288"><span>precio</span></div>
+    <div id="w187" class="clip w" data-start="61.783" data-duration="0.212"><span>a</span></div>
+    <div id="w188" class="clip w" data-start="61.995" data-duration="0.134"><span>lo</span></div>
+    <div id="w189" class="clip w" data-start="62.129" data-duration="0.116"><span>que</span></div>
+    <div id="w190" class="clip w" data-start="62.245" data-duration="0.192"><span>había</span></div>
+    <div id="w191" class="clip w" data-start="62.437" data-duration="0.788"><span>pagado.</span></div>
+    <div id="w192" class="clip w em-l" data-start="63.225" data-duration="0.442"><span>Lucas,</span></div>
+    <div id="w193" class="clip w" data-start="63.667" data-duration="0.327"><span>a</span></div>
+    <div id="w194" class="clip w" data-start="63.994" data-duration="0.173"><span>lo</span></div>
+    <div id="w195" class="clip w" data-start="64.167" data-duration="0.096"><span>que</span></div>
+    <div id="w196" class="clip w" data-start="64.263" data-duration="0.135"><span>le</span></div>
+    <div id="w197" class="clip w" data-start="64.398" data-duration="0.154"><span>iba</span></div>
+    <div id="w198" class="clip w" data-start="64.552" data-duration="0.057"><span>a</span></div>
+    <div id="w199" class="clip w" data-start="64.609" data-duration="0.270"><span>costar</span></div>
+    <div id="w200" class="clip w" data-start="64.879" data-duration="0.816"><span>reponerlo.</span></div>
+    <div id="w201" class="clip w em-m" data-start="65.695" data-duration="0.289"><span>Martín</span></div>
+    <div id="w202" class="clip w" data-start="65.984" data-duration="0.346"><span>vendía</span></div>
+    <div id="w203" class="clip w" data-start="66.330" data-duration="0.231"><span>diez</span></div>
+    <div id="w204" class="clip w" data-start="66.561" data-duration="0.269"><span>cajas</span></div>
+    <div id="w205" class="clip w" data-start="66.830" data-duration="0.173"><span>de</span></div>
+    <div id="w206" class="clip w" data-start="67.003" data-duration="0.540"><span>yerba</span></div>
+    <div id="w207" class="clip w" data-start="67.543" data-duration="0.154"><span>y</span></div>
+    <div id="w208" class="clip w" data-start="67.697" data-duration="0.173"><span>con</span></div>
+    <div id="w209" class="clip w" data-start="67.870" data-duration="0.173"><span>esa</span></div>
+    <div id="w210" class="clip w" data-start="68.043" data-duration="0.481"><span>plata,</span></div>
+    <div id="w211" class="clip w" data-start="68.524" data-duration="0.115"><span>le</span></div>
+    <div id="w212" class="clip w" data-start="68.639" data-duration="0.308"><span>alcanzaba</span></div>
+    <div id="w213" class="clip w" data-start="68.947" data-duration="0.192"><span>para</span></div>
+    <div id="w214" class="clip w" data-start="69.139" data-duration="0.289"><span>reponer</span></div>
+    <div id="w215" class="clip w" data-start="69.428" data-duration="0.592"><span>ocho.</span></div>
+    <div id="w216" class="clip w" data-start="70.020" data-duration="0.250"><span>Cada</span></div>
+    <div id="w217" class="clip w" data-start="70.270" data-duration="0.173"><span>vez</span></div>
+    <div id="w218" class="clip w" data-start="70.443" data-duration="0.173"><span>que</span></div>
+    <div id="w219" class="clip w" data-start="70.616" data-duration="0.596"><span>vendía,</span></div>
+    <div id="w220" class="clip w" data-start="71.212" data-duration="0.116"><span>su</span></div>
+    <div id="w221" class="clip w" data-start="71.328" data-duration="0.221"><span>almacén</span></div>
+    <div id="w222" class="clip w" data-start="71.549" data-duration="0.221"><span>se</span></div>
+    <div id="w223" class="clip w" data-start="71.770" data-duration="0.685"><span>achicaba.</span></div>
+    <div id="w224" class="clip w" data-start="72.455" data-duration="0.211"><span>Y</span></div>
+    <div id="w225" class="clip w" data-start="72.666" data-duration="0.193"><span>él</span></div>
+    <div id="w226" class="clip w" data-start="72.859" data-duration="0.327"><span>sentía</span></div>
+    <div id="w227" class="clip w" data-start="73.186" data-duration="0.154"><span>que</span></div>
+    <div id="w228" class="clip w" data-start="73.340" data-duration="0.096"><span>le</span></div>
+    <div id="w229" class="clip w" data-start="73.436" data-duration="0.096"><span>iba</span></div>
+    <div id="w230" class="clip w" data-start="73.532" data-duration="0.711"><span>bien</span></div>
+    <div id="w231" class="clip w" data-start="74.243" data-duration="0.193"><span>porque</span></div>
+    <div id="w232" class="clip w" data-start="74.436" data-duration="0.173"><span>la</span></div>
+    <div id="w233" class="clip w" data-start="74.609" data-duration="0.173"><span>caja</span></div>
+    <div id="w234" class="clip w" data-start="74.782" data-duration="0.173"><span>estaba</span></div>
+    <div id="w235" class="clip w" data-start="74.955" data-duration="0.655"><span>llena.</span></div>
+    <div id="w236" class="clip w" data-start="75.610" data-duration="0.116"><span>Lo</span></div>
+    <div id="w237" class="clip w" data-start="75.726" data-duration="0.192"><span>más</span></div>
+    <div id="w238" class="clip w" data-start="75.918" data-duration="0.598"><span>loco:</span></div>
+    <div id="w239" class="clip w" data-start="76.516" data-duration="0.193"><span>el</span></div>
+    <div id="w240" class="clip w" data-start="76.709" data-duration="0.211"><span>primer</span></div>
+    <div id="w241" class="clip w" data-start="76.920" data-duration="0.558"><span>año,</span></div>
+    <div id="w242" class="clip w" data-start="77.478" data-duration="0.077"><span>el</span></div>
+    <div id="w243" class="clip w" data-start="77.555" data-duration="0.096"><span>de</span></div>
+    <div id="w244" class="clip w em-m" data-start="77.651" data-duration="0.212"><span>Martín</span></div>
+    <div id="w245" class="clip w" data-start="77.863" data-duration="0.307"><span>parecía</span></div>
+    <div id="w246" class="clip w" data-start="78.170" data-duration="0.173"><span>ir</span></div>
+    <div id="w247" class="clip w" data-start="78.343" data-duration="0.695"><span>mejor.</span></div>
+    <div id="w248" class="clip w" data-start="79.038" data-duration="0.269"><span>Más</span></div>
+    <div id="w249" class="clip w" data-start="79.307" data-duration="0.808"><span>empleados,</span></div>
+    <div id="w250" class="clip w" data-start="80.115" data-duration="0.154"><span>más</span></div>
+    <div id="w251" class="clip w" data-start="80.269" data-duration="0.827"><span>mercadería,</span></div>
+    <div id="w252" class="clip w" data-start="81.096" data-duration="0.134"><span>más</span></div>
+    <div id="w253" class="clip w" data-start="81.230" data-duration="0.957"><span>movimiento.</span></div>
+    <div id="w254" class="clip w" data-start="82.187" data-duration="0.230"><span>La</span></div>
+    <div id="w255" class="clip w" data-start="82.417" data-duration="0.424"><span>diferencia</span></div>
+    <div id="w256" class="clip w" data-start="82.841" data-duration="0.326"><span>recién</span></div>
+    <div id="w257" class="clip w" data-start="83.167" data-duration="0.174"><span>se</span></div>
+    <div id="w258" class="clip w" data-start="83.341" data-duration="0.115"><span>vio</span></div>
+    <div id="w259" class="clip w" data-start="83.456" data-duration="0.096"><span>en</span></div>
+    <div id="w260" class="clip w" data-start="83.552" data-duration="0.077"><span>el</span></div>
+    <div id="w261" class="clip w" data-start="83.629" data-duration="0.135"><span>año</span></div>
+    <div id="w262" class="clip w" data-start="83.764" data-duration="0.689"><span>tres.</span></div>
+    <div id="w263" class="clip w" data-start="84.453" data-duration="0.192"><span>Cuando</span></div>
+    <div id="w264" class="clip w" data-start="84.645" data-duration="0.135"><span>ya</span></div>
+    <div id="w265" class="clip w" data-start="84.780" data-duration="0.115"><span>era</span></div>
+    <div id="w266" class="clip w" data-start="84.895" data-duration="0.745"><span>tarde.</span></div>
+    <div id="w267" class="clip w" data-start="85.640" data-duration="0.077"><span>Hacé</span></div>
+    <div id="w268" class="clip w" data-start="85.717" data-duration="0.327"><span>esto</span></div>
+    <div id="w269" class="clip w" data-start="86.044" data-duration="0.731"><span>hoy:</span></div>
+    <div id="w270" class="clip w" data-start="86.775" data-duration="0.269"><span>agarrá</span></div>
+    <div id="w271" class="clip w" data-start="87.044" data-duration="0.077"><span>tus</span></div>
+    <div id="w272" class="clip w" data-start="87.121" data-duration="0.269"><span>cinco</span></div>
+    <div id="w273" class="clip w" data-start="87.390" data-duration="0.346"><span>productos</span></div>
+    <div id="w274" class="clip w" data-start="87.736" data-duration="0.231"><span>más</span></div>
+    <div id="w275" class="clip w" data-start="87.967" data-duration="0.423"><span>vendidos</span></div>
+    <div id="w276" class="clip w" data-start="88.390" data-duration="0.404"><span>y</span></div>
+    <div id="w277" class="clip w" data-start="88.794" data-duration="0.385"><span>fijate</span></div>
+    <div id="w278" class="clip w" data-start="89.179" data-duration="0.327"><span>cuánto</span></div>
+    <div id="w279" class="clip w" data-start="89.506" data-duration="0.134"><span>te</span></div>
+    <div id="w280" class="clip w" data-start="89.640" data-duration="0.173"><span>cuesta</span></div>
+    <div id="w281" class="clip w" data-start="89.813" data-duration="0.462"><span>reponerlos</span></div>
+    <div id="w282" class="clip w" data-start="90.275" data-duration="0.691"><span>mañana.</span></div>
+    <div id="w283" class="clip w" data-start="90.966" data-duration="0.135"><span>Si</span></div>
+    <div id="w284" class="clip w" data-start="91.101" data-duration="0.134"><span>tu</span></div>
+    <div id="w285" class="clip w" data-start="91.235" data-duration="0.173"><span>precio</span></div>
+    <div id="w286" class="clip w" data-start="91.408" data-duration="0.154"><span>no</span></div>
+    <div id="w287" class="clip w" data-start="91.562" data-duration="0.154"><span>lo</span></div>
+    <div id="w288" class="clip w" data-start="91.716" data-duration="0.656"><span>cubre,</span></div>
+    <div id="w289" class="clip w" data-start="92.372" data-duration="0.096"><span>sos</span></div>
+    <div id="w290" class="clip w em-m" data-start="92.468" data-duration="0.677"><span>Martín</span></div>
+    <div id="w291" class="clip w" data-start="93.145" data-duration="0.211"><span>por</span></div>
+    <div id="w292" class="clip w" data-start="93.356" data-duration="0.585"><span>ahora.</span></div>
+    <div id="w293" class="clip w" data-start="93.941" data-duration="0.173"><span>¿Cuál</span></div>
+    <div id="w294" class="clip w" data-start="94.114" data-duration="0.096"><span>de</span></div>
+    <div id="w295" class="clip w" data-start="94.210" data-duration="0.096"><span>los</span></div>
+    <div id="w296" class="clip w" data-start="94.306" data-duration="0.116"><span>dos</span></div>
+    <div id="w297" class="clip w" data-start="94.422" data-duration="0.115"><span>es</span></div>
+    <div id="w298" class="clip w" data-start="94.537" data-duration="0.096"><span>tu</span></div>
+    <div id="w299" class="clip w" data-start="94.633" data-duration="0.807"><span>negocio?</span></div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#w0 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},0.000);
+tl.fromTo("#w1 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},0.412);
+tl.fromTo("#w2 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},1.446);
+tl.fromTo("#w3 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},1.619);
+tl.fromTo("#w4 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},2.292);
+tl.fromTo("#w5 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},2.446);
+tl.fromTo("#w6 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},3.254);
+tl.fromTo("#w7 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},3.485);
+tl.fromTo("#w8 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},3.696);
+tl.fromTo("#w9 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},3.908);
+tl.fromTo("#w10 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},4.775);
+tl.fromTo("#w11 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},5.044);
+tl.fromTo("#w12 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},5.218);
+tl.fromTo("#w13 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},6.006);
+tl.fromTo("#w14 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},6.064);
+tl.fromTo("#w15 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},6.333);
+tl.fromTo("#w16 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},6.641);
+tl.fromTo("#w17 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},7.587);
+tl.fromTo("#w18 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},7.721);
+tl.fromTo("#w19 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},7.856);
+tl.fromTo("#w20 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},8.163);
+tl.fromTo("#w21 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},8.452);
+tl.fromTo("#w22 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},8.606);
+tl.fromTo("#w23 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},9.366);
+tl.fromTo("#w24 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},9.693);
+tl.fromTo("#w25 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},10.270);
+tl.fromTo("#w26 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},10.558);
+tl.fromTo("#w27 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},10.770);
+tl.fromTo("#w28 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},10.981);
+tl.fromTo("#w29 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},11.755);
+tl.fromTo("#w30 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},11.966);
+tl.fromTo("#w31 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},12.389);
+tl.fromTo("#w32 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},12.812);
+tl.fromTo("#w33 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},12.985);
+tl.fromTo("#w34 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},13.370);
+tl.fromTo("#w35 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},13.562);
+tl.fromTo("#w36 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},13.716);
+tl.fromTo("#w37 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},13.870);
+tl.fromTo("#w38 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},14.451);
+tl.fromTo("#w39 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},14.682);
+tl.fromTo("#w40 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},15.301);
+tl.fromTo("#w41 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},15.590);
+tl.fromTo("#w42 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},15.763);
+tl.fromTo("#w43 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},15.955);
+tl.fromTo("#w44 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},16.128);
+tl.fromTo("#w45 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},16.744);
+tl.fromTo("#w46 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},16.897);
+tl.fromTo("#w47 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},17.051);
+tl.fromTo("#w48 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},17.818);
+tl.fromTo("#w49 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},17.991);
+tl.fromTo("#w50 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},18.184);
+tl.fromTo("#w51 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},18.703);
+tl.fromTo("#w52 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},18.876);
+tl.fromTo("#w53 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},19.011);
+tl.fromTo("#w54 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},19.554);
+tl.fromTo("#w55 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},19.804);
+tl.fromTo("#w56 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},20.323);
+tl.fromTo("#w57 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},20.477);
+tl.fromTo("#w58 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},20.688);
+tl.fromTo("#w59 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},21.304);
+tl.fromTo("#w60 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},21.381);
+tl.fromTo("#w61 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},21.515);
+tl.fromTo("#w62 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},22.342);
+tl.fromTo("#w63 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},22.496);
+tl.fromTo("#w64 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},22.746);
+tl.fromTo("#w65 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},22.938);
+tl.fromTo("#w66 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},23.150);
+tl.fromTo("#w67 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},23.323);
+tl.fromTo("#w68 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},23.496);
+tl.fromTo("#w69 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},23.980);
+tl.fromTo("#w70 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},24.250);
+tl.fromTo("#w71 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},24.942);
+tl.fromTo("#w72 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},25.115);
+tl.fromTo("#w73 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},25.750);
+tl.fromTo("#w74 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},26.038);
+tl.fromTo("#w75 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},26.740);
+tl.fromTo("#w76 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},26.913);
+tl.fromTo("#w77 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},27.202);
+tl.fromTo("#w78 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},27.375);
+tl.fromTo("#w79 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},27.740);
+tl.fromTo("#w80 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},27.856);
+tl.fromTo("#w81 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},28.029);
+tl.fromTo("#w82 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},28.202);
+tl.fromTo("#w83 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},28.356);
+tl.fromTo("#w84 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},29.105);
+tl.fromTo("#w85 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},29.278);
+tl.fromTo("#w86 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},29.470);
+tl.fromTo("#w87 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},29.662);
+tl.fromTo("#w88 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},29.778);
+tl.fromTo("#w89 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},29.951);
+tl.fromTo("#w90 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},30.220);
+tl.fromTo("#w91 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},30.335);
+tl.fromTo("#w92 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},30.489);
+tl.fromTo("#w93 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},30.989);
+tl.fromTo("#w94 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},31.297);
+tl.fromTo("#w95 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},31.701);
+tl.fromTo("#w96 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},31.951);
+tl.fromTo("#w97 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},32.124);
+tl.fromTo("#w98 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},32.278);
+tl.fromTo("#w99 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},33.103);
+tl.fromTo("#w100 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},33.449);
+tl.fromTo("#w101 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},34.103);
+tl.fromTo("#w102 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},34.411);
+tl.fromTo("#w103 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},35.078);
+tl.fromTo("#w104 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},35.251);
+tl.fromTo("#w105 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},35.501);
+tl.fromTo("#w106 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},35.963);
+tl.fromTo("#w107 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},36.194);
+tl.fromTo("#w108 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},36.386);
+tl.fromTo("#w109 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},36.520);
+tl.fromTo("#w110 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},36.617);
+tl.fromTo("#w111 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},36.905);
+tl.fromTo("#w112 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},37.194);
+tl.fromTo("#w113 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},37.797);
+tl.fromTo("#w114 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},38.124);
+tl.fromTo("#w115 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},38.643);
+tl.fromTo("#w116 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},38.989);
+tl.fromTo("#w117 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},39.316);
+tl.fromTo("#w118 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},39.739);
+tl.fromTo("#w119 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},40.008);
+tl.fromTo("#w120 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},40.201);
+tl.fromTo("#w121 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},40.939);
+tl.fromTo("#w122 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},41.131);
+tl.fromTo("#w123 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},41.285);
+tl.fromTo("#w124 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},41.881);
+tl.fromTo("#w125 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},42.381);
+tl.fromTo("#w126 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},42.991);
+tl.fromTo("#w127 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},43.164);
+tl.fromTo("#w128 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},43.299);
+tl.fromTo("#w129 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},43.587);
+tl.fromTo("#w130 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},43.760);
+tl.fromTo("#w131 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},44.241);
+tl.fromTo("#w132 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},44.414);
+tl.fromTo("#w133 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},44.683);
+tl.fromTo("#w134 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},44.952);
+tl.fromTo("#w135 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},45.722);
+tl.fromTo("#w136 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},45.933);
+tl.fromTo("#w137 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},46.587);
+tl.fromTo("#w138 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},46.760);
+tl.fromTo("#w139 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},47.049);
+tl.fromTo("#w140 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},47.625);
+tl.fromTo("#w141 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},48.138);
+tl.fromTo("#w142 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},48.657);
+tl.fromTo("#w143 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},48.907);
+tl.fromTo("#w144 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},49.273);
+tl.fromTo("#w145 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},49.908);
+tl.fromTo("#w146 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},50.043);
+tl.fromTo("#w147 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},50.177);
+tl.fromTo("#w148 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},50.370);
+tl.fromTo("#w149 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},50.870);
+tl.fromTo("#w150 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},51.043);
+tl.fromTo("#w151 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},51.177);
+tl.fromTo("#w152 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},51.293);
+tl.fromTo("#w153 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},51.446);
+tl.fromTo("#w154 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},52.233);
+tl.fromTo("#w155 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},52.445);
+tl.fromTo("#w156 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},52.752);
+tl.fromTo("#w157 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},52.887);
+tl.fromTo("#w158 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},52.983);
+tl.fromTo("#w159 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},53.252);
+tl.fromTo("#w160 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},53.406);
+tl.fromTo("#w161 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},53.695);
+tl.fromTo("#w162 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},54.175);
+tl.fromTo("#w163 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},54.368);
+tl.fromTo("#w164 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},54.656);
+tl.fromTo("#w165 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},55.376);
+tl.fromTo("#w166 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},55.568);
+tl.fromTo("#w167 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},56.079);
+tl.fromTo("#w168 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},56.252);
+tl.fromTo("#w169 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},56.444);
+tl.fromTo("#w170 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},56.675);
+tl.fromTo("#w171 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},57.059);
+tl.fromTo("#w172 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},57.252);
+tl.fromTo("#w173 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},57.540);
+tl.fromTo("#w174 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},57.752);
+tl.fromTo("#w175 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},57.944);
+tl.fromTo("#w176 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},58.597);
+tl.fromTo("#w177 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},58.732);
+tl.fromTo("#w178 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},58.982);
+tl.fromTo("#w179 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},59.232);
+tl.fromTo("#w180 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},59.405);
+tl.fromTo("#w181 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},59.822);
+tl.fromTo("#w182 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},60.014);
+tl.fromTo("#w183 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},60.937);
+tl.fromTo("#w184 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},61.053);
+tl.fromTo("#w185 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},61.264);
+tl.fromTo("#w186 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},61.495);
+tl.fromTo("#w187 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},61.783);
+tl.fromTo("#w188 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},61.995);
+tl.fromTo("#w189 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},62.129);
+tl.fromTo("#w190 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},62.245);
+tl.fromTo("#w191 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},62.437);
+tl.fromTo("#w192 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},63.225);
+tl.fromTo("#w193 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},63.667);
+tl.fromTo("#w194 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},63.994);
+tl.fromTo("#w195 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},64.167);
+tl.fromTo("#w196 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},64.263);
+tl.fromTo("#w197 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},64.398);
+tl.fromTo("#w198 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},64.552);
+tl.fromTo("#w199 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},64.609);
+tl.fromTo("#w200 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},64.879);
+tl.fromTo("#w201 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},65.695);
+tl.fromTo("#w202 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},65.984);
+tl.fromTo("#w203 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},66.330);
+tl.fromTo("#w204 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},66.561);
+tl.fromTo("#w205 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},66.830);
+tl.fromTo("#w206 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},67.003);
+tl.fromTo("#w207 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},67.543);
+tl.fromTo("#w208 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},67.697);
+tl.fromTo("#w209 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},67.870);
+tl.fromTo("#w210 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},68.043);
+tl.fromTo("#w211 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},68.524);
+tl.fromTo("#w212 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},68.639);
+tl.fromTo("#w213 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},68.947);
+tl.fromTo("#w214 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},69.139);
+tl.fromTo("#w215 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},69.428);
+tl.fromTo("#w216 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},70.020);
+tl.fromTo("#w217 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},70.270);
+tl.fromTo("#w218 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},70.443);
+tl.fromTo("#w219 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},70.616);
+tl.fromTo("#w220 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},71.212);
+tl.fromTo("#w221 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},71.328);
+tl.fromTo("#w222 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},71.549);
+tl.fromTo("#w223 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},71.770);
+tl.fromTo("#w224 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},72.455);
+tl.fromTo("#w225 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},72.666);
+tl.fromTo("#w226 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},72.859);
+tl.fromTo("#w227 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},73.186);
+tl.fromTo("#w228 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},73.340);
+tl.fromTo("#w229 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},73.436);
+tl.fromTo("#w230 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},73.532);
+tl.fromTo("#w231 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},74.243);
+tl.fromTo("#w232 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},74.436);
+tl.fromTo("#w233 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},74.609);
+tl.fromTo("#w234 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},74.782);
+tl.fromTo("#w235 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},74.955);
+tl.fromTo("#w236 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},75.610);
+tl.fromTo("#w237 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},75.726);
+tl.fromTo("#w238 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},75.918);
+tl.fromTo("#w239 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},76.516);
+tl.fromTo("#w240 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},76.709);
+tl.fromTo("#w241 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},76.920);
+tl.fromTo("#w242 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},77.478);
+tl.fromTo("#w243 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},77.555);
+tl.fromTo("#w244 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},77.651);
+tl.fromTo("#w245 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},77.863);
+tl.fromTo("#w246 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},78.170);
+tl.fromTo("#w247 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},78.343);
+tl.fromTo("#w248 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},79.038);
+tl.fromTo("#w249 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},79.307);
+tl.fromTo("#w250 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},80.115);
+tl.fromTo("#w251 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},80.269);
+tl.fromTo("#w252 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},81.096);
+tl.fromTo("#w253 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},81.230);
+tl.fromTo("#w254 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},82.187);
+tl.fromTo("#w255 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},82.417);
+tl.fromTo("#w256 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},82.841);
+tl.fromTo("#w257 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},83.167);
+tl.fromTo("#w258 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},83.341);
+tl.fromTo("#w259 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},83.456);
+tl.fromTo("#w260 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},83.552);
+tl.fromTo("#w261 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},83.629);
+tl.fromTo("#w262 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},83.764);
+tl.fromTo("#w263 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},84.453);
+tl.fromTo("#w264 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},84.645);
+tl.fromTo("#w265 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},84.780);
+tl.fromTo("#w266 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},84.895);
+tl.fromTo("#w267 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},85.640);
+tl.fromTo("#w268 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},85.717);
+tl.fromTo("#w269 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},86.044);
+tl.fromTo("#w270 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},86.775);
+tl.fromTo("#w271 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},87.044);
+tl.fromTo("#w272 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},87.121);
+tl.fromTo("#w273 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},87.390);
+tl.fromTo("#w274 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},87.736);
+tl.fromTo("#w275 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},87.967);
+tl.fromTo("#w276 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},88.390);
+tl.fromTo("#w277 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},88.794);
+tl.fromTo("#w278 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},89.179);
+tl.fromTo("#w279 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},89.506);
+tl.fromTo("#w280 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},89.640);
+tl.fromTo("#w281 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},89.813);
+tl.fromTo("#w282 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},90.275);
+tl.fromTo("#w283 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},90.966);
+tl.fromTo("#w284 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},91.101);
+tl.fromTo("#w285 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},91.235);
+tl.fromTo("#w286 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},91.408);
+tl.fromTo("#w287 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},91.562);
+tl.fromTo("#w288 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},91.716);
+tl.fromTo("#w289 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},92.372);
+tl.fromTo("#w290 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},92.468);
+tl.fromTo("#w291 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},93.145);
+tl.fromTo("#w292 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},93.356);
+tl.fromTo("#w293 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},93.941);
+tl.fromTo("#w294 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},94.114);
+tl.fromTo("#w295 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},94.210);
+tl.fromTo("#w296 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},94.306);
+tl.fromTo("#w297 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},94.422);
+tl.fromTo("#w298 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},94.537);
+tl.fromTo("#w299 span",{scale:0.82,opacity:0},{scale:1,opacity:1,duration:0.09,ease:"back.out(2.5)"},94.633);
+    window.__timelines["subtitulos"] = tl;
+  </script>
+</template>

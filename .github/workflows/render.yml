@@ -1,0 +1,63 @@
+# Render en paralelo de un reel HyperFrames: N tramos en N máquinas, después se unen y se les suma el audio.
+name: render
+on:
+  workflow_dispatch:
+    inputs:
+      proyecto:
+        description: "Carpeta del proyecto HyperFrames"
+        default: "01-dos-almacenes/video"
+        required: true
+      tramos:
+        description: "Cantidad de máquinas en paralelo"
+        default: "10"
+        required: true
+      salida:
+        description: "Nombre del archivo final"
+        default: "reel01-v1"
+        required: true
+jobs:
+  plan:
+    runs-on: ubuntu-latest
+    outputs:
+      matriz: ${{ steps.m.outputs.matriz }}
+    steps:
+      - id: m
+        run: python3 -c "import json;print('matriz='+json.dumps(list(range(int('${{ inputs.tramos }}')))))" >> "$GITHUB_OUTPUT"
+  tramo:
+    needs: plan
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    strategy:
+      fail-fast: false
+      matrix:
+        i: ${{ fromJson(needs.plan.outputs.matriz) }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg > /dev/null
+      - name: Renderizar tramo ${{ matrix.i }}
+        working-directory: ${{ inputs.proyecto }}
+        run: |
+          read S E < <(python3 ../../tools/tramo.py index.html ${{ inputs.tramos }} ${{ matrix.i }})
+          echo "tramo ${{ matrix.i }}: $S → $E s"
+          npx --yes hyperframes@0.9.41 render --start "$S" --end "$E" --quality looks -o "tramo-${{ matrix.i }}.mp4"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: tramo-${{ matrix.i }}
+          path: ${{ inputs.proyecto }}/tramo-${{ matrix.i }}.mp4
+          retention-days: 3
+  unir:
+    needs: tramo
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with: { pattern: "tramo-*", merge-multiple: true, path: tramos }
+      - run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg > /dev/null
+      - run: bash tools/unir.sh tramos "${{ inputs.proyecto }}" "${{ inputs.salida }}.mp4"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ${{ inputs.salida }}
+          path: ${{ inputs.salida }}.mp4
+          retention-days: 14

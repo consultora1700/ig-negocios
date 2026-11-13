@@ -1,0 +1,39 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; pointer-events: none; font-family: "Montserrat"; }
+    .g-t { position: absolute; left: 0; right: 0; text-align: center; font-weight: 900; color: #FFF9EE; -webkit-text-stroke: 16px #17161A; paint-order: stroke fill; letter-spacing: -0.02em; }
+    #g-titulo { top: 150px; font-size: 150px; line-height: 0.95; }
+    #g-titulo span { display: inline-block; }
+    .g-igual { position: absolute; left: 0; right: 0; text-align: center; font-weight: 900; font-size: 70px; color: #17161A; }
+    .g-igual span { display: inline-block; background: #FFF9EE; padding: 6px 22px; border-radius: 14px; box-shadow: 0 7px 0 rgba(23,22,26,.18); }
+    .g-igual b { color: #E0482F; } .g-igual em { font-style: normal; color: #12A06B; }
+    #g-i1 { top: 470px; } #g-i2 { top: 570px; } #g-i3 { top: 670px; }
+    #g-cinco { top: 250px; font-size: 128px; line-height: 1; }
+    #g-suerte { top: 640px; font-size: 150px; }
+    #g-raya { position: absolute; left: 230px; width: 620px; top: 735px; height: 26px; background: #D7261E; border-radius: 13px; transform-origin: left center; box-shadow: 0 0 0 6px #17161A; }
+  </style>
+  <div id="root" data-composition-id="o-gancho" data-width="1080" data-height="1920">
+    <div id="g-titulo" class="g-t clip" data-start="0" data-duration="4.75"><span id="g-w1">DOS</span><br /><span id="g-w2">ALMACENES</span></div>
+    <div id="g-i1" class="g-igual clip" data-start="1.4" data-duration="3.35"><span>MISMA CUADRA</span></div>
+    <div id="g-i2" class="g-igual clip" data-start="2.25" data-duration="2.5"><span>MISMA PLATA</span></div>
+    <div id="g-i3" class="g-igual clip" data-start="3.2" data-duration="1.55"><span>MISMO DÍA</span></div>
+    <div id="g-cinco" class="g-t clip" data-start="4.8" data-duration="1.5">5 AÑOS<br />DESPUÉS</div>
+    <div id="g-suerte" class="g-t clip" data-start="10.25" data-duration="1.5">¿SUERTE?</div>
+    <div id="g-raya" class="clip" data-start="10.25" data-duration="1.5"></div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    // Cuadro 0 ya muestra el título (miniatura): sin entrada
+    tl.fromTo("#g-w2", { scale: 1 }, { scale: 1.06, duration: 0.12, ease: "power2.out", yoyo: true, repeat: 1 }, 0.44);
+    [["#g-i1", 1.48], ["#g-i2", 2.32], ["#g-i3", 3.28]].forEach(([s, a]) => {
+      tl.fromTo(s + " span", { opacity: 0, y: 26, scale: 0.9, filter: "blur(6px)" }, { opacity: 1, y: 0, scale: 1, filter: "blur(0px)", duration: 0.32, ease: "expo.out" }, a - 0.08);
+    });
+    tl.to(["#g-titulo", "#g-i1 span", "#g-i2 span", "#g-i3 span"], { opacity: 0, filter: "blur(10px)", duration: 0.2, ease: "power3.in", stagger: 0.03 }, 4.5);
+    tl.fromTo("#g-cinco", { opacity: 0, scale: 1.5, filter: "blur(14px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.35, ease: "expo.out" }, 4.8);
+    tl.to("#g-cinco", { opacity: 0, y: -40, filter: "blur(10px)", duration: 0.22, ease: "power3.in" }, 6.05);
+    tl.fromTo("#g-suerte", { opacity: 0, scale: 0.7 }, { opacity: 1, scale: 1, duration: 0.3, ease: "back.out(2)" }, 10.28);
+    tl.fromTo("#g-raya", { scaleX: 0 }, { scaleX: 1, duration: 0.22, ease: "power4.out" }, 10.85);
+    tl.to(["#g-suerte", "#g-raya"], { opacity: 0, filter: "blur(10px)", duration: 0.2, ease: "power3.in" }, 11.5);
+    window.__timelines["o-gancho"] = tl;
+  </script>
+</template>

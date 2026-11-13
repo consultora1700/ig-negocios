@@ -1,0 +1,107 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; pointer-events: none; font-family: "Montserrat"; }
+    #c-fondo { position: absolute; inset: 0; background: #17161A; }
+    .c-card { position: absolute; top: 170px; height: 940px; width: 480px; border-radius: 26px; box-shadow: 0 14px 0 rgba(0,0,0,.25); overflow: hidden; }
+    .c-head { position: absolute; left: 0; right: 0; top: 0; height: 92px; color: #fff; font-weight: 900; font-size: 46px; line-height: 92px; text-align: center; letter-spacing: 0.02em; }
+    /* cuaderno de Martín */
+    #c-cuad { left: 36px; background: #FFFDF5;
+      background-image: repeating-linear-gradient(#FFFDF5 0 70px, #B9D3EA 70px 73px); background-position: 0 128px; }
+    #c-cuad .c-head { background: #E0482F; }
+    #c-margen { position: absolute; left: 62px; top: 92px; bottom: 0; width: 4px; background: #F0A0A0; }
+    .c-mano { position: absolute; left: 80px; font-family: "Caveat"; font-weight: 700; font-size: 60px; color: #2B3A67; white-space: nowrap; }
+    .c-tacha { position: absolute; height: 6px; background: #2B3A67; border-radius: 3px; transform-origin: left center; }
+    #c-mancha { position: absolute; left: 290px; top: 700px; width: 170px; height: 170px; border-radius: 50%; border: 14px solid rgba(140,90,50,.28); }
+    /* celular de Lucas */
+    #c-cel { left: 564px; background: #17161A; padding: 22px; }
+    #c-cel .c-head { background: #12A06B; }
+    #c-pant { position: absolute; left: 22px; right: 22px; top: 112px; bottom: 22px; border-radius: 18px; background: #F4FBF7; overflow: hidden; }
+    .c-fila { position: absolute; left: 18px; right: 18px; height: 70px; border-radius: 12px; background: #fff; box-shadow: 0 3px 0 rgba(0,0,0,.08);
+      font-weight: 800; font-size: 30px; color: #17161A; line-height: 70px; padding-left: 64px; }
+    .c-fila::before { content: ""; position: absolute; left: 18px; top: 21px; width: 28px; height: 28px; border-radius: 8px; background: #12A06B; }
+    .c-fila i { position: absolute; right: 18px; font-style: normal; color: #12A06B; }
+    #c-mes { position: absolute; left: 70px; top: 640px; width: 290px; text-align: center; font-weight: 900; font-size: 64px; color: #12A06B; border: 10px solid #12A06B; border-radius: 18px; transform: rotate(-8deg); background: rgba(244,251,247,.9); }
+    /* ranking */
+    #c-rank { position: absolute; left: 40px; right: 40px; top: 150px; height: 990px; border-radius: 28px; background: #FFF9EE; box-shadow: 0 14px 0 rgba(0,0,0,.25); }
+    #c-rank h2 { position: absolute; left: 0; right: 0; top: 40px; text-align: center; font-weight: 900; font-size: 56px; color: #17161A; letter-spacing: -0.01em; }
+    #c-grid { position: absolute; left: 50px; top: 170px; width: 900px; height: 540px; }
+    .c-p { position: absolute; width: 78px; height: 78px; border-radius: 14px; background: #CFC6B8; }
+    .c-p::after { content: ""; position: absolute; left: 22px; top: 14px; width: 34px; height: 46px; border-radius: 6px; background: rgba(255,255,255,.55); }
+    .c-nota { position: absolute; left: 50px; right: 50px; font-weight: 900; font-size: 44px; line-height: 1.1; }
+    #c-n1 { top: 720px; color: #12A06B; } #c-n2 { top: 850px; color: #8E8B86; }
+    #c-ej { position: absolute; right: 36px; top: 118px; font-weight: 800; font-size: 26px; color: #8E8B86; border: 3px solid #CFC6B8; border-radius: 10px; padding: 2px 12px; }
+  </style>
+  <div id="root" data-composition-id="o-cuaderno" data-width="1080" data-height="1920">
+    <div id="c-fondo" class="clip" data-start="0" data-duration="12.2"></div>
+    <div id="c-cuad" class="c-card clip" data-start="0" data-duration="6.75">
+      <div class="c-head">MARTÍN</div><div id="c-margen"></div>
+      <div class="c-mano" id="c-l1" style="top:150px">Fiado Rosa $$</div>
+      <div class="c-mano" id="c-l2" style="top:222px">yerba ¿4 cajas?</div>
+      <div class="c-mano" id="c-l3" style="top:294px">pagué la luz</div>
+      <div class="c-tacha" id="c-t3" style="left:80px;top:333px;width:300px"></div>
+      <div class="c-mano" id="c-l4" style="top:366px">fideos x 2?? </div>
+      <div class="c-mano" id="c-l5" style="top:438px">¿cuánto vendí?</div>
+      <div class="c-mano" id="c-l6" style="top:510px">Juan debe…</div>
+      <div id="c-mancha"></div>
+    </div>
+    <div id="c-cel" class="c-card clip" data-start="2.1" data-duration="4.65">
+      <div class="c-head">LUCAS</div>
+      <div id="c-pant">
+        <div class="c-fila" id="c-f1" style="top:20px">Yerba 1 kg <i>✓</i></div>
+        <div class="c-fila" id="c-f2" style="top:100px">Leche <i>✓</i></div>
+        <div class="c-fila" id="c-f3" style="top:180px">Fideos <i>✓</i></div>
+        <div class="c-fila" id="c-f4" style="top:260px">Galletitas <i>✓</i></div>
+        <div class="c-fila" id="c-f5" style="top:340px">Aceite <i>✓</i></div>
+        <div class="c-fila" id="c-f6" style="top:420px">Pan <i>✓</i></div>
+        <div id="c-mes">MES 3</div>
+      </div>
+    </div>
+    <div id="c-rank" class="clip" data-start="6.65" data-duration="5.5">
+      <h2>LOS 60 PRODUCTOS DE LUCAS</h2><div id="c-ej">ejemplo</div>
+      <div id="c-grid">
+        <!-- 60 productos: 10 x 6 -->
+        <div class="c-p" id="c-p0"></div><div class="c-p" id="c-p1"></div><div class="c-p" id="c-p2"></div><div class="c-p" id="c-p3"></div><div class="c-p" id="c-p4"></div><div class="c-p" id="c-p5"></div><div class="c-p" id="c-p6"></div><div class="c-p" id="c-p7"></div><div class="c-p" id="c-p8"></div><div class="c-p" id="c-p9"></div>
+        <div class="c-p" id="c-p10"></div><div class="c-p" id="c-p11"></div><div class="c-p" id="c-p12"></div><div class="c-p" id="c-p13"></div><div class="c-p" id="c-p14"></div><div class="c-p" id="c-p15"></div><div class="c-p" id="c-p16"></div><div class="c-p" id="c-p17"></div><div class="c-p" id="c-p18"></div><div class="c-p" id="c-p19"></div>
+        <div class="c-p" id="c-p20"></div><div class="c-p" id="c-p21"></div><div class="c-p" id="c-p22"></div><div class="c-p" id="c-p23"></div><div class="c-p" id="c-p24"></div><div class="c-p" id="c-p25"></div><div class="c-p" id="c-p26"></div><div class="c-p" id="c-p27"></div><div class="c-p" id="c-p28"></div><div class="c-p" id="c-p29"></div>
+        <div class="c-p" id="c-p30"></div><div class="c-p" id="c-p31"></div><div class="c-p" id="c-p32"></div><div class="c-p" id="c-p33"></div><div class="c-p" id="c-p34"></div><div class="c-p" id="c-p35"></div><div class="c-p" id="c-p36"></div><div class="c-p" id="c-p37"></div><div class="c-p" id="c-p38"></div><div class="c-p" id="c-p39"></div>
+        <div class="c-p" id="c-p40"></div><div class="c-p" id="c-p41"></div><div class="c-p" id="c-p42"></div><div class="c-p" id="c-p43"></div><div class="c-p" id="c-p44"></div><div class="c-p" id="c-p45"></div><div class="c-p" id="c-p46"></div><div class="c-p" id="c-p47"></div><div class="c-p" id="c-p48"></div><div class="c-p" id="c-p49"></div>
+        <div class="c-p" id="c-p50"></div><div class="c-p" id="c-p51"></div><div class="c-p" id="c-p52"></div><div class="c-p" id="c-p53"></div><div class="c-p" id="c-p54"></div><div class="c-p" id="c-p55"></div><div class="c-p" id="c-p56"></div><div class="c-p" id="c-p57"></div><div class="c-p" id="c-p58"></div><div class="c-p" id="c-p59"></div>
+      </div>
+      <div class="c-nota" id="c-n1">20 PRODUCTOS → CASI TODA LA GANANCIA</div>
+      <div class="c-nota" id="c-n2">40 JUNTAN POLVO EN EL ESTANTE</div>
+    </div>
+  </div>
+  <script>
+    // tiempo local: 0 = 30,9 s del video
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#c-fondo", { opacity: 0 }, { opacity: 0.55, duration: 0.3, ease: "power2.out" }, 0);
+    tl.fromTo("#c-cuad", { y: 80, rotation: -6, opacity: 0 }, { y: 0, rotation: -2, opacity: 1, duration: 0.55, ease: "expo.out" }, 0.1);
+    // escritura a mano: cada renglón se revela de izquierda a derecha
+    [0.45, 0.8, 1.1, 1.45, 1.75, 2.0].forEach((a, i) => tl.fromTo("#c-l" + (i + 1), { clipPath: "inset(0 100% 0 0)" }, { clipPath: "inset(0 0% 0 0)", duration: 0.32, ease: "power1.inOut" }, a));
+    tl.fromTo("#c-t3", { scaleX: 0 }, { scaleX: 1, duration: 0.18, ease: "power2.out" }, 1.45);
+    tl.fromTo("#c-mancha", { scale: 0.4, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.3, ease: "expo.out" }, 1.0);
+    tl.fromTo("#c-cel", { y: 80, rotation: 6, opacity: 0 }, { y: 0, rotation: 2, opacity: 1, duration: 0.55, ease: "expo.out" }, 2.2);
+    [2.55, 2.8, 3.05, 3.3, 3.55, 3.8].forEach((a, i) => tl.fromTo("#c-f" + (i + 1), { x: 60, opacity: 0 }, { x: 0, opacity: 1, duration: 0.25, ease: "expo.out" }, a));
+    tl.fromTo("#c-mes", { scale: 2.2, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.22, ease: "power4.in" }, 4.2);
+    // «Lucas vio lo que Martín nunca vio»: el cuaderno se apaga, el celular se acerca
+    tl.to("#c-cuad", { opacity: 0.35, scale: 0.94, duration: 0.4, ease: "power2.inOut" }, 5.1);
+    tl.to("#c-cel", { scale: 1.04, duration: 0.4, ease: "power2.inOut" }, 5.1);
+    tl.to(["#c-cuad", "#c-cel"], { opacity: 0, y: -60, filter: "blur(10px)", duration: 0.22, ease: "power3.in", stagger: 0.05 }, 6.45);
+    // ranking
+    tl.fromTo("#c-rank", { y: 120, opacity: 0, scale: 0.94 }, { y: 0, opacity: 1, scale: 1, duration: 0.55, ease: "expo.out" }, 6.7);
+    const pos = (k) => ({ x: (k % 10) * 90, y: Math.floor(k / 10) * 90 });
+    for (let i = 0; i < 60; i++) {
+      const p = pos(i);
+      tl.fromTo("#c-p" + i, { x: p.x, y: p.y + 30, opacity: 0 }, { x: p.x, y: p.y, opacity: 1, duration: 0.22, ease: "expo.out" }, 6.85 + i * 0.012);
+    }
+    // «veinte productos…»: los 20 que más dejan se encienden en verde
+    for (let i = 0; i < 20; i++) tl.to("#c-p" + i, { backgroundColor: "#12A06B", scale: 1.08, duration: 0.18, ease: "back.out(2)" }, 7.4 + i * 0.03);
+    tl.fromTo("#c-n1", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.35, ease: "expo.out" }, 8.1);
+    // «y otros cuarenta juntaban polvo»
+    for (let i = 20; i < 60; i++) tl.to("#c-p" + i, { backgroundColor: "#E4DED3", opacity: 0.45, scale: 0.9, duration: 0.25, ease: "power2.out" }, 10.3 + (i - 20) * 0.012);
+    tl.fromTo("#c-n2", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.35, ease: "expo.out" }, 10.45);
+    tl.to("#c-rank", { opacity: 0, y: -60, filter: "blur(10px)", duration: 0.22, ease: "power3.in" }, 11.85);
+    tl.to("#c-fondo", { opacity: 0, duration: 0.25 }, 11.9);
+    window.__timelines["o-cuaderno"] = tl;
+  </script>
+</template>

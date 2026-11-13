@@ -1,0 +1,7 @@
+**/pruebas/
+**/salida/
+**/renders/
+**/node_modules/
+**/tramo-*.mp4
+**/.hyperframes/
+__pycache__/
