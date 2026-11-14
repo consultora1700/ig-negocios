@@ -125,12 +125,12 @@
         ["LE COBRA AL VENDEDOR", "$3.000 A $8.500", "", null, [60, 630], T.pesos, T.piden - 0.1],
         ["Y DE ESO,", "TE PAGA A VOS", "azul", null, [60, 790], T.deeso, T.piden - 0.1],
         ["SURTIDOR", "", "", null, [600, 1000], T.km100, T.gomas - 0.1],
-        ["PAQUETES DESPARRAMADOS", "0 km", "", Mu.marcaRuta[0], [0, 0, 0], T.loco + 0.4, T.regla - 0.1],
-        ["PAQUETES JUNTOS", "0 km", "azul", Mu.marcaRuta[1], [0, 0, 0], T.loco + 0.4, T.regla - 0.1],
+        ["PAQUETES DESPARRAMADOS", "0 km", "", Mu.marcaRuta[0], [0, 0, 0], T.loco + 0.4, T.dosrutas - 0.05],
+        ["PAQUETES JUNTOS", "0 km", "azul", Mu.marcaRuta[1], [0, 0, 0], T.loco + 0.4, T.dosrutas - 0.05],
       ];
       const els = FI.map((f) => { const d = document.createElement("div"); d.className = "ficha " + f[2] + (f[3] ? "" : " fija"); d.innerHTML = `<small>${f[0]}</small><b>${f[1]}</b>`; hud.appendChild(d); return d; });
       const GR = [[T.barbaro, T.primero, "SUENA BÁRBARO", "¿Y CUÁNTO TE QUEDA?", "az"], [T.notiene, T.paquete, "LO QUE CASI NADIE SABE", "Mercado Libre no tiene camionetas propias", "cita"],
-        [T.caminos, T.uno, "PARA EMPEZAR", "DOS CAMINOS", ""], [T.dosrutas, T.regla, "SI LAS DOS PAGAN LO MISMO", "LA MITAD DE NAFTA", "az"]];
+        [T.caminos, T.uno, "PARA EMPEZAR", "DOS CAMINOS", ""], [T.dosrutas, T.regla, "50 KM CONTRA 25 KM · MISMO PAGO", "LA MITAD DE NAFTA", "az"]];
       const FU = [[0.4, T.primero, "Techo publicado por Diario Huarpe e Infozona (diciembre de 2025): no es un sueldo"], [T.escobar, T.ultima, "Fuente: Mercado Libre, centro de Escobar (octubre de 2026)"],
         [T.pesos, T.piden, "Tarifas publicadas por Envíos Flex Ya y La Logística"], [T.cuenta + 1, T.loco, "Nafta: Surtidores (nov. 2026) · Monotributo C: La Nación (ago. 2026) · lo demás: supuestos del ejemplo"]];
       const K = [["k1", T.s450], ["k2", T.seis], ["k3", T.s75], ["k4", T.s17], ["k5", T.s6], ["k6", T.s7], ["k7", T.quedan], ["k8", T.millon], ["k9", T.mejor]];
