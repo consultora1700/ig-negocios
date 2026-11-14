@@ -14,10 +14,17 @@ DATOS = LocationService.get_user_data()
 def _ruta(tipo, nombre):
     return os.path.join(DATOS, tipo, nombre, nombre + ".mhclo")
 
-def _mate(nombre, color, normal=None, rough=0.82, sheen=0.15):
-    """Material mate de color plano; si hay mapa de normales del asset, conserva los pliegues y costuras."""
+def _mate(nombre, color, normal=None, rough=0.82, sheen=0.15, difusa=None):
+    """Material mate. Con color: tono plano. Sin color: usa la textura original de la prenda (jean, remera y camisa
+    quedan con su propio color) apenas desaturada para el look de maqueta. El mapa de normales conserva pliegues y costuras."""
     m = bpy.data.materials.new(nombre); m.use_nodes = True; nt = m.node_tree; b = nt.nodes["Principled BSDF"]
-    b.inputs["Base Color"].default_value = (*hex2lin(color), 1); b.inputs["Roughness"].default_value = rough
+    b.inputs["Roughness"].default_value = rough
+    if color:
+        b.inputs["Base Color"].default_value = (*hex2lin(color), 1)
+    elif difusa and os.path.exists(difusa):
+        t = nt.nodes.new("ShaderNodeTexImage"); t.image = bpy.data.images.load(difusa, check_existing=True)
+        hs = nt.nodes.new("ShaderNodeHueSaturation"); hs.inputs["Saturation"].default_value = 0.85; hs.inputs["Value"].default_value = 1.05
+        nt.links.new(t.outputs["Color"], hs.inputs["Color"]); nt.links.new(hs.outputs["Color"], b.inputs["Base Color"])
     b.inputs["Sheen Weight"].default_value = sheen
     if normal and os.path.exists(normal):
         t = nt.nodes.new("ShaderNodeTexImage"); t.image = bpy.data.images.load(normal, check_existing=True); t.image.colorspace_settings.name = "Non-Color"
@@ -96,8 +103,10 @@ def crear(nombre, cfg):
     for a in cfg["ropa"]:
         o = HumanService.add_mhclo_asset(_ruta("clothes", a), cuerpo, asset_type="Clothes", subdiv_levels=0, material_type="MAKESKIN")
         o.name = f"{nombre}.{a}"
-        normal = os.path.join(DATOS, "clothes", a, a + "_normal.png")
-        o.data.materials.clear(); o.data.materials.append(_mate(f"{nombre}-{a}", cfg["colores"].get(a, "#777777"), normal))
+        d = os.path.join(DATOS, "clothes", a)
+        normal = next((os.path.join(d, f) for f in os.listdir(d) if "normal" in f.lower() and f.endswith(".png")), None)
+        difusa = next((os.path.join(d, f) for f in os.listdir(d) if ("diffuse" in f.lower() or f.lower() == a.lower() + ".png") and f.endswith(".png")), None)
+        o.data.materials.clear(); o.data.materials.append(_mate(f"{nombre}-{a}", cfg.get("colores", {}).get(a), normal, difusa=difusa))
         for p in o.data.polygons: p.use_smooth = True
     _cabeza_ovalada(nombre, cuerpo, arm, piel, cfg.get("pelo", "#3A2418"), cfg.get("pelo_forma", "corto"))
     # brazos abajo: la pose de reposo del esqueleto es en A
@@ -118,3 +127,84 @@ def parado(arm, abre=0.18, codo=0.12):
         apuntar(arm, f"lowerarm_{lado}", (s * abre * 0.6, -codo, -1))
         apuntar(arm, f"hand_{lado}", (s * 0.08, -codo * 0.5, -1))
         apuntar(arm, f"thigh_{lado}", (s * 0.035, 0.0, -1)); apuntar(arm, f"calf_{lado}", (s * 0.02, 0.03, -1))
+
+# ---------------- animaciones (se guardan como pistas NLA y viajan en el glTF) ----------------
+from mathutils import Matrix
+
+def _reposo(arm):
+    for pb in arm.pose.bones: pb.matrix_basis = Matrix.Identity(4)
+    bpy.context.view_layer.update()
+
+def _subir(arm, hueso, dz):
+    pb = arm.pose.bones[hueso]; pb.matrix = Matrix.Translation((0, 0, dz)) @ pb.matrix; bpy.context.view_layer.update()
+
+def _clave(arm, f):
+    for pb in arm.pose.bones:
+        pb.rotation_mode = "QUATERNION"; pb.keyframe_insert("rotation_quaternion", frame=f)
+    arm.pose.bones["pelvis"].keyframe_insert("location", frame=f)
+
+def _accion(arm, nombre, claves):
+    """claves: lista de (cuadro, función que posa el esqueleto)."""
+    arm.animation_data_create(); act = bpy.data.actions.new(nombre); arm.animation_data.action = act
+    for f, posar in claves:
+        _reposo(arm); posar(arm); _clave(arm, f)
+    tr = arm.animation_data.nla_tracks.new(); tr.name = nombre; tr.strips.new(nombre, int(claves[0][0]), act)
+    arm.animation_data.action = None; _reposo(arm)
+
+def _paso(arm, fase, amp=1.0):
+    """Ciclo de caminata: fase 0..1 = dos pasos. -Y es adelante."""
+    for lado, s, d in (("l", 1, 0.0), ("r", -1, math.pi)):
+        a = math.sin(2 * math.pi * fase + d)
+        dobla = max(0.0, math.sin(2 * math.pi * fase + d + 1.3)) * 0.85 * amp
+        apuntar(arm, f"thigh_{lado}", (s * 0.03, -a * 0.48 * amp, -1))
+        apuntar(arm, f"calf_{lado}", (s * 0.02, -a * 0.24 * amp + dobla, -1))
+        apuntar(arm, f"foot_{lado}", (s * 0.05, -1, -0.32 + dobla * 0.25))
+        apuntar(arm, f"upperarm_{lado}", (s * 0.16, a * 0.36 * amp, -1))
+        apuntar(arm, f"lowerarm_{lado}", (s * 0.1, a * 0.2 * amp - 0.3, -1))
+        apuntar(arm, f"hand_{lado}", (s * 0.06, a * 0.15 - 0.2, -1))
+    _subir(arm, "pelvis", -abs(math.sin(2 * math.pi * fase)) * 0.025 * amp)
+
+def animar(arm, extras=()):
+    """Pistas: parado (4 s, respira), caminar (1 s = 2 pasos) y las que pida el personaje: entregar, embalar, atender."""
+    def respira(k):
+        def p(a):
+            parado(a, abre=0.17 + 0.01 * k, codo=0.12 + 0.03 * k)
+            apuntar(a, "spine_03", (0, 0.03 * k, 1)); apuntar(a, "head", (0.02 * k, -0.04, 1))
+        return p
+    _accion(arm, "parado", [(1, respira(0)), (61, respira(1)), (121, respira(0))])
+    _accion(arm, "caminar", [(1 + i * 4, (lambda f: lambda a: _paso(a, f))(i / 8)) for i in range(9)])
+    if "entregar" in extras:   # sostiene un paquete con las dos manos, adelante
+        def ent(k):
+            def p(a):
+                parado(a)
+                for lado, s in (("l", 1), ("r", -1)):
+                    apuntar(a, f"upperarm_{lado}", (s * 0.12, -0.55 - 0.05 * k, -0.85)); apuntar(a, f"lowerarm_{lado}", (-s * 0.25, -1, 0.05))
+                    apuntar(a, f"hand_{lado}", (-s * 0.3, -1, 0.1))
+            return p
+        _accion(arm, "entregar", [(1, ent(0)), (31, ent(1)), (61, ent(0))])
+    if "embalar" in extras:    # manos sobre la mesa, cerrando una caja
+        def emb(k):
+            def p(a):
+                parado(a); apuntar(a, "spine_03", (0, -0.25, 1)); apuntar(a, "head", (0, -0.5, 1))
+                for lado, s in (("l", 1), ("r", -1)):
+                    apuntar(a, f"upperarm_{lado}", (s * 0.25, -0.5, -0.8)); apuntar(a, f"lowerarm_{lado}", (-s * (0.25 + 0.15 * k), -1, -0.35))
+                    apuntar(a, f"hand_{lado}", (-s * 0.2, -1, -0.5))
+            return p
+        _accion(arm, "embalar", [(1, emb(0)), (16, emb(1)), (31, emb(0))])
+    if "atender" in extras:    # mira y gesticula hacia adelante
+        def ate(k):
+            def p(a):
+                parado(a); apuntar(a, "upperarm_r", (-0.2, -0.45, -0.85)); apuntar(a, "lowerarm_r", (0.1, -1, 0.15 + 0.15 * k))
+                apuntar(a, "head", (0.05 * k, -0.08, 1))
+            return p
+        _accion(arm, "atender", [(1, ate(0)), (31, ate(1)), (61, ate(0))])
+
+def exportar(arm, ruta):
+    """Un glb por personaje: esqueleto, cuerpo, ropa, cabeza y pelo, con sus pistas de animación."""
+    bpy.ops.object.select_all(action="DESELECT")
+    arm.select_set(True)
+    for o in arm.children_recursive: o.select_set(True)
+    for o in bpy.context.scene.objects:
+        if o.parent and o.parent.parent == arm: o.select_set(True)
+    bpy.ops.export_scene.gltf(filepath=ruta, use_selection=True, export_animation_mode="NLA_TRACKS", export_morph=False,
+                              export_apply=True, export_skins=True, export_def_bones=False, export_image_format="JPEG", export_jpeg_quality=85)

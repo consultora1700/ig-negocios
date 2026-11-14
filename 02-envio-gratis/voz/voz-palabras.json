@@ -1,0 +1,1092 @@
+[
+{
+"text": "Compras",
+"start": 0.0,
+"end": 0.7
+},
+{
+"text": "algo",
+"start": 0.7,
+"end": 0.86
+},
+{
+"text": "de",
+"start": 0.86,
+"end": 1.04
+},
+{
+"text": "15",
+"start": 1.04,
+"end": 1.28
+},
+{
+"text": ".000",
+"start": 1.28,
+"end": 1.42
+},
+{
+"text": "pesos",
+"start": 1.42,
+"end": 1.76
+},
+{
+"text": "y",
+"start": 1.76,
+"end": 1.98
+},
+{
+"text": "te",
+"start": 1.98,
+"end": 2.18
+},
+{
+"text": "llega",
+"start": 2.18,
+"end": 2.36
+},
+{
+"text": "gratis",
+"start": 2.36,
+"end": 2.76
+},
+{
+"text": "a",
+"start": 2.76,
+"end": 2.88
+},
+{
+"text": "tu",
+"start": 2.88,
+"end": 2.96
+},
+{
+"text": "casa.",
+"start": 2.96,
+"end": 3.32
+},
+{
+"text": "¿Alguien",
+"start": 3.76,
+"end": 3.98
+},
+{
+"text": "pagó",
+"start": 3.98,
+"end": 4.2
+},
+{
+"text": "ese",
+"start": 4.2,
+"end": 4.36
+},
+{
+"text": "envío?",
+"start": 4.36,
+"end": 4.68
+},
+{
+"text": "¿Quién?",
+"start": 5.052,
+"end": 5.452
+},
+{
+"text": "Casi",
+"start": 5.707,
+"end": 6.007
+},
+{
+"text": "todos",
+"start": 6.007,
+"end": 6.227
+},
+{
+"text": "creemos",
+"start": 6.227,
+"end": 6.527
+},
+{
+"text": "que",
+"start": 6.527,
+"end": 6.687
+},
+{
+"text": "el",
+"start": 6.687,
+"end": 6.767
+},
+{
+"text": "envío",
+"start": 6.767,
+"end": 7.007
+},
+{
+"text": "gratis",
+"start": 7.007,
+"end": 7.307
+},
+{
+"text": "es",
+"start": 7.307,
+"end": 7.447
+},
+{
+"text": "un",
+"start": 7.447,
+"end": 7.647
+},
+{
+"text": "regalo.",
+"start": 7.647,
+"end": 7.987
+},
+{
+"text": "No",
+"start": 8.39,
+"end": 8.59
+},
+{
+"text": "existe",
+"start": 8.59,
+"end": 8.95
+},
+{
+"text": "el",
+"start": 8.95,
+"end": 9.11
+},
+{
+"text": "envío",
+"start": 9.11,
+"end": 9.31
+},
+{
+"text": "gratis,",
+"start": 9.31,
+"end": 9.81
+},
+{
+"text": "existe",
+"start": 10.13,
+"end": 10.47
+},
+{
+"text": "alguien",
+"start": 10.47,
+"end": 10.75
+},
+{
+"text": "que",
+"start": 10.75,
+"end": 10.89
+},
+{
+"text": "lo",
+"start": 10.89,
+"end": 11.09
+},
+{
+"text": "paga.",
+"start": 11.09,
+"end": 11.521
+},
+{
+"text": "Desde",
+"start": 11.701,
+"end": 11.941
+},
+{
+"text": "septiembre,",
+"start": 11.941,
+"end": 12.461
+},
+{
+"text": "a",
+"start": 12.601,
+"end": 12.661
+},
+{
+"text": "los",
+"start": 12.661,
+"end": 12.801
+},
+{
+"text": "suscriptores",
+"start": 12.801,
+"end": 13.241
+},
+{
+"text": "de",
+"start": 13.241,
+"end": 13.381
+},
+{
+"text": "su",
+"start": 13.381,
+"end": 13.501
+},
+{
+"text": "programa",
+"start": 13.501,
+"end": 13.821
+},
+{
+"text": "de",
+"start": 13.821,
+"end": 14.061
+},
+{
+"text": "beneficios,",
+"start": 14.061,
+"end": 14.581
+},
+{
+"text": "Mercado",
+"start": 14.781,
+"end": 15.061
+},
+{
+"text": "Libre",
+"start": 15.061,
+"end": 15.261
+},
+{
+"text": "les",
+"start": 15.261,
+"end": 15.461
+},
+{
+"text": "manda",
+"start": 15.461,
+"end": 15.761
+},
+{
+"text": "gratis",
+"start": 15.761,
+"end": 16.301
+},
+{
+"text": "las",
+"start": 16.301,
+"end": 16.501
+},
+{
+"text": "compras",
+"start": 16.501,
+"end": 16.761
+},
+{
+"text": "desde",
+"start": 16.761,
+"end": 16.961
+},
+{
+"text": "15",
+"start": 16.961,
+"end": 17.241
+},
+{
+"text": ".000",
+"start": 17.241,
+"end": 17.401
+},
+{
+"text": "pesos.",
+"start": 17.401,
+"end": 17.741
+},
+{
+"text": "Antes",
+"start": 18.141,
+"end": 18.381
+},
+{
+"text": "era",
+"start": 18.381,
+"end": 18.601
+},
+{
+"text": "desde",
+"start": 18.601,
+"end": 18.881
+},
+{
+"text": "33",
+"start": 18.881,
+"end": 19.241
+},
+{
+"text": ".000.",
+"start": 19.241,
+"end": 19.501
+},
+{
+"text": "Y",
+"start": 19.741,
+"end": 20.001
+},
+{
+"text": "dijo",
+"start": 20.001,
+"end": 20.121
+},
+{
+"text": "que",
+"start": 20.121,
+"end": 20.321
+},
+{
+"text": "ese",
+"start": 20.321,
+"end": 20.481
+},
+{
+"text": "costo",
+"start": 20.481,
+"end": 20.821
+},
+{
+"text": "lo",
+"start": 20.821,
+"end": 20.941
+},
+{
+"text": "pone",
+"start": 20.941,
+"end": 21.081
+},
+{
+"text": "la",
+"start": 21.081,
+"end": 21.221
+},
+{
+"text": "empresa.",
+"start": 21.221,
+"end": 21.501
+},
+{
+"text": "Pero",
+"start": 21.914,
+"end": 22.134
+},
+{
+"text": "arriba",
+"start": 22.134,
+"end": 22.434
+},
+{
+"text": "de",
+"start": 22.434,
+"end": 22.614
+},
+{
+"text": "33",
+"start": 22.614,
+"end": 22.994
+},
+{
+"text": ".000,",
+"start": 22.994,
+"end": 23.434
+},
+{
+"text": "paga",
+"start": 23.494,
+"end": 23.674
+},
+{
+"text": "el",
+"start": 23.674,
+"end": 23.814
+},
+{
+"text": "vendedor.",
+"start": 23.814,
+"end": 24.254
+},
+{
+"text": "Si",
+"start": 24.494,
+"end": 24.654
+},
+{
+"text": "tiene",
+"start": 24.654,
+"end": 24.834
+},
+{
+"text": "buena",
+"start": 24.834,
+"end": 25.074
+},
+{
+"text": "reputación,",
+"start": 25.074,
+"end": 25.694
+},
+{
+"text": "la",
+"start": 25.914,
+"end": 26.034
+},
+{
+"text": "mitad",
+"start": 26.034,
+"end": 26.214
+},
+{
+"text": "del",
+"start": 26.214,
+"end": 26.394
+},
+{
+"text": "envío.",
+"start": 26.394,
+"end": 26.714
+},
+{
+"text": "Por",
+"start": 26.714,
+"end": 27.175
+},
+{
+"text": "un",
+"start": 27.175,
+"end": 27.335
+},
+{
+"text": "paquete",
+"start": 27.335,
+"end": 27.595
+},
+{
+"text": "de",
+"start": 27.595,
+"end": 27.735
+},
+{
+"text": "un",
+"start": 27.735,
+"end": 27.875
+},
+{
+"text": "kilo,",
+"start": 27.875,
+"end": 28.035
+},
+{
+"text": "unos",
+"start": 28.275,
+"end": 28.495
+},
+{
+"text": "7",
+"start": 28.495,
+"end": 28.815
+},
+{
+"text": ".800",
+"start": 28.815,
+"end": 29.195
+},
+{
+"text": "pesos",
+"start": 29.195,
+"end": 29.575
+},
+{
+"text": "que",
+"start": 29.575,
+"end": 29.815
+},
+{
+"text": "salen",
+"start": 29.815,
+"end": 29.955
+},
+{
+"text": "de",
+"start": 29.955,
+"end": 30.095
+},
+{
+"text": "su",
+"start": 30.095,
+"end": 30.215
+},
+{
+"text": "precio.",
+"start": 30.215,
+"end": 30.475
+},
+{
+"text": "¿Y",
+"start": 30.835,
+"end": 30.955
+},
+{
+"text": "la",
+"start": 30.955,
+"end": 31.075
+},
+{
+"text": "empresa",
+"start": 31.075,
+"end": 31.315
+},
+{
+"text": "que",
+"start": 31.315,
+"end": 31.455
+},
+{
+"text": "lo",
+"start": 31.455,
+"end": 31.655
+},
+{
+"text": "regala?",
+"start": 31.655,
+"end": 31.875
+},
+{
+"text": "En",
+"start": 32.218,
+"end": 32.418
+},
+{
+"text": "el",
+"start": 32.418,
+"end": 32.498
+},
+{
+"text": "último",
+"start": 32.498,
+"end": 32.778
+},
+{
+"text": "trimestre",
+"start": 32.778,
+"end": 33.158
+},
+{
+"text": "facturó",
+"start": 33.158,
+"end": 33.578
+},
+{
+"text": "10",
+"start": 33.578,
+"end": 33.818
+},
+{
+"text": ".700",
+"start": 33.818,
+"end": 34.378
+},
+{
+"text": "millones",
+"start": 34.378,
+"end": 34.858
+},
+{
+"text": "de",
+"start": 34.858,
+"end": 35.078
+},
+{
+"text": "dólares",
+"start": 35.078,
+"end": 35.338
+},
+{
+"text": "y",
+"start": 35.338,
+"end": 35.658
+},
+{
+"text": "ganó",
+"start": 35.658,
+"end": 35.878
+},
+{
+"text": "448.",
+"start": 35.878,
+"end": 36.738
+},
+{
+"text": "Vendió",
+"start": 37.258,
+"end": 37.618
+},
+{
+"text": "867",
+"start": 37.618,
+"end": 38.838
+},
+{
+"text": "millones",
+"start": 38.838,
+"end": 39.158
+},
+{
+"text": "de",
+"start": 39.158,
+"end": 39.398
+},
+{
+"text": "productos,",
+"start": 39.398,
+"end": 39.718
+},
+{
+"text": "unos",
+"start": 40.138,
+"end": 40.358
+},
+{
+"text": "50",
+"start": 40.358,
+"end": 40.818
+},
+{
+"text": "centavos",
+"start": 40.818,
+"end": 41.198
+},
+{
+"text": "de",
+"start": 41.198,
+"end": 41.358
+},
+{
+"text": "dólar",
+"start": 41.358,
+"end": 41.578
+},
+{
+"text": "de",
+"start": 41.578,
+"end": 41.698
+},
+{
+"text": "ganancia",
+"start": 41.698,
+"end": 41.998
+},
+{
+"text": "por",
+"start": 41.998,
+"end": 42.218
+},
+{
+"text": "cada",
+"start": 42.218,
+"end": 42.438
+},
+{
+"text": "uno.",
+"start": 42.438,
+"end": 42.598
+},
+{
+"text": "Y",
+"start": 42.898,
+"end": 43.098
+},
+{
+"text": "la",
+"start": 43.098,
+"end": 43.258
+},
+{
+"text": "propia",
+"start": 43.258,
+"end": 43.478
+},
+{
+"text": "empresa",
+"start": 43.478,
+"end": 43.758
+},
+{
+"text": "dice",
+"start": 43.758,
+"end": 43.998
+},
+{
+"text": "que",
+"start": 43.998,
+"end": 44.158
+},
+{
+"text": "los",
+"start": 44.158,
+"end": 44.358
+},
+{
+"text": "envíos",
+"start": 44.358,
+"end": 44.578
+},
+{
+"text": "gratis",
+"start": 44.578,
+"end": 44.998
+},
+{
+"text": "le",
+"start": 44.998,
+"end": 45.258
+},
+{
+"text": "comieron",
+"start": 45.258,
+"end": 45.498
+},
+{
+"text": "margen.",
+"start": 45.498,
+"end": 46.025
+},
+{
+"text": "Entonces,",
+"start": 46.145,
+"end": 46.585
+},
+{
+"text": "¿por",
+"start": 46.745,
+"end": 46.885
+},
+{
+"text": "qué",
+"start": 46.885,
+"end": 46.945
+},
+{
+"text": "lo",
+"start": 46.945,
+"end": 47.145
+},
+{
+"text": "hace?",
+"start": 47.145,
+"end": 47.325
+},
+{
+"text": "Porque",
+"start": 47.58,
+"end": 47.86
+},
+{
+"text": "el",
+"start": 47.86,
+"end": 48.04
+},
+{
+"text": "envío",
+"start": 48.04,
+"end": 48.22
+},
+{
+"text": "gratis",
+"start": 48.22,
+"end": 48.64
+},
+{
+"text": "no",
+"start": 48.64,
+"end": 48.8
+},
+{
+"text": "es",
+"start": 48.8,
+"end": 48.94
+},
+{
+"text": "un",
+"start": 48.94,
+"end": 49.16
+},
+{
+"text": "regalo,",
+"start": 49.16,
+"end": 49.44
+},
+{
+"text": "es",
+"start": 49.7,
+"end": 49.96
+},
+{
+"text": "un",
+"start": 49.96,
+"end": 50.14
+},
+{
+"text": "imán.",
+"start": 50.14,
+"end": 50.635
+},
+{
+"text": "Más",
+"start": 50.835,
+"end": 51.055
+},
+{
+"text": "compras",
+"start": 51.055,
+"end": 51.375
+},
+{
+"text": "chicas,",
+"start": 51.375,
+"end": 51.775
+},
+{
+"text": "más",
+"start": 51.975,
+"end": 52.095
+},
+{
+"text": "gente",
+"start": 52.095,
+"end": 52.275
+},
+{
+"text": "que",
+"start": 52.275,
+"end": 52.515
+},
+{
+"text": "vuelve",
+"start": 52.515,
+"end": 52.775
+},
+{
+"text": "y",
+"start": 52.775,
+"end": 53.115
+},
+{
+"text": "más",
+"start": 53.115,
+"end": 53.315
+},
+{
+"text": "vendedores",
+"start": 53.315,
+"end": 53.755
+},
+{
+"text": "que",
+"start": 53.755,
+"end": 53.975
+},
+{
+"text": "pagan",
+"start": 53.975,
+"end": 54.115
+},
+{
+"text": "publicidad.",
+"start": 54.115,
+"end": 54.715
+},
+{
+"text": "Que",
+"start": 54.715,
+"end": 55.015
+},
+{
+"text": "le",
+"start": 55.015,
+"end": 55.195
+},
+{
+"text": "creció",
+"start": 55.195,
+"end": 55.435
+},
+{
+"text": "más",
+"start": 55.435,
+"end": 55.635
+},
+{
+"text": "del",
+"start": 55.635,
+"end": 55.855
+},
+{
+"text": "50%.",
+"start": 55.855,
+"end": 56.927
+},
+{
+"text": "Lo",
+"start": 56.927,
+"end": 57.247
+},
+{
+"text": "que",
+"start": 57.247,
+"end": 57.487
+},
+{
+"text": "regalás,",
+"start": 57.487,
+"end": 57.907
+},
+{
+"text": "tiene",
+"start": 57.927,
+"end": 58.127
+},
+{
+"text": "que",
+"start": 58.127,
+"end": 58.307
+},
+{
+"text": "traer",
+"start": 58.307,
+"end": 58.527
+},
+{
+"text": "algo",
+"start": 58.527,
+"end": 58.727
+},
+{
+"text": "que",
+"start": 58.727,
+"end": 58.887
+},
+{
+"text": "se",
+"start": 58.887,
+"end": 59.067
+},
+{
+"text": "repite.",
+"start": 59.067,
+"end": 59.427
+},
+{
+"text": "Si",
+"start": 59.767,
+"end": 59.927
+},
+{
+"text": "regalás",
+"start": 59.927,
+"end": 60.327
+},
+{
+"text": "y",
+"start": 60.327,
+"end": 60.427
+},
+{
+"text": "el",
+"start": 60.427,
+"end": 60.527
+},
+{
+"text": "cliente",
+"start": 60.527,
+"end": 60.827
+},
+{
+"text": "no",
+"start": 60.827,
+"end": 60.987
+},
+{
+"text": "vuelve,",
+"start": 60.987,
+"end": 61.367
+},
+{
+"text": "no",
+"start": 61.647,
+"end": 61.787
+},
+{
+"text": "regalaste,",
+"start": 61.787,
+"end": 62.247
+},
+{
+"text": "perdiste.",
+"start": 62.667,
+"end": 63.087
+},
+{
+"text": "Mándaselo",
+"start": 63.502,
+"end": 63.822
+},
+{
+"text": "el",
+"start": 63.822,
+"end": 63.922
+},
+{
+"text": "que",
+"start": 63.922,
+"end": 64.042
+},
+{
+"text": "vende",
+"start": 64.042,
+"end": 64.182
+},
+{
+"text": "por",
+"start": 64.182,
+"end": 64.342
+},
+{
+"text": "internet.",
+"start": 64.342,
+"end": 64.742
+},
+{
+"text": "Y",
+"start": 65.002,
+"end": 65.162
+},
+{
+"text": "seguime",
+"start": 65.162,
+"end": 65.382
+},
+{
+"text": "para",
+"start": 65.382,
+"end": 65.622
+},
+{
+"text": "más",
+"start": 65.622,
+"end": 65.742
+},
+{
+"text": "estrategias",
+"start": 65.742,
+"end": 66.182
+},
+{
+"text": "como",
+"start": 66.182,
+"end": 66.402
+},
+{
+"text": "esta.",
+"start": 66.402,
+"end": 66.582
+}
+]
