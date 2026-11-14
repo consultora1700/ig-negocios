@@ -74,3 +74,78 @@ def hornear(salida, densidad=110, muestras=48, mundo_info=None, max_lado=2048):
     bpy.ops.object.select_all(action="DESELECT")
     for o in objs: o.select_set(True)
     bpy.ops.export_scene.gltf(filepath=os.path.join(salida, "set.glb"), use_selection=True, export_materials="NONE", export_apply=True, export_texcoords=True, export_normals=True)
+
+# ---------------- modo «textura + luz»: el color queda en alta resolución y solo la luz se hornea ----------------
+def mat_textura(nombre, carpeta, rough=None, tinte=None):
+    """Material PBR con texturas de ambientCG (Color, NormalGL, Roughness). Las UV de textura dan la escala real."""
+    import glob
+    m = bpy.data.materials.new(nombre); m.use_nodes = True; nt = m.node_tree; b = nt.nodes["Principled BSDF"]
+    def img(suf, color=True):
+        f = (glob.glob(os.path.join(carpeta, f"*_{suf}.jpg")) + glob.glob(os.path.join(carpeta, f"*_{suf}.png")))
+        if not f: return None
+        t = nt.nodes.new("ShaderNodeTexImage"); t.image = bpy.data.images.load(f[0], check_existing=True)
+        if not color: t.image.colorspace_settings.name = "Non-Color"
+        return t
+    c = img("Color")
+    if c:
+        if tinte:
+            mx = nt.nodes.new("ShaderNodeMix"); mx.data_type = "RGBA"; mx.blend_type = "MULTIPLY"; mx.inputs[0].default_value = 1.0
+            mx.inputs[7].default_value = (*hex2lin(tinte), 1); nt.links.new(c.outputs["Color"], mx.inputs[6]); nt.links.new(mx.outputs[2], b.inputs["Base Color"])
+        else: nt.links.new(c.outputs["Color"], b.inputs["Base Color"])
+    n = img("NormalGL", False)
+    if n:
+        nm = nt.nodes.new("ShaderNodeNormalMap"); nt.links.new(n.outputs["Color"], nm.inputs["Color"]); nt.links.new(nm.outputs["Normal"], b.inputs["Normal"])
+    r = img("Roughness", False)
+    if r and rough is None: nt.links.new(r.outputs["Color"], b.inputs["Roughness"])
+    else: b.inputs["Roughness"].default_value = rough if rough is not None else 0.8
+    return m
+
+def uv_textura(o, tam=2.0):
+    """UV de textura a escala real (proyección de caja): una repetición de la textura cada «tam» metros."""
+    bpy.ops.object.select_all(action="DESELECT"); o.select_set(True); bpy.context.view_layer.objects.active = o
+    if not o.data.uv_layers: o.data.uv_layers.new(name="UVMap")
+    o.data.uv_layers.active = o.data.uv_layers[0]
+    bpy.ops.object.mode_set(mode="EDIT"); bpy.ops.mesh.select_all(action="SELECT")
+    bpy.ops.uv.cube_project(cube_size=tam, scale_to_bounds=False, correct_aspect=True); bpy.ops.object.mode_set(mode="OBJECT")
+
+def hornear_luz(salida, densidad=60, muestras=64, mundo_info=None, max_lado=2048):
+    """Hornea solo la iluminación (difusa directa + indirecta, sin color) en una imagen por objeto y exporta set.glb
+    con los materiales y dos UV: TEXCOORD_0 = textura, TEXCOORD_1 = luz. En Three: MeshBasicMaterial(map, lightMap canal 1, intensidad π)."""
+    sc = bpy.context.scene; os.makedirs(os.path.join(salida, "luz"), exist_ok=True)
+    sc.render.engine = "CYCLES"; sc.cycles.device = "CPU"; sc.cycles.samples = muestras; sc.cycles.use_denoising = False
+    b = sc.render.bake; b.margin = 6; b.use_pass_direct = True; b.use_pass_indirect = True; b.use_pass_color = False
+    nombres = {o.name for o in FIJOS}
+    for o in FIJOS:   # aplicar modificadores
+        bpy.ops.object.select_all(action="DESELECT"); o.select_set(True); bpy.context.view_layer.objects.active = o
+        if o.type in ("CURVE", "FONT") or o.modifiers: bpy.ops.object.convert(target="MESH")
+    objs = [o for o in sc.objects if o.type == "MESH" and o.name in nombres]
+    info = {}
+    for o in objs:
+        if not o.data.uv_layers: uv_textura(o, 2.0)
+        for i, ms in enumerate(o.material_slots):
+            if ms.material: o.material_slots[i].material = ms.material.copy()
+        if not o.material_slots: o.data.materials.append(mat("gris", "#9A9A9A"))
+        area = sum(p.area for p in o.data.polygons) * (o.matrix_world.to_scale().length / 1.732) ** 2
+        lado = int(2 ** round(math.log2(max(32, min(max_lado, math.sqrt(area) * densidad)))))
+        bpy.ops.object.select_all(action="DESELECT"); o.select_set(True); bpy.context.view_layer.objects.active = o
+        for u in [u for u in o.data.uv_layers if u.name == "luz"]: o.data.uv_layers.remove(u)
+        while len(o.data.uv_layers) > 1: o.data.uv_layers.remove(o.data.uv_layers[1])
+        luzuv = o.data.uv_layers.new(name="luz"); o.data.uv_layers.active = luzuv
+        bpy.ops.object.mode_set(mode="EDIT"); bpy.ops.mesh.select_all(action="SELECT")
+        bpy.ops.uv.smart_project(angle_limit=math.radians(60), island_margin=0.006); bpy.ops.object.mode_set(mode="OBJECT")
+        img = bpy.data.images.new("luz_" + o.name, lado, lado, float_buffer=True)
+        nodos = []
+        for ms in o.material_slots:
+            nt = ms.material.node_tree; uvn = nt.nodes.new("ShaderNodeUVMap"); uvn.uv_map = "luz"
+            t = nt.nodes.new("ShaderNodeTexImage"); t.image = img; nt.links.new(uvn.outputs["UV"], t.inputs["Vector"]); nt.nodes.active = t; nodos.append((nt, t, uvn))
+        bpy.ops.object.bake(type="DIFFUSE")
+        _limpiar(img, os.path.join(salida, "luz", o.name + ".hdr"))
+        for nt, t, uvn in nodos: nt.nodes.remove(t); nt.nodes.remove(uvn)
+        o.data.uv_layers.active = o.data.uv_layers[0]
+        info[o.name] = lado; print("horneado", o.name, lado, flush=True)
+    json.dump(info, open(os.path.join(salida, "luz", "indice.json"), "w"), indent=1)
+    json.dump(dict(luces=LUCES, mundo=mundo_info or {}), open(os.path.join(salida, "luces.json"), "w"), indent=1)
+    bpy.ops.object.select_all(action="DESELECT")
+    for o in objs: o.select_set(True)
+    bpy.ops.export_scene.gltf(filepath=os.path.join(salida, "set.glb"), use_selection=True, export_materials="EXPORT", export_apply=True,
+                              export_texcoords=True, export_normals=True, export_image_format="JPEG", export_jpeg_quality=88)
