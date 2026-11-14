@@ -1,0 +1,43 @@
+# Hornea la luz de un escenario con Blender/Cycles (CPU) y exporta set.glb + luz/*.hdr + personas.glb.
+name: hornear
+on:
+  workflow_dispatch:
+    inputs:
+      script:
+        description: "Script de Blender"
+        default: "00-prueba-3d/blender/hornear.py"
+        required: true
+      densidad:
+        description: "Píxeles por metro del horneado"
+        default: "110"
+        required: true
+      muestras:
+        description: "Muestras de Cycles"
+        default: "48"
+        required: true
+      salida:
+        description: "Nombre del artifact"
+        default: "horneado-cine"
+        required: true
+jobs:
+  hornear:
+    runs-on: ubuntu-latest
+    timeout-minutes: 300
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/cache@v4
+        id: cache
+        with:
+          path: ~/blender
+          key: blender-4.2.23
+      - if: steps.cache.outputs.cache-hit != 'true'
+        run: |
+          mkdir -p ~/blender && curl -sfL https://download.blender.org/release/Blender4.2/blender-4.2.23-linux-x64.tar.xz | tar -xJ -C ~/blender --strip-components=1
+      - run: sudo apt-get update -qq && sudo apt-get install -y -qq libxi6 libxxf86vm1 libxfixes3 libxrender1 libgl1 libegl1 libxkbcommon0 libsm6 > /dev/null
+      - name: Hornear
+        run: ~/blender/blender -b -P "${{ inputs.script }}" -- --salida "$PWD/horneado" --densidad "${{ inputs.densidad }}" --muestras "${{ inputs.muestras }}" 2>&1 | grep -E "horneado|LISTO|Error|Traceback|line [0-9]+" 
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ${{ inputs.salida }}
+          path: horneado
+          retention-days: 14
