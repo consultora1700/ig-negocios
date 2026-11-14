@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="assets/lib/gsap.min.js"></script>
+    <style>
+      /* EL MÉTODO EMPRESARIAL — capa de marca (ver /root/ig-negocios/marca/MARCA.md) */
+      :root { --negro: #000000; --carbon: #0B0D11; --borde: #3A3E46; --blanco: #FFFFFF; --plata-c: #E5E7EB; --plata-m: #BFC4CC; --plata-o: #9299A3; --azul-l: #00CFFF;
+        --g-plata: linear-gradient(180deg, #FFFFFF 0%, #E5E7EB 35%, #BFC4CC 70%, #9299A3 100%);
+        --g-azul: linear-gradient(110deg, #0057D9 0%, #007BFF 35%, #009DFF 70%, #00CFFF 100%); }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1920px; overflow: hidden; background: #000000; }
+      #root { position: relative; width: 1080px; height: 1920px; font-family: "Montserrat"; }
+      #gl { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; }
+      #hud { position: absolute; inset: 0; pointer-events: none; z-index: 5; }
+      #marca { position: absolute; left: 44px; top: 96px; display: flex; align-items: center; gap: 12px; padding: 8px 16px 8px 8px; border-radius: 12px; background: rgba(0,0,0,.72); }
+      #marca img { width: 54px; height: 54px; }
+      #marca span { font-family: "Montserrat"; font-weight: 800; font-size: 19px; line-height: 1.05; letter-spacing: 0.12em; color: var(--plata-c); }
+      #marca span b { display: block; font-weight: 900; color: #FFFFFF; }
+      #titulo { position: absolute; left: 0; right: 0; top: 196px; display: grid; justify-items: center; gap: 10px; }
+      #titulo div { font-weight: 900; font-size: 62px; line-height: 1; letter-spacing: -0.01em; color: #FFFFFF; padding: 12px 24px 14px; border-radius: 10px; }
+      #titulo .a { background: #000000; border: 3px solid #9299A3; }
+      #titulo .b { background: var(--g-azul); }
+      .ficha { position: absolute; left: 0; top: 0; background: #000000; border-radius: 14px; padding: 14px 24px 16px 30px; opacity: 0; border: 2px solid #3A3E46; }
+      .ficha::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 10px; border-radius: 14px 0 0 14px; background: var(--g-azul); }
+      .ficha::after { content: ""; position: absolute; left: 50%; bottom: -16px; margin-left: -14px; border: 14px solid transparent; border-bottom: 0; border-top: 16px solid #3A3E46; }
+      .ficha small { display: block; font-family: "Montserrat"; font-weight: 800; font-size: 24px; letter-spacing: 0.16em; color: var(--plata-m); }
+      .ficha b { display: block; font-weight: 900; font-size: 64px; line-height: 1.02; color: #FFFFFF; white-space: nowrap; }
+      .ficha.gris::before { background: #9299A3; } .ficha.gris b { color: #BFC4CC; font-size: 52px; }
+      #grande { position: absolute; left: 50%; top: 452px; transform: translateX(-50%); width: 960px; text-align: center; background: rgba(0,0,0,.86); border: 2px solid #3A3E46; border-radius: 18px; padding: 22px 26px 26px; opacity: 0; }
+      #grande small { display: block; font-weight: 800; font-size: 30px; letter-spacing: 0.14em; color: var(--plata-c); }
+      #grande b.gris { background: none; color: #BFC4CC; -webkit-text-fill-color: #BFC4CC; }
+      #grande b { display: block; white-space: nowrap; font-weight: 900; font-size: 96px; line-height: 1.02; margin-top: 6px; background: var(--g-azul); -webkit-background-clip: text; background-clip: text; color: transparent; }
+      #sub { position: absolute; left: 60px; right: 60px; top: 1330px; text-align: center; font-weight: 900; font-size: 66px; line-height: 1.1; color: #FFFFFF;
+        -webkit-text-stroke: 12px #000000; paint-order: stroke fill; }
+      #sub em { font-style: normal; color: var(--azul-l); }
+      #fuente { position: absolute; left: 60px; right: 60px; top: 1478px; text-align: center; font-family: "Montserrat"; font-weight: 700; font-size: 24px; color: var(--plata-m); opacity: 0;
+        -webkit-text-stroke: 6px #000; paint-order: stroke fill; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="10" data-width="1080" data-height="1920">
+      <canvas id="gl" width="1080" height="1920"></canvas>
+      <div id="hud" data-layout-ignore>
+        <div id="marca"><img src="assets/marca/isotipo.png" alt=""><span>EL MÉTODO<b>EMPRESARIAL</b></span></div>
+        <div id="titulo"><div class="a">Cine: $17.800 la entrada.</div><div class="b">¿Y la plata?</div></div>
+        <div id="grande"><small>DE CADA $100 DE POCHOCLO</small><b id="grande-b">&nbsp;</b></div>
+        <div id="sub"></div>
+        <div id="fuente">Fuente: Cinemark, resultados 2025 · los insumos del candy son el 19,6 % de lo que vende</div>
+      </div>
+      <audio id="voz" class="clip" src="assets/audio/voz.wav" data-start="0" data-duration="9.47" data-track-index="5" data-volume="1"></audio>
+      <audio id="musica" class="clip" src="assets/audio/musica.wav" data-start="0" data-duration="10" data-track-index="6" data-volume="1"></audio>
+      <audio id="efectos" class="clip" src="assets/audio/efectos.wav" data-start="0" data-duration="10" data-track-index="7" data-volume="1"></audio>
+    </div>
+    <script>
+      window.__timelines = window.__timelines || {};
+      window.__timelines["main"] = gsap.timeline({ paused: true });
+    </script>
+    <script type="module">
+      window.__hf = window.__hf || {}; window.__hf.buildReady = window.__hf.buildReady || {};
+      let listo;
+      window.__hf.buildReady["mundo"] = new Promise((r) => (listo = r));
+      await Promise.all(["900 70px Montserrat", "800 34px Montserrat", "700 22px Montserrat"].map((f) => document.fonts.load(f)));
+      const Mu = await import("./assets/mundo.js");
+      const { T } = Mu;
+      const clamp = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
+      const hud = document.getElementById("hud");
+      // Fichas pegadas a objetos 3D: [rótulo, valor, clase, objeto, punto local, desde, hasta]
+      const FI = [
+        ["LA ENTRADA", "$17.800", "", Mu.ticket, [0, 0.1, 0], T.entrada - 0.1, T.plano2 - 0.05],
+        ["EL COMBO", "$20.160", "", Mu.comboBalde, [0, 0.8, 0], T.combo - 0.1, T.plano3 - 0.05],
+      ];
+      const els = FI.map((f) => { const d = document.createElement("div"); d.className = "ficha " + f[2]; d.innerHTML = `<small>${f[0]}</small><b>${f[1]}</b>`; hud.appendChild(d); return d; });
+      // Subtítulos de 2 a 4 palabras, cifras en azul (tiempos de voz/voz-palabras.json)
+      const SUB = [[0.0, "La entrada al cine"], [1.0, "sale <em>$17.800</em>"], [3.45, "El combo,"], [3.9, "más de <em>$20.000</em>"], [5.33, "Y de cada <em>$100</em>"], [6.4, "de pochoclo…"],
+        [7.15, "al cine"], [7.7, "le quedan <em>$80</em>"]];
+      const sub = document.getElementById("sub"), grande = document.getElementById("grande"), gb = document.getElementById("grande-b"), fuente = document.getElementById("fuente");
+      function hudAt(t) {
+        Mu.render(t);
+        FI.forEach((f, i) => {
+          const el = els[i], on = t >= f[5] && t < f[6];
+          if (!on) { el.style.opacity = 0; return; }
+          const s = Mu.aPantalla(f[3], f[4]); const u = clamp((t - f[5]) / 0.25), out = clamp((f[6] - t) / 0.15);
+          const w = el.offsetWidth, h = el.offsetHeight;
+          const x = Math.min(1080 - w - 40, Math.max(40, s.x - w / 2)), y = Math.max(440, s.y - h - 22);
+          el.style.opacity = s.vis ? Math.min(u, out) : 0;
+          el.style.transform = `translate(${x}px, ${y + (1 - u) * 26}px) scale(${0.86 + 0.14 * (1 - Math.pow(1 - u, 3))})`;
+        });
+        let s = ""; for (const [a, txt] of SUB) if (t >= a) s = txt; sub.innerHTML = t < 9.75 ? s : "";
+        const ug = clamp((t - T.cada) / 0.3);
+        grande.style.opacity = t > T.plano3 ? ug : 0; grande.style.transform = `translateX(-50%) translateY(${(1 - ug) * 30}px)`;
+        const uq = clamp((t - T.quedan) / 0.35);
+        const uc = clamp((t - T.cuesta) / 0.3);
+        if (t >= T.quedan) { gb.className = ""; gb.style.opacity = 1; gb.textContent = "LE QUEDAN $" + Math.round(20 + 60 * (1 - Math.pow(1 - uq, 3))); }
+        else if (t >= T.cuesta) { gb.className = "gris"; gb.style.opacity = uc; gb.textContent = "INSUMOS: $20"; }
+        else { gb.className = ""; gb.textContent = "\u00a0"; }
+        gb.style.transform = `scale(${t >= T.quedan ? 1 + 0.08 * Math.sin(uq * Math.PI) : 1})`;
+        fuente.style.opacity = clamp((t - 6.1) / 0.4);
+      }
+      window.addEventListener("hf-seek", (e) => hudAt(e.detail.time));
+      hudAt(0);
+      listo();
+    </script>
+  </body>
+</html>
