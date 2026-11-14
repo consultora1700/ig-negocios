@@ -177,7 +177,7 @@ const PLANOS = [
   [T.vendio, [NX + 0.4, 2.3, 7.4], [NX + 0.4, 1.7, 6.2], [NX + 0.4, 1.3, -1.0], [NX + 0.4, 0.45, 0.6], 44, 0.5, 0.2, 6],
   [T.porque, [2.0, 8.5, 15.0], [0.8, 7.6, 13.2], [0.5, 2.0, -1.0], [0.0, 1.8, -1.0], 48, 0.5, 0.16, 7],
   [T.regla, [0.0, 8.0, 14.0], [-0.4, 7.6, 13.4], [0.0, 1.8, -1.0], [-0.2, 1.8, -1.0], 48, 0.5, 0.2, 7],
-  [T.mandaselo, [-3.2, 2.2, 4.0], [-3.8, 1.9, 3.0], [-4.9, 1.1, -0.6], [-4.9, 1.0, -0.7], 44, 0.5, 0.12, 9],
+  [T.mandaselo, [-6.8, 1.55, 2.5], [-6.3, 1.45, 1.8], [-4.9, 1.5, -0.8], [-4.9, 1.45, -0.85], 48, 0.55, 0.12, 9],
 ];
 function camara(t) {
   let i = 0; while (i + 1 < PLANOS.length && t >= PLANOS[i + 1][0]) i++;
@@ -211,7 +211,7 @@ export function render(t, oscuro = 0) {
   mitadI.rotation.set(-Math.PI / 2 + parte * 0.3, 0, -parte * 0.25); mitadD.rotation.set(-Math.PI / 2 + parte * 0.3, 0, parte * 0.25);
   // vecinos caminando por la vereda (vida) y, desde el imán, volviendo hacia la casa y el garage
   const atrae = clamp((t - T.vuelve) / 4.0);
-  const rutas = [[[8, 0.6], [-8, 0.6], 0.0, 30, 0.4], [[-8.5, 0.2], [8.5, 0.2], 3.0, 34, 1.3], [[7.5, -0.2], [-1.0, -0.2], 18, 30, 0.8], [[-8, 0.8], [6, 0.8], 40, 56, 2.1]];
+  const rutas = [[[8, 0.6], [-8, 0.6], 0.0, 30, 0.4], [[-8.5, 0.2], [8.5, 0.2], 3.0, 34, 1.3], [[7.5, 0.6], [-1.0, 0.6], 12, 21, 0.8], [[-8, 0.8], [6, 0.8], 40, 56, 2.1]];
   vecinos.forEach((p, i) => { const [a, b, t0, t1, f] = rutas[i];
     if (t >= T.porque && i < 2) mover(p, t, VEREDA, [i ? 8 : -8, 0.4], [i ? -0.5 : -4.2, -0.4], T.vuelve - 1.0, T.vuelve + 3.2, [i ? -0.6 : -4.9, -2], "parado", f);
     else mover(p, t, VEREDA, a, b, t0, t1, null, "parado", f); });
@@ -219,8 +219,8 @@ export function render(t, oscuro = 0) {
   const ui = clamp((t - T.iman) / 0.8);
   elIman.position.set(-0.6, mix(14, 4.3, eo(ui)) + Math.sin(t * 2) * 0.06, 0.2); elIman.visible = t > T.iman - 0.1 && t < T.regla; elIman.scale.setScalar(1.2);
   // números: pilas, muro de cajas, una caja con su moneda
-  const ua = clamp((t - T.facturo) / 1.6), ub = clamp((t - T.gano) / 0.5);
-  pila(pilaAlta, N_ALTA, -0.9, 0, t < T.facturo ? 0 : Math.max(1, Math.round(N_ALTA * eo(ua))), 0);
+  const ua = clamp((t - T.regala - 0.3) / 3.4), ub = clamp((t - T.gano) / 0.5);
+  pila(pilaAlta, N_ALTA, -0.9, 0, t < T.regala + 0.3 ? 0 : Math.max(1, Math.round(N_ALTA * eo(ua))), 0);
   pila(pilaBaja, N_BAJA, 0.9, 0, t < T.gano ? 0 : Math.max(1, Math.round(N_BAJA * eo(ub))), 0);
   marcaAlta.position.set(NX - 0.9, 0.015 + N_ALTA * 0.03 * eo(ua) + 0.1, 0); marcaBaja.position.set(NX + 0.9, 0.015 + N_BAJA * 0.03 + 0.1, 0);
   const um = clamp((t - T.vendio) / 1.4);
