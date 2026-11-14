@@ -193,6 +193,14 @@ def animar(arm, extras=()):
                     apuntar(a, f"hand_{lado}", (-s * 0.3, -1, 0.1))
             return p
         _accion(arm, "entregar", [(1, ent(0)), (31, ent(1)), (61, ent(0))])
+    if "cargar" in extras:     # camina con una caja en los brazos
+        def carga(f):
+            def p(a):
+                _paso(a, f, 0.9)
+                for lado, s in (("l", 1), ("r", -1)):
+                    apuntar(a, f"upperarm_{lado}", (s * 0.14, -0.5, -0.86)); apuntar(a, f"lowerarm_{lado}", (-s * 0.3, -1, 0.12)); apuntar(a, f"hand_{lado}", (-s * 0.35, -1, 0.1))
+            return p
+        _accion(arm, "cargar", [(1 + i * 4, carga(i / 8)) for i in range(9)])
     if "embalar" in extras:    # manos sobre la mesa, cerrando una caja
         def emb(k):
             def p(a):

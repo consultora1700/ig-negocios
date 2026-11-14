@@ -99,7 +99,7 @@ texto("nave_cartel", "CENTRO DE ÚLTIMA MILLA", F_BLACK, 0.55, (BX - 4.0, 12.98,
 
 # ======================= ZONA C: estación de servicio =======================
 CX = -60.0
-suelo("playa", 22, 16, CX, 2, 0.0, "Tiles101", 2.0, tinte="#E6E3DD")
+suelo("playa", 22, 16, CX, 2, 0.0, "Concrete044C", 3.0, tinte="#FFFFFF")
 suelo("calle_estacion", 22, 4, CX, -8, 0.0, "Asphalt031", 4.0)
 for s in (-1, 1): bloque(f"columna{s}", (0.45, 0.45, 5.2), (CX + s * 4.5, 2.0, 2.6), pintura("columna", "#D9DCE1", 0.5), 1.0)
 bloque("techo", (13, 8, 0.6), (CX, 2.0, 5.5), pintura("techo_est", "#F2F2F0", 0.6), 2.0)
@@ -123,6 +123,21 @@ luz("sol", "SUN", (-6, -8, 12), 3.0, "#FFE6C8", (R(50), 0, R(-32)), angle=R(5))
 for x in (-6, 0, 6):
     luz(f"nave_luz{x}", "AREA", (BX + x, 4, 6.8), 320, "#F3F6FF", (0, 0, 0), size=4.0)
 luz("techo_estacion", "AREA", (CX, 2.0, 4.95), 500, "#FFFFFF", (0, 0, 0), size=8.0)
+
+# ---------------- agrupar piezas repetidas (menos objetos para hornear y mejor resolución de luz) ----------------
+import horno
+GRUPOS = ("rack_poste", "rack_viga", "pallet", "cinta_pata", "cinta_borde", "linea_piso", "senda", "porton", "copa", "tronco", "cantero", "farol", "columna", "techo_luz", "surtidor")
+for g in GRUPOS:
+    obs = [o for o in horno.FIJOS if o.name.startswith(g) and o.type == "MESH"]
+    if len(obs) < 2: continue
+    bpy.ops.object.select_all(action="DESELECT")
+    for o in obs:
+        o.select_set(True)
+        if o.modifiers: bpy.context.view_layer.objects.active = o; bpy.ops.object.convert(target="MESH")
+    for o in obs: o.select_set(True)
+    bpy.context.view_layer.objects.active = obs[0]; bpy.ops.object.join(); obs[0].name = g + "_grupo"
+    vivos = set(sc.objects[:]); horno.FIJOS[:] = [o for o in horno.FIJOS if o in vivos]
+print("objetos a hornear:", len(horno.FIJOS))
 
 if opt.get("vista"):
     zx = {"A": 0.0, "B": BX, "C": CX}[opt.get("zona", "A")]
