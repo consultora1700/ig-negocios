@@ -51,7 +51,9 @@ def _cabeza_ovalada(nombre, cuerpo, arm, piel, pelo_color, pelo_forma):
     cab = bpy.data.objects.new(nombre + ".cabeza", m2); bpy.context.scene.collection.objects.link(cab)
     for p in m2.polygons: p.use_smooth = True
     cab.modifiers.new("sub", "SUBSURF").levels = 1; m2.materials.append(piel)
-    cab.location = c + Vector((0, 0, t.z * 0.04))
+    # se apoya sobre el cuello: la base del óvalo queda apenas por debajo del arranque del hueso de la cabeza
+    hz = (arm.matrix_world @ arm.pose.bones["head"].head).z
+    cab.location = Vector((c.x, c.y, hz + t.z * 0.6 * 0.82))
     # pelo en volumen: casco recortado con línea de frente y nuca, con grosor
     bm = bmesh.new(); bmesh.ops.create_uvsphere(bm, u_segments=40, v_segments=24, radius=1)
     sx, sy, sz = t.x * 0.6, t.y * 0.61, t.z * 0.645
@@ -84,8 +86,8 @@ def _cabeza_ovalada(nombre, cuerpo, arm, piel, pelo_color, pelo_forma):
         mel.modifiers.new("grosor", "SOLIDIFY").thickness = t.z * 0.06; mel.modifiers.new("sub", "SUBSURF").levels = 1
         m4.materials.append(m3.materials[0]); mel.location = cab.location + Vector((0, t.y * 0.12, -t.z * 0.35)); extra.append(mel)
     bpy.context.view_layer.update()
-    for o in (cab, pelo, *extra):   # colgar del hueso de la cabeza
-        mw = o.matrix_world.copy(); o.parent = arm; o.parent_type = "BONE"; o.parent_bone = "head"; o.matrix_world = mw
+    for o in (cab, pelo, *extra):   # colgar del hueso de la cabeza (el cuello, del hueso del cuello)
+        mw = o.matrix_world.copy(); o.parent = arm; o.parent_type = "BONE"; o.parent_bone = "neck_01" if o.name.endswith(".cuello") else "head"; o.matrix_world = mw
     return cab, pelo
 
 def crear(nombre, cfg):
@@ -100,9 +102,18 @@ def crear(nombre, cfg):
     arm = HumanService.add_builtin_rig(cuerpo, "game_engine"); arm.name = nombre + ".esqueleto"
     piel = mat("piel-" + cfg.get("piel", "#C69A72"), cfg.get("piel", "#C69A72"), rough=0.5, sss=0.15)
     cuerpo.data.materials.clear(); cuerpo.data.materials.append(piel)
+    ARRIBA = ("spine", "clavicle", "upperarm", "lowerarm", "hand", "neck", "head", "thumb", "index", "middle", "ring", "pinky")
     for a in cfg["ropa"]:
         o = HumanService.add_mhclo_asset(_ruta("clothes", a), cuerpo, asset_type="Clothes", subdiv_levels=0, material_type="MAKESKIN")
         o.name = f"{nombre}.{a}"
+        if a in cfg.get("solo_abajo", ()):   # va otra prenda encima: me quedo solo con la parte que se mueve con cadera y piernas
+            me = o.data; bm = bmesh.new(); bm.from_mesh(me); dl = bm.verts.layers.deform.verify()
+            arriba = {g.index for g in o.vertex_groups if g.name.startswith(ARRIBA)}
+            fuera = []
+            for v in bm.verts:
+                w_ar = sum(w for gi, w in v[dl].items() if gi in arriba); w_tot = sum(v[dl].values()) or 1
+                if w_ar / w_tot > 0.35: fuera.append(v)
+            bmesh.ops.delete(bm, geom=fuera, context="VERTS"); bm.to_mesh(me); bm.free()
         d = os.path.join(DATOS, "clothes", a)
         normal = next((os.path.join(d, f) for f in os.listdir(d) if "normal" in f.lower() and f.endswith(".png")), None)
         difusa = next((os.path.join(d, f) for f in os.listdir(d) if ("diffuse" in f.lower() or f.lower() == a.lower() + ".png") and f.endswith(".png")), None)

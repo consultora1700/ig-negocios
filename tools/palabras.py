@@ -7,7 +7,7 @@ a, out = sys.argv[1], sys.argv[2]; mod = sys.argv[3] if len(sys.argv) > 3 else "
 pcm = subprocess.run(["ffmpeg","-v","error","-i",a,"-ac","1","-ar","16000","-f","s16le","-"],capture_output=True,check=True).stdout
 audio = np.frombuffer(pcm, np.int16).astype(np.float32) / 32768
 m = WhisperModel(mod, device="cpu", compute_type="int8")
-segs, info = m.transcribe(audio, language="es", word_timestamps=True, initial_prompt="Martín, Lucas, almacén, yerba, WhatsApp, fiarle.")
+segs, info = m.transcribe(audio, language="es", word_timestamps=True, initial_prompt=os.environ.get("PISTA", "Martín, Lucas, almacén, yerba, WhatsApp, fiarle."))
 W = []
 for s in segs:
     for w in s.words: W.append({"text": w.word.strip(), "start": round(w.start,3), "end": round(w.end,3)})

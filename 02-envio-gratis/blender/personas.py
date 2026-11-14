@@ -10,10 +10,10 @@ bpy.ops.wm.read_homefile(use_empty=True)
 from humano import crear, animar, exportar, parado
 from personaje import mat, hex2lin
 ELENCO = {
- "repartidor": (dict(genero=1.0, edad=0.42, peso=0.55, musculo=0.6, ropa=["male_casualsuit06", "shoes02"], colores={"shoes02": "#2A2A2E"}, pelo="#2A1A12", pelo_forma="rulos"), ["entregar"]),
- "clienta": (dict(genero=0.0, edad=0.5, peso=0.5, ropa=["female_casualsuit01", "shoes03"], colores={"shoes03": "#6B3A1E"}, pelo="#5A3A22", pelo_forma="largo"), []),
+ "repartidor": (dict(genero=1.0, edad=0.42, peso=0.55, musculo=0.6, ropa=["male_casualsuit05", "shoes02"], colores={"shoes02": "#2A2A2E"}, pelo="#2A1A12", pelo_forma="rulos"), ["entregar"]),
+ "clienta": (dict(genero=0.0, edad=0.5, peso=0.5, ropa=["female_casualsuit01", "joepal_crude_t-shirt_female", "shoes03"], colores={"shoes03": "#6B3A1E", "joepal_crude_t-shirt_female": "#D98C3A"}, solo_abajo=["female_casualsuit01"], pelo="#5A3A22", pelo_forma="largo"), []),
  "vendedor": (dict(genero=1.0, edad=0.62, peso=0.62, ropa=["male_casualsuit03", "shoes01"], colores={"shoes01": "#1A1A1C"}, pelo="#8A8A8A", pelo_forma="corto"), ["embalar"]),
- "vecino": (dict(genero=1.0, edad=0.3, peso=0.45, ropa=["male_casualsuit02", "shoes05"], colores={}, pelo="#3A2418", pelo_forma="corto"), []),
+ "vecino": (dict(genero=1.0, edad=0.3, peso=0.45, ropa=["male_casualsuit02", "namuhekam_male_polo_shirt", "shoes05"], colores={"namuhekam_male_polo_shirt": "#2F6B4F", "shoes05": "#EDEDED"}, solo_abajo=["male_casualsuit02"], pelo="#3A2418", pelo_forma="corto"), []),
 }
 arms = {}
 for n, (cfg, extras) in ELENCO.items():
