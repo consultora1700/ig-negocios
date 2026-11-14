@@ -57,7 +57,7 @@ def armar_set():
     fijo(caja("pared_izq", (0.25, PR, 4.2), mat("pared2", "#303C68", rough=0.9), loc=(-AN / 2 + 0.12, 0, 2.1), bisel=0.02, sub=0))
     fijo(caja("cornisa", (AN, 0.3, 0.35), mat("cornisa", "#11152A", rough=0.7), loc=(0, PR / 2 - 0.12, 4.2), bisel=0.1, sub=0))
     fijo(caja("zocalo", (AN, 0.3, 0.16), mat("zocalo", "#14182A", rough=0.6), loc=(0, PR / 2 - 0.3, 0.08), bisel=0.2, sub=0))
-    fijo(caja("led_fondo", (AN - 0.4, 0.04, 0.06), mat("led", "#FFD9A0", emis="#FFB868", fuerza=14), loc=(0, PR / 2 - 0.27, 3.86), bisel=0.3, sub=0))
+    fijo(caja("led_fondo", (AN - 0.4, 0.04, 0.06), mat("led", "#FFD9A0", emis="#FFB868", fuerza=40), loc=(0, PR / 2 - 0.27, 3.86), bisel=0.3, sub=0))
     # afiches
     AF = [("#1E5BD6", "#0A1030", "ÓRBITA\nCERO"), ("#D6452F", "#2A0A10", "LA ÚLTIMA\nCUENTA"), ("#16A27A", "#06221B", "DOS\nVERANOS")]
     for i, (a, b, t) in enumerate(AF):
@@ -124,17 +124,19 @@ def armar_set():
     # ---- luces (se hornean en el set y se replican en tiempo real para la gente) ----
     L = []
     def reg(o, extra): L.append(dict(nombre=o.name, tipo=o.data.type, pos=list(o.location), rot=list(o.rotation_euler), energia=o.data.energy, color=list(o.data.color), **extra))
-    reg(luz("principal", "AREA", (-5, -7, 9), 3200, "#FFE4C4", (math.radians(48), 0, math.radians(-33)), size=6, shape="SQUARE"), {"tam": 6})
-    reg(luz("relleno", "AREA", (7, -5, 4), 700, "#AFC6FF", (math.radians(68), 0, math.radians(52)), size=5), {"tam": 5})
+    reg(luz("principal", "AREA", (-5, -7, 9), 1500, "#FFE1BC", (math.radians(48), 0, math.radians(-33)), size=3, shape="SQUARE"), {"tam": 3})
+    reg(luz("relleno", "AREA", (7, -5, 4), 260, "#9DB6FF", (math.radians(68), 0, math.radians(52)), size=5), {"tam": 5})
     reg(luz("contra", "AREA", (1, 6, 6), 500, "#FFD2A0", (math.radians(-40), 0, 0), size=6), {"tam": 6})
     for i in range(3):
-        reg(luz(f"lampara{i}", "SPOT", (cx - 1.6 + i * 1.6, cy + 0.1, 3.08), 220, "#FFC98A", (0, 0, 0), spot_size=1.7, spot_blend=0.7, shadow_soft_size=0.15), {})
+        reg(luz(f"lampara{i}", "SPOT", (cx - 1.6 + i * 1.6, cy + 0.1, 3.08), 520, "#FFC27A", (0, 0, 0), spot_size=1.5, spot_blend=0.55, shadow_soft_size=0.12), {})
     reg(luz("luz_maquina", "POINT", (cx - 1.6, cy + 1.15, 1.9), 35, "#FFC27A", shadow_soft_size=0.25), {})
     reg(luz("luz_boleteria", "AREA", (bx, by - 1.0, 1.45), 60, "#FFB866", (math.radians(90), 0, 0), size=1.2), {"tam": 1.2})
+    for k, (x, y) in enumerate(((2.0, 0.6), (-2.6, -1.4), (3.6, -2.8))):   # charcos de luz cálida en el piso
+        reg(luz(f"charco{k}", "SPOT", (x, y, 5.5), 650, "#FFD39A", (0, 0, 0), spot_size=0.75, spot_blend=0.8, shadow_soft_size=0.3), {})
     reg(luz("luz_afiches", "SPOT", (-3.2, 0.5, 4.3), 400, "#FFFFFF", (math.radians(40), 0, math.radians(60)), spot_size=1.1, spot_blend=0.6), {})
     w = bpy.data.worlds.new("mundo"); sc.world = w; w.use_nodes = True
-    w.node_tree.nodes["Background"].inputs[0].default_value = (*hex2lin("#1B2340"), 1); w.node_tree.nodes["Background"].inputs[1].default_value = 0.6
-    json.dump(dict(luces=L, mundo=dict(color=list(hex2lin("#1B2340")), fuerza=0.6)), open(os.path.join(SALIDA, "luces.json"), "w"), indent=1)
+    w.node_tree.nodes["Background"].inputs[0].default_value = (*hex2lin("#1B2340"), 1); w.node_tree.nodes["Background"].inputs[1].default_value = 0.18
+    json.dump(dict(luces=L, mundo=dict(color=list(hex2lin("#1B2340")), fuerza=0.18)), open(os.path.join(SALIDA, "luces.json"), "w"), indent=1)
 
 # ======================= personajes =======================
 VARIANTES = {
