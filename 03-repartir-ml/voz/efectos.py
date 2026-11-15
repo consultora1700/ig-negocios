@@ -1,7 +1,7 @@
-"""Efectos del reel 02 (suaves, guía EDICION.md): whoosh en cada cambio de plano, tic en cada ficha, golpe grave en la regla.
+"""Efectos del reel 03 v2 (suaves, guía EDICION.md): whoosh en cada cambio de plano, tic en cada ficha, golpe grave en la regla.
 Salida: voz/efectos-crudos.wav (86,3 s)."""
 import numpy as np, wave
-SR = 48000; DUR = 86.3; N = int(SR * DUR); x = np.zeros(N); rng = np.random.default_rng(5)
+SR = 48000; DUR = 97.7; N = int(SR * DUR); x = np.zeros(N); rng = np.random.default_rng(5)
 def add(t, s):
     i = int(t * SR); s = s[: max(0, N - i)]; x[i:i + len(s)] += s
 def banda(n, lo, hi):
@@ -18,11 +18,11 @@ def moneda(a=0.3):
     n = int(0.7 * SR); t = np.arange(n) / SR; return a * (np.sin(2 * np.pi * 2350 * t) + 0.5 * np.sin(2 * np.pi * 3520 * t)) * np.exp(-t * 9) * (1 - np.exp(-t * 300))
 def papel(a=0.35):
     n = int(0.35 * SR); t = np.linspace(0, 1, n); return a * banda(n, 1500, 9000) * np.exp(-t * 6) * (0.5 + 0.5 * np.sin(np.pi * t))
-for t in (8.4, 12.7, 17.4, 21.1, 22.7, 29.7, 36.2, 42.9, 49.5, 59.5, 65.2, 74.0, 78.8): add(t - 0.2, whoosh())
-for t in (0.9, 15.0, 19.0, 21.1, 28.4, 32.1, 35.0, 37.3, 39.3, 40.2, 40.65, 45.6, 47.4, 48.1, 53.4, 56.2, 58.7, 61.8): add(t, tic(0.3))
-add(0.3, caja()); add(41.4, golpe(0.35)); add(59.5, moneda())
-for k in range(30): add(51.2 + k * 0.1, tic(0.06))   # surtidor que cuenta
-add(74.0, golpe())
+for t in (8.0, 11.9, 17.3, 19.1, 21.6, 27.6, 34.5, 38.0, 44.7, 60.7, 76.9, 84.9, 90.3): add(t - 0.2, whoosh())
+for t in (0.9, 15.0, 19.1, 27.6, 30.3, 33.1, 34.9, 35.6, 36.6, 37.0, 41.7, 53.6, 56.2, 59.4, 68.3, 70.2, 70.35, 70.5, 72.5): add(t, tic(0.3))
+add(0.3, caja()); add(6.7, golpe(0.4)); add(37.4, golpe(0.35)); add(61.6, moneda()); add(72.0, moneda()); add(74.0, golpe(0.45))
+for k in range(18): add(49.8 + k * 0.1, tic(0.06))   # surtidor que cuenta
+add(84.9, golpe())
 x = x / max(1e-9, np.abs(x).max()) * 0.8
 y = (np.repeat(x[:, None], 2, 1) * 32767).astype(np.int16)
 w = wave.open("voz/efectos-crudos.wav", "wb"); w.setnchannels(2); w.setsampwidth(2); w.setframerate(SR); w.writeframes(y.tobytes()); w.close(); print("ok")

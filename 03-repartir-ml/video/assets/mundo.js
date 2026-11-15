@@ -1,4 +1,4 @@
-// Reel 03 «Repartir para Mercado Libre: ¿cuánto te queda?» — mundo 3D.
+// Reel 03 v2 «Repartir para Mercado Libre: facturar no es ganar» — mundo 3D.
 // Escenario con texturas reales y luz horneada aparte (horneado/set.glb: TEXCOORD_0 textura, TEXCOORD_1 luz; horneado/luz/*.hdr).
 // En tiempo real: personajes MPFB (pistas parado, caminar, cargar, entregar, embalar), autos Kenney, cajas y objetos de Poly Haven,
 // cajas que viajan por las cintas y la mesa con las dos rutas. Ejes Three: X derecha, Y arriba, +Z hacia la cámara.
@@ -11,10 +11,11 @@ import { RoundedBoxGeometry } from "./lib/RoundedBoxGeometry.js";
 export const W = 1080, H = 1920;
 // Tiempos anclados a la voz (voz/voz-palabras.json)
 export const T = {
-  hasta: 0.0, barbaro: 5.9, primero: 8.4, notiene: 10.5, paquete: 12.7, escobar: 14.3, mil130: 15.0, ultima: 17.4, logistica: 19.0, vos: 21.1,
-  caminos: 22.7, uno: 24.0, semana: 28.4, dos: 29.7, pesos: 32.1, deeso: 35.0, piden: 36.2, auto: 37.3, celular: 39.3, seguro: 40.2, sinmono: 41.4,
-  cuenta: 42.9, techo: 44.1, s450: 45.6, seis: 47.4, s75: 48.1, cobra: 49.5, km100: 50.9, litros: 51.7, s17: 53.4, gomas: 54.8, s6: 56.2, seg: 56.8, s7: 58.7,
-  quedan: 59.5, millon: 61.8, mejor: 62.8, loco: 65.2, menoskm: 68.5, dosrutas: 70.5, mitad: 72.6, regla: 74.0, mandaselo: 78.8, seguime: 80.9, fin: 86.3,
+  hasta: 0.0, mitad: 6.7, primero: 8.0, notiene: 9.6, paquete: 11.9, escobar: 14.0, mil130: 15.0, ultima: 17.3, vos: 19.1,
+  caminos: 21.6, uno: 23.0, semana: 26.7, dos: 27.6, pesos: 30.3, deeso: 33.1, piden: 34.5, auto: 34.9, celular: 35.6, seguro: 36.6, mono: 37.0,
+  cuenta: 38.0, ml: 39.3, fact: 41.7, mismo: 43.6, cobra: 44.7, gnc: 46.1, km130: 47.5, snafta: 49.8, cubiertas: 52.1, s300: 53.6, valor: 54.9, s150: 56.2,
+  seg: 57.2, s260: 59.4, quedan: 60.7, s1660: 61.6, s45: 65.4, lucas: 67.5, s190: 68.3, cuota: 70.0, quedanL: 71.4, s2030: 72.0, s370: 74.0,
+  loco: 76.9, dosrutas: 78.9, mitad2: 83.0, regla: 84.9, mandaselo: 90.3, seguime: 92.3, fin: 97.7,
 };
 const clamp = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
 const ease = (u) => (u < 0.5 ? 4 * u * u * u : 1 - Math.pow(-2 * u + 2, 3) / 2);
@@ -71,7 +72,7 @@ export const auto = poner("sedan", 1.2, 0, 2.0, Math.PI / 2, 1.75);
 export const camion = poner("delivery", 30, 0, 4.6, -Math.PI / 2, 1.75);
 poner("hidrante", 4.2, 0.15, 0.4, 0, 1.0); poner("tacho", -6.4, 0.15, -1.6, 0, 0.8);
 // estación: el mismo modelo de auto, cargando nafta
-export const autoNafta = poner("sedan", -61.6, 0, 0.0, Math.PI / 2, 1.75);
+export const autoNafta = poner("sedan", -61.6, 0, 0.7, Math.PI / 2, 1.75);
 // centro logístico: carros, zorras, lámparas colgantes y cajas en los racks
 for (const [x, z, r] of [[52, 1.0, 0.4], [66, -2.0, -0.6], [57, -11.5, 0.2]]) poner("carro", x, 0, z, r, 1.1);
 for (const [x, z, r] of [[55.6, 0.6, 0.8], [70, 1.5, -0.3]]) poner("zorra", x, 0, z, r, 1.1);
@@ -89,6 +90,14 @@ const N_CINTA = 18; const enCinta = instanciar(N_CINTA * 2);
 export const cajaMano = props.caja.clone(true); cajaMano.scale.setScalar(1.3); cajaMano.traverse((m) => { if (m.isMesh) m.castShadow = true; }); scene.add(cajaMano);
 const baul = instanciar(5); [[-0.7, 0.62, 0.0], [-0.25, 0.62, 0.05], [-0.5, 0.95, 0.02], [0.2, 0.62, -0.02], [-0.1, 0.95, 0.0]].forEach(([dx, y, dz], i) => {
   _e.set(0, i * 0.4, 0); _q.setFromEuler(_e); _m.compose(new THREE.Vector3(1.2 - 1.4 + dx, y, 2.0 + dz), _q, new THREE.Vector3(1.1, 1.1, 1.1)); baul.setMatrixAt(i, _m); });
+
+// logos oficiales (Wikimedia Commons, dominio público) sobre el amarillo de la marca
+const placaML = new THREE.TextureLoader().load("assets/logos/ml-placa.png"); placaML.colorSpace = THREE.SRGBColorSpace; placaML.anisotropy = 8;
+const matPlaca = new THREE.MeshStandardMaterial({ map: placaML, roughness: 0.5 });
+function placa(w, h) { const m = new THREE.Mesh(new THREE.PlaneGeometry(w, h), matPlaca); m.castShadow = false; m.receiveShadow = true; return m; }
+[-1, 1].forEach((s) => { const p = placa(1.5, 0.7); p.position.set(s * 0.765, 0.95, -0.35); p.rotation.y = s > 0 ? Math.PI / 2 : -Math.PI / 2; camion.add(p); });   // costados del camión (unidades del modelo)
+{ const p = placa(5.2, 2.4); p.position.set(60 - 9.5, 4.6, -12.97); scene.add(p); }
+export const marcaLogoNave = new THREE.Object3D(); marcaLogoNave.position.set(60 - 9.5, 6.0, -12.9); scene.add(marcaLogoNave);
 
 // ---------- personajes ----------
 const TIPOS = ["repartidor", "clienta", "vendedor", "vecino"]; const PROTO = {};
@@ -200,15 +209,15 @@ export function render(t, oscuro = 0) {
   const enAuto = t >= T.cuenta && t < T.cobra;
   if (enAuto) { chofer.o.visible = false; chofer.blob.visible = false; }
   else { chofer.o.visible = chofer.blob.visible = true;
-    if (ciclo < 1.2) mover(chofer, t, 0, [-0.6, 2.3], [-0.6, 2.3], 0, 0.01, [1, 2.3], "entregar", 0.2);
-    else if (ciclo < 5.0) mover(chofer, t, 0, [-0.6, 2.3], [-0.4, -1.4], 1.2 + (t - ciclo), 5.0 + (t - ciclo), [-0.4, -3], "entregar", 0.2, "cargar");
-    else if (ciclo < 7.0) mover(chofer, t, VEREDA, [-0.4, -1.4], [-0.4, -1.4], 0, 0.01, [-0.4, -3], "entregar", 0.2);
-    else mover(chofer, t, 0, [-0.4, -1.4], [-0.6, 2.3], 7.0 + (t - ciclo), 11.6 + (t - ciclo), null, "parado", 0.2); }
+    if (ciclo < 1.2) mover(chofer, t, 0, [-1.75, 2.0], [-1.75, 2.0], 0, 0.01, [1, 2.0], "entregar", 0.2);
+    else if (ciclo < 5.0) mover(chofer, t, 0, [-1.75, 2.0], [-1.6, -1.4], 1.2 + (t - ciclo), 5.0 + (t - ciclo), [-1.6, -3], "entregar", 0.2, "cargar");
+    else if (ciclo < 7.0) mover(chofer, t, VEREDA, [-1.6, -1.4], [-1.6, -1.4], 0, 0.01, [-1.6, -3], "entregar", 0.2);
+    else mover(chofer, t, 0, [-1.6, -1.4], [-1.75, 2.0], 7.0 + (t - ciclo), 11.6 + (t - ciclo), null, "parado", 0.2); }
   const sosteniendo = !enAuto && (ciclo < 7.0); chofer.o.updateWorldMatrix(true, true);
   if (sosteniendo) { cajaMano.visible = true; const f = new THREE.Vector3(0, 1.12, 0.42).applyQuaternion(chofer.o.quaternion); cajaMano.position.copy(chofer.o.position).add(f); cajaMano.rotation.y = chofer.o.rotation.y; } else cajaMano.visible = false;
   // auto: estacionado; en «la cuenta» circula por la calle
   if (enAuto) { const u = clamp((t - T.cuenta) / (T.cobra - T.cuenta)); auto.position.set(mix(-12, 10, u), 0, 2.0); } else auto.position.set(1.2, 0, 2.0);
-  baul.visible = !enAuto;
+  baul.visible = false;
   // camión de reparto que pasa por la calle
   camion.visible = t >= T.primero && t < T.paquete; camion.position.set(mix(16, -16, clamp((t - T.primero) / (T.paquete - T.primero))), 0, 5.2);
   // transeúntes por la vereda
@@ -222,7 +231,7 @@ export function render(t, oscuro = 0) {
   mover(operarios[3], t, 0, [54.5, -1.6], [54.5, -1.6], 0, 0.01, [56, -1.6], "embalar", 2.0);
   // estación: el chofer al lado del auto, cargando nafta
   // (en ese plano se reusa el mismo chofer: se lo ubica junto al surtidor)
-  if (t >= T.cobra && t < T.loco) { chofer.o.visible = chofer.blob.visible = true; mover(chofer, t, 0, [-62.2, -0.9], [-62.2, -0.9], 0, 0.01, [-61.6, -2], "parado", 0.4); cajaMano.visible = false; }
+  if (t >= T.cobra && t < T.loco) { chofer.o.visible = chofer.blob.visible = true; mover(chofer, t, 0, [-64.6, 0.2], [-64.6, 0.2], 0, 0.01, [-61.6, -2], "parado", 0.4); cajaMano.visible = false; }
   // mesa de las rutas
   const ur = clamp((t - T.loco - 0.6) / 5.5);
   RUTAS.forEach((R, i) => dibujarRuta(R, t < T.loco ? 0 : ur, i));

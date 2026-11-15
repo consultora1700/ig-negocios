@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="assets/lib/gsap.min.js"></script>
+    <style>
+      /* EL MÉTODO EMPRESARIAL — capa de marca (MARCA.md y /root/reels-ref/EDICION.md) */
+      :root { --plata-c: #E5E7EB; --plata-m: #BFC4CC; --plata-o: #9299A3; --azul-l: #00CFFF;
+        --g-azul: linear-gradient(110deg, #0057D9 0%, #007BFF 35%, #009DFF 70%, #00CFFF 100%); }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1920px; overflow: hidden; background: #000000; }
+      #root { position: relative; width: 1080px; height: 1920px; font-family: "Montserrat"; }
+      #gl { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; }
+      #hud { position: absolute; inset: 0; pointer-events: none; z-index: 5; }
+      #marca { position: absolute; left: 44px; top: 96px; display: flex; align-items: center; gap: 12px; padding: 8px 16px 8px 8px; border-radius: 12px; background: rgba(0,0,0,.72); }
+      #marca img { width: 54px; height: 54px; }
+      #marca span { font-weight: 800; font-size: 19px; line-height: 1.05; letter-spacing: 0.12em; color: var(--plata-c); }
+      #marca span b { display: block; font-weight: 900; color: #FFFFFF; }
+      #logoML { position: absolute; right: 44px; top: 98px; height: 66px; border-radius: 12px; }
+      #titulo { position: absolute; left: 0; right: 0; top: 196px; display: grid; justify-items: center; gap: 10px; }
+      #titulo div { font-weight: 900; font-size: 58px; line-height: 1; letter-spacing: -0.01em; color: #FFFFFF; padding: 12px 24px 14px; border-radius: 10px; }
+      #titulo .a { background: #000000; border: 3px solid #9299A3; } #titulo .b { background: var(--g-azul); }
+      .ficha { position: absolute; left: 0; top: 0; background: #000000; border-radius: 14px; padding: 14px 24px 16px 30px; opacity: 0; border: 2px solid #3A3E46; }
+      .ficha::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 10px; border-radius: 14px 0 0 14px; background: var(--g-azul); }
+      .ficha::after { content: ""; position: absolute; left: 50%; bottom: -16px; margin-left: -14px; border: 14px solid transparent; border-bottom: 0; border-top: 16px solid #3A3E46; }
+      .ficha.fija::after { display: none; }
+      .ficha small { display: block; font-weight: 800; font-size: 24px; letter-spacing: 0.16em; color: var(--plata-m); }
+      .ficha b { display: block; font-weight: 900; font-size: 56px; line-height: 1.04; color: #FFFFFF; white-space: nowrap; }
+      .ficha.azul { background: var(--g-azul); border-color: #00CFFF; } .ficha.azul::before { display: none; } .ficha.azul::after { border-top-color: #007BFF; } .ficha.azul small { color: #E5F6FF; }
+      #grande { position: absolute; left: 50%; top: 470px; transform: translateX(-50%); width: 950px; text-align: center; background: rgba(0,0,0,.86); border: 2px solid #3A3E46; border-radius: 18px; padding: 22px 26px 26px; opacity: 0; }
+      #grande small { display: block; font-weight: 800; font-size: 30px; letter-spacing: 0.14em; color: var(--plata-c); }
+      #grande b { display: block; font-weight: 900; font-size: 84px; line-height: 1.05; margin-top: 6px; color: #FFFFFF; }
+      #grande b.az { background: var(--g-azul); -webkit-background-clip: text; background-clip: text; color: transparent; }
+      #grande b.cita { font-size: 56px; line-height: 1.15; }
+      /* celular con la oferta de ruta */
+      #cel { position: absolute; left: 290px; top: 450px; width: 500px; height: 860px; border-radius: 56px; background: #0B0D11; border: 10px solid #1E2128; box-shadow: 0 30px 80px rgba(0,0,0,.6); opacity: 0; overflow: hidden; }
+      #cel .barra { height: 64px; display: flex; align-items: center; justify-content: center; } #cel .barra i { width: 120px; height: 26px; border-radius: 14px; background: #000; display: block; }
+      #cel .app { padding: 18px 30px; font-family: "Montserrat"; color: #E5E7EB; display: grid; gap: 20px; }
+      #cel .logoapp { display: flex; align-items: center; gap: 14px; } #cel .logoapp img { height: 64px; border-radius: 12px; } #cel .logoapp span { font-weight: 800; font-size: 30px; color: #FFFFFF; }
+      #cel .app h4 { font-weight: 800; font-size: 26px; letter-spacing: .12em; color: #9299A3; }
+      #cel .tarjeta { background: #15181E; border: 2px solid #2A2E36; border-radius: 22px; padding: 24px; display: grid; gap: 18px; }
+      #cel .tarjeta strong { font-weight: 900; font-size: 40px; color: #FFFFFF; }
+      #cel .fila { display: flex; justify-content: space-between; align-items: center; font-weight: 700; font-size: 26px; color: #BFC4CC; }
+      #cel .fila i { width: 180px; height: 22px; border-radius: 11px; background: #2A2E36; display: block; }
+      #cel .fila i.az { background: linear-gradient(90deg, #0057D9, #00CFFF); }
+      #cel .botones { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+      #cel .botones div { text-align: center; padding: 18px 0; border-radius: 16px; font-weight: 900; font-size: 28px; }
+      #cel .si { background: var(--g-azul); color: #fff; } #cel .no { background: #22262E; color: #9299A3; }
+      #cel .chip { justify-self: center; padding: 12px 22px; border-radius: 999px; background: #FFFFFF; color: #000; font-weight: 900; font-size: 26px; letter-spacing: .08em; opacity: 0; }
+      /* requisitos */
+      #req { position: absolute; left: 70px; top: 450px; width: 640px; background: rgba(0,0,0,.88); border: 2px solid #3A3E46; border-radius: 22px; padding: 26px 30px; display: grid; gap: 18px; opacity: 0; }
+      #req h4 { font-weight: 800; font-size: 28px; letter-spacing: .16em; color: #BFC4CC; }
+      #req .it { display: flex; align-items: center; gap: 18px; font-weight: 900; font-size: 44px; color: #FFFFFF; opacity: 0; }
+      #req .it i { width: 46px; height: 46px; border-radius: 12px; background: var(--g-azul); display: grid; place-items: center; font-style: normal; font-size: 32px; color: #fff; }
+      #req .it.clave { color: var(--azul-l); }
+      #req .nota { font-weight: 800; font-size: 32px; color: #000; background: #FFFFFF; padding: 10px 18px; border-radius: 10px; justify-self: start; opacity: 0; }
+      /* ticket de la cuenta */
+      #ticket { position: absolute; left: 50px; top: 430px; width: 620px; background: rgba(0,0,0,.9); border: 2px solid #3A3E46; border-radius: 20px; padding: 22px 26px 24px; display: grid; gap: 10px; opacity: 0; font-family: "Montserrat"; }
+      #ticket .cab { display: flex; justify-content: space-between; align-items: center; }
+      #ticket .cab b { font-weight: 800; font-size: 24px; letter-spacing: .16em; color: #BFC4CC; }
+      #ticket .cab span { font-weight: 900; font-size: 20px; letter-spacing: .14em; color: #000; background: #FFFFFF; padding: 4px 10px; border-radius: 6px; }
+      #ticket .l { display: flex; justify-content: space-between; gap: 16px; font-weight: 700; font-size: 30px; color: #E5E7EB; opacity: 0; font-variant-numeric: tabular-nums; }
+      #ticket .l b { font-weight: 900; color: #FFFFFF; white-space: nowrap; } #ticket .l.menos b { color: #BFC4CC; }
+      #ticket .l.fuerte { font-size: 36px; } #ticket .l.total { border-top: 2px solid #3A3E46; padding-top: 12px; font-size: 40px; }
+      #ticket .l.total b { background: var(--g-azul); -webkit-background-clip: text; background-clip: text; color: transparent; }
+      #ticket .l.chica { font-size: 24px; color: #9299A3; } #ticket .l.chica b { color: #E5E7EB; }
+      #regla { position: absolute; left: 70px; right: 70px; top: 520px; display: grid; gap: 26px; opacity: 0; }
+      #regla .et { justify-self: start; font-weight: 900; font-size: 30px; letter-spacing: 0.22em; color: #FFFFFF; background: var(--g-azul); padding: 10px 20px; border-radius: 10px; }
+      #regla .l1 { font-weight: 900; font-size: 70px; line-height: 1.08; color: #FFFFFF; }
+      #regla .l1 em { font-style: normal; background: var(--g-azul); -webkit-background-clip: text; background-clip: text; color: transparent; }
+      #regla .formula { justify-self: start; font-weight: 900; font-size: 64px; color: #000; background: #FFFFFF; padding: 10px 28px; border-radius: 14px; opacity: 0; }
+      #sub { position: absolute; left: 60px; right: 60px; top: 1330px; text-align: center; font-weight: 900; font-size: 62px; line-height: 1.1; color: #FFFFFF; -webkit-text-stroke: 12px #000000; paint-order: stroke fill; }
+      #sub em { font-style: normal; color: var(--azul-l); }
+      #fuente { position: absolute; left: 60px; right: 60px; top: 1478px; text-align: center; font-weight: 700; font-size: 23px; color: var(--plata-m); opacity: 0; -webkit-text-stroke: 6px #000; paint-order: stroke fill; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="86.3" data-width="1080" data-height="1920">
+      <canvas id="gl" width="1080" height="1920"></canvas>
+      <div id="hud" data-layout-ignore>
+        <div id="marca"><img src="assets/marca/isotipo.png" alt=""><span>EL MÉTODO<b>EMPRESARIAL</b></span></div>
+        <img id="logoML" src="assets/logos/ml-placa.png" alt="Mercado Libre">
+        <div id="titulo"><div class="a">Repartir para Mercado Libre:</div><div class="b">¿cuánto te queda?</div></div>
+        <div id="grande"><small id="grande-s"></small><b id="grande-b"></b></div>
+        <div id="cel"><div class="barra"><i></i></div><div class="app"><div class="logoapp"><img src="assets/logos/ml-placa.png" alt="Mercado Libre"><span>Envíos Extra</span></div>
+          <div class="tarjeta"><strong>Nueva ruta</strong><div class="fila">Zona <i></i></div><div class="fila">Horario <i></i></div><div class="fila">Lo que paga <i class="az"></i></div>
+            <div class="botones"><div class="no">Rechazar</div><div class="si">Aceptar</div></div></div>
+          <div class="chip" id="chip">COBRÁS CADA SEMANA</div></div></div>
+        <div id="req"><h4>QUÉ TE PIDEN</h4>
+          <div class="it" id="r1"><i>✓</i>Auto, camioneta o utilitario</div><div class="it" id="r2"><i>✓</i>Celular Android</div>
+          <div class="it" id="r3"><i>✓</i>Seguro</div><div class="it" id="r4"><i>✓</i>Monotributo</div><div class="nota" id="rn">Sin monotributo, no cobrás</div></div>
+        <div id="ticket"><div class="cab"><b>LA CUENTA DEL DÍA</b><span>EJEMPLO</span></div>
+          <div class="l" id="k1">Hasta por semana <b>$450.000</b></div><div class="l chica" id="k2">÷ 6 días de trabajo <b></b></div>
+          <div class="l fuerte" id="k3">Entra por día <b>$75.000</b></div>
+          <div class="l menos" id="k4">Nafta (8 litros) <b>−$16.800</b></div><div class="l menos" id="k5">Gomas, aceite, frenos <b>−$6.000</b></div>
+          <div class="l menos" id="k6">Seguro, monotributo, celular <b>−$7.000</b></div>
+          <div class="l total" id="k7">Te quedan <b>≈ $45.000</b></div><div class="l chica" id="k8">Por mes (24 días) <b>≈ $1.000.000</b></div>
+          <div class="l chica" id="k9">En el mejor caso y con el auto pagado <b></b></div></div>
+        <div id="regla"><div class="et">LA REGLA</div><div class="l1">Antes de aceptar una ruta, dividí lo que te pagan por los kilómetros, <em>no por los paquetes</em>.</div><div class="formula" id="formula">$ ÷ km</div></div>
+        <div id="sub"></div>
+        <div id="fuente"></div>
+      </div>
+      <div id="o-marca" data-composition-id="o-marca" data-composition-src="compositions/o-marca.html" data-start="80.9" data-duration="5.4" data-track-index="2" data-track-kind="graphics" data-width="1080" data-height="1920" style="z-index:30"></div>
+      <audio id="voz" class="clip" src="assets/audio/voz.wav" data-start="0" data-duration="82.9" data-track-index="5" data-volume="1"></audio>
+      <audio id="musica" class="clip" src="assets/audio/musica.wav" data-start="0" data-duration="86.3" data-track-index="6" data-volume="1"></audio>
+      <audio id="efectos" class="clip" src="assets/audio/efectos.wav" data-start="0" data-duration="86.3" data-track-index="7" data-volume="1"></audio>
+    </div>
+    <script>
+      window.__timelines = window.__timelines || {};
+      window.__timelines["main"] = gsap.timeline({ paused: true });
+    </script>
+    <script type="module">
+      window.__hf = window.__hf || {}; window.__hf.buildReady = window.__hf.buildReady || {};
+      let listo; window.__hf.buildReady["mundo"] = new Promise((r) => (listo = r));
+      await Promise.all(["900 70px Montserrat", "800 34px Montserrat", "700 22px Montserrat"].map((f) => document.fonts.load(f)));
+      const Mu = await import("./assets/mundo.js");
+      const SUB = await fetch("assets/subtitulos.json").then((r) => r.json());
+      const { T } = Mu; const clamp = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x)); const $ = (id) => document.getElementById(id);
+      const hud = $("hud");
+      // Fichas: [rótulo, valor, clase, objeto 3D o null, punto local o [x, y] fijo, desde, hasta]
+      const FI = [
+        ["HASTA", "$450.000 / SEMANA", "", Mu.marcaAuto, [0, 0, 0], 0.9, T.barbaro - 0.1],
+        ["ESCOBAR · POR DÍA", "130.000 PRODUCTOS", "", null, [60, 560], T.mil130 - 0.1, T.ultima - 0.1],
+        ["EL ÚLTIMO TRAMO", "EMPRESAS DE LOGÍSTICA", "", null, [60, 560], T.logistica - 0.3, T.vos - 0.1],
+        ["O VOS,", "CON TU AUTO", "azul", Mu.marcaAuto, [0, 0, 0], T.vos, T.caminos - 0.1],
+        ["CAMINO 2", "LOGÍSTICA PARTICULAR", "", null, [60, 470], T.dos, T.piden - 0.1],
+        ["LE COBRA AL VENDEDOR", "$3.000 A $8.500", "", null, [60, 630], T.pesos, T.piden - 0.1],
+        ["Y DE ESO,", "TE PAGA A VOS", "azul", null, [60, 790], T.deeso, T.piden - 0.1],
+        ["SURTIDOR", "", "", null, [600, 1000], T.km100, T.gomas - 0.1],
+        ["PAQUETES DESPARRAMADOS", "0 km", "", Mu.marcaRuta[0], [0, 0, 0], T.loco + 0.4, T.dosrutas - 0.05],
+        ["PAQUETES JUNTOS", "0 km", "azul", Mu.marcaRuta[1], [0, 0, 0], T.loco + 0.4, T.dosrutas - 0.05],
+      ];
+      const els = FI.map((f) => { const d = document.createElement("div"); d.className = "ficha " + f[2] + (f[3] ? "" : " fija"); d.innerHTML = `<small>${f[0]}</small><b>${f[1]}</b>`; hud.appendChild(d); return d; });
+      const GR = [[T.barbaro, T.primero, "SUENA BÁRBARO", "¿Y CUÁNTO TE QUEDA?", "az"], [T.notiene, T.paquete, "LO QUE CASI NADIE SABE", "Mercado Libre no tiene camionetas propias", "cita"],
+        [T.caminos, T.uno, "PARA EMPEZAR", "DOS CAMINOS", ""], [T.dosrutas, T.regla, "50 KM CONTRA 25 KM · MISMO PAGO", "LA MITAD DE NAFTA", "az"]];
+      const FU = [[0.4, T.primero, "Techo publicado por Diario Huarpe e Infozona (diciembre de 2025): no es un sueldo"], [T.escobar, T.ultima, "Fuente: Mercado Libre, centro de Escobar (octubre de 2026)"],
+        [T.pesos, T.piden, "Tarifas publicadas por Envíos Flex Ya y La Logística"], [T.cuenta + 1, T.loco, "Nafta: Surtidores (nov. 2026) · Monotributo C: La Nación (ago. 2026) · lo demás: supuestos del ejemplo"]];
+      const K = [["k1", T.s450], ["k2", T.seis], ["k3", T.s75], ["k4", T.s17], ["k5", T.s6], ["k6", T.s7], ["k7", T.quedan], ["k8", T.millon], ["k9", T.mejor]];
+      function aparece(el, t, a, b = 1e9) { const u = clamp((t - a) / 0.3), o = clamp((b - t) / 0.25); el.style.opacity = t >= a && t < b ? Math.min(u, o) : 0; return u; }
+      function hudAt(t) {
+        const enRegla = t >= T.regla && t < T.mandaselo;
+        Mu.render(t, enRegla ? 0.72 * clamp((t - T.regla) / 0.4) * clamp((T.mandaselo - t) / 0.3) : (t >= T.uno && t < T.dos ? 0.45 * clamp((t - T.uno) / 0.4) : 0));
+        FI.forEach((f, i) => {
+          const el = els[i], on = t >= f[5] && t < f[6]; if (!on) { el.style.opacity = 0; return; }
+          const u = clamp((t - f[5]) / 0.25), out = clamp((f[6] - t) / 0.15); const w = el.offsetWidth, h = el.offsetHeight; let x, y, s = { vis: true };
+          if (f[3]) { s = Mu.aPantalla(f[3], f[4]); x = Math.min(1080 - w - 40, Math.max(40, s.x - w / 2)); y = Math.min(1180 - h, Math.max(440, s.y - h - 22)); } else { x = f[4][0]; y = f[4][1]; }
+          el.style.opacity = s.vis ? Math.min(u, out) : 0; el.style.transform = `translate(${x}px, ${y + (1 - u) * 26}px) scale(${0.86 + 0.14 * (1 - Math.pow(1 - u, 3))})`;
+        });
+        // surtidor: litros y pesos que corren
+        const ul = clamp((t - T.km100 - 0.3) / 3.2); els[7].innerHTML = `<small>SURTIDOR · ${(8 * ul).toFixed(1).replace(".", ",")} L</small><b>$${Math.round(16824 * ul).toLocaleString("es-AR")}</b>`;
+        const ur = clamp((t - T.loco - 0.6) / 5.5); els[8].querySelector("b").textContent = Mu.kmRuta(0, ur) + " km"; els[9].querySelector("b").textContent = Mu.kmRuta(1, ur) + " km";
+        const g = GR.find((r) => t >= r[0] && t < r[1]);
+        if (g) { const u = clamp((t - g[0]) / 0.3), o = clamp((g[1] - t) / 0.2); $("grande").style.opacity = Math.min(u, o); $("grande").style.transform = `translateX(-50%) translateY(${(1 - u) * 26}px)`; $("grande-s").textContent = g[2]; $("grande-b").textContent = g[3]; $("grande-b").className = g[4]; }
+        else $("grande").style.opacity = 0;
+        // celular (camino 1)
+        const uc = aparece($("cel"), t, T.uno, T.dos); $("cel").style.transform = `translateY(${(1 - uc) * 60}px)`; $("chip").style.opacity = clamp((t - T.semana) / 0.3);
+        // requisitos
+        aparece($("req"), t, T.piden, T.cuenta - 0.1); [["r1", T.auto], ["r2", T.celular], ["r3", T.seguro], ["r4", T.seguro + 0.45]].forEach(([id, a]) => { const e = $(id); e.style.opacity = clamp((t - a) / 0.25); e.classList.toggle("clave", id === "r4" && t > T.sinmono); });
+        $("rn").style.opacity = clamp((t - T.sinmono) / 0.3);
+        // ticket
+        aparece($("ticket"), t, T.techo, T.loco - 0.1); K.forEach(([id, a]) => { const e = $(id); const u = clamp((t - a) / 0.3); e.style.opacity = u; e.style.transform = `translateX(${(1 - u) * -20}px)`; });
+        // regla
+        const ug = clamp((t - T.regla - 0.2) / 0.4); $("regla").style.opacity = enRegla ? Math.min(ug, clamp((T.mandaselo - t) / 0.3)) : 0; $("regla").style.transform = `translateY(${(1 - ug) * 30}px)`;
+        $("formula").style.opacity = clamp((t - 76.0) / 0.4);
+        let s = ""; for (const [a, txt] of SUB) if (t >= a) s = txt; $("sub").innerHTML = t < T.seguime - 0.05 && !enRegla ? s : "";
+        const fu = FU.find((r) => t >= r[0] + 0.3 && t < r[1]); $("fuente").style.opacity = fu ? 1 : 0; if (fu) $("fuente").textContent = fu[2];
+        $("logoML").style.opacity = t >= T.seguime - 0.05 ? 0 : 1; $("titulo").style.opacity = enRegla || t >= T.seguime - 0.05 || (t >= T.uno && t < T.dos) ? 0 : 1;
+      }
+      window.addEventListener("hf-seek", (e) => hudAt(e.detail.time)); hudAt(0); listo();
+    </script>
+  </body>
+</html>
