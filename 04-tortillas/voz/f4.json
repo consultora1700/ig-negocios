@@ -1,0 +1,82 @@
+[
+{
+"text": "dos",
+"start": 0.0,
+"end": 0.52
+},
+{
+"text": "millones",
+"start": 0.52,
+"end": 0.98
+},
+{
+"text": "cinco",
+"start": 0.98,
+"end": 1.58
+},
+{
+"text": "mil",
+"start": 1.58,
+"end": 2.08
+},
+{
+"text": "dividido",
+"start": 2.08,
+"end": 3.22
+},
+{
+"text": "ciento",
+"start": 3.22,
+"end": 3.82
+},
+{
+"text": "treinta",
+"start": 3.82,
+"end": 4.28
+},
+{
+"text": "y",
+"start": 4.28,
+"end": 4.46
+},
+{
+"text": "dos",
+"start": 4.46,
+"end": 5.42
+},
+{
+"text": "unos",
+"start": 5.42,
+"end": 6.28
+},
+{
+"text": "quince",
+"start": 6.28,
+"end": 6.74
+},
+{
+"text": "mil",
+"start": 6.74,
+"end": 6.94
+},
+{
+"text": "doscientos",
+"start": 6.94,
+"end": 7.6
+},
+{
+"text": "pesos",
+"start": 7.6,
+"end": 7.8
+},
+{
+"text": "la",
+"start": 7.8,
+"end": 8.02
+},
+{
+"text": "hora",
+"start": 8.02,
+"end": 8.16
+}
+]

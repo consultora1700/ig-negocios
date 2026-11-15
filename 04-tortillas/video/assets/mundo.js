@@ -17,9 +17,9 @@ export const T = {
   amasar: 27.5, ingred: 30.0, kilo: 32.2, ocho: 33.7, s200: 36.8, dias4: 37.5, cuesta: 39.2, s300: 42.3, comun: 43.3, s2500: 44.2, s2200: 45.8, todavia: 46.9, falta: 48.2,
   dia1: 51.6, v50: 53.2, mix: 54.6, op1: 59.3, op2: 61.6, entran: 62.8, gastos: 64.3, g1: 67.5, g2: 69.2, g3: 71.0, g4: 73.0, gasto: 74.0, resta: 75.4, quedan: 77.6, undia: 79.0,
   semana: 79.9, lunes: 82.9, martes: 84.4, viernes: 86.0, sabado: 87.7, llueve: 88.8, basura: 90.5, domingo: 92.6,
-  mes: 95.0, d26: 96.7, d22: 99.5, mult: 103.0, fijo: 104.2, s80: 109.7, quedanM: 111.3, m40: 115.6, m60: 117.5, m100: 121.7,
-  nadie: 123.3, seis: 126.3, h132: 129.6, div1: 133.1, antes: 134.9, cuatro: 140.4, h220: 143.0, div2: 146.1,
-  decomiso: 147.8, pierde: 150.4, pgazebo: 151.3, pmerca: 151.8, metodo: 155.0, conta: 157.0, guarda: 159.7, mandaselo: 161.7, seguime: 163.5, fin: 168.9,
+  mes: 95.0, d26: 96.7, d22: 99.5, mult: 104.3, fijo: 106.41, s80: 111.8, quedanM: 114.2, m40: 120.1, m60: 123.9, m100: 128.61,
+  nadie: 130.21, seis: 133.21, h132: 136.51, div1: 142.9, antes: 145.65, cuatro: 151.15, h220: 153.75, div2: 158.6,
+  decomiso: 160.92, pierde: 163.52, pgazebo: 164.42, pmerca: 164.92, metodo: 168.12, conta: 170.12, guarda: 172.82, mandaselo: 174.82, seguime: 176.62, fin: 182.02,
 };
 const clamp = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
 const ease = (u) => (u < 0.5 ? 4 * u * u * u : 1 - Math.pow(-2 * u + 2, 3) / 2);
