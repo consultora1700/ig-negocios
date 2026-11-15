@@ -1,7 +1,7 @@
 """Efectos del reel 03 v2 (suaves, guía EDICION.md): whoosh en cada cambio de plano, tic en cada ficha, golpe grave en la regla.
 Salida: voz/efectos-crudos.wav (86,3 s)."""
 import numpy as np, wave
-SR = 48000; DUR = 97.7; N = int(SR * DUR); x = np.zeros(N); rng = np.random.default_rng(5)
+SR = 48000; DUR = 131.0; N = int(SR * DUR); x = np.zeros(N); rng = np.random.default_rng(5)
 def add(t, s):
     i = int(t * SR); s = s[: max(0, N - i)]; x[i:i + len(s)] += s
 def banda(n, lo, hi):
@@ -18,11 +18,12 @@ def moneda(a=0.3):
     n = int(0.7 * SR); t = np.arange(n) / SR; return a * (np.sin(2 * np.pi * 2350 * t) + 0.5 * np.sin(2 * np.pi * 3520 * t)) * np.exp(-t * 9) * (1 - np.exp(-t * 300))
 def papel(a=0.35):
     n = int(0.35 * SR); t = np.linspace(0, 1, n); return a * banda(n, 1500, 9000) * np.exp(-t * 6) * (0.5 + 0.5 * np.sin(np.pi * t))
-for t in (8.0, 11.9, 17.3, 19.1, 21.6, 27.6, 34.5, 38.0, 44.7, 60.7, 76.9, 84.9, 90.3): add(t - 0.2, whoosh())
-for t in (0.9, 15.0, 19.1, 27.6, 30.3, 33.1, 34.9, 35.6, 36.6, 37.0, 41.7, 53.6, 56.2, 59.4, 68.3, 70.2, 70.35, 70.5, 72.5): add(t, tic(0.3))
-add(0.3, caja()); add(6.7, golpe(0.4)); add(37.4, golpe(0.35)); add(61.6, moneda()); add(72.0, moneda()); add(74.0, golpe(0.45))
-for k in range(18): add(49.8 + k * 0.1, tic(0.06))   # surtidor que cuenta
-add(84.9, golpe())
+for t in (8.0, 15.9, 21.6, 25.2, 29.2, 35.9, 42.3, 45.7, 52.4, 68.7, 84.8, 101.1, 109.2, 123.6): add(t - 0.2, whoosh())
+for t in (0.9, 18.7, 25.2, 26.8, 35.9, 38.0, 40.8, 42.7, 43.3, 44.3, 44.7, 49.5, 61.2, 63.6, 66.9, 92.5, 94.4, 94.55, 94.7, 96.7): add(t, tic(0.3))
+for k in range(11): add(69.3 + k * 0.12, tic(0.08))   # barras de los meses
+add(0.3, caja()); add(6.7, golpe(0.4)); add(45.1, golpe(0.35)); add(80.4, golpe(0.55)); add(86.2, moneda()); add(96.2, moneda()); add(97.9, golpe(0.45))
+for k in range(18): add(57.0 + k * 0.1, tic(0.06))   # surtidor que cuenta
+add(109.2, golpe()); add(121.3, golpe(0.5))
 x = x / max(1e-9, np.abs(x).max()) * 0.8
 y = (np.repeat(x[:, None], 2, 1) * 32767).astype(np.int16)
 w = wave.open("voz/efectos-crudos.wav", "wb"); w.setnchannels(2); w.setsampwidth(2); w.setframerate(SR); w.writeframes(y.tobytes()); w.close(); print("ok")

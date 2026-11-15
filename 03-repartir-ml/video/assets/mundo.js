@@ -11,11 +11,12 @@ import { RoundedBoxGeometry } from "./lib/RoundedBoxGeometry.js";
 export const W = 1080, H = 1920;
 // Tiempos anclados a la voz (voz/voz-palabras.json)
 export const T = {
-  hasta: 0.0, mitad: 6.7, primero: 8.0, notiene: 9.6, paquete: 11.9, escobar: 14.0, mil130: 15.0, ultima: 17.3, vos: 19.1,
-  caminos: 21.6, uno: 23.0, semana: 26.7, dos: 27.6, pesos: 30.3, deeso: 33.1, piden: 34.5, auto: 34.9, celular: 35.6, seguro: 36.6, mono: 37.0,
-  cuenta: 38.0, ml: 39.3, fact: 41.7, mismo: 43.6, cobra: 44.7, gnc: 46.1, km130: 47.5, snafta: 49.8, cubiertas: 52.1, s300: 53.6, valor: 54.9, s150: 56.2,
-  seg: 57.2, s260: 59.4, quedan: 60.7, s1660: 61.6, s45: 65.4, lucas: 67.5, s190: 68.3, cuota: 70.0, quedanL: 71.4, s2030: 72.0, s370: 74.0,
-  loco: 76.9, dosrutas: 78.9, mitad2: 83.0, regla: 84.9, mandaselo: 90.3, seguime: 92.3, fin: 97.7,
+  hasta: 0.0, mitad: 6.7, primero: 8.0, notiene: 10.2, paquete: 15.9, escobar: 17.6, mil130: 18.7, ultima: 21.6, logistica: 25.2, vos: 26.8,
+  caminos: 29.2, uno: 30.8, semana: 34.4, dos: 35.9, pesos: 38.0, deeso: 40.8, piden: 42.3, auto: 42.7, celular: 43.3, seguro: 44.3, mono: 44.7,
+  cuenta: 45.7, ml: 47.0, fact: 49.5, mismo: 51.3, cobra: 52.4, gnc: 53.8, km130: 55.1, snafta: 57.0, cubiertas: 59.8, s300: 61.2, valor: 62.7, s150: 63.6,
+  seg: 65.3, s260: 66.9, ojo: 68.7, gastan: 71.9, separas: 74.4, toca: 76.3, millon1: 80.4, mitadOjo: 82.3,
+  quedan: 84.8, s1660: 86.2, s45: 89.4, lucas: 91.8, s190: 92.5, cuota: 94.2, quedanL: 95.6, s2030: 96.2, s370: 97.9,
+  loco: 101.1, dosrutas: 103.1, mitad2: 107.3, regla: 109.2, separa: 112.7, cobratodo: 116.6, facturar: 121.3, mandaselo: 123.6, seguime: 125.6, fin: 131.0,
 };
 const clamp = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
 const ease = (u) => (u < 0.5 ? 4 * u * u * u : 1 - Math.pow(-2 * u + 2, 3) / 2);
@@ -181,6 +182,7 @@ const PLANOS = [
   [T.piden, [6.8, 3.0, 8.8], [5.8, 2.7, 7.8], [1.6, 0.9, 1.2], [1.4, 0.9, 1.2], 46, 0.58, 0.14, 9],
   [T.cuenta, [-6.0, 2.4, 8.5], [-2.0, 2.2, 8.5], [-3.0, 0.9, 3.5], [1.0, 0.9, 3.5], 46, 0.55, 0.12, 9],
   [T.cobra, [-60 + 4.0, 2.0, 6.0], [-60 + 2.6, 1.8, 4.6], [-60 - 1.2, 1.2, -1.2], [-60 - 1.4, 1.2, -1.4], 46, 0.55, 0.12, 9],
+  [T.ojo, [-58.4, 1.0, 4.4], [-58.9, 0.85, 3.7], [-61.4, 0.5, 0.8], [-61.6, 0.45, 0.8], 40, 0.55, 0.12, 9],
   [T.quedan, [-60 + 9.0, 5.0, 13.0], [-60 + 7.0, 4.4, 11.0], [-60, 2.0, -1.0], [-60, 2.0, -1.0], 46, 0.52, 0.16, 7],
   [T.loco, [MX, 11.5, 7.5], [MX, 10.0, 5.6], [MX, 0, -0.4], [MX, 0, -0.6], 46, 0.5, 0.25, 5],
   [T.regla, [MX, 9.5, 5.5], [MX, 9.0, 5.0], [MX, 0, -0.6], [MX, 0, -0.6], 46, 0.5, 0.25, 5],

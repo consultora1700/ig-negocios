@@ -5,7 +5,7 @@ Costos por km: nafta $185 (8,8 l × $2.103), GNC $56 (7,8 m³ × $720), mantenim
 Martín (nafta): costos ≈ $1.336.000 (combustible 625k, desgaste 290k, valor 155k, seguro+patente+VTV 146k, monotributo E 120k) → queda ≈ $1.664.000 (45 % se va en gastos; el auto solo, 40 %). Lucas (GNC + equipo $1,5 M en 24 cuotas $64.000): costos ≈ $965.000 → queda ≈ $2.035.000 (+$370.000/mes; equipo pago en ~4 meses).
 
 Hay repartidores de Mercado Libre que facturan tres millones de pesos por mes. ¿Y sabés cuánto se le va en gastos? Casi la mitad.
-Lo que casi nadie sabe: Mercado Libre no tiene camionetas propias. El paquete sale de un centro gigante, como el de Escobar, que mueve ciento treinta mil productos por día. Pasa a un centro de última milla… y el último tramo lo hacés vos, con tu auto.
+Lo que casi nadie sabe: Mercado Libre tiene centros gigantes y hasta aviones, pero no reparte con choferes propios. El paquete sale de un centro como el de Escobar, que mueve ciento treinta mil productos por día. Pasa a un centro de última milla… y el último tramo lo hacen empresas de logística, o gente como vos, con su auto.
 Entrás por dos caminos. La app Mercado Envíos Extra, que te muestra lo que paga cada ruta y te paga cada semana. O una logística, que le cobra al vendedor entre tres mil y ocho mil quinientos pesos por paquete, y de eso te paga a vos.
 Te piden auto, celular Android, seguro y monotributo.
 Ahora la cuenta. Martín y Lucas reparten diez horas por día y facturan tres millones por mes. Mismo trabajo. Martín carga nafta; Lucas, GNC.

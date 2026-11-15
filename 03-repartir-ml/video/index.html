@@ -77,6 +77,17 @@
       #ticket .l3.chica { font-size: 24px; color: #9299A3; } #ticket .l3.chica b { color: #E5E7EB; }
       #ticket .nota { font-weight: 700; font-size: 22px; color: #9299A3; opacity: 0; }
       #ticket .dif { justify-self: end; font-weight: 900; font-size: 34px; color: #000; background: var(--g-azul); color: #FFFFFF; padding: 8px 18px; border-radius: 12px; opacity: 0; }
+      #ojo { position: absolute; left: 40px; top: 420px; width: 1000px; background: rgba(0,0,0,.9); border: 2px solid #3A3E46; border-radius: 20px; padding: 24px 28px 26px; display: grid; gap: 16px; opacity: 0; }
+      #ojo .cab { display: flex; justify-content: space-between; align-items: center; } #ojo .cab b { font-weight: 900; font-size: 30px; letter-spacing: .14em; color: #FFFFFF; }
+      #ojo .cab span { font-weight: 900; font-size: 20px; letter-spacing: .14em; color: #000; background: #FFFFFF; padding: 4px 10px; border-radius: 6px; }
+      #ojo .fila { font-weight: 800; font-size: 26px; color: #BFC4CC; letter-spacing: .04em; }
+      #ojo .barras { display: grid; grid-template-columns: repeat(12, 1fr); gap: 10px; align-items: end; height: 300px; border-bottom: 2px solid #3A3E46; }
+      #ojo .barras i { display: block; background: #5A6070; border-radius: 6px 6px 0 0; height: 0; }
+      #ojo .barras i.pico { background: linear-gradient(180deg, #FF5A5A, #B3262E); }
+      #ojo .barras.par i { background: var(--g-azul); }
+      #ojo .meses { display: grid; grid-template-columns: repeat(12, 1fr); gap: 10px; text-align: center; font-weight: 700; font-size: 20px; color: #9299A3; }
+      #ojo .golpe { justify-self: end; font-weight: 900; font-size: 34px; color: #FFFFFF; background: #B3262E; padding: 8px 18px; border-radius: 12px; opacity: 0; }
+      #ojo .nota { font-weight: 700; font-size: 22px; color: #9299A3; }
       #regla { position: absolute; left: 70px; right: 70px; top: 520px; display: grid; gap: 26px; opacity: 0; }
       #regla .et { justify-self: start; font-weight: 900; font-size: 30px; letter-spacing: 0.22em; color: #FFFFFF; background: var(--g-azul); padding: 10px 20px; border-radius: 10px; }
       #regla .l1 { font-weight: 900; font-size: 70px; line-height: 1.08; color: #FFFFFF; }
@@ -88,7 +99,7 @@
     </style>
   </head>
   <body>
-    <div id="root" data-composition-id="main" data-start="0" data-duration="97.7" data-width="1080" data-height="1920">
+    <div id="root" data-composition-id="main" data-start="0" data-duration="131.0" data-width="1080" data-height="1920">
       <canvas id="gl" width="1080" height="1920"></canvas>
       <div id="hud" data-layout-ignore>
         <div id="marca"><img src="assets/marca/isotipo.png" alt=""><span>EL MÉTODO<b>EMPRESARIAL</b></span></div>
@@ -113,14 +124,20 @@
           <div class="l3 chica" id="k7"><span class="rot">Se va en gastos</span><b>45 %</b><b>32 %</b></div>
           <div class="nota" id="kn">Lucas: gas $190.000 + cuota del equipo $64.000 · el equipo ($1,5 M) se paga en unos 4 meses</div>
           <div class="dif" id="kd">+$370.000 POR MES · MISMO TRABAJO</div></div>
-        <div id="regla"><div class="et">LA REGLA</div><div class="l1">Antes de sumarle horas, bajá lo que te cuesta <em>cada kilómetro</em>.</div><div class="formula" id="formula">Facturar no es ganar</div></div>
+        <div id="ojo"><div class="cab"><b>OJO CON EL DESGASTE</b><span>EJEMPLO</span></div>
+          <div class="fila" id="o1">Lo que pagás cada mes si no separás</div>
+          <div class="barras" id="ob1"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i class="pico"></i></div>
+          <div class="meses"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>10</span><span>11</span><span>12</span></div>
+          <div class="golpe" id="og">MES 12: CUBIERTAS + SERVICE ≈ $1.000.000 DE GOLPE</div>
+          <div class="nota">Cubiertas $700.000–900.000 cada 40.000–50.000 km · service cada 10.000 km (iProfesional, 2026) · Martín hace ~3.400 km por mes</div></div>
+        <div id="regla"><div class="et">EL MÉTODO</div><div class="l1">¿Trabajás con un vehículo? Separá el desgaste <em>todos los meses</em>, como una cuota.</div><div class="formula" id="formula">Facturar no es ganar</div></div>
         <div id="sub"></div>
         <div id="fuente"></div>
       </div>
-      <div id="o-marca" data-composition-id="o-marca" data-composition-src="compositions/o-marca.html" data-start="92.3" data-duration="5.4" data-track-index="2" data-track-kind="graphics" data-width="1080" data-height="1920" style="z-index:30"></div>
-      <audio id="voz" class="clip" src="assets/audio/voz.wav" data-start="0" data-duration="94.5" data-track-index="5" data-volume="1"></audio>
-      <audio id="musica" class="clip" src="assets/audio/musica.wav" data-start="0" data-duration="97.7" data-track-index="6" data-volume="1"></audio>
-      <audio id="efectos" class="clip" src="assets/audio/efectos.wav" data-start="0" data-duration="97.7" data-track-index="7" data-volume="1"></audio>
+      <div id="o-marca" data-composition-id="o-marca" data-composition-src="compositions/o-marca.html" data-start="125.6" data-duration="5.4" data-track-index="2" data-track-kind="graphics" data-width="1080" data-height="1920" style="z-index:30"></div>
+      <audio id="voz" class="clip" src="assets/audio/voz.wav" data-start="0" data-duration="127.8" data-track-index="5" data-volume="1"></audio>
+      <audio id="musica" class="clip" src="assets/audio/musica.wav" data-start="0" data-duration="131.0" data-track-index="6" data-volume="1"></audio>
+      <audio id="efectos" class="clip" src="assets/audio/efectos.wav" data-start="0" data-duration="131.0" data-track-index="7" data-volume="1"></audio>
     </div>
     <script>
       window.__timelines = window.__timelines || {};
@@ -138,7 +155,8 @@
       const FI = [
         ["FACTURAN", "$3.000.000 / MES", "", Mu.marcaAuto, [0, 0, 0], 0.9, T.mitad - 0.1],
         ["ESCOBAR · POR DÍA", "130.000 PRODUCTOS", "", null, [60, 560], T.mil130 - 0.1, T.ultima - 0.1],
-        ["EL ÚLTIMO TRAMO", "LO HACÉS VOS", "azul", Mu.marcaAuto, [0, 0, 0], T.vos, T.caminos - 0.1],
+        ["EL ÚLTIMO TRAMO", "EMPRESAS DE LOGÍSTICA", "", null, [60, 560], T.logistica, T.vos - 0.1],
+        ["O VOS,", "CON TU AUTO", "azul", Mu.marcaAuto, [0, 0, 0], T.vos, T.caminos - 0.1],
         ["CAMINO 2", "LOGÍSTICA PARTICULAR", "", null, [60, 470], T.dos, T.piden - 0.1],
         ["LE COBRA AL VENDEDOR", "$3.000 A $8.500", "", null, [60, 630], T.pesos, T.piden - 0.1],
         ["Y DE ESO,", "TE PAGA A VOS", "azul", null, [60, 790], T.deeso, T.piden - 0.1],
@@ -147,9 +165,9 @@
         ["PAQUETES JUNTOS", "0 km", "azul", Mu.marcaRuta[1], [0, 0, 0], T.loco + 0.4, T.dosrutas - 0.05],
       ];
       const els = FI.map((f) => { const d = document.createElement("div"); d.className = "ficha " + f[2] + (f[3] ? "" : " fija"); d.innerHTML = `<small>${f[0]}</small><b>${f[1]}</b>`; hud.appendChild(d); return d; });
-      const GR = [[T.mitad, T.primero, "¿CUÁNTO SE VA EN GASTOS?", "CASI LA MITAD", "az"], [T.notiene, T.paquete, "LO QUE CASI NADIE SABE", "Mercado Libre no tiene camionetas propias", "cita"],
+      const GR = [[T.mitad, T.primero, "¿CUÁNTO SE VA EN GASTOS?", "CASI LA MITAD", "az"], [T.notiene, T.paquete, "LO QUE CASI NADIE SABE", "Centros gigantes y hasta aviones, pero no reparte con choferes propios", "cita"],
         [T.caminos, T.uno, "PARA EMPEZAR", "DOS CAMINOS", ""], [T.dosrutas, T.regla, "50 KM CONTRA 25 KM · MISMO PAGO", "LA CORTA CUESTA LA MITAD", "az"]];
-      const FU = [[0.4, T.primero, "Ejemplo de jornada completa: lo que se factura depende de cuánto trabajo tomes"], [T.escobar, T.ultima, "Fuente: Mercado Libre, centro de Escobar (octubre de 2026)"],
+      const FU = [[0.4, T.primero, "Ejemplo de jornada completa: lo que se factura depende de cuánto trabajo tomes"], [T.notiene, T.escobar, "Vocero de Mercado Libre a Letra P: «no cuenta con mensajería propia», trabaja con más de 30 operadores logísticos"], [T.escobar, T.ultima, "Fuente: Mercado Libre, centro de Escobar (octubre de 2026)"],
         [T.pesos, T.piden, "Tarifas publicadas por Envíos Flex Ya y La Logística"],
         [T.ml + 1, T.loco, "Nafta: Surtidores · GNC: combustibles.ar · service y cubiertas: iProfesional · monotributo: ARCA (2026) · 130 km/día y pérdida de valor: supuestos"]];
       // [fila, aparece Martín, aparece Lucas]
@@ -157,7 +175,7 @@
       function aparece(el, t, a, b = 1e9) { const u = clamp((t - a) / 0.3), o = clamp((b - t) / 0.25); el.style.opacity = t >= a && t < b ? Math.min(u, o) : 0; return u; }
       function hudAt(t) {
         const enRegla = t >= T.regla && t < T.mandaselo;
-        Mu.render(t, enRegla ? 0.72 * clamp((t - T.regla) / 0.4) * clamp((T.mandaselo - t) / 0.3) : (t >= T.uno && t < T.dos ? 0.45 * clamp((t - T.uno) / 0.4) : 0));
+        Mu.render(t, enRegla ? 0.86 * clamp((t - T.regla) / 0.4) * clamp((T.mandaselo - t) / 0.3) : (t >= T.uno && t < T.dos ? 0.45 * clamp((t - T.uno) / 0.4) : 0));
         FI.forEach((f, i) => {
           const el = els[i], on = t >= f[5] && t < f[6]; if (!on) { el.style.opacity = 0; return; }
           const u = clamp((t - f[5]) / 0.25), out = clamp((f[6] - t) / 0.15); const w = el.offsetWidth, h = el.offsetHeight; let x, y, s = { vis: true };
@@ -165,8 +183,8 @@
           el.style.opacity = s.vis ? Math.min(u, out) : 0; el.style.transform = `translate(${x}px, ${y + (1 - u) * 26}px) scale(${0.86 + 0.14 * (1 - Math.pow(1 - u, 3))})`;
         });
         // surtidor: litros y pesos que corren
-        const ul = clamp((t - T.snafta) / 1.8); els[6].innerHTML = `<small>NAFTA DEL MES · ${Math.round(297 * ul)} LITROS</small><b>$${Math.round(625000 * ul).toLocaleString("es-AR")}</b>`;
-        const ur = clamp((t - T.loco - 0.6) / 5.5); els[7].querySelector("b").textContent = Mu.kmRuta(0, ur) + " km"; els[8].querySelector("b").textContent = Mu.kmRuta(1, ur) + " km";
+        const ul = clamp((t - T.snafta) / 1.8); els[7].innerHTML = `<small>NAFTA DEL MES · ${Math.round(297 * ul)} LITROS</small><b>$${Math.round(625000 * ul).toLocaleString("es-AR")}</b>`;
+        const ur = clamp((t - T.loco - 0.6) / 5.5); els[8].querySelector("b").textContent = Mu.kmRuta(0, ur) + " km"; els[9].querySelector("b").textContent = Mu.kmRuta(1, ur) + " km";
         const g = GR.find((r) => t >= r[0] && t < r[1]);
         if (g) { const u = clamp((t - g[0]) / 0.3), o = clamp((g[1] - t) / 0.2); $("grande").style.opacity = Math.min(u, o); $("grande").style.transform = `translateX(-50%) translateY(${(1 - u) * 26}px)`; $("grande-s").textContent = g[2]; $("grande-b").textContent = g[3]; $("grande-b").className = g[4]; }
         else $("grande").style.opacity = 0;
@@ -176,12 +194,18 @@
         aparece($("req"), t, T.piden, T.cuenta - 0.1); [["r1", T.auto], ["r2", T.celular], ["r3", T.seguro], ["r4", T.mono]].forEach(([id, a]) => { const e = $(id); e.style.opacity = clamp((t - a) / 0.25); e.classList.toggle("clave", id === "r4" && t > T.mono + 0.4); });
         $("rn").style.opacity = clamp((t - T.mono - 0.4) / 0.3);
         // ticket
-        aparece($("ticket"), t, T.ml, T.loco - 0.1); K.forEach(([id, a, b]) => { const e = $(id), c = e.children; const u = clamp((t - a) / 0.3), v = clamp((t - b) / 0.3);
+        aparece($("ticket"), t, T.ml, T.loco - 0.1); if (t >= T.ojo - 0.1 && t < T.quedan) $("ticket").style.opacity = 0; K.forEach(([id, a, b]) => { const e = $(id), c = e.children; const u = clamp((t - a) / 0.3), v = clamp((t - b) / 0.3);
           c[0].style.opacity = u; c[1].style.opacity = u; c[2].style.opacity = v; c[1].style.transform = `translateY(${(1 - u) * 14}px)`; c[2].style.transform = `translateY(${(1 - v) * 14}px)`; });
         $("kn").style.opacity = clamp((t - T.cuota - 0.2) / 0.3); const ud = clamp((t - T.s370) / 0.3); $("kd").style.opacity = ud; $("kd").style.transform = `scale(${0.9 + 0.1 * ud})`;
         // regla
         const ug = clamp((t - T.regla - 0.2) / 0.4); $("regla").style.opacity = enRegla ? Math.min(ug, clamp((T.mandaselo - t) / 0.3)) : 0; $("regla").style.transform = `translateY(${(1 - ug) * 30}px)`;
-        $("formula").style.opacity = clamp((t - T.regla - 2.4) / 0.4);
+        $("formula").style.opacity = clamp((t - T.facturar + 0.1) / 0.4);
+        // ojo: barras de 12 meses (service cada 3 meses, cubiertas + service en el mes 12)
+        const enOjo = t >= T.ojo && t < T.quedan; const uo = clamp((t - T.ojo - 0.2) / 0.4);
+        $("ojo").style.opacity = enOjo ? Math.min(uo, clamp((T.quedan - t) / 0.3)) : 0; $("ojo").style.transform = `translateY(${(1 - uo) * 30}px)`;
+        const ALT = [0, 0, 64, 0, 0, 64, 0, 0, 64, 0, 0, 300];
+        [...$("ob1").children].forEach((b, i) => { const a = i < 11 ? T.ojo + 0.6 + i * 0.12 : T.millon1 - 0.3; const v = clamp((t - a) / (i < 11 ? 0.3 : 0.6)); b.style.height = Math.max(6, ALT[i] * (1 - Math.pow(1 - v, 3))) + "px"; });
+        const ug2 = clamp((t - T.mitadOjo + 0.2) / 0.3); $("og").style.opacity = ug2; $("og").style.transform = `scale(${0.9 + 0.1 * ug2})`;
         let s = ""; for (const [a, txt] of SUB) if (t >= a) s = txt; $("sub").innerHTML = t < T.seguime - 0.05 && !enRegla ? s : "";
         const fu = FU.find((r) => t >= r[0] + 0.3 && t < r[1]); $("fuente").style.opacity = fu ? 1 : 0; if (fu) $("fuente").textContent = fu[2];
         $("logoML").style.opacity = t >= T.seguime - 0.05 ? 0 : 1; $("titulo").style.opacity = (t >= T.ml && t < T.loco) || enRegla || t >= T.seguime - 0.05 || (t >= T.uno && t < T.dos) ? 0 : 1;
