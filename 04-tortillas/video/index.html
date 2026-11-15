@@ -35,16 +35,16 @@
       .card { position: absolute; left: 40px; top: 420px; width: 1000px; background: rgba(0,0,0,.9); border: 2px solid #3A3E46; border-radius: 22px; padding: 24px 30px 26px; display: grid; gap: 12px; opacity: 0; }
       .card .cab { display: flex; justify-content: space-between; align-items: center; } .card .cab b { font-weight: 900; font-size: 28px; letter-spacing: .16em; color: #BFC4CC; }
       .card .cab span { font-weight: 900; font-size: 20px; letter-spacing: .14em; color: #000; background: #FFFFFF; padding: 4px 10px; border-radius: 6px; }
-      .l { display: flex; justify-content: space-between; gap: 16px; font-weight: 700; font-size: 34px; color: #E5E7EB; opacity: 0; font-variant-numeric: tabular-nums; }
+      .l { display: flex; justify-content: space-between; gap: 16px; font-weight: 700; font-size: 32px; color: #E5E7EB; opacity: 0; font-variant-numeric: tabular-nums; }
       .l b { font-weight: 900; color: #FFFFFF; white-space: nowrap; } .l.menos b { color: #FF8A8A; }
       .l.total { border-top: 2px solid #3A3E46; padding-top: 12px; font-size: 40px; }
       .l.total b { background: var(--g-azul); -webkit-background-clip: text; background-clip: text; color: transparent; font-size: 48px; }
-      .l.chica { font-size: 24px; color: #9299A3; } .nota { font-weight: 700; font-size: 22px; color: #9299A3; }
+      .l.chica { font-size: 26px; color: #BFC4CC; } .l.chica b { color: #FFFFFF; } .nota { font-weight: 700; font-size: 22px; color: #9299A3; }
       #semana .barras { display: grid; grid-template-columns: repeat(7, 1fr); gap: 16px; align-items: end; height: 360px; border-bottom: 2px solid #3A3E46; }
       #semana .b { position: relative; height: 100%; display: flex; flex-direction: column; justify-content: flex-end; align-items: center; }
       #semana .b i { display: block; width: 100%; height: 0; border-radius: 8px 8px 0 0; background: #5A6070; }
       #semana .b.on i { background: var(--g-azul); } #semana .b span { position: absolute; bottom: calc(var(--h, 0px) + 8px); font-weight: 900; font-size: 34px; color: #FFFFFF; opacity: var(--o, 0); }
-      #semana .b.lluvia span { color: #FF8A8A; font-size: 26px; }
+      #semana .b.lluvia span, #semana .b.dom span { color: #FF8A8A; font-size: 22px; text-align: center; } #semana .b.dom i { background: repeating-linear-gradient(45deg, #2A2E36 0 10px, #1A1D22 10px 20px) !important; }
       #semana .dias { display: grid; grid-template-columns: repeat(7, 1fr); gap: 16px; text-align: center; font-weight: 800; font-size: 24px; color: #9299A3; }
       .sello { justify-self: end; font-weight: 900; font-size: 32px; color: #FFFFFF; background: #B3262E; padding: 8px 18px; border-radius: 12px; opacity: 0; }
       #mes .l { font-size: 38px; } #mes .l.top b { font-size: 46px; background: var(--g-azul); -webkit-background-clip: text; background-clip: text; color: transparent; }
@@ -63,39 +63,54 @@
     </style>
   </head>
   <body>
-    <div id="root" data-composition-id="main" data-start="0" data-duration="107.3" data-width="1080" data-height="1920">
+    <div id="root" data-composition-id="main" data-start="0" data-duration="168.9" data-width="1080" data-height="1920">
       <canvas id="gl" width="1080" height="1920"></canvas>
       <div id="hud" data-layout-ignore>
         <div id="marca"><img src="assets/marca/isotipo.png" alt=""><span>EL MÉTODO<b>EMPRESARIAL</b></span></div>
         <div id="titulo"><div class="a">Tortillas en la calle:</div><div class="b">¿cuánto deja?</div></div>
         <div id="grande"><small id="grande-s"></small><b id="grande-b"></b></div>
         <div class="card" id="compras"><div class="cab"><b>LO QUE COMPRÓ MARTÍN</b><span>PRECIOS NOV. 2026</span></div>
-          <div class="l" id="c1">Parrilla <b>$121.289</b></div><div class="l" id="c2">Gazebo + mesa <b>$290.000</b></div><div class="l" id="c3">Harina 000 · bolsa de 25 kg <b>$21.856</b></div>
-          <div class="l" id="c4">Grasa (2 kg de carnicería) <b>$7.500</b></div><div class="l" id="c5">Carbón · 10 kg <b>$15.000</b></div><div class="l" id="c6">Chicharrón · 1 kg <b>$8.000</b></div>
-          <div class="l total" id="c7">Para arrancar <b id="ctot">$0</b></div></div>
-        <div class="card" id="dia"><div class="cab"><b>PRIMER DÍA</b><span>EJEMPLO</span></div>
-          <div class="l" id="d1">Vende <b>50 tortillas</b></div><div class="l chica" id="d1b">30 comunes a $2.500 + 20 con chicharrón a $3.000 <b></b></div>
-          <div class="l" id="d2">Entran <b>$135.000</b></div><div class="l menos" id="d3">Masa, chicharrón, carbón, bolsitas <b>−$39.000</b></div>
-          <div class="l total" id="d4">Le quedan <b>$96.000</b></div></div>
-        <div class="card" id="semana"><div class="cab"><b>TORTILLAS VENDIDAS POR DÍA</b><span>EJEMPLO</span></div>
-          <div class="barras"><div class="b" data-v="40" data-k="lunes"><span>40</span><i></i></div><div class="b" data-v="50" data-k=""><span>50</span><i></i></div><div class="b" data-v="45" data-k=""><span>45</span><i></i></div><div class="b lluvia" data-v="0" data-k="llueve"><span>LLUEVE: 0</span><i></i></div><div class="b" data-v="50" data-k=""><span>50</span><i></i></div><div class="b" data-v="60" data-k="sabado"><span>60</span><i></i></div><div class="b" data-v="60" data-k="sabado"><span>60</span><i></i></div></div><div class="dias"><span>LUN</span><span>MAR</span><span>MIÉ</span><span>JUE</span><span>VIE</span><span>SÁB</span><span>DOM</span></div>
-          <div class="sello" id="basura">LA MASA, A LA BASURA</div></div>
-        <div class="card" id="mes"><div class="cab"><b>LE QUEDA POR MES · 22 DÍAS</b><span>EJEMPLO</span></div>
-          <div class="l" id="m1">40 por día <b>≈ $1.600.000</b></div><div class="l" id="m2">50 por día <b>≈ $2.000.000</b></div><div class="l" id="m3">60 por día <b>≈ $2.500.000</b></div>
-          <div class="l top" id="m4">100 por día (lugar muy concurrido) <b>+$4.000.000</b></div>
-          <div class="nota">Ya descontados masa, chicharrón, carbón, bolsitas, monotributo social, masa perdida por lluvia y desgaste del equipo</div></div>
-        <div class="card" id="reloj"><div class="cab"><b>SU DÍA DE TRABAJO</b><span>EJEMPLO</span></div>
+          <div class="l" id="c1">Parrilla de tambor <b>$121.289</b></div><div class="l" id="c2">Gazebo + mesa <b>$290.000</b></div><div class="l" id="c3">Harina 000 · bolsa de 25 kg <b>$21.856</b></div>
+          <div class="l" id="c4">Grasa, carbón y chicharrón <b>$30.500</b></div>
+          <div class="l total" id="c7">Total <b id="ctot">$0</b></div><div class="l chica" id="c8">…antes de vender una sola tortilla <b></b></div></div>
+        <div class="card" id="masa"><div class="cab"><b>LA MASA</b><span>EJEMPLO</span></div>
+          <div class="l" id="a1">1 kg de harina <b>→ 8 tortillas</b></div><div class="l" id="a2">1 bolsa de 25 kg <b>→ 200 tortillas</b></div>
+          <div class="l chica" id="a3">A 50 por día, le dura <b>4 días</b></div>
+          <div class="l total" id="a4">Masa por tortilla <b>≈ $300</b></div><div class="nota" id="a5">Harina + grasa + sal + polvo de hornear, dividido 8</div></div>
+        <div class="card" id="trampa"><div class="cab"><b>¿CUÁNTO GANA POR TORTILLA?</b><span>EJEMPLO</span></div>
+          <div class="l" id="p1">La vende a <b>$2.500</b></div><div class="l menos" id="p2">Masa <b>−$300</b></div>
+          <div class="l total" id="p3">¿Gana… <b>$2.200?</b></div>
+          <div class="sello" id="p4">TODAVÍA NO</div><div class="l chica" id="p5">Falta el carbón, el chicharrón, las bolsitas… <b></b></div></div>
+        <div class="card" id="dia"><div class="cab"><b>PRIMER DÍA · 50 TORTILLAS</b><span>EJEMPLO</span></div>
+          <div class="l" id="d1">30 comunes × $2.500 <b>$75.000</b></div><div class="l" id="d2">20 con chicharrón × $3.000 <b>$60.000</b></div>
+          <div class="l total" id="d3">Entran <b>$135.000</b></div>
+          <div class="l menos" id="d4">Masa de 50 tortillas <b>−$15.000</b></div><div class="l menos" id="d5">Chicharrón <b>−$5.000</b></div>
+          <div class="l menos" id="d6">Carbón (bolsa de 10 kg) <b>−$15.000</b></div><div class="l menos" id="d7">Bolsitas y viaje <b>−$4.000</b></div>
+          <div class="l menos" id="d8">Gastó <b>−$39.000</b></div>
+          <div class="l total" id="d9">$135.000 − $39.000 <b>$96.000</b></div></div>
+        <div class="card" id="semana"><div class="cab"><b>TORTILLAS VENDIDAS · LUNES A SÁBADO</b><span>EJEMPLO</span></div>
+          <div class="barras"><div class="b" data-v="40" data-k="lunes"><span>40</span><i></i></div><div class="b" data-v="45" data-k="martes"><span>45</span><i></i></div><div class="b" data-v="50" data-k="mie"><span>50</span><i></i></div><div class="b lluvia" data-v="0" data-k="llueve"><span>LLUEVE: 0</span><i></i></div><div class="b" data-v="55" data-k="viernes"><span>55</span><i></i></div><div class="b" data-v="60" data-k="sabado"><span>60</span><i></i></div><div class="b dom" data-v="0" data-k="domingo"><span>NO SE VENDE</span><i></i></div></div><div class="dias"><span>LUN</span><span>MAR</span><span>MIÉ</span><span>JUE</span><span>VIE</span><span>SÁB</span><span>DOM</span></div>
+          <div class="sello" id="basura">EL DÍA QUE LLUEVE: LA MASA, A LA BASURA</div></div>
+        <div class="card" id="mes"><div class="cab"><b>EL MES</b><span>EJEMPLO</span></div>
+          <div class="l" id="m1">Lunes a sábado <b>26 días</b></div><div class="l" id="m2">Menos los días de lluvia <b>≈ 22 de venta</b></div>
+          <div class="l" id="m3">22 días × $96.000 <b>$2.112.000</b></div>
+          <div class="l menos" id="m4">Monotributo social, desgaste del equipo, masa tirada <b>−$80.000</b></div>
+          <div class="l total" id="m5">Le quedan por mes <b>≈ $2.000.000</b></div>
+          <div class="l chica" id="m6">Con 40 por día <b>≈ $1.600.000</b></div><div class="l chica" id="m7">Con 60 por día <b>≈ $2.500.000</b></div>
+          <div class="l chica" id="m8">Con 100 por día (lugar muy concurrido) <b>+ $4.000.000</b></div></div>
+        <div class="card" id="reloj"><div class="cab"><b>LAS HORAS</b><span>EJEMPLO</span></div>
           <div class="barra"><i class="v"></i><i class="v"></i><i class="v"></i><i class="v"></i><i class="v"></i><i class="v"></i><i class="n"></i><i class="n"></i><i class="n"></i><i class="n"></i></div>
           <div class="eti"><div id="e1">6 h en la esquina<small>lo que todos ven</small></div><div id="e2">4 h que nadie ve<small>amasar, cargar, armar, comprar</small></div></div>
-          <div class="l" id="h1">Por hora, mirando la esquina <b>$15.400</b></div><div class="l total" id="h2">Por hora, contando todo <b>$9.200</b></div></div>
+          <div class="l" id="h1">6 h × 22 días <b>132 h</b></div><div class="l" id="h2">$2.000.000 ÷ 132 h <b>$15.400 la hora</b></div>
+          <div class="l" id="h3">10 h × 22 días <b>220 h</b></div><div class="l total" id="h4">$2.000.000 ÷ 220 h <b>$9.200 la hora</b></div></div>
         <div id="regla"><div class="et">EL MÉTODO</div><div class="l1">Contá todas tus horas, <em>no solo las que vendés</em>.</div><div class="formula" id="formula">Y guardá plata para los días que no se vende</div></div>
         <div id="sub"></div>
         <div id="fuente"></div>
       </div>
-      <div id="o-marca" data-composition-id="o-marca" data-composition-src="compositions/o-marca.html" data-start="101.9" data-duration="5.4" data-track-index="2" data-track-kind="graphics" data-width="1080" data-height="1920" style="z-index:30"></div>
-      <audio id="voz" class="clip" src="assets/audio/voz.wav" data-start="0" data-duration="104.2" data-track-index="5" data-volume="1"></audio>
-      <audio id="musica" class="clip" src="assets/audio/musica.wav" data-start="0" data-duration="107.3" data-track-index="6" data-volume="1"></audio>
-      <audio id="efectos" class="clip" src="assets/audio/efectos.wav" data-start="0" data-duration="107.3" data-track-index="7" data-volume="1"></audio>
+      <div id="o-marca" data-composition-id="o-marca" data-composition-src="compositions/o-marca.html" data-start="163.5" data-duration="5.4" data-track-index="2" data-track-kind="graphics" data-width="1080" data-height="1920" style="z-index:30"></div>
+      <audio id="voz" class="clip" src="assets/audio/voz.wav" data-start="0" data-duration="165.1" data-track-index="5" data-volume="1"></audio>
+      <audio id="musica" class="clip" src="assets/audio/musica.wav" data-start="0" data-duration="168.9" data-track-index="6" data-volume="1"></audio>
+      <audio id="efectos" class="clip" src="assets/audio/efectos.wav" data-start="0" data-duration="168.9" data-track-index="7" data-volume="1"></audio>
     </div>
     <script>
       window.__timelines = window.__timelines || {};
@@ -111,30 +126,32 @@
       const hud = $("hud");
       // Fichas: [rótulo, valor, clase, objeto 3D o null, punto local o [x, y] fijo, desde, hasta]
       const FI = [
-        ["ÉL ES", "MARTÍN", "azul", Mu.marcaMartin, [0, 0, 0], T.martin, T.parrilla - 0.1],
-        ["SE LEVANTA A LAS", "4:00 AM", "", null, [60, 440], T.amasar + 0.4, T.s200 - 0.1],
-        ["1 BOLSA DE 25 KG", "≈ 200 TORTILLAS", "azul", null, [60, 440], T.s200, T.comun - 0.1],
-        ["COMÚN", "$2.500", "", null, [60, 440], T.s2500 - 0.2, T.dia1 - 0.1],
-        ["CON CHICHARRÓN", "$3.000", "azul", null, [60, 600], T.s3000 - 0.2, T.dia1 - 0.1],
-        ["MASA POR TORTILLA", "≈ $300", "", null, [60, 760], T.s300 - 0.1, T.dia1 - 0.1],
+        ["ÉL ES", "MARTÍN", "azul", Mu.marcaMartin, [0, 0, 0], T.martin, T.compras - 0.1],
+        ["SE LEVANTA A LAS", "4:00 AM", "", null, [60, 440], T.amasar + 0.4, T.kilo - 0.1],
+        ["HARINA · GRASA", "SAL · AGUA", "azul", null, [60, 600], T.ingred, T.kilo - 0.1],
       ];
       const els = FI.map((f) => { const d = document.createElement("div"); d.className = "ficha " + f[2] + (f[3] ? "" : " fija"); d.innerHTML = `<small>${f[0]}</small><b>${f[1]}</b>`; hud.appendChild(d); return d; });
-      const GR = [[T.calle + 0.4, T.amasar, "PARA ARRANCAR", "CASI MEDIO MILLÓN", "az"], [T.solo - 0.3, T.semana, "EN UN SOLO DÍA", "$96.000", "az"],
-        [T.decomiso + 0.2, T.metodo, "SI LE CAE UN DECOMISO", "PIERDE ≈ $460.000 DE UN SAQUE", "cita"]];
-      const FU = [[T.parrilla, T.amasar, "Precios: Carrefour, Mayoristanet (15/11/2026); grasa de carnicería y chicharrón: dato de vendedores / estimación"],
-        [T.amasar, T.comun, "Rendimiento de 8 tortillas por kg de harina: estimación"], [T.comun, T.dia1, "Precios en Buenos Aires según vendedores (nov. 2026)"],
-        [T.dia1, T.semana, "Carbón 10 kg por día y chicharrón 30 g por tortilla: estimación"], [T.semana, T.mes, "40 a 60 por día es lo más común, según vendedores"],
+      const GR = [[T.cuenta, T.martin, "HICIMOS LA CUENTA", "PESO POR PESO", "az"], [T.medio, T.amasar, "CASI MEDIO MILLÓN", "ANTES DE VENDER UNA SOLA", "cita"], [T.undia - 0.3, T.semana, "EN UN SOLO DÍA", "$96.000", "az"],
+        [T.nadie, T.seis - 0.4, "LO QUE NADIE CUENTA", "LAS HORAS", "az"],
+        [T.decomiso + 0.2, T.metodo, "SI LE CAE UN DECOMISO", "PIERDE CASI MEDIO MILLÓN", "cita"]];
+      const FU = [[T.parrilla, T.amasar, "Precios: Carrefour y Mayoristanet (15/11/2026); grasa de carnicería y chicharrón: según vendedores"],
+        [T.kilo, T.comun, "8 tortillas por kg de harina: estimación"], [T.comun, T.dia1, "Precio en Buenos Aires según vendedores (nov. 2026)"],
+        [T.dia1, T.semana, "Carbón: 1 bolsa de 10 kg por día y chicharrón 30 g por tortilla: estimación"], [T.semana, T.mes, "40 a 60 por día es lo más común, según vendedores"],
         [T.mes, T.nadie, "Monotributo social $12.847 (ARCA, ago. 2026) · equipo amortizado en 12 meses"],
         [T.decomiso, T.metodo, "Ej.: Cañuelas, Ord. 60/84: multa de $27.000 a $104.000 y decomiso inmediato"]];
-      const SEC = [["compras", T.parrilla, T.calle], ["dia", T.dia1 + 0.2, T.semana - 0.1], ["semana", T.semana + 0.2, T.mes - 0.1], ["mes", T.mes + 0.3, T.nadie - 0.1], ["reloj", T.seis - 0.4, T.decomiso - 0.1]];
-      const LIN = [["c1", T.s120], ["c2", T.s290], ["c3", T.s22], ["c4", T.grasa], ["c5", T.carbon], ["c6", T.chicha], ["c7", T.s120],
-        ["d1", T.v50], ["d1b", T.v50 + 0.4], ["d2", T.entran + 0.3], ["d3", T.gasta], ["d4", T.quedan + 0.4],
-        ["m1", T.m40 + 1.5], ["m2", T.m50 + 0.2], ["m3", T.m60 + 0.2], ["m4", T.m100 + 1.4], ["h1", T.s15 - 0.2], ["h2", T.s9200 + 1.8]];
-      const COMPRAS = [[T.s120, 121289], [T.s290, 290000], [T.s22, 21856], [T.grasa, 7500], [T.carbon, 15000], [T.chicha, 8000]];
+      const SEC = [["compras", T.compras + 0.4, T.medio - 0.1], ["masa", T.kilo, T.comun - 0.1], ["trampa", T.comun + 0.2, T.dia1 - 0.1], ["dia", T.dia1 + 0.2, T.undia - 0.4],
+        ["semana", T.semana + 0.3, T.domingo + 2.2], ["mes", T.mes + 0.3, T.nadie - 0.1], ["reloj", T.seis - 0.3, T.decomiso - 0.1]];
+      const LIN = [["c1", T.s120], ["c2", T.s290], ["c3", T.s22], ["c4", T.s30], ["c7", T.total], ["c8", T.antesVender],
+        ["a1", T.ocho], ["a2", T.s200], ["a3", T.dias4], ["a4", T.s300], ["a5", T.s300 + 0.4],
+        ["p1", T.s2500], ["p2", T.s2500 + 0.6], ["p3", T.s2200], ["p5", T.falta],
+        ["d1", T.op1], ["d2", T.op2], ["d3", T.entran], ["d4", T.g1], ["d5", T.g2], ["d6", T.g3], ["d7", T.g4], ["d8", T.gasto], ["d9", T.quedan],
+        ["m1", T.d26], ["m2", T.d22], ["m3", T.mult], ["m4", T.s80], ["m5", T.quedanM], ["m6", T.m40], ["m7", T.m60], ["m8", T.m100],
+        ["h1", T.h132], ["h2", T.div1], ["h3", T.h220], ["h4", T.div2]];
+      const COMPRAS = [[T.s120, 121289], [T.s290, 290000], [T.s22, 21856], [T.s30, 30500]];
       function aparece(el, t, a, b = 1e9) { const u = clamp((t - a) / 0.3), o = clamp((b - t) / 0.25); el.style.opacity = t >= a && t < b ? Math.min(u, o) : 0; return u; }
       function hudAt(t) {
         const enRegla = t >= T.metodo && t < T.mandaselo; const sec = SEC.find((x) => t >= x[1] && t < x[2]);
-        Mu.render(t, enRegla ? 0.86 * clamp((t - T.metodo) / 0.4) * clamp((T.mandaselo - t) / 0.3) : sec && ["semana", "mes"].includes(sec[0]) ? 0.35 : 0);
+        Mu.render(t, enRegla ? 0.86 * clamp((t - T.metodo) / 0.4) * clamp((T.mandaselo - t) / 0.3) : sec ? (["semana", "mes", "dia", "reloj"].includes(sec[0]) ? 0.4 : 0.25) : 0);
         FI.forEach((f, i) => {
           const el = els[i], on = t >= f[5] && t < f[6]; if (!on) { el.style.opacity = 0; return; }
           const u = clamp((t - f[5]) / 0.25), out = clamp((f[6] - t) / 0.15); const w = el.offsetWidth, h = el.offsetHeight; let x, y, s = { vis: true };
@@ -149,18 +166,19 @@
         // contador de la inversión: cada compra suma con un pequeño conteo
         let tot = 0; COMPRAS.forEach(([a, v]) => (tot += v * clamp((t - a) / 0.6))); $("ctot").textContent = "$" + Math.round(tot).toLocaleString("es-AR");
         // semana: barras
-        [...document.querySelectorAll("#semana .b")].forEach((d, i) => { const v = +d.dataset.v, k = d.dataset.k; const a = k ? T[k] : T.lunes + 0.6 + i * 0.12; const u = clamp((t - a) / 0.45); const h = Math.max(6, (v / 60) * 300 * (1 - Math.pow(1 - u, 3)));
-          d.querySelector("i").style.height = h + "px"; d.style.setProperty("--h", h + "px"); d.style.setProperty("--o", k ? clamp((t - a - 0.15) / 0.3) : 0); d.classList.toggle("on", !!k && v > 0); });
+        [...document.querySelectorAll("#semana .b")].forEach((d, i) => { const v = +d.dataset.v, k = d.dataset.k; const a = k === "mie" ? T.viernes - 0.6 : T[k]; const u = clamp((t - a) / 0.45); const h = d.classList.contains("dom") ? 300 * (1 - Math.pow(1 - u, 3)) : Math.max(6, (v / 60) * 300 * (1 - Math.pow(1 - u, 3)));
+          d.querySelector("i").style.height = h + "px"; d.style.setProperty("--h", h + "px"); d.style.setProperty("--o", clamp((t - a - 0.15) / 0.3)); d.classList.toggle("on", v > 0); });
         const ub = clamp((t - T.basura) / 0.3); $("basura").style.opacity = ub; $("basura").style.transform = `scale(${0.9 + 0.1 * ub})`;
         // reloj del día: 6 h visibles + 4 h que nadie ve
-        [...document.querySelectorAll("#reloj .barra i")].forEach((b, i) => { const a = i < 6 ? T.seis - 0.2 + i * 0.1 : T.antes + 0.8 + (i - 6) * 0.35; b.style.opacity = clamp((t - a) / 0.25); });
+        [...document.querySelectorAll("#reloj .barra i")].forEach((b, i) => { const a = i < 6 ? T.seis - 0.2 + i * 0.1 : T.antes + 1.0 + (i - 6) * 0.6; b.style.opacity = clamp((t - a) / 0.25); });
         $("e1").style.opacity = clamp((t - T.seis) / 0.3); $("e2").style.opacity = clamp((t - T.cuatro) / 0.3);
+        const up = clamp((t - T.todavia) / 0.3); $("p4").style.opacity = up; $("p4").style.transform = `scale(${0.9 + 0.1 * up})`;
         // regla
         const ug = clamp((t - T.metodo - 0.2) / 0.4); $("regla").style.opacity = enRegla ? Math.min(ug, clamp((T.mandaselo - t) / 0.3)) : 0; $("regla").style.transform = `translateY(${(1 - ug) * 30}px)`;
         $("formula").style.opacity = clamp((t - T.guarda + 0.1) / 0.4);
         let s = ""; for (const [a, txt] of SUB) if (t >= a) s = txt; $("sub").innerHTML = t < T.seguime - 0.05 && !enRegla ? s : "";
         const fu = FU.find((r) => t >= r[0] + 0.3 && t < r[1]); $("fuente").style.opacity = fu ? 1 : 0; if (fu) $("fuente").textContent = fu[2];
-        $("titulo").style.opacity = sec || enRegla || t >= T.seguime - 0.05 || (t >= T.amasar && t < T.dia1) || (t >= T.antes && t < T.s9200) || g ? 0 : 1;
+        $("titulo").style.opacity = sec || enRegla || t >= T.seguime - 0.05 || (t >= T.amasar && t < T.kilo) || g ? 0 : 1;
       }
       window.addEventListener("hf-seek", (e) => hudAt(e.detail.time)); hudAt(0); listo();
     </script>
