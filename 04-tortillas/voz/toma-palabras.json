@@ -1,0 +1,1522 @@
+[
+{
+"text": "¿Cuánto",
+"start": 0.0,
+"end": 0.76
+},
+{
+"text": "podés",
+"start": 0.76,
+"end": 1.04
+},
+{
+"text": "ganar",
+"start": 1.04,
+"end": 1.66
+},
+{
+"text": "vendiendo",
+"start": 1.66,
+"end": 2.2
+},
+{
+"text": "tortillas",
+"start": 2.2,
+"end": 2.64
+},
+{
+"text": "en",
+"start": 2.64,
+"end": 2.8
+},
+{
+"text": "la",
+"start": 2.8,
+"end": 2.94
+},
+{
+"text": "calle?",
+"start": 2.94,
+"end": 3.14
+},
+{
+"text": "Él",
+"start": 3.8,
+"end": 3.94
+},
+{
+"text": "es",
+"start": 3.94,
+"end": 4.04
+},
+{
+"text": "Martín,",
+"start": 4.04,
+"end": 4.54
+},
+{
+"text": "y",
+"start": 4.74,
+"end": 4.86
+},
+{
+"text": "hoy",
+"start": 4.86,
+"end": 5.0
+},
+{
+"text": "decidió",
+"start": 5.0,
+"end": 5.42
+},
+{
+"text": "arrancar.",
+"start": 5.42,
+"end": 6.28
+},
+{
+"text": "Se",
+"start": 6.5,
+"end": 6.62
+},
+{
+"text": "compró",
+"start": 6.62,
+"end": 6.78
+},
+{
+"text": "una",
+"start": 6.78,
+"end": 6.96
+},
+{
+"text": "parrilla,",
+"start": 6.96,
+"end": 7.36
+},
+{
+"text": "120",
+"start": 7.54,
+"end": 8.04
+},
+{
+"text": "mil",
+"start": 8.04,
+"end": 8.24
+},
+{
+"text": "pesos.",
+"start": 8.24,
+"end": 8.68
+},
+{
+"text": "Un",
+"start": 8.96,
+"end": 9.12
+},
+{
+"text": "gazebo",
+"start": 9.12,
+"end": 9.46
+},
+{
+"text": "y",
+"start": 9.46,
+"end": 9.54
+},
+{
+"text": "una",
+"start": 9.54,
+"end": 9.7
+},
+{
+"text": "mesa,",
+"start": 9.7,
+"end": 9.96
+},
+{
+"text": "290",
+"start": 10.24,
+"end": 10.8
+},
+{
+"text": "mil.",
+"start": 10.8,
+"end": 11.16
+},
+{
+"text": "Una",
+"start": 11.46,
+"end": 11.8
+},
+{
+"text": "bolsa",
+"start": 11.8,
+"end": 12.04
+},
+{
+"text": "de",
+"start": 12.04,
+"end": 12.18
+},
+{
+"text": "harina",
+"start": 12.18,
+"end": 12.34
+},
+{
+"text": "de",
+"start": 12.34,
+"end": 12.48
+},
+{
+"text": "25",
+"start": 12.48,
+"end": 12.92
+},
+{
+"text": "kilos,",
+"start": 12.92,
+"end": 13.44
+},
+{
+"text": "22",
+"start": 13.64,
+"end": 14.0
+},
+{
+"text": "mil.",
+"start": 14.0,
+"end": 14.24
+},
+{
+"text": "Graza,",
+"start": 14.62,
+"end": 14.96
+},
+{
+"text": "carbón",
+"start": 15.08,
+"end": 15.46
+},
+{
+"text": "y",
+"start": 15.46,
+"end": 15.64
+},
+{
+"text": "chicharrón.",
+"start": 15.64,
+"end": 16.12
+},
+{
+"text": "Y",
+"start": 16.54,
+"end": 16.72
+},
+{
+"text": "salió",
+"start": 16.72,
+"end": 16.86
+},
+{
+"text": "a",
+"start": 16.86,
+"end": 16.94
+},
+{
+"text": "la",
+"start": 16.94,
+"end": 17.06
+},
+{
+"text": "calle.",
+"start": 17.06,
+"end": 17.28
+},
+{
+"text": "Arrancarle",
+"start": 17.86,
+"end": 18.3
+},
+{
+"text": "costó",
+"start": 18.3,
+"end": 18.56
+},
+{
+"text": "casi",
+"start": 18.56,
+"end": 18.94
+},
+{
+"text": "medio",
+"start": 18.94,
+"end": 19.24
+},
+{
+"text": "millón.",
+"start": 19.24,
+"end": 19.6
+},
+{
+"text": "Se",
+"start": 20.24,
+"end": 20.42
+},
+{
+"text": "levanta",
+"start": 20.42,
+"end": 20.66
+},
+{
+"text": "a",
+"start": 20.66,
+"end": 20.72
+},
+{
+"text": "las",
+"start": 20.72,
+"end": 20.8
+},
+{
+"text": "cuatro",
+"start": 20.8,
+"end": 21.1
+},
+{
+"text": "de",
+"start": 21.1,
+"end": 21.22
+},
+{
+"text": "la",
+"start": 21.22,
+"end": 21.44
+},
+{
+"text": "mañana",
+"start": 21.44,
+"end": 21.6
+},
+{
+"text": "a",
+"start": 21.6,
+"end": 21.74
+},
+{
+"text": "amasar.",
+"start": 21.74,
+"end": 22.16
+},
+{
+"text": "Con",
+"start": 22.42,
+"end": 22.5
+},
+{
+"text": "una",
+"start": 22.5,
+"end": 22.64
+},
+{
+"text": "bolsa",
+"start": 22.64,
+"end": 22.88
+},
+{
+"text": "de",
+"start": 22.88,
+"end": 23.02
+},
+{
+"text": "harina",
+"start": 23.02,
+"end": 23.24
+},
+{
+"text": "le",
+"start": 23.24,
+"end": 23.4
+},
+{
+"text": "salen",
+"start": 23.4,
+"end": 23.64
+},
+{
+"text": "unas",
+"start": 23.64,
+"end": 23.86
+},
+{
+"text": "200",
+"start": 23.86,
+"end": 24.14
+},
+{
+"text": "tortillas.",
+"start": 24.14,
+"end": 24.7
+},
+{
+"text": "La",
+"start": 24.98,
+"end": 25.14
+},
+{
+"text": "alcanza",
+"start": 25.14,
+"end": 25.38
+},
+{
+"text": "para",
+"start": 25.38,
+"end": 25.58
+},
+{
+"text": "cuatro",
+"start": 25.58,
+"end": 25.84
+},
+{
+"text": "días.",
+"start": 25.84,
+"end": 26.14
+},
+{
+"text": "La",
+"start": 26.7,
+"end": 26.92
+},
+{
+"text": "común",
+"start": 26.92,
+"end": 27.06
+},
+{
+"text": "la",
+"start": 27.06,
+"end": 27.24
+},
+{
+"text": "vende",
+"start": 27.24,
+"end": 27.42
+},
+{
+"text": "a",
+"start": 27.42,
+"end": 27.56
+},
+{
+"text": "2",
+"start": 27.56,
+"end": 27.66
+},
+{
+"text": "mil",
+"start": 27.66,
+"end": 27.78
+},
+{
+"text": "500.",
+"start": 27.78,
+"end": 28.1
+},
+{
+"text": "La",
+"start": 28.5,
+"end": 28.7
+},
+{
+"text": "de",
+"start": 28.7,
+"end": 28.8
+},
+{
+"text": "chicharrón",
+"start": 28.8,
+"end": 29.16
+},
+{
+"text": "a",
+"start": 29.16,
+"end": 29.26
+},
+{
+"text": "3",
+"start": 29.26,
+"end": 29.4
+},
+{
+"text": "mil.",
+"start": 29.4,
+"end": 29.58
+},
+{
+"text": "Y",
+"start": 29.58,
+"end": 30.3
+},
+{
+"text": "cada",
+"start": 30.3,
+"end": 30.52
+},
+{
+"text": "una",
+"start": 30.52,
+"end": 30.66
+},
+{
+"text": "le",
+"start": 30.66,
+"end": 30.82
+},
+{
+"text": "cuesta",
+"start": 30.82,
+"end": 30.98
+},
+{
+"text": "unos",
+"start": 30.98,
+"end": 31.24
+},
+{
+"text": "300",
+"start": 31.24,
+"end": 31.54
+},
+{
+"text": "pesos",
+"start": 31.54,
+"end": 31.88
+},
+{
+"text": "de",
+"start": 31.88,
+"end": 32.7
+},
+{
+"text": "masa.",
+"start": 32.7,
+"end": 32.7
+},
+{
+"text": "Primer",
+"start": 33.08,
+"end": 33.3
+},
+{
+"text": "día,",
+"start": 33.3,
+"end": 33.56
+},
+{
+"text": "vende",
+"start": 33.56,
+"end": 34.04
+},
+{
+"text": "50.",
+"start": 34.04,
+"end": 34.42
+},
+{
+"text": "Entran",
+"start": 35.12,
+"end": 35.44
+},
+{
+"text": "135",
+"start": 35.44,
+"end": 36.04
+},
+{
+"text": "mil.",
+"start": 36.04,
+"end": 36.48
+},
+{
+"text": "Entre",
+"start": 36.92,
+"end": 37.24
+},
+{
+"text": "masa,",
+"start": 37.24,
+"end": 37.6
+},
+{
+"text": "chicharrón,",
+"start": 37.72,
+"end": 38.36
+},
+{
+"text": "carbón",
+"start": 38.58,
+"end": 38.8
+},
+{
+"text": "y",
+"start": 38.8,
+"end": 38.9
+},
+{
+"text": "bolsitas,",
+"start": 38.9,
+"end": 39.62
+},
+{
+"text": "gasta",
+"start": 39.84,
+"end": 39.92
+},
+{
+"text": "39",
+"start": 39.92,
+"end": 40.46
+},
+{
+"text": "mil.",
+"start": 40.46,
+"end": 40.76
+},
+{
+"text": "Le",
+"start": 41.26,
+"end": 41.48
+},
+{
+"text": "quedan",
+"start": 41.48,
+"end": 41.74
+},
+{
+"text": "96",
+"start": 41.74,
+"end": 42.26
+},
+{
+"text": "mil.",
+"start": 42.26,
+"end": 42.68
+},
+{
+"text": "En",
+"start": 43.1,
+"end": 43.34
+},
+{
+"text": "un",
+"start": 43.34,
+"end": 43.58
+},
+{
+"text": "solo",
+"start": 43.58,
+"end": 43.82
+},
+{
+"text": "día.",
+"start": 43.82,
+"end": 44.16
+},
+{
+"text": "Pero",
+"start": 44.82,
+"end": 45.02
+},
+{
+"text": "ningún",
+"start": 45.02,
+"end": 45.28
+},
+{
+"text": "día",
+"start": 45.28,
+"end": 45.46
+},
+{
+"text": "es",
+"start": 45.46,
+"end": 45.66
+},
+{
+"text": "igual.",
+"start": 45.66,
+"end": 45.86
+},
+{
+"text": "El",
+"start": 46.72,
+"end": 46.88
+},
+{
+"text": "lunes",
+"start": 46.88,
+"end": 47.04
+},
+{
+"text": "vende",
+"start": 47.04,
+"end": 47.28
+},
+{
+"text": "40.",
+"start": 47.28,
+"end": 47.66
+},
+{
+"text": "El",
+"start": 48.14,
+"end": 48.38
+},
+{
+"text": "sábado",
+"start": 48.38,
+"end": 48.64
+},
+{
+"text": "y",
+"start": 48.64,
+"end": 48.74
+},
+{
+"text": "el",
+"start": 48.74,
+"end": 48.86
+},
+{
+"text": "domingo,",
+"start": 48.86,
+"end": 49.18
+},
+{
+"text": "60.",
+"start": 49.24,
+"end": 49.6
+},
+{
+"text": "Y",
+"start": 50.08,
+"end": 50.36
+},
+{
+"text": "el",
+"start": 50.36,
+"end": 50.46
+},
+{
+"text": "día",
+"start": 50.46,
+"end": 50.58
+},
+{
+"text": "que",
+"start": 50.58,
+"end": 50.82
+},
+{
+"text": "llueve,",
+"start": 50.82,
+"end": 51.56
+},
+{
+"text": "0.",
+"start": 51.82,
+"end": 52.1
+},
+{
+"text": "Y",
+"start": 52.6,
+"end": 52.84
+},
+{
+"text": "la",
+"start": 52.84,
+"end": 53.0
+},
+{
+"text": "masa",
+"start": 53.0,
+"end": 53.2
+},
+{
+"text": "a",
+"start": 53.2,
+"end": 53.46
+},
+{
+"text": "la",
+"start": 53.46,
+"end": 53.56
+},
+{
+"text": "basura.",
+"start": 53.56,
+"end": 53.9
+},
+{
+"text": "En",
+"start": 54.64,
+"end": 54.84
+},
+{
+"text": "el",
+"start": 54.84,
+"end": 54.98
+},
+{
+"text": "mes,",
+"start": 54.98,
+"end": 55.2
+},
+{
+"text": "con",
+"start": 55.42,
+"end": 55.56
+},
+{
+"text": "22",
+"start": 55.56,
+"end": 55.98
+},
+{
+"text": "días",
+"start": 55.98,
+"end": 56.2
+},
+{
+"text": "de",
+"start": 56.2,
+"end": 56.38
+},
+{
+"text": "venta,",
+"start": 56.38,
+"end": 56.78
+},
+{
+"text": "Si",
+"start": 56.78,
+"end": 57.04
+},
+{
+"text": "vende",
+"start": 57.04,
+"end": 57.22
+},
+{
+"text": "40",
+"start": 57.22,
+"end": 57.5
+},
+{
+"text": "por",
+"start": 57.5,
+"end": 57.68
+},
+{
+"text": "día,",
+"start": 57.68,
+"end": 58.02
+},
+{
+"text": "le",
+"start": 58.22,
+"end": 58.36
+},
+{
+"text": "queda",
+"start": 58.36,
+"end": 58.54
+},
+{
+"text": "1",
+"start": 58.54,
+"end": 58.78
+},
+{
+"text": "millón",
+"start": 58.78,
+"end": 59.04
+},
+{
+"text": "600",
+"start": 59.04,
+"end": 59.32
+},
+{
+"text": "mil.",
+"start": 59.32,
+"end": 59.78
+},
+{
+"text": "Con",
+"start": 60.18,
+"end": 60.34
+},
+{
+"text": "50,",
+"start": 60.34,
+"end": 60.8
+},
+{
+"text": "dos",
+"start": 61.0,
+"end": 61.14
+},
+{
+"text": "millones.",
+"start": 61.14,
+"end": 61.46
+},
+{
+"text": "Con",
+"start": 61.98,
+"end": 62.18
+},
+{
+"text": "60,",
+"start": 62.18,
+"end": 62.6
+},
+{
+"text": "dos",
+"start": 62.82,
+"end": 62.98
+},
+{
+"text": "millones",
+"start": 62.98,
+"end": 63.26
+},
+{
+"text": "y",
+"start": 63.26,
+"end": 63.48
+},
+{
+"text": "medio.",
+"start": 63.48,
+"end": 63.7
+},
+{
+"text": "Y",
+"start": 64.4,
+"end": 64.52
+},
+{
+"text": "en",
+"start": 64.52,
+"end": 64.6
+},
+{
+"text": "un",
+"start": 64.6,
+"end": 64.7
+},
+{
+"text": "lugar",
+"start": 64.7,
+"end": 64.88
+},
+{
+"text": "muy",
+"start": 64.88,
+"end": 65.1
+},
+{
+"text": "concurrido,",
+"start": 65.1,
+"end": 65.64
+},
+{
+"text": "con",
+"start": 65.82,
+"end": 65.98
+},
+{
+"text": "100",
+"start": 65.98,
+"end": 66.14
+},
+{
+"text": "por",
+"start": 66.14,
+"end": 66.32
+},
+{
+"text": "día,",
+"start": 66.32,
+"end": 66.64
+},
+{
+"text": "más",
+"start": 66.94,
+"end": 67.08
+},
+{
+"text": "de",
+"start": 67.08,
+"end": 67.4
+},
+{
+"text": "cuatro",
+"start": 67.4,
+"end": 67.68
+},
+{
+"text": "millones.",
+"start": 67.68,
+"end": 68.04
+},
+{
+"text": "Ahora,",
+"start": 68.7,
+"end": 68.96
+},
+{
+"text": "lo",
+"start": 69.16,
+"end": 69.32
+},
+{
+"text": "que",
+"start": 69.32,
+"end": 69.48
+},
+{
+"text": "nadie",
+"start": 69.48,
+"end": 69.68
+},
+{
+"text": "cuenta.",
+"start": 69.68,
+"end": 70.06
+},
+{
+"text": "Martín",
+"start": 70.76,
+"end": 70.98
+},
+{
+"text": "está",
+"start": 70.98,
+"end": 71.18
+},
+{
+"text": "seis",
+"start": 71.18,
+"end": 71.46
+},
+{
+"text": "horas",
+"start": 71.46,
+"end": 71.68
+},
+{
+"text": "en",
+"start": 71.68,
+"end": 71.78
+},
+{
+"text": "la",
+"start": 71.78,
+"end": 71.92
+},
+{
+"text": "esquina.",
+"start": 71.92,
+"end": 72.62
+},
+{
+"text": "Mirando",
+"start": 72.84,
+"end": 73.12
+},
+{
+"text": "solo",
+"start": 73.12,
+"end": 73.32
+},
+{
+"text": "eso",
+"start": 73.32,
+"end": 73.5
+},
+{
+"text": "gana",
+"start": 73.5,
+"end": 73.74
+},
+{
+"text": "15",
+"start": 73.74,
+"end": 74.02
+},
+{
+"text": "mil",
+"start": 74.02,
+"end": 74.2
+},
+{
+"text": "pesos",
+"start": 74.2,
+"end": 74.42
+},
+{
+"text": "la",
+"start": 74.42,
+"end": 74.64
+},
+{
+"text": "hora.",
+"start": 74.64,
+"end": 74.84
+},
+{
+"text": "Pero",
+"start": 75.32,
+"end": 75.5
+},
+{
+"text": "antes",
+"start": 75.5,
+"end": 75.74
+},
+{
+"text": "amasó,",
+"start": 75.74,
+"end": 76.3
+},
+{
+"text": "cargó,",
+"start": 76.62,
+"end": 77.14
+},
+{
+"text": "armó",
+"start": 77.44,
+"end": 77.54
+},
+{
+"text": "el",
+"start": 77.54,
+"end": 77.7
+},
+{
+"text": "puesto",
+"start": 77.7,
+"end": 77.92
+},
+{
+"text": "y",
+"start": 77.92,
+"end": 78.52
+},
+{
+"text": "compró",
+"start": 78.52,
+"end": 78.74
+},
+{
+"text": "la",
+"start": 78.74,
+"end": 78.96
+},
+{
+"text": "harina",
+"start": 78.96,
+"end": 79.14
+},
+{
+"text": "y",
+"start": 79.14,
+"end": 79.3
+},
+{
+"text": "el",
+"start": 79.3,
+"end": 79.5
+},
+{
+"text": "carbón.",
+"start": 79.5,
+"end": 80.1
+},
+{
+"text": "Cuatro",
+"start": 80.3,
+"end": 80.6
+},
+{
+"text": "horas",
+"start": 80.6,
+"end": 80.8
+},
+{
+"text": "más",
+"start": 80.8,
+"end": 80.96
+},
+{
+"text": "que",
+"start": 80.96,
+"end": 81.18
+},
+{
+"text": "nadie",
+"start": 81.18,
+"end": 81.42
+},
+{
+"text": "ve.",
+"start": 81.42,
+"end": 81.62
+},
+{
+"text": "Contando",
+"start": 82.5,
+"end": 82.9
+},
+{
+"text": "todo,",
+"start": 82.9,
+"end": 83.18
+},
+{
+"text": "la",
+"start": 83.46,
+"end": 83.6
+},
+{
+"text": "hora",
+"start": 83.6,
+"end": 83.74
+},
+{
+"text": "le",
+"start": 83.74,
+"end": 83.94
+},
+{
+"text": "queda",
+"start": 83.94,
+"end": 84.06
+},
+{
+"text": "en",
+"start": 84.06,
+"end": 84.24
+},
+{
+"text": "9",
+"start": 84.24,
+"end": 84.4
+},
+{
+"text": "mil",
+"start": 84.4,
+"end": 84.58
+},
+{
+"text": "200.",
+"start": 84.58,
+"end": 84.88
+},
+{
+"text": "Y",
+"start": 85.36,
+"end": 85.8
+},
+{
+"text": "si",
+"start": 85.8,
+"end": 86.0
+},
+{
+"text": "un",
+"start": 86.0,
+"end": 86.16
+},
+{
+"text": "día",
+"start": 86.16,
+"end": 86.32
+},
+{
+"text": "le",
+"start": 86.32,
+"end": 86.5
+},
+{
+"text": "cae",
+"start": 86.5,
+"end": 86.62
+},
+{
+"text": "un",
+"start": 86.62,
+"end": 86.72
+},
+{
+"text": "decomiso,",
+"start": 86.72,
+"end": 87.32
+},
+{
+"text": "pierde",
+"start": 87.66,
+"end": 87.82
+},
+{
+"text": "la",
+"start": 87.82,
+"end": 88.0
+},
+{
+"text": "parrilla,",
+"start": 88.0,
+"end": 88.46
+},
+{
+"text": "el",
+"start": 88.68,
+"end": 88.8
+},
+{
+"text": "gazebo",
+"start": 88.8,
+"end": 89.22
+},
+{
+"text": "y",
+"start": 89.22,
+"end": 89.66
+},
+{
+"text": "la",
+"start": 89.66,
+"end": 89.86
+},
+{
+"text": "mercadería",
+"start": 89.86,
+"end": 90.28
+},
+{
+"text": "de",
+"start": 90.28,
+"end": 90.5
+},
+{
+"text": "un",
+"start": 90.5,
+"end": 90.76
+},
+{
+"text": "saque.",
+"start": 90.76,
+"end": 91.16
+},
+{
+"text": "El",
+"start": 91.88,
+"end": 92.0
+},
+{
+"text": "método",
+"start": 92.0,
+"end": 92.24
+},
+{
+"text": "sirve",
+"start": 92.24,
+"end": 92.5
+},
+{
+"text": "para",
+"start": 92.5,
+"end": 92.74
+},
+{
+"text": "cualquier",
+"start": 92.74,
+"end": 92.98
+},
+{
+"text": "emprendimiento.",
+"start": 92.98,
+"end": 93.58
+},
+{
+"text": "Contá",
+"start": 94.18,
+"end": 94.5
+},
+{
+"text": "todas",
+"start": 94.5,
+"end": 94.8
+},
+{
+"text": "tus",
+"start": 94.8,
+"end": 94.98
+},
+{
+"text": "horas.",
+"start": 94.98,
+"end": 95.36
+},
+{
+"text": "No",
+"start": 95.8,
+"end": 95.92
+},
+{
+"text": "solo",
+"start": 95.92,
+"end": 96.08
+},
+{
+"text": "las",
+"start": 96.08,
+"end": 96.26
+},
+{
+"text": "que",
+"start": 96.26,
+"end": 96.38
+},
+{
+"text": "vendes.",
+"start": 96.38,
+"end": 96.72
+},
+{
+"text": "Y",
+"start": 97.36,
+"end": 97.54
+},
+{
+"text": "guardá",
+"start": 97.54,
+"end": 97.76
+},
+{
+"text": "plata",
+"start": 97.76,
+"end": 97.94
+},
+{
+"text": "para",
+"start": 97.94,
+"end": 98.18
+},
+{
+"text": "los",
+"start": 98.18,
+"end": 98.3
+},
+{
+"text": "días",
+"start": 98.3,
+"end": 98.44
+},
+{
+"text": "que",
+"start": 98.44,
+"end": 98.58
+},
+{
+"text": "no",
+"start": 98.58,
+"end": 98.7
+},
+{
+"text": "se",
+"start": 98.7,
+"end": 98.84
+},
+{
+"text": "vende.",
+"start": 98.84,
+"end": 99.34
+},
+{
+"text": "Mándaselo",
+"start": 99.86,
+"end": 100.14
+},
+{
+"text": "al",
+"start": 100.14,
+"end": 100.24
+},
+{
+"text": "que",
+"start": 100.24,
+"end": 100.34
+},
+{
+"text": "está",
+"start": 100.34,
+"end": 100.44
+},
+{
+"text": "pensando",
+"start": 100.44,
+"end": 100.72
+},
+{
+"text": "en",
+"start": 100.72,
+"end": 100.88
+},
+{
+"text": "arrancar.",
+"start": 100.88,
+"end": 101.3
+},
+{
+"text": "Y",
+"start": 101.8,
+"end": 101.96
+},
+{
+"text": "seguime",
+"start": 101.96,
+"end": 102.28
+},
+{
+"text": "para",
+"start": 102.28,
+"end": 102.58
+},
+{
+"text": "más",
+"start": 102.58,
+"end": 102.78
+},
+{
+"text": "estrategias",
+"start": 102.78,
+"end": 103.16
+},
+{
+"text": "como",
+"start": 103.16,
+"end": 103.38
+},
+{
+"text": "esta.",
+"start": 103.38,
+"end": 103.58
+}
+]

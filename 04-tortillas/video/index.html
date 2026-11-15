@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="assets/lib/gsap.min.js"></script>
+    <style>
+      /* EL MÉTODO EMPRESARIAL — capa de marca (MARCA.md y /root/reels-ref/EDICION.md) */
+      :root { --plata-c: #E5E7EB; --plata-m: #BFC4CC; --plata-o: #9299A3; --azul-l: #00CFFF;
+        --g-azul: linear-gradient(110deg, #0057D9 0%, #007BFF 35%, #009DFF 70%, #00CFFF 100%); }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1920px; overflow: hidden; background: #000000; }
+      #root { position: relative; width: 1080px; height: 1920px; font-family: "Montserrat"; }
+      #gl { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; }
+      #hud { position: absolute; inset: 0; pointer-events: none; z-index: 5; }
+      #marca { position: absolute; left: 44px; top: 96px; display: flex; align-items: center; gap: 12px; padding: 8px 16px 8px 8px; border-radius: 12px; background: rgba(0,0,0,.72); }
+      #marca img { width: 54px; height: 54px; }
+      #marca span { font-weight: 800; font-size: 19px; line-height: 1.05; letter-spacing: 0.12em; color: var(--plata-c); }
+      #marca span b { display: block; font-weight: 900; color: #FFFFFF; }
+      #titulo { position: absolute; left: 0; right: 0; top: 196px; display: grid; justify-items: center; gap: 10px; }
+      #titulo div { font-weight: 900; font-size: 58px; line-height: 1; letter-spacing: -0.01em; color: #FFFFFF; padding: 12px 24px 14px; border-radius: 10px; }
+      #titulo .a { background: #000000; border: 3px solid #9299A3; } #titulo .b { background: var(--g-azul); }
+      .ficha { position: absolute; left: 0; top: 0; background: #000000; border-radius: 14px; padding: 14px 24px 16px 30px; opacity: 0; border: 2px solid #3A3E46; }
+      .ficha::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 10px; border-radius: 14px 0 0 14px; background: var(--g-azul); }
+      .ficha::after { content: ""; position: absolute; left: 50%; bottom: -16px; margin-left: -14px; border: 14px solid transparent; border-bottom: 0; border-top: 16px solid #3A3E46; }
+      .ficha.fija::after { display: none; }
+      .ficha small { display: block; font-weight: 800; font-size: 24px; letter-spacing: 0.16em; color: var(--plata-m); }
+      .ficha b { display: block; font-weight: 900; font-size: 56px; line-height: 1.04; color: #FFFFFF; white-space: nowrap; }
+      .ficha.azul { background: var(--g-azul); border-color: #00CFFF; } .ficha.azul::before { display: none; } .ficha.azul::after { border-top-color: #007BFF; } .ficha.azul small { color: #E5F6FF; }
+      #grande { position: absolute; left: 50%; top: 470px; transform: translateX(-50%); width: 950px; text-align: center; background: rgba(0,0,0,.86); border: 2px solid #3A3E46; border-radius: 18px; padding: 22px 26px 26px; opacity: 0; }
+      #grande small { display: block; font-weight: 800; font-size: 30px; letter-spacing: 0.14em; color: var(--plata-c); }
+      #grande b { display: block; font-weight: 900; font-size: 84px; line-height: 1.05; margin-top: 6px; color: #FFFFFF; }
+      #grande b.az { background: var(--g-azul); -webkit-background-clip: text; background-clip: text; color: transparent; }
+      #grande b.cita { font-size: 56px; line-height: 1.15; }
+      .card { position: absolute; left: 40px; top: 420px; width: 1000px; background: rgba(0,0,0,.9); border: 2px solid #3A3E46; border-radius: 22px; padding: 24px 30px 26px; display: grid; gap: 12px; opacity: 0; }
+      .card .cab { display: flex; justify-content: space-between; align-items: center; } .card .cab b { font-weight: 900; font-size: 28px; letter-spacing: .16em; color: #BFC4CC; }
+      .card .cab span { font-weight: 900; font-size: 20px; letter-spacing: .14em; color: #000; background: #FFFFFF; padding: 4px 10px; border-radius: 6px; }
+      .l { display: flex; justify-content: space-between; gap: 16px; font-weight: 700; font-size: 34px; color: #E5E7EB; opacity: 0; font-variant-numeric: tabular-nums; }
+      .l b { font-weight: 900; color: #FFFFFF; white-space: nowrap; } .l.menos b { color: #FF8A8A; }
+      .l.total { border-top: 2px solid #3A3E46; padding-top: 12px; font-size: 40px; }
+      .l.total b { background: var(--g-azul); -webkit-background-clip: text; background-clip: text; color: transparent; font-size: 48px; }
+      .l.chica { font-size: 24px; color: #9299A3; } .nota { font-weight: 700; font-size: 22px; color: #9299A3; }
+      #semana .barras { display: grid; grid-template-columns: repeat(7, 1fr); gap: 16px; align-items: end; height: 360px; border-bottom: 2px solid #3A3E46; }
+      #semana .b { position: relative; height: 100%; display: flex; flex-direction: column; justify-content: flex-end; align-items: center; }
+      #semana .b i { display: block; width: 100%; height: 0; border-radius: 8px 8px 0 0; background: #5A6070; }
+      #semana .b.on i { background: var(--g-azul); } #semana .b span { position: absolute; bottom: calc(var(--h, 0px) + 8px); font-weight: 900; font-size: 34px; color: #FFFFFF; opacity: var(--o, 0); }
+      #semana .b.lluvia span { color: #FF8A8A; font-size: 26px; }
+      #semana .dias { display: grid; grid-template-columns: repeat(7, 1fr); gap: 16px; text-align: center; font-weight: 800; font-size: 24px; color: #9299A3; }
+      .sello { justify-self: end; font-weight: 900; font-size: 32px; color: #FFFFFF; background: #B3262E; padding: 8px 18px; border-radius: 12px; opacity: 0; }
+      #mes .l { font-size: 38px; } #mes .l.top b { font-size: 46px; background: var(--g-azul); -webkit-background-clip: text; background-clip: text; color: transparent; }
+      #reloj .barra { display: grid; grid-template-columns: repeat(10, 1fr); gap: 6px; height: 70px; }
+      #reloj .barra i { border-radius: 8px; background: #2A2E36; opacity: 0; } #reloj .barra i.v { background: var(--g-azul); } #reloj .barra i.n { background: linear-gradient(180deg, #FF5A5A, #B3262E); }
+      #reloj .eti { display: grid; grid-template-columns: 6fr 4fr; gap: 6px; font-weight: 800; font-size: 26px; color: #E5E7EB; }
+      #reloj .eti div { opacity: 0; } #reloj .eti small { display: block; font-weight: 700; font-size: 20px; color: #9299A3; }
+      #regla { position: absolute; left: 70px; right: 70px; top: 560px; display: grid; gap: 26px; opacity: 0; }
+      #regla .et { justify-self: start; font-weight: 900; font-size: 30px; letter-spacing: 0.22em; color: #FFFFFF; background: var(--g-azul); padding: 10px 20px; border-radius: 10px; }
+      #regla .l1 { font-weight: 900; font-size: 72px; line-height: 1.08; color: #FFFFFF; }
+      #regla .l1 em { font-style: normal; background: var(--g-azul); -webkit-background-clip: text; background-clip: text; color: transparent; }
+      #regla .formula { justify-self: start; font-weight: 900; font-size: 46px; line-height: 1.15; color: #000; background: #FFFFFF; padding: 12px 26px; border-radius: 14px; opacity: 0; }
+      #sub { position: absolute; left: 60px; right: 60px; top: 1330px; text-align: center; font-weight: 900; font-size: 62px; line-height: 1.1; color: #FFFFFF; -webkit-text-stroke: 12px #000000; paint-order: stroke fill; }
+      #sub em { font-style: normal; color: var(--azul-l); }
+      #fuente { position: absolute; left: 60px; right: 60px; top: 1478px; text-align: center; font-weight: 700; font-size: 23px; color: var(--plata-m); opacity: 0; -webkit-text-stroke: 6px #000; paint-order: stroke fill; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="107.3" data-width="1080" data-height="1920">
+      <canvas id="gl" width="1080" height="1920"></canvas>
+      <div id="hud" data-layout-ignore>
+        <div id="marca"><img src="assets/marca/isotipo.png" alt=""><span>EL MÉTODO<b>EMPRESARIAL</b></span></div>
+        <div id="titulo"><div class="a">Tortillas en la calle:</div><div class="b">¿cuánto deja?</div></div>
+        <div id="grande"><small id="grande-s"></small><b id="grande-b"></b></div>
+        <div class="card" id="compras"><div class="cab"><b>LO QUE COMPRÓ MARTÍN</b><span>PRECIOS NOV. 2026</span></div>
+          <div class="l" id="c1">Parrilla <b>$121.289</b></div><div class="l" id="c2">Gazebo + mesa <b>$290.000</b></div><div class="l" id="c3">Harina 000 · bolsa de 25 kg <b>$21.856</b></div>
+          <div class="l" id="c4">Grasa (2 kg de carnicería) <b>$7.500</b></div><div class="l" id="c5">Carbón · 10 kg <b>$15.000</b></div><div class="l" id="c6">Chicharrón · 1 kg <b>$8.000</b></div>
+          <div class="l total" id="c7">Para arrancar <b id="ctot">$0</b></div></div>
+        <div class="card" id="dia"><div class="cab"><b>PRIMER DÍA</b><span>EJEMPLO</span></div>
+          <div class="l" id="d1">Vende <b>50 tortillas</b></div><div class="l chica" id="d1b">30 comunes a $2.500 + 20 con chicharrón a $3.000 <b></b></div>
+          <div class="l" id="d2">Entran <b>$135.000</b></div><div class="l menos" id="d3">Masa, chicharrón, carbón, bolsitas <b>−$39.000</b></div>
+          <div class="l total" id="d4">Le quedan <b>$96.000</b></div></div>
+        <div class="card" id="semana"><div class="cab"><b>TORTILLAS VENDIDAS POR DÍA</b><span>EJEMPLO</span></div>
+          <div class="barras"><div class="b" data-v="40" data-k="lunes"><span>40</span><i></i></div><div class="b" data-v="50" data-k=""><span>50</span><i></i></div><div class="b" data-v="45" data-k=""><span>45</span><i></i></div><div class="b lluvia" data-v="0" data-k="llueve"><span>LLUEVE: 0</span><i></i></div><div class="b" data-v="50" data-k=""><span>50</span><i></i></div><div class="b" data-v="60" data-k="sabado"><span>60</span><i></i></div><div class="b" data-v="60" data-k="sabado"><span>60</span><i></i></div></div><div class="dias"><span>LUN</span><span>MAR</span><span>MIÉ</span><span>JUE</span><span>VIE</span><span>SÁB</span><span>DOM</span></div>
+          <div class="sello" id="basura">LA MASA, A LA BASURA</div></div>
+        <div class="card" id="mes"><div class="cab"><b>LE QUEDA POR MES · 22 DÍAS</b><span>EJEMPLO</span></div>
+          <div class="l" id="m1">40 por día <b>≈ $1.600.000</b></div><div class="l" id="m2">50 por día <b>≈ $2.000.000</b></div><div class="l" id="m3">60 por día <b>≈ $2.500.000</b></div>
+          <div class="l top" id="m4">100 por día (lugar muy concurrido) <b>+$4.000.000</b></div>
+          <div class="nota">Ya descontados masa, chicharrón, carbón, bolsitas, monotributo social, masa perdida por lluvia y desgaste del equipo</div></div>
+        <div class="card" id="reloj"><div class="cab"><b>SU DÍA DE TRABAJO</b><span>EJEMPLO</span></div>
+          <div class="barra"><i class="v"></i><i class="v"></i><i class="v"></i><i class="v"></i><i class="v"></i><i class="v"></i><i class="n"></i><i class="n"></i><i class="n"></i><i class="n"></i></div>
+          <div class="eti"><div id="e1">6 h en la esquina<small>lo que todos ven</small></div><div id="e2">4 h que nadie ve<small>amasar, cargar, armar, comprar</small></div></div>
+          <div class="l" id="h1">Por hora, mirando la esquina <b>$15.400</b></div><div class="l total" id="h2">Por hora, contando todo <b>$9.200</b></div></div>
+        <div id="regla"><div class="et">EL MÉTODO</div><div class="l1">Contá todas tus horas, <em>no solo las que vendés</em>.</div><div class="formula" id="formula">Y guardá plata para los días que no se vende</div></div>
+        <div id="sub"></div>
+        <div id="fuente"></div>
+      </div>
+      <div id="o-marca" data-composition-id="o-marca" data-composition-src="compositions/o-marca.html" data-start="101.9" data-duration="5.4" data-track-index="2" data-track-kind="graphics" data-width="1080" data-height="1920" style="z-index:30"></div>
+      <audio id="voz" class="clip" src="assets/audio/voz.wav" data-start="0" data-duration="104.2" data-track-index="5" data-volume="1"></audio>
+      <audio id="musica" class="clip" src="assets/audio/musica.wav" data-start="0" data-duration="107.3" data-track-index="6" data-volume="1"></audio>
+      <audio id="efectos" class="clip" src="assets/audio/efectos.wav" data-start="0" data-duration="107.3" data-track-index="7" data-volume="1"></audio>
+    </div>
+    <script>
+      window.__timelines = window.__timelines || {};
+      window.__timelines["main"] = gsap.timeline({ paused: true });
+    </script>
+    <script type="module">
+      window.__hf = window.__hf || {}; window.__hf.buildReady = window.__hf.buildReady || {};
+      let listo; window.__hf.buildReady["mundo"] = new Promise((r) => (listo = r));
+      await Promise.all(["900 70px Montserrat", "800 34px Montserrat", "700 22px Montserrat"].map((f) => document.fonts.load(f)));
+      const Mu = await import("./assets/mundo.js");
+      const SUB = await fetch("assets/subtitulos.json").then((r) => r.json());
+      const { T } = Mu; const clamp = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x)); const $ = (id) => document.getElementById(id);
+      const hud = $("hud");
+      // Fichas: [rótulo, valor, clase, objeto 3D o null, punto local o [x, y] fijo, desde, hasta]
+      const FI = [
+        ["ÉL ES", "MARTÍN", "azul", Mu.marcaMartin, [0, 0, 0], T.martin, T.parrilla - 0.1],
+        ["SE LEVANTA A LAS", "4:00 AM", "", null, [60, 440], T.amasar + 0.4, T.s200 - 0.1],
+        ["1 BOLSA DE 25 KG", "≈ 200 TORTILLAS", "azul", null, [60, 440], T.s200, T.comun - 0.1],
+        ["COMÚN", "$2.500", "", null, [60, 440], T.s2500 - 0.2, T.dia1 - 0.1],
+        ["CON CHICHARRÓN", "$3.000", "azul", null, [60, 600], T.s3000 - 0.2, T.dia1 - 0.1],
+        ["MASA POR TORTILLA", "≈ $300", "", null, [60, 760], T.s300 - 0.1, T.dia1 - 0.1],
+      ];
+      const els = FI.map((f) => { const d = document.createElement("div"); d.className = "ficha " + f[2] + (f[3] ? "" : " fija"); d.innerHTML = `<small>${f[0]}</small><b>${f[1]}</b>`; hud.appendChild(d); return d; });
+      const GR = [[T.calle + 0.4, T.amasar, "PARA ARRANCAR", "CASI MEDIO MILLÓN", "az"], [T.solo - 0.3, T.semana, "EN UN SOLO DÍA", "$96.000", "az"],
+        [T.decomiso + 0.2, T.metodo, "SI LE CAE UN DECOMISO", "PIERDE ≈ $460.000 DE UN SAQUE", "cita"]];
+      const FU = [[T.parrilla, T.amasar, "Precios: Carrefour, Mayoristanet (15/11/2026); grasa de carnicería y chicharrón: dato de vendedores / estimación"],
+        [T.amasar, T.comun, "Rendimiento de 8 tortillas por kg de harina: estimación"], [T.comun, T.dia1, "Precios en Buenos Aires según vendedores (nov. 2026)"],
+        [T.dia1, T.semana, "Carbón 10 kg por día y chicharrón 30 g por tortilla: estimación"], [T.semana, T.mes, "40 a 60 por día es lo más común, según vendedores"],
+        [T.mes, T.nadie, "Monotributo social $12.847 (ARCA, ago. 2026) · equipo amortizado en 12 meses"],
+        [T.decomiso, T.metodo, "Ej.: Cañuelas, Ord. 60/84: multa de $27.000 a $104.000 y decomiso inmediato"]];
+      const SEC = [["compras", T.parrilla, T.calle], ["dia", T.dia1 + 0.2, T.semana - 0.1], ["semana", T.semana + 0.2, T.mes - 0.1], ["mes", T.mes + 0.3, T.nadie - 0.1], ["reloj", T.seis - 0.4, T.decomiso - 0.1]];
+      const LIN = [["c1", T.s120], ["c2", T.s290], ["c3", T.s22], ["c4", T.grasa], ["c5", T.carbon], ["c6", T.chicha], ["c7", T.s120],
+        ["d1", T.v50], ["d1b", T.v50 + 0.4], ["d2", T.entran + 0.3], ["d3", T.gasta], ["d4", T.quedan + 0.4],
+        ["m1", T.m40 + 1.5], ["m2", T.m50 + 0.2], ["m3", T.m60 + 0.2], ["m4", T.m100 + 1.4], ["h1", T.s15 - 0.2], ["h2", T.s9200 + 1.8]];
+      const COMPRAS = [[T.s120, 121289], [T.s290, 290000], [T.s22, 21856], [T.grasa, 7500], [T.carbon, 15000], [T.chicha, 8000]];
+      function aparece(el, t, a, b = 1e9) { const u = clamp((t - a) / 0.3), o = clamp((b - t) / 0.25); el.style.opacity = t >= a && t < b ? Math.min(u, o) : 0; return u; }
+      function hudAt(t) {
+        const enRegla = t >= T.metodo && t < T.mandaselo; const sec = SEC.find((x) => t >= x[1] && t < x[2]);
+        Mu.render(t, enRegla ? 0.86 * clamp((t - T.metodo) / 0.4) * clamp((T.mandaselo - t) / 0.3) : sec && ["semana", "mes"].includes(sec[0]) ? 0.35 : 0);
+        FI.forEach((f, i) => {
+          const el = els[i], on = t >= f[5] && t < f[6]; if (!on) { el.style.opacity = 0; return; }
+          const u = clamp((t - f[5]) / 0.25), out = clamp((f[6] - t) / 0.15); const w = el.offsetWidth, h = el.offsetHeight; let x, y, s = { vis: true };
+          if (f[3]) { s = Mu.aPantalla(f[3], f[4]); x = Math.min(1080 - w - 40, Math.max(40, s.x - w / 2)); y = Math.min(1180 - h, Math.max(440, s.y - h - 22)); } else { x = f[4][0]; y = f[4][1]; }
+          el.style.opacity = s.vis ? Math.min(u, out) : 0; el.style.transform = `translate(${x}px, ${y + (1 - u) * 26}px) scale(${0.86 + 0.14 * (1 - Math.pow(1 - u, 3))})`;
+        });
+        const g = GR.find((r) => t >= r[0] && t < r[1]);
+        if (g) { const u = clamp((t - g[0]) / 0.3), o = clamp((g[1] - t) / 0.2); $("grande").style.opacity = Math.min(u, o); $("grande").style.transform = `translateX(-50%) translateY(${(1 - u) * 26}px)`; $("grande-s").textContent = g[2]; $("grande-b").textContent = g[3]; $("grande-b").className = g[4]; }
+        else $("grande").style.opacity = 0;
+        SEC.forEach(([id, a, b]) => { const u = aparece($(id), t, a, b); $(id).style.transform = `translateY(${(1 - u) * 30}px)`; });
+        LIN.forEach(([id, a]) => { const e = $(id), u = clamp((t - a) / 0.3); e.style.opacity = u; e.style.transform = `translateX(${(1 - u) * -20}px)`; });
+        // contador de la inversión: cada compra suma con un pequeño conteo
+        let tot = 0; COMPRAS.forEach(([a, v]) => (tot += v * clamp((t - a) / 0.6))); $("ctot").textContent = "$" + Math.round(tot).toLocaleString("es-AR");
+        // semana: barras
+        [...document.querySelectorAll("#semana .b")].forEach((d, i) => { const v = +d.dataset.v, k = d.dataset.k; const a = k ? T[k] : T.lunes + 0.6 + i * 0.12; const u = clamp((t - a) / 0.45); const h = Math.max(6, (v / 60) * 300 * (1 - Math.pow(1 - u, 3)));
+          d.querySelector("i").style.height = h + "px"; d.style.setProperty("--h", h + "px"); d.style.setProperty("--o", k ? clamp((t - a - 0.15) / 0.3) : 0); d.classList.toggle("on", !!k && v > 0); });
+        const ub = clamp((t - T.basura) / 0.3); $("basura").style.opacity = ub; $("basura").style.transform = `scale(${0.9 + 0.1 * ub})`;
+        // reloj del día: 6 h visibles + 4 h que nadie ve
+        [...document.querySelectorAll("#reloj .barra i")].forEach((b, i) => { const a = i < 6 ? T.seis - 0.2 + i * 0.1 : T.antes + 0.8 + (i - 6) * 0.35; b.style.opacity = clamp((t - a) / 0.25); });
+        $("e1").style.opacity = clamp((t - T.seis) / 0.3); $("e2").style.opacity = clamp((t - T.cuatro) / 0.3);
+        // regla
+        const ug = clamp((t - T.metodo - 0.2) / 0.4); $("regla").style.opacity = enRegla ? Math.min(ug, clamp((T.mandaselo - t) / 0.3)) : 0; $("regla").style.transform = `translateY(${(1 - ug) * 30}px)`;
+        $("formula").style.opacity = clamp((t - T.guarda + 0.1) / 0.4);
+        let s = ""; for (const [a, txt] of SUB) if (t >= a) s = txt; $("sub").innerHTML = t < T.seguime - 0.05 && !enRegla ? s : "";
+        const fu = FU.find((r) => t >= r[0] + 0.3 && t < r[1]); $("fuente").style.opacity = fu ? 1 : 0; if (fu) $("fuente").textContent = fu[2];
+        $("titulo").style.opacity = sec || enRegla || t >= T.seguime - 0.05 || (t >= T.amasar && t < T.dia1) || (t >= T.antes && t < T.s9200) || g ? 0 : 1;
+      }
+      window.addEventListener("hf-seek", (e) => hudAt(e.detail.time)); hudAt(0); listo();
+    </script>
+  </body>
+</html>

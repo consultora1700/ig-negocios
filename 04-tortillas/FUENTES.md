@@ -1,0 +1,11 @@
+# Fuentes reel 04 (relevadas 2026-11-15)
+- Precios en Buenos Aires: dato del usuario (común $2.500, chicharrón $3.000). Referencia: TN/Telenoche, José C. Paz, oct-2026 ($3.000 / $4.500 rellena) https://examedia.com.ar/portada/post/87972196
+- Ventas por día: dato del usuario (40–60 lo común, hasta 100). Referencias: Comodoro ~30/día (El Comodorense, ago-2026), Río Grande ~40 (Radio Fueguina, 2023).
+- Luis se levanta a las 2 AM a amasar (TN, oct-2026).
+- Parrilla a carbón $121.289; gazebo 3x3 $199.999; mesa plegable ~$90.000 (Carrefour online, 15-11-2026).
+- Harina 000 bolsa 25 kg $21.856 (mayoristanet.com, 15-11-2026). Grasa vacuna: súper $7.500/kg (Dia); carnicería ~mitad (dato del usuario).
+- Carbón 10 kg $15.000 (Carrefour, 15-11-2026). Consumo diario: supuesto.
+- Receta: 1 kg harina + 250–350 g grasa (cocinerosargentinos.com). Rendimiento 8 por kg: supuesto.
+- Monotributo social $12.847,27/mes desde ago-2026 (Ámbito).
+- Decomiso: Cañuelas, Ordenanza 60/84: multa 10–40 módulos ($27.000–104.000) + decomiso inmediato (Nac&Pop Cañuelas, jun-2025). CABA: proyecto de multa hasta 50.000 UF (Parlamentario, oct-2026).
+- Purmamarca rellena $500 (jul-2023) → $3.000 (nov-2025) (TodoJujuy).
