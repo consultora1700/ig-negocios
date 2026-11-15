@@ -10,8 +10,9 @@ Entrás por dos caminos. La app Mercado Envíos Extra, que te muestra lo que pag
 Te piden auto, celular Android, seguro y monotributo.
 Ahora la cuenta. Martín y Lucas reparten diez horas por día y facturan tres millones por mes. Mismo trabajo. Martín carga nafta; Lucas, GNC.
 Martín hace ciento treinta kilómetros por día. Nafta: seiscientos veinticinco mil. Cubiertas, service y frenos: casi trescientos mil. El auto pierde valor: ciento cincuenta mil. Seguro, patente y monotributo: doscientos sesenta mil.
+Ojo: el auto no te pide plata todos los meses. Pero se gasta todos los meses. Si no separás esa plata, el mes que te toca cambiar amortiguadores, frenos o la correa de distribución, se te van cientos de miles de golpe… y ese mes cobrás mucho menos.
 A Martín le queda un millón seiscientos sesenta mil. De cada cien pesos que factura, se le van cuarenta y cinco en gastos.
 Lucas paga ciento noventa mil de gas, más la cuota del equipo. Le quedan dos millones treinta mil. Trescientos setenta mil más por mes, haciendo lo mismo.
 Y algo que casi nadie mira: dos rutas que pagan igual, una de cincuenta kilómetros y otra de veinticinco. La corta te cuesta la mitad.
-Antes de sumarle horas, bajá lo que te cuesta cada kilómetro. Facturar no es ganar.
+Y esto sirve para cualquiera que trabaje con un vehículo: separá el desgaste todos los meses, como si fuera una cuota. El auto no te lo pide todos los meses… pero te lo cobra todo junto. Facturar no es ganar.
 Mandáselo al que está por salir a repartir. Y seguime para más estrategias como esta.
