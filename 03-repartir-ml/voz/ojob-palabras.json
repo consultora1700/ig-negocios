@@ -2,246 +2,241 @@
 {
 "text": "ojo,",
 "start": 0.0,
-"end": 0.986
+"end": 0.689
 },
 {
-"text": "las",
-"start": 1.208,
-"end": 1.297
+"text": "el",
+"start": 0.889,
+"end": 0.956
 },
 {
-"text": "cubiertas",
-"start": 1.297,
-"end": 1.852
-},
-{
-"text": "no",
-"start": 1.852,
-"end": 1.986
-},
-{
-"text": "las",
-"start": 1.986,
-"end": 2.186
-},
-{
-"text": "cambias",
-"start": 2.186,
-"end": 2.497
-},
-{
-"text": "todos",
-"start": 2.497,
-"end": 2.763
-},
-{
-"text": "los",
-"start": 2.763,
-"end": 2.963
-},
-{
-"text": "meses",
-"start": 2.963,
-"end": 3.252
-},
-{
-"text": "pero",
-"start": 3.252,
-"end": 3.842
-},
-{
-"text": "se",
-"start": 3.842,
-"end": 4.131
-},
-{
-"text": "gastan",
-"start": 4.131,
-"end": 4.842
-},
-{
-"text": "todos",
-"start": 4.842,
-"end": 5.175
-},
-{
-"text": "los",
-"start": 5.175,
-"end": 5.419
-},
-{
-"text": "meses",
-"start": 5.419,
-"end": 5.819
-},
-{
-"text": "si",
-"start": 5.819,
-"end": 6.331
+"text": "auto",
+"start": 0.956,
+"end": 1.222
 },
 {
 "text": "no",
-"start": 6.331,
-"end": 6.508
+"start": 1.222,
+"end": 1.489
 },
 {
-"text": "separas",
-"start": 6.508,
-"end": 6.953
+"text": "te",
+"start": 1.489,
+"end": 1.756
 },
 {
-"text": "esa",
-"start": 6.953,
-"end": 7.131
+"text": "pide",
+"start": 1.756,
+"end": 2.022
 },
 {
 "text": "plata",
-"start": 7.131,
-"end": 7.508
+"start": 2.022,
+"end": 2.356
 },
 {
-"text": "el",
-"start": 7.508,
-"end": 8.108
+"text": "todos",
+"start": 2.356,
+"end": 2.711
 },
 {
-"text": "mes",
-"start": 8.108,
-"end": 8.286
+"text": "los",
+"start": 2.711,
+"end": 2.933
 },
 {
-"text": "que",
-"start": 8.286,
-"end": 8.442
+"text": "meses,",
+"start": 2.933,
+"end": 3.222
 },
 {
-"text": "te",
-"start": 8.442,
-"end": 8.619
-},
-{
-"text": "toca",
-"start": 8.619,
-"end": 8.797
-},
-{
-"text": "cambiar",
-"start": 8.797,
-"end": 9.131
-},
-{
-"text": "las",
-"start": 9.131,
-"end": 9.442
-},
-{
-"text": "cuatro",
-"start": 9.442,
-"end": 9.775
-},
-{
-"text": "cubiertas",
-"start": 9.775,
-"end": 10.353
-},
-{
-"text": "y",
-"start": 10.353,
-"end": 10.619
-},
-{
-"text": "hacer",
-"start": 10.619,
-"end": 10.864
-},
-{
-"text": "el",
-"start": 10.864,
-"end": 11.086
-},
-{
-"text": "service",
-"start": 11.086,
-"end": 11.464
+"text": "pero",
+"start": 3.689,
+"end": 3.844
 },
 {
 "text": "se",
-"start": 11.464,
-"end": 11.886
+"start": 3.844,
+"end": 4.111
 },
 {
-"text": "te",
-"start": 11.886,
-"end": 12.019
+"text": "gasta",
+"start": 4.111,
+"end": 4.578
 },
 {
-"text": "va",
-"start": 12.019,
-"end": 12.131
+"text": "todos",
+"start": 4.578,
+"end": 4.956
 },
 {
-"text": "casi",
-"start": 12.131,
-"end": 12.442
+"text": "los",
+"start": 4.956,
+"end": 5.178
 },
 {
-"text": "un",
-"start": 12.442,
-"end": 12.708
+"text": "meses",
+"start": 5.178,
+"end": 5.622
 },
 {
-"text": "millón",
-"start": 12.708,
-"end": 13.153
+"text": "si",
+"start": 5.622,
+"end": 6.244
 },
 {
-"text": "de",
-"start": 13.153,
-"end": 13.353
+"text": "no",
+"start": 6.244,
+"end": 6.444
 },
 {
-"text": "golpe",
-"start": 13.353,
-"end": 13.708
+"text": "separas",
+"start": 6.444,
+"end": 6.844
 },
 {
-"text": "y",
-"start": 13.708,
-"end": 14.188
+"text": "esa",
+"start": 6.844,
+"end": 7.0
 },
 {
-"text": "ese",
-"start": 14.188,
-"end": 14.343
+"text": "plata,",
+"start": 7.0,
+"end": 7.311
+},
+{
+"text": "el",
+"start": 7.733,
+"end": 7.778
 },
 {
 "text": "mes",
-"start": 14.343,
-"end": 14.677
+"start": 7.778,
+"end": 7.956
 },
 {
-"text": "cobras",
-"start": 14.677,
-"end": 15.054
+"text": "que",
+"start": 7.956,
+"end": 8.089
 },
 {
-"text": "menos",
-"start": 15.054,
-"end": 15.388
+"text": "te",
+"start": 8.089,
+"end": 8.267
 },
 {
-"text": "de",
-"start": 15.388,
-"end": 15.543
+"text": "toca",
+"start": 8.267,
+"end": 8.422
+},
+{
+"text": "cambiar",
+"start": 8.422,
+"end": 8.778
+},
+{
+"text": "amortiguadores,",
+"start": 8.778,
+"end": 9.889
+},
+{
+"text": "frenos",
+"start": 10.333,
+"end": 10.667
+},
+{
+"text": "o",
+"start": 10.667,
+"end": 10.889
 },
 {
 "text": "la",
-"start": 15.543,
-"end": 15.632
+"start": 10.889,
+"end": 11.111
 },
 {
-"text": "mitad",
-"start": 15.632,
-"end": 15.832
+"text": "correa",
+"start": 11.111,
+"end": 11.356
+},
+{
+"text": "de",
+"start": 11.356,
+"end": 11.622
+},
+{
+"text": "distribución",
+"start": 11.622,
+"end": 12.222
+},
+{
+"text": "se",
+"start": 12.222,
+"end": 12.578
+},
+{
+"text": "te",
+"start": 12.578,
+"end": 12.733
+},
+{
+"text": "van",
+"start": 12.733,
+"end": 12.956
+},
+{
+"text": "cientos",
+"start": 12.956,
+"end": 13.622
+},
+{
+"text": "de",
+"start": 13.622,
+"end": 13.822
+},
+{
+"text": "miles",
+"start": 13.822,
+"end": 13.978
+},
+{
+"text": "de",
+"start": 13.978,
+"end": 14.267
+},
+{
+"text": "golpe",
+"start": 14.267,
+"end": 14.622
+},
+{
+"text": "y",
+"start": 14.622,
+"end": 15.114
+},
+{
+"text": "ese",
+"start": 15.114,
+"end": 15.27
+},
+{
+"text": "mes",
+"start": 15.27,
+"end": 15.536
+},
+{
+"text": "cobras",
+"start": 15.536,
+"end": 15.959
+},
+{
+"text": "mucho",
+"start": 15.959,
+"end": 16.27
+},
+{
+"text": "menos",
+"start": 16.27,
+"end": 16.559
 }
 ]

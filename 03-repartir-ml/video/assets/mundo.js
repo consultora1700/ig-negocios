@@ -14,9 +14,9 @@ export const T = {
   hasta: 0.0, mitad: 6.7, primero: 8.0, notiene: 10.2, paquete: 15.9, escobar: 17.6, mil130: 18.7, ultima: 21.6, logistica: 25.2, vos: 26.8,
   caminos: 29.2, uno: 30.8, semana: 34.4, dos: 35.9, pesos: 38.0, deeso: 40.8, piden: 42.3, auto: 42.7, celular: 43.3, seguro: 44.3, mono: 44.7,
   cuenta: 45.7, ml: 47.0, fact: 49.5, mismo: 51.3, cobra: 52.4, gnc: 53.8, km130: 55.1, snafta: 57.0, cubiertas: 59.8, s300: 61.2, valor: 62.7, s150: 63.6,
-  seg: 65.3, s260: 66.9, ojo: 68.7, gastan: 71.9, separas: 74.4, toca: 76.3, millon1: 80.4, mitadOjo: 82.3,
-  quedan: 84.8, s1660: 86.2, s45: 89.4, lucas: 91.8, s190: 92.5, cuota: 94.2, quedanL: 95.6, s2030: 96.2, s370: 97.9,
-  loco: 101.1, dosrutas: 103.1, mitad2: 107.3, regla: 109.2, separa: 112.7, cobratodo: 116.6, facturar: 121.3, mandaselo: 123.6, seguime: 125.6, fin: 131.0,
+  seg: 65.3, s260: 66.9, ojo: 68.7, gastan: 71.9, separas: 74.4, toca: 76.0, amort: 77.1, frenos: 78.5, distrib: 79.4, millon1: 81.1, mitadOjo: 83.3,
+  quedan: 85.6, s1660: 87.0, s45: 90.2, lucas: 92.6, s190: 93.3, cuota: 95.0, quedanL: 96.4, s2030: 97.0, s370: 98.7,
+  loco: 101.9, dosrutas: 103.9, mitad2: 108.1, regla: 110.0, separa: 113.5, cobratodo: 117.4, facturar: 122.1, mandaselo: 124.4, seguime: 126.4, fin: 131.8,
 };
 const clamp = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
 const ease = (u) => (u < 0.5 ? 4 * u * u * u : 1 - Math.pow(-2 * u + 2, 3) / 2);

@@ -81,8 +81,12 @@
       #ojo .cab { display: flex; justify-content: space-between; align-items: center; } #ojo .cab b { font-weight: 900; font-size: 30px; letter-spacing: .14em; color: #FFFFFF; }
       #ojo .cab span { font-weight: 900; font-size: 20px; letter-spacing: .14em; color: #000; background: #FFFFFF; padding: 4px 10px; border-radius: 6px; }
       #ojo .fila { font-weight: 800; font-size: 26px; color: #BFC4CC; letter-spacing: .04em; }
-      #ojo .barras { display: grid; grid-template-columns: repeat(12, 1fr); gap: 10px; align-items: end; height: 300px; border-bottom: 2px solid #3A3E46; }
-      #ojo .barras i { display: block; background: #5A6070; border-radius: 6px 6px 0 0; height: 0; }
+      #ojo .barras { display: grid; grid-template-columns: repeat(12, 1fr); gap: 10px; align-items: end; height: 340px; border-bottom: 2px solid #3A3E46; }
+      #ojo .barras .b { display: flex; flex-direction: column; align-items: center; justify-content: flex-end; height: 100%; position: relative; }
+      #ojo .barras .b span { position: absolute; bottom: calc(var(--h, 0px) + 10px); width: 220px; text-align: center; font-weight: 900; font-size: 20px; line-height: 1.1; color: #FFFFFF; opacity: var(--o, 0); }
+      #ojo .barras .b span small { font-weight: 700; font-size: 17px; color: #FF8A8A; }
+      #ojo .barras .b:last-child span, #ojo .barras .b:nth-last-child(2) span { right: -6px; text-align: right; }
+      #ojo .barras i { display: block; width: 100%; background: #5A6070; border-radius: 6px 6px 0 0; height: 0; }
       #ojo .barras i.pico { background: linear-gradient(180deg, #FF5A5A, #B3262E); }
       #ojo .barras.par i { background: var(--g-azul); }
       #ojo .meses { display: grid; grid-template-columns: repeat(12, 1fr); gap: 10px; text-align: center; font-weight: 700; font-size: 20px; color: #9299A3; }
@@ -99,7 +103,7 @@
     </style>
   </head>
   <body>
-    <div id="root" data-composition-id="main" data-start="0" data-duration="131.0" data-width="1080" data-height="1920">
+    <div id="root" data-composition-id="main" data-start="0" data-duration="131.8" data-width="1080" data-height="1920">
       <canvas id="gl" width="1080" height="1920"></canvas>
       <div id="hud" data-layout-ignore>
         <div id="marca"><img src="assets/marca/isotipo.png" alt=""><span>EL MÉTODO<b>EMPRESARIAL</b></span></div>
@@ -125,19 +129,19 @@
           <div class="nota" id="kn">Lucas: gas $190.000 + cuota del equipo $64.000 · el equipo ($1,5 M) se paga en unos 4 meses</div>
           <div class="dif" id="kd">+$370.000 POR MES · MISMO TRABAJO</div></div>
         <div id="ojo"><div class="cab"><b>OJO CON EL DESGASTE</b><span>EJEMPLO</span></div>
-          <div class="fila" id="o1">Lo que pagás cada mes si no separás</div>
-          <div class="barras" id="ob1"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i class="pico"></i></div>
+          <div class="fila" id="o1">Lo que te pide el auto, mes a mes, si no separás</div>
+          <div class="barras" id="ob1"><div class="b"><span></span><i></i></div><div class="b"><span></span><i></i></div><div class="b"><span></span><i></i></div><div class="b"><span>FRENOS<br><small>$150–320 MIL</small></span><i class="pico"></i></div><div class="b"><span></span><i></i></div><div class="b"><span></span><i></i></div><div class="b"><span>AMORTIGUADORES<br><small>$150–320 MIL</small></span><i class="pico"></i></div><div class="b"><span></span><i></i></div><div class="b"><span></span><i></i></div><div class="b"><span></span><i></i></div><div class="b"><span>DISTRIBUCIÓN<br><small>DESDE $180 MIL + MANO DE OBRA</small></span><i class="pico"></i></div><div class="b"><span></span><i></i></div></div>
           <div class="meses"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>10</span><span>11</span><span>12</span></div>
-          <div class="golpe" id="og">MES 12: CUBIERTAS + SERVICE ≈ $1.000.000 DE GOLPE</div>
-          <div class="nota">Cubiertas $700.000–900.000 cada 40.000–50.000 km · service cada 10.000 km (iProfesional, 2026) · Martín hace ~3.400 km por mes</div></div>
+          <div class="golpe" id="og">ESE MES COBRÁS MUCHO MENOS</div>
+          <div class="nota">Amortiguadores (par) y frenos (pastillas y discos): $150.000–320.000 cada uno (servidos.ar, ago. 2026) · kit de distribución desde $180.000 + mano de obra (avisos en Mercado Libre) · los meses son de ejemplo</div></div>
         <div id="regla"><div class="et">EL MÉTODO</div><div class="l1">¿Trabajás con un vehículo? Separá el desgaste <em>todos los meses</em>, como una cuota.</div><div class="formula" id="formula">Facturar no es ganar</div></div>
         <div id="sub"></div>
         <div id="fuente"></div>
       </div>
-      <div id="o-marca" data-composition-id="o-marca" data-composition-src="compositions/o-marca.html" data-start="125.6" data-duration="5.4" data-track-index="2" data-track-kind="graphics" data-width="1080" data-height="1920" style="z-index:30"></div>
-      <audio id="voz" class="clip" src="assets/audio/voz.wav" data-start="0" data-duration="127.8" data-track-index="5" data-volume="1"></audio>
-      <audio id="musica" class="clip" src="assets/audio/musica.wav" data-start="0" data-duration="131.0" data-track-index="6" data-volume="1"></audio>
-      <audio id="efectos" class="clip" src="assets/audio/efectos.wav" data-start="0" data-duration="131.0" data-track-index="7" data-volume="1"></audio>
+      <div id="o-marca" data-composition-id="o-marca" data-composition-src="compositions/o-marca.html" data-start="126.4" data-duration="5.4" data-track-index="2" data-track-kind="graphics" data-width="1080" data-height="1920" style="z-index:30"></div>
+      <audio id="voz" class="clip" src="assets/audio/voz.wav" data-start="0" data-duration="128.6" data-track-index="5" data-volume="1"></audio>
+      <audio id="musica" class="clip" src="assets/audio/musica.wav" data-start="0" data-duration="131.8" data-track-index="6" data-volume="1"></audio>
+      <audio id="efectos" class="clip" src="assets/audio/efectos.wav" data-start="0" data-duration="131.8" data-track-index="7" data-volume="1"></audio>
     </div>
     <script>
       window.__timelines = window.__timelines || {};
@@ -203,8 +207,9 @@
         // ojo: barras de 12 meses (service cada 3 meses, cubiertas + service en el mes 12)
         const enOjo = t >= T.ojo && t < T.quedan; const uo = clamp((t - T.ojo - 0.2) / 0.4);
         $("ojo").style.opacity = enOjo ? Math.min(uo, clamp((T.quedan - t) / 0.3)) : 0; $("ojo").style.transform = `translateY(${(1 - uo) * 30}px)`;
-        const ALT = [0, 0, 64, 0, 0, 64, 0, 0, 64, 0, 0, 300];
-        [...$("ob1").children].forEach((b, i) => { const a = i < 11 ? T.ojo + 0.6 + i * 0.12 : T.millon1 - 0.3; const v = clamp((t - a) / (i < 11 ? 0.3 : 0.6)); b.style.height = Math.max(6, ALT[i] * (1 - Math.pow(1 - v, 3))) + "px"; });
+        const EV = { 3: [T.frenos, 230], 6: [T.amort, 230], 10: [T.distrib, 260] };
+        [...$("ob1").children].forEach((d, i) => { const e = EV[i]; const a = e ? e[0] - 0.15 : T.ojo + 0.6 + i * 0.08; const v = clamp((t - a) / (e ? 0.5 : 0.3)); const h = Math.max(6, (e ? e[1] : 6) * (1 - Math.pow(1 - v, 3)));
+          d.querySelector("i").style.height = h + "px"; d.style.setProperty("--h", h + "px"); d.style.setProperty("--o", e ? clamp((t - e[0] - 0.2) / 0.3) : 0); });
         const ug2 = clamp((t - T.mitadOjo + 0.2) / 0.3); $("og").style.opacity = ug2; $("og").style.transform = `scale(${0.9 + 0.1 * ug2})`;
         let s = ""; for (const [a, txt] of SUB) if (t >= a) s = txt; $("sub").innerHTML = t < T.seguime - 0.05 && !enRegla ? s : "";
         const fu = FU.find((r) => t >= r[0] + 0.3 && t < r[1]); $("fuente").style.opacity = fu ? 1 : 0; if (fu) $("fuente").textContent = fu[2];
