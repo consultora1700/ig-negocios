@@ -12,14 +12,14 @@ import { RoundedBoxGeometry } from "./lib/RoundedBoxGeometry.js";
 export const W = 1080, H = 1920;
 // Tiempos anclados a la voz (voz/voz-palabras.json)
 export const T = {
-  hook: 0.0, cuenta: 2.8, martin: 5.8, compras: 9.1, parrilla: 10.3, s120: 11.6, gazebo: 12.9, s290: 14.2, harina: 15.2, s22: 17.3, grasa: 18.4, carbon: 19.0, chicha: 19.4, s30: 20.3,
-  total: 21.4, s463: 22.2, medio: 23.7, antesVender: 25.3,
-  amasar: 27.5, ingred: 30.0, kilo: 32.2, ocho: 33.7, s200: 36.8, dias4: 37.5, cuesta: 39.2, s300: 42.3, comun: 43.3, s2500: 44.2, s2200: 45.8, todavia: 46.9, falta: 48.2,
-  dia1: 51.6, v50: 53.2, mix: 54.6, op1: 59.3, op2: 61.6, entran: 62.8, gastos: 64.3, g1: 67.5, g2: 69.2, g3: 71.0, g4: 73.0, gasto: 74.0, resta: 75.4, quedan: 77.6, undia: 79.0,
-  semana: 79.9, lunes: 82.9, martes: 84.4, viernes: 86.0, sabado: 87.7, llueve: 88.8, basura: 90.5, domingo: 92.6,
-  mes: 95.0, d26: 96.7, d22: 99.5, mult: 104.3, fijo: 106.41, s80: 111.8, quedanM: 114.2, m40: 120.1, m60: 123.9, m100: 128.61,
-  nadie: 130.21, seis: 133.21, h132: 136.51, div1: 142.9, antes: 145.65, cuatro: 151.15, h220: 153.75, div2: 158.6,
-  decomiso: 160.92, pierde: 163.52, pgazebo: 164.42, pmerca: 164.92, metodo: 168.12, conta: 170.12, guarda: 172.82, mandaselo: 174.82, seguime: 176.62, fin: 182.02,
+  hook: 0.0, cuenta: 2.68, martin: 5.51, compras: 8.6, parrilla: 9.69, s120: 10.99, gazebo: 12.16, s290: 13.46, harina: 14.34, s22: 16.44, grasa: 17.42, carbon: 18.02, chicha: 18.42, s30: 19.32,
+  total: 20.3, s463: 21.1, medio: 22.6, antesVender: 23.97,
+  amasar: 26.17, ingred: 28.57, kilo: 30.67, ocho: 32.17, s200: 35.19, dias4: 35.81, cuesta: 37.39, s300: 40.39, comun: 41.28, s2500: 42.18, s2200: 43.68, todavia: 44.78, falta: 45.84,
+  dia1: 49.16, v50: 50.64, mix: 52.04, op1: 56.62, op2: 58.7, entran: 59.79, gastos: 61.21, g1: 64.31, g2: 65.86, g3: 67.54, g4: 69.45, gasto: 70.37, resta: 71.63, quedan: 73.79, undia: 75.08,
+  semana: 75.87, lunes: 78.66, martes: 80.16, viernes: 81.63, sabado: 83.33, llueve: 84.32, basura: 85.92, domingo: 87.92,
+  mes: 90.11, d26: 91.7, d22: 94.39, mult: 98.71, fijo: 100.61, s80: 105.88, quedanM: 108.28, m40: 113.75, m60: 116.96, m100: 121.39,
+  nadie: 122.88, seis: 125.68, h132: 128.86, div1: 134.98, antes: 137.54, cuatro: 143.04, h220: 145.52, div2: 150.37,
+  decomiso: 152.52, pierde: 155.02, pgazebo: 155.92, pmerca: 156.42, metodo: 159.29, conta: 161.2, guarda: 163.81, mandaselo: 165.69, seguime: 167.37, fin: 172.77,
 };
 const clamp = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
 const ease = (u) => (u < 0.5 ? 4 * u * u * u : 1 - Math.pow(-2 * u + 2, 3) / 2);
