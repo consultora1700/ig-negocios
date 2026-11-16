@@ -39,7 +39,11 @@ def _cabeza_ovalada(nombre, cuerpo, arm, piel, pelo_color, pelo_forma):
     me = cuerpo.data; bm = bmesh.new(); bm.from_mesh(me); dl = bm.verts.layers.deform.verify()
     borrar = [v for v in bm.verts if vg and v[dl].get(vg.index, 0) > 0.45]
     pts = [cuerpo.matrix_world @ v.co for v in borrar]
-    bmesh.ops.delete(bm, geom=borrar, context="VERTS"); bm.to_mesh(me); bm.free()
+    bmesh.ops.delete(bm, geom=borrar, context="VERTS")
+    # tapa el agujero que deja la cabeza borrada (si no, se ve el interior oscuro del cuello)
+    borde = [e for e in bm.edges if e.is_boundary and all((cuerpo.matrix_world @ v.co).z > 1.3 for v in e.verts)]
+    if borde: bmesh.ops.holes_fill(bm, edges=borde, sides=0)
+    bm.to_mesh(me); bm.free()
     mn = Vector((min(p.x for p in pts), min(p.y for p in pts), min(p.z for p in pts))); mx = Vector((max(p.x for p in pts), max(p.y for p in pts), max(p.z for p in pts)))
     c = (mn + mx) / 2; t = mx - mn
     # óvalo: un poco más alto que ancho, apenas más grande que el cráneo original
