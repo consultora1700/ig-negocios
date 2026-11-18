@@ -1,0 +1,46 @@
+
+== Martín, alquila (GNC, seguro y service incluidos): 12 h × 6 días = 312 h/mes, 6,240 km/mes
+  cobra en la app: $3,744,000/mes  ($12,000/h)
+  - alquiler: $1,560,000  (41.7 %)
+  - GNC: $427,440  (11.4 %)
+  - monotributo+IIBB (F): $227,034  (6.1 %)
+  - celular: $23,000  (0.6 %)
+  TOTAL costos $2,237,474 (59.8 %) → QUEDA $1,506,526/mes = $4,829/h
+  por día: cobra $144,000 / queda $57,943
+
+== Lucas, auto propio a GNC: 8 h × 6 días = 208 h/mes, 4,160 km/mes
+  cobra en la app: $2,496,000/mes  ($12,000/h)
+  - alquiler: $0  (0.0 %)
+  - GNC: $284,960  (11.4 %)
+  - monotributo+IIBB (D): $125,298  (5.0 %)
+  - celular: $23,000  (0.9 %)
+  - mantenimiento (service, cubiertas, frenos, amort., distrib.): $278,554  (11.2 %)
+  - seguro TC particular: $106,147  (4.3 %)
+  - patente PBA + VTV: $22,759  (0.9 %)
+  - lavado: $10,000  (0.4 %)
+  - equipo GNC $1,5 M en 3 años: $41,667  (1.7 %)
+  - DEPRECIACIÓN ($26–41/km → 33): $137,280  (5.5 %)
+  TOTAL costos $1,029,664 (41.3 %) → QUEDA $1,466,336/mes = $7,050/h
+  por día: cobra $96,000 / queda $56,398
+
+horas de Martín para pagar el alquiler de la semana: 30 h = 2.5 días
+salario mínimo nov: $398.800/mes = $1.994/h · canasta básica hogar de 4: $1.690.000
+chequeo Gerardo (12 h, alquila $360k): queda/día ≈ $67,560 (él dice 60–70 mil) 
+chequeo Gerardo (12 h, alquila $360k): queda/día ≈ $67,560 (él dice 60–70 mil) 
+
+### Lucas también a 12 h
+
+== Lucas, auto propio a GNC, 12 h: 12 h × 6 días = 312 h/mes, 6,240 km/mes
+  cobra en la app: $3,744,000/mes  ($12,000/h)
+  - alquiler: $0  (0.0 %)
+  - GNC: $427,440  (11.4 %)
+  - monotributo+IIBB (F): $227,034  (6.1 %)
+  - celular: $23,000  (0.6 %)
+  - mantenimiento (service, cubiertas, frenos, amort., distrib.): $417,830  (11.2 %)
+  - seguro TC particular: $106,147  (2.8 %)
+  - patente PBA + VTV: $22,759  (0.6 %)
+  - lavado: $10,000  (0.3 %)
+  - equipo GNC $1,5 M en 3 años: $41,667  (1.1 %)
+  - DEPRECIACIÓN ($26–41/km → 33): $205,920  (5.5 %)
+  TOTAL costos $1,481,797 (39.6 %) → QUEDA $2,262,203/mes = $7,251/h
+  por día: cobra $144,000 / queda $87,008

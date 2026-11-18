@@ -1,0 +1,47 @@
+[
+{
+"text": "Al",
+"start": 0.0,
+"end": 0.4
+},
+{
+"text": "mes,",
+"start": 0.4,
+"end": 0.66
+},
+{
+"text": "la",
+"start": 1.02,
+"end": 1.24
+},
+{
+"text": "Apple",
+"start": 1.24,
+"end": 1.44
+},
+{
+"text": "paga",
+"start": 1.44,
+"end": 1.74
+},
+{
+"text": "3",
+"start": 1.74,
+"end": 2.16
+},
+{
+"text": ".744",
+"start": 2.16,
+"end": 3.78
+},
+{
+"text": ".000",
+"start": 3.78,
+"end": 4.58
+},
+{
+"text": "pesos.",
+"start": 4.58,
+"end": 4.8
+}
+]

@@ -1,0 +1,2637 @@
+[
+{
+"text": "Dos",
+"start": 0.0,
+"end": 0.48
+},
+{
+"text": "choferes,",
+"start": 0.48,
+"end": 1.2
+},
+{
+"text": "la",
+"start": 1.38,
+"end": 1.5
+},
+{
+"text": "misma",
+"start": 1.5,
+"end": 1.76
+},
+{
+"text": "app,",
+"start": 1.76,
+"end": 2.04
+},
+{
+"text": "cobran",
+"start": 2.48,
+"end": 2.72
+},
+{
+"text": "lo",
+"start": 2.72,
+"end": 2.94
+},
+{
+"text": "mismo",
+"start": 2.94,
+"end": 3.28
+},
+{
+"text": "por",
+"start": 3.28,
+"end": 3.5
+},
+{
+"text": "hora.",
+"start": 3.5,
+"end": 3.76
+},
+{
+"text": "Uno",
+"start": 4.3,
+"end": 4.44
+},
+{
+"text": "maneja",
+"start": 4.44,
+"end": 4.88
+},
+{
+"text": "104",
+"start": 4.88,
+"end": 5.56
+},
+{
+"text": "horas",
+"start": 5.56,
+"end": 5.78
+},
+{
+"text": "más",
+"start": 5.78,
+"end": 5.92
+},
+{
+"text": "por",
+"start": 5.92,
+"end": 6.1
+},
+{
+"text": "mes",
+"start": 6.1,
+"end": 6.3
+},
+{
+"text": "y",
+"start": 6.3,
+"end": 6.76
+},
+{
+"text": "se",
+"start": 6.76,
+"end": 6.98
+},
+{
+"text": "lleva",
+"start": 6.98,
+"end": 7.1
+},
+{
+"text": "apenas",
+"start": 7.1,
+"end": 7.42
+},
+{
+"text": "40",
+"start": 7.42,
+"end": 7.86
+},
+{
+"text": "mil",
+"start": 7.86,
+"end": 8.22
+},
+{
+"text": "pesos",
+"start": 8.22,
+"end": 8.54
+},
+{
+"text": "más.",
+"start": 8.54,
+"end": 8.92
+},
+{
+"text": "¿Dónde",
+"start": 9.54,
+"end": 9.8
+},
+{
+"text": "cego",
+"start": 9.8,
+"end": 9.94
+},
+{
+"text": "a",
+"start": 9.94,
+"end": 10.06
+},
+{
+"text": "la",
+"start": 10.06,
+"end": 10.2
+},
+{
+"text": "plata?",
+"start": 10.2,
+"end": 10.36
+},
+{
+"text": "Un",
+"start": 11.12,
+"end": 11.34
+},
+{
+"text": "día",
+"start": 11.34,
+"end": 11.48
+},
+{
+"text": "tranquilo,",
+"start": 11.48,
+"end": 12.02
+},
+{
+"text": "la",
+"start": 12.12,
+"end": 12.2
+},
+{
+"text": "app",
+"start": 12.2,
+"end": 12.4
+},
+{
+"text": "le",
+"start": 12.4,
+"end": 12.58
+},
+{
+"text": "paga",
+"start": 12.58,
+"end": 12.7
+},
+{
+"text": "al",
+"start": 12.7,
+"end": 12.82
+},
+{
+"text": "chofer",
+"start": 12.82,
+"end": 13.14
+},
+{
+"text": "unos",
+"start": 13.14,
+"end": 13.38
+},
+{
+"text": "12",
+"start": 13.38,
+"end": 13.66
+},
+{
+"text": "mil",
+"start": 13.66,
+"end": 13.84
+},
+{
+"text": "pesos",
+"start": 13.84,
+"end": 14.08
+},
+{
+"text": "por",
+"start": 14.08,
+"end": 14.3
+},
+{
+"text": "hora,",
+"start": 14.3,
+"end": 14.56
+},
+{
+"text": "ya",
+"start": 14.72,
+"end": 14.98
+},
+{
+"text": "sin",
+"start": 14.98,
+"end": 15.14
+},
+{
+"text": "la",
+"start": 15.14,
+"end": 15.32
+},
+{
+"text": "comisión,",
+"start": 15.32,
+"end": 15.76
+},
+{
+"text": "y",
+"start": 16.06,
+"end": 16.2
+},
+{
+"text": "el",
+"start": 16.2,
+"end": 16.3
+},
+{
+"text": "chofer",
+"start": 16.3,
+"end": 16.58
+},
+{
+"text": "ni",
+"start": 16.58,
+"end": 16.78
+},
+{
+"text": "siquiera",
+"start": 16.78,
+"end": 17.16
+},
+{
+"text": "ve",
+"start": 17.16,
+"end": 17.28
+},
+{
+"text": "lo",
+"start": 17.28,
+"end": 17.46
+},
+{
+"text": "que",
+"start": 17.46,
+"end": 17.62
+},
+{
+"text": "pagó",
+"start": 17.62,
+"end": 17.74
+},
+{
+"text": "el",
+"start": 17.74,
+"end": 17.9
+},
+{
+"text": "pasajero.",
+"start": 17.9,
+"end": 18.58
+},
+{
+"text": "Un",
+"start": 18.88,
+"end": 19.0
+},
+{
+"text": "viaje,",
+"start": 19.0,
+"end": 19.26
+},
+{
+"text": "que",
+"start": 19.3,
+"end": 19.52
+},
+{
+"text": "a",
+"start": 19.52,
+"end": 19.56
+},
+{
+"text": "él",
+"start": 19.56,
+"end": 19.62
+},
+{
+"text": "lo",
+"start": 19.62,
+"end": 19.78
+},
+{
+"text": "ofrecen",
+"start": 19.78,
+"end": 20.0
+},
+{
+"text": "a",
+"start": 20.0,
+"end": 20.16
+},
+{
+"text": "10",
+"start": 20.16,
+"end": 20.4
+},
+{
+"text": "mil,",
+"start": 20.4,
+"end": 20.62
+},
+{
+"text": "el",
+"start": 20.84,
+"end": 21.06
+},
+{
+"text": "pasajero",
+"start": 21.06,
+"end": 21.42
+},
+{
+"text": "lo",
+"start": 21.42,
+"end": 21.62
+},
+{
+"text": "paga",
+"start": 21.62,
+"end": 21.76
+},
+{
+"text": "entre",
+"start": 21.76,
+"end": 22.08
+},
+{
+"text": "13",
+"start": 22.08,
+"end": 22.42
+},
+{
+"text": "y",
+"start": 22.42,
+"end": 22.52
+},
+{
+"text": "15",
+"start": 22.52,
+"end": 22.8
+},
+{
+"text": "mil.",
+"start": 22.8,
+"end": 23.04
+},
+{
+"text": "Martín",
+"start": 23.7,
+"end": 24.12
+},
+{
+"text": "no",
+"start": 24.12,
+"end": 24.34
+},
+{
+"text": "tiene",
+"start": 24.34,
+"end": 24.52
+},
+{
+"text": "auto.",
+"start": 24.52,
+"end": 24.82
+},
+{
+"text": "Lo",
+"start": 25.14,
+"end": 25.3
+},
+{
+"text": "alquila,",
+"start": 25.3,
+"end": 25.62
+},
+{
+"text": "con",
+"start": 25.96,
+"end": 26.22
+},
+{
+"text": "gas",
+"start": 26.22,
+"end": 26.48
+},
+{
+"text": "y",
+"start": 26.48,
+"end": 26.68
+},
+{
+"text": "seguro,",
+"start": 26.68,
+"end": 26.96
+},
+{
+"text": "360",
+"start": 27.5,
+"end": 28.04
+},
+{
+"text": "mil",
+"start": 28.04,
+"end": 28.48
+},
+{
+"text": "pesos",
+"start": 28.48,
+"end": 28.72
+},
+{
+"text": "por",
+"start": 28.72,
+"end": 28.9
+},
+{
+"text": "semana.",
+"start": 28.9,
+"end": 29.24
+},
+{
+"text": "360",
+"start": 29.24,
+"end": 30.06
+},
+{
+"text": "mil",
+"start": 30.06,
+"end": 30.66
+},
+{
+"text": "dividido",
+"start": 30.66,
+"end": 31.16
+},
+{
+"text": "12",
+"start": 31.16,
+"end": 31.42
+},
+{
+"text": "mil,",
+"start": 31.42,
+"end": 31.72
+},
+{
+"text": "30",
+"start": 32.08,
+"end": 32.32
+},
+{
+"text": "horas.",
+"start": 32.32,
+"end": 32.94
+},
+{
+"text": "Los",
+"start": 33.32,
+"end": 33.36
+},
+{
+"text": "primeros",
+"start": 33.36,
+"end": 33.8
+},
+{
+"text": "dos",
+"start": 33.8,
+"end": 33.96
+},
+{
+"text": "días",
+"start": 33.96,
+"end": 34.18
+},
+{
+"text": "y",
+"start": 34.18,
+"end": 34.44
+},
+{
+"text": "medio",
+"start": 34.44,
+"end": 34.64
+},
+{
+"text": "de",
+"start": 34.64,
+"end": 34.92
+},
+{
+"text": "cada",
+"start": 34.92,
+"end": 35.1
+},
+{
+"text": "semana,",
+"start": 35.1,
+"end": 35.58
+},
+{
+"text": "Martín",
+"start": 35.92,
+"end": 36.12
+},
+{
+"text": "trabaja",
+"start": 36.12,
+"end": 36.48
+},
+{
+"text": "para",
+"start": 36.48,
+"end": 36.66
+},
+{
+"text": "el",
+"start": 36.66,
+"end": 36.78
+},
+{
+"text": "dueño",
+"start": 36.78,
+"end": 36.98
+},
+{
+"text": "del",
+"start": 36.98,
+"end": 37.18
+},
+{
+"text": "auto.",
+"start": 37.18,
+"end": 37.42
+},
+{
+"text": "Por",
+"start": 37.86,
+"end": 38.02
+},
+{
+"text": "eso,",
+"start": 38.02,
+"end": 38.24
+},
+{
+"text": "maneja",
+"start": 38.3,
+"end": 38.6
+},
+{
+"text": "12",
+"start": 38.6,
+"end": 38.82
+},
+{
+"text": "horas",
+"start": 38.82,
+"end": 39.0
+},
+{
+"text": "por",
+"start": 39.0,
+"end": 39.18
+},
+{
+"text": "día,",
+"start": 39.18,
+"end": 39.44
+},
+{
+"text": "seis",
+"start": 39.78,
+"end": 40.0
+},
+{
+"text": "días",
+"start": 40.0,
+"end": 40.2
+},
+{
+"text": "por",
+"start": 40.2,
+"end": 40.36
+},
+{
+"text": "semana.",
+"start": 40.36,
+"end": 40.7
+},
+{
+"text": "Al",
+"start": 41.26,
+"end": 41.42
+},
+{
+"text": "mes,",
+"start": 41.42,
+"end": 41.76
+},
+{
+"text": "la",
+"start": 42.04,
+"end": 42.08
+},
+{
+"text": "app",
+"start": 42.08,
+"end": 42.28
+},
+{
+"text": "le",
+"start": 42.28,
+"end": 42.5
+},
+{
+"text": "paga",
+"start": 42.5,
+"end": 42.88
+},
+{
+"text": "tres",
+"start": 42.88,
+"end": 43.16
+},
+{
+"text": "millones",
+"start": 43.16,
+"end": 43.68
+},
+{
+"text": "setecientos",
+"start": 43.68,
+"end": 44.58
+},
+{
+"text": "cuarenta",
+"start": 44.58,
+"end": 44.96
+},
+{
+"text": "y",
+"start": 44.96,
+"end": 45.06
+},
+{
+"text": "cuatro",
+"start": 45.06,
+"end": 45.26
+},
+{
+"text": "mil.",
+"start": 45.26,
+"end": 45.54
+},
+{
+"text": "Alquiler,",
+"start": 45.74,
+"end": 46.3
+},
+{
+"text": "un",
+"start": 46.52,
+"end": 46.62
+},
+{
+"text": "millón",
+"start": 46.62,
+"end": 46.88
+},
+{
+"text": "quinientos",
+"start": 46.88,
+"end": 47.24
+},
+{
+"text": "sesenta",
+"start": 47.24,
+"end": 47.56
+},
+{
+"text": "mil.",
+"start": 47.56,
+"end": 47.84
+},
+{
+"text": "Gas,",
+"start": 48.08,
+"end": 48.4
+},
+{
+"text": "cuatrocientos",
+"start": 48.76,
+"end": 49.14
+},
+{
+"text": "veintisiete",
+"start": 49.14,
+"end": 49.58
+},
+{
+"text": "mil.",
+"start": 49.58,
+"end": 49.8
+},
+{
+"text": "Monotributo",
+"start": 50.22,
+"end": 50.78
+},
+{
+"text": "e",
+"start": 50.78,
+"end": 50.96
+},
+{
+"text": "Ingresos",
+"start": 50.96,
+"end": 51.24
+},
+{
+"text": "Brutos,",
+"start": 51.24,
+"end": 51.58
+},
+{
+"text": "doscientos",
+"start": 51.82,
+"end": 52.12
+},
+{
+"text": "veintisiete",
+"start": 52.12,
+"end": 52.56
+},
+{
+"text": "mil.",
+"start": 52.56,
+"end": 52.8
+},
+{
+"text": "Celular,",
+"start": 53.14,
+"end": 53.56
+},
+{
+"text": "veintitrés",
+"start": 53.76,
+"end": 54.06
+},
+{
+"text": "mil.",
+"start": 54.06,
+"end": 54.3
+},
+{
+"text": "Le",
+"start": 54.78,
+"end": 54.98
+},
+{
+"text": "quedan",
+"start": 54.98,
+"end": 55.42
+},
+{
+"text": "un",
+"start": 55.42,
+"end": 55.66
+},
+{
+"text": "millón",
+"start": 55.66,
+"end": 55.96
+},
+{
+"text": "quinientos",
+"start": 55.96,
+"end": 56.4
+},
+{
+"text": "siete",
+"start": 56.4,
+"end": 56.6
+},
+{
+"text": "mil.",
+"start": 56.6,
+"end": 56.82
+},
+{
+"text": "Por",
+"start": 56.82,
+"end": 57.38
+},
+{
+"text": "312",
+"start": 57.38,
+"end": 57.94
+},
+{
+"text": "horas,",
+"start": 57.94,
+"end": 58.34
+},
+{
+"text": "cuatro",
+"start": 58.84,
+"end": 58.96
+},
+{
+"text": "mil",
+"start": 58.96,
+"end": 59.14
+},
+{
+"text": "ochocientos",
+"start": 59.14,
+"end": 59.62
+},
+{
+"text": "treinta",
+"start": 59.62,
+"end": 59.82
+},
+{
+"text": "pesos",
+"start": 59.82,
+"end": 60.02
+},
+{
+"text": "la",
+"start": 60.02,
+"end": 60.2
+},
+{
+"text": "hora.",
+"start": 60.2,
+"end": 60.62
+},
+{
+"text": "Ahora,",
+"start": 61.08,
+"end": 61.34
+},
+{
+"text": "Lucas.",
+"start": 61.7,
+"end": 61.94
+},
+{
+"text": "Tiene",
+"start": 62.48,
+"end": 62.6
+},
+{
+"text": "su",
+"start": 62.6,
+"end": 62.74
+},
+{
+"text": "auto,",
+"start": 62.74,
+"end": 63.04
+},
+{
+"text": "a",
+"start": 63.32,
+"end": 63.46
+},
+{
+"text": "gas.",
+"start": 63.46,
+"end": 63.74
+},
+{
+"text": "Maneja",
+"start": 64.08,
+"end": 64.46
+},
+{
+"text": "ocho",
+"start": 64.46,
+"end": 64.84
+},
+{
+"text": "horas,",
+"start": 64.84,
+"end": 65.22
+},
+{
+"text": "seis",
+"start": 65.48,
+"end": 65.68
+},
+{
+"text": "días.",
+"start": 65.68,
+"end": 66.0
+},
+{
+"text": "Al",
+"start": 66.52,
+"end": 66.7
+},
+{
+"text": "mes,",
+"start": 66.7,
+"end": 66.92
+},
+{
+"text": "la",
+"start": 67.12,
+"end": 67.22
+},
+{
+"text": "app",
+"start": 67.22,
+"end": 67.34
+},
+{
+"text": "le",
+"start": 67.34,
+"end": 67.48
+},
+{
+"text": "paga",
+"start": 67.48,
+"end": 67.72
+},
+{
+"text": "dos",
+"start": 67.72,
+"end": 67.92
+},
+{
+"text": "millones",
+"start": 67.92,
+"end": 68.22
+},
+{
+"text": "cuatrocientos",
+"start": 68.22,
+"end": 68.8
+},
+{
+"text": "noventa",
+"start": 68.8,
+"end": 69.1
+},
+{
+"text": "y",
+"start": 69.1,
+"end": 69.12
+},
+{
+"text": "seis",
+"start": 69.12,
+"end": 69.18
+},
+{
+"text": "mil.",
+"start": 69.18,
+"end": 69.44
+},
+{
+"text": "Sin",
+"start": 69.8,
+"end": 70.04
+},
+{
+"text": "alquilar,",
+"start": 70.04,
+"end": 70.54
+},
+{
+"text": "parece",
+"start": 70.76,
+"end": 70.84
+},
+{
+"text": "que",
+"start": 70.84,
+"end": 71.02
+},
+{
+"text": "todo",
+"start": 71.02,
+"end": 71.22
+},
+{
+"text": "es",
+"start": 71.22,
+"end": 71.38
+},
+{
+"text": "suyo.",
+"start": 71.38,
+"end": 71.7
+},
+{
+"text": "Pero",
+"start": 71.92,
+"end": 72.18
+},
+{
+"text": "el",
+"start": 72.18,
+"end": 72.46
+},
+{
+"text": "auto",
+"start": 72.46,
+"end": 72.68
+},
+{
+"text": "también",
+"start": 72.68,
+"end": 73.16
+},
+{
+"text": "cobra.",
+"start": 73.16,
+"end": 73.48
+},
+{
+"text": "Gas,",
+"start": 74.04,
+"end": 74.32
+},
+{
+"text": "service,",
+"start": 74.62,
+"end": 75.02
+},
+{
+"text": "cubiertas,",
+"start": 75.28,
+"end": 75.88
+},
+{
+"text": "frenos,",
+"start": 76.0,
+"end": 76.46
+},
+{
+"text": "seguro,",
+"start": 76.72,
+"end": 76.96
+},
+{
+"text": "impuestos",
+"start": 77.36,
+"end": 77.76
+},
+{
+"text": "y",
+"start": 77.76,
+"end": 78.06
+},
+{
+"text": "patente.",
+"start": 78.06,
+"end": 78.6
+},
+{
+"text": "Casi",
+"start": 78.82,
+"end": 79.1
+},
+{
+"text": "novecientos",
+"start": 79.1,
+"end": 79.72
+},
+{
+"text": "mil",
+"start": 79.72,
+"end": 79.82
+},
+{
+"text": "pesos.",
+"start": 79.82,
+"end": 80.16
+},
+{
+"text": "Y",
+"start": 80.66,
+"end": 80.82
+},
+{
+"text": "hay",
+"start": 80.82,
+"end": 80.96
+},
+{
+"text": "un",
+"start": 80.96,
+"end": 81.1
+},
+{
+"text": "gasto",
+"start": 81.1,
+"end": 81.32
+},
+{
+"text": "que",
+"start": 81.32,
+"end": 81.44
+},
+{
+"text": "Lucas",
+"start": 81.44,
+"end": 81.74
+},
+{
+"text": "nunca",
+"start": 81.74,
+"end": 82.14
+},
+{
+"text": "paga",
+"start": 82.14,
+"end": 82.34
+},
+{
+"text": "en",
+"start": 82.34,
+"end": 82.52
+},
+{
+"text": "efectivo,",
+"start": 82.52,
+"end": 82.9
+},
+{
+"text": "pero",
+"start": 83.06,
+"end": 83.26
+},
+{
+"text": "paga",
+"start": 83.26,
+"end": 83.6
+},
+{
+"text": "igual.",
+"start": 83.6,
+"end": 83.94
+},
+{
+"text": "Cada",
+"start": 83.94,
+"end": 84.7
+},
+{
+"text": "kilómetro,",
+"start": 84.7,
+"end": 85.18
+},
+{
+"text": "su",
+"start": 85.44,
+"end": 85.46
+},
+{
+"text": "auto",
+"start": 85.46,
+"end": 85.68
+},
+{
+"text": "vale",
+"start": 85.68,
+"end": 85.9
+},
+{
+"text": "menos.",
+"start": 85.9,
+"end": 86.3
+},
+{
+"text": "Unos",
+"start": 86.7,
+"end": 86.96
+},
+{
+"text": "treinta",
+"start": 86.96,
+"end": 87.36
+},
+{
+"text": "y",
+"start": 87.36,
+"end": 87.38
+},
+{
+"text": "tres",
+"start": 87.38,
+"end": 87.5
+},
+{
+"text": "pesos",
+"start": 87.5,
+"end": 87.68
+},
+{
+"text": "por",
+"start": 87.68,
+"end": 87.88
+},
+{
+"text": "kilómetro.",
+"start": 87.88,
+"end": 88.32
+},
+{
+"text": "Con",
+"start": 88.58,
+"end": 88.68
+},
+{
+"text": "más",
+"start": 88.68,
+"end": 88.86
+},
+{
+"text": "de",
+"start": 88.86,
+"end": 89.04
+},
+{
+"text": "cuatro",
+"start": 89.04,
+"end": 89.28
+},
+{
+"text": "mil",
+"start": 89.28,
+"end": 89.44
+},
+{
+"text": "kilómetros",
+"start": 89.44,
+"end": 89.86
+},
+{
+"text": "por",
+"start": 89.86,
+"end": 90.04
+},
+{
+"text": "mes,",
+"start": 90.04,
+"end": 90.3
+},
+{
+"text": "ciento",
+"start": 90.78,
+"end": 90.98
+},
+{
+"text": "treinta",
+"start": 90.98,
+"end": 91.36
+},
+{
+"text": "y",
+"start": 91.36,
+"end": 91.44
+},
+{
+"text": "siete",
+"start": 91.44,
+"end": 91.62
+},
+{
+"text": "mil",
+"start": 91.62,
+"end": 91.8
+},
+{
+"text": "pesos",
+"start": 91.8,
+"end": 92.04
+},
+{
+"text": "que",
+"start": 92.04,
+"end": 92.2
+},
+{
+"text": "se",
+"start": 92.2,
+"end": 92.32
+},
+{
+"text": "van",
+"start": 92.32,
+"end": 92.46
+},
+{
+"text": "sin",
+"start": 92.46,
+"end": 92.7
+},
+{
+"text": "que",
+"start": 92.7,
+"end": 92.9
+},
+{
+"text": "nadie",
+"start": 92.9,
+"end": 93.08
+},
+{
+"text": "los",
+"start": 93.08,
+"end": 93.32
+},
+{
+"text": "cobre.",
+"start": 93.32,
+"end": 93.5
+},
+{
+"text": "A",
+"start": 93.96,
+"end": 94.12
+},
+{
+"text": "Lucas",
+"start": 94.12,
+"end": 94.28
+},
+{
+"text": "le",
+"start": 94.28,
+"end": 94.48
+},
+{
+"text": "quedan",
+"start": 94.48,
+"end": 94.84
+},
+{
+"text": "un",
+"start": 94.84,
+"end": 95.0
+},
+{
+"text": "millón",
+"start": 95.0,
+"end": 95.3
+},
+{
+"text": "cuatrocientos",
+"start": 95.3,
+"end": 95.88
+},
+{
+"text": "sesenta",
+"start": 95.88,
+"end": 96.2
+},
+{
+"text": "y",
+"start": 96.2,
+"end": 96.36
+},
+{
+"text": "seis",
+"start": 96.36,
+"end": 96.36
+},
+{
+"text": "mil.",
+"start": 96.36,
+"end": 96.52
+},
+{
+"text": "Siete",
+"start": 97.02,
+"end": 97.28
+},
+{
+"text": "mil",
+"start": 97.28,
+"end": 97.46
+},
+{
+"text": "cincuenta",
+"start": 97.46,
+"end": 97.96
+},
+{
+"text": "pesos",
+"start": 97.96,
+"end": 98.2
+},
+{
+"text": "la",
+"start": 98.2,
+"end": 98.38
+},
+{
+"text": "hora.",
+"start": 98.38,
+"end": 98.56
+},
+{
+"text": "Martín",
+"start": 99.14,
+"end": 99.36
+},
+{
+"text": "maneja",
+"start": 99.36,
+"end": 99.76
+},
+{
+"text": "ciento",
+"start": 99.76,
+"end": 100.08
+},
+{
+"text": "cuatro",
+"start": 100.08,
+"end": 100.36
+},
+{
+"text": "horas",
+"start": 100.36,
+"end": 100.5
+},
+{
+"text": "más",
+"start": 100.5,
+"end": 100.68
+},
+{
+"text": "por",
+"start": 100.68,
+"end": 100.86
+},
+{
+"text": "mes.",
+"start": 100.86,
+"end": 101.02
+},
+{
+"text": "Y",
+"start": 101.36,
+"end": 101.5
+},
+{
+"text": "se",
+"start": 101.5,
+"end": 101.68
+},
+{
+"text": "lleva",
+"start": 101.68,
+"end": 101.8
+},
+{
+"text": "apenas",
+"start": 101.8,
+"end": 102.12
+},
+{
+"text": "cuarenta",
+"start": 102.12,
+"end": 102.68
+},
+{
+"text": "mil",
+"start": 102.68,
+"end": 102.82
+},
+{
+"text": "pesos",
+"start": 102.82,
+"end": 103.1
+},
+{
+"text": "más.",
+"start": 103.1,
+"end": 103.44
+},
+{
+"text": "Trescientos",
+"start": 103.96,
+"end": 104.3
+},
+{
+"text": "ochenta",
+"start": 104.3,
+"end": 104.66
+},
+{
+"text": "y",
+"start": 104.66,
+"end": 104.72
+},
+{
+"text": "seis",
+"start": 104.72,
+"end": 104.86
+},
+{
+"text": "pesos",
+"start": 104.86,
+"end": 105.1
+},
+{
+"text": "por",
+"start": 105.1,
+"end": 105.4
+},
+{
+"text": "cada",
+"start": 105.4,
+"end": 105.58
+},
+{
+"text": "hora",
+"start": 105.58,
+"end": 105.76
+},
+{
+"text": "extra.",
+"start": 105.76,
+"end": 106.1
+},
+{
+"text": "Y",
+"start": 106.54,
+"end": 106.82
+},
+{
+"text": "si",
+"start": 106.82,
+"end": 107.0
+},
+{
+"text": "Lucas",
+"start": 107.0,
+"end": 107.3
+},
+{
+"text": "también",
+"start": 107.3,
+"end": 107.62
+},
+{
+"text": "manejara",
+"start": 107.62,
+"end": 108.0
+},
+{
+"text": "doce",
+"start": 108.0,
+"end": 108.24
+},
+{
+"text": "horas,",
+"start": 108.24,
+"end": 108.54
+},
+{
+"text": "le",
+"start": 108.98,
+"end": 109.12
+},
+{
+"text": "quedarían",
+"start": 109.12,
+"end": 109.58
+},
+{
+"text": "dos",
+"start": 109.58,
+"end": 109.82
+},
+{
+"text": "millones",
+"start": 109.82,
+"end": 110.16
+},
+{
+"text": "doscientos",
+"start": 110.16,
+"end": 110.62
+},
+{
+"text": "sesenta",
+"start": 110.62,
+"end": 110.88
+},
+{
+"text": "y",
+"start": 110.88,
+"end": 110.94
+},
+{
+"text": "dos",
+"start": 110.94,
+"end": 111.06
+},
+{
+"text": "mil.",
+"start": 111.06,
+"end": 111.24
+},
+{
+"text": "Setecientos",
+"start": 112.06,
+"end": 112.52
+},
+{
+"text": "cincuenta",
+"start": 112.52,
+"end": 112.92
+},
+{
+"text": "y",
+"start": 112.92,
+"end": 112.92
+},
+{
+"text": "cinco",
+"start": 112.92,
+"end": 113.12
+},
+{
+"text": "mil",
+"start": 113.12,
+"end": 113.24
+},
+{
+"text": "más",
+"start": 113.24,
+"end": 113.46
+},
+{
+"text": "que",
+"start": 113.46,
+"end": 113.6
+},
+{
+"text": "Martín",
+"start": 113.6,
+"end": 114.04
+},
+{
+"text": "por",
+"start": 114.04,
+"end": 114.32
+},
+{
+"text": "el",
+"start": 114.32,
+"end": 114.58
+},
+{
+"text": "mismo",
+"start": 114.58,
+"end": 114.82
+},
+{
+"text": "trabajo.",
+"start": 114.82,
+"end": 115.28
+},
+{
+"text": "Porque",
+"start": 115.84,
+"end": 116.0
+},
+{
+"text": "a",
+"start": 116.0,
+"end": 116.14
+},
+{
+"text": "Lucas",
+"start": 116.14,
+"end": 116.38
+},
+{
+"text": "su",
+"start": 116.38,
+"end": 116.64
+},
+{
+"text": "auto",
+"start": 116.64,
+"end": 116.82
+},
+{
+"text": "le",
+"start": 116.82,
+"end": 117.04
+},
+{
+"text": "cuesta",
+"start": 117.04,
+"end": 117.24
+},
+{
+"text": "unos",
+"start": 117.24,
+"end": 117.64
+},
+{
+"text": "ochocientos",
+"start": 117.64,
+"end": 118.34
+},
+{
+"text": "mil",
+"start": 118.34,
+"end": 118.46
+},
+{
+"text": "por",
+"start": 118.46,
+"end": 118.68
+},
+{
+"text": "mes,",
+"start": 118.68,
+"end": 118.9
+},
+{
+"text": "contando",
+"start": 119.12,
+"end": 119.34
+},
+{
+"text": "el",
+"start": 119.34,
+"end": 119.54
+},
+{
+"text": "desgaste.",
+"start": 119.54,
+"end": 120.14
+},
+{
+"text": "Martín",
+"start": 120.42,
+"end": 120.66
+},
+{
+"text": "paga",
+"start": 120.66,
+"end": 121.02
+},
+{
+"text": "un",
+"start": 121.02,
+"end": 121.32
+},
+{
+"text": "millón",
+"start": 121.32,
+"end": 121.76
+},
+{
+"text": "quinientos",
+"start": 121.76,
+"end": 122.2
+},
+{
+"text": "sesenta",
+"start": 122.2,
+"end": 122.54
+},
+{
+"text": "mil.",
+"start": 122.54,
+"end": 122.7
+},
+{
+"text": "La",
+"start": 123.16,
+"end": 123.44
+},
+{
+"text": "diferencia",
+"start": 123.44,
+"end": 123.8
+},
+{
+"text": "se",
+"start": 123.8,
+"end": 123.96
+},
+{
+"text": "la",
+"start": 123.96,
+"end": 124.1
+},
+{
+"text": "lleva",
+"start": 124.1,
+"end": 124.22
+},
+{
+"text": "el",
+"start": 124.22,
+"end": 124.38
+},
+{
+"text": "dueño",
+"start": 124.38,
+"end": 124.58
+},
+{
+"text": "del",
+"start": 124.58,
+"end": 124.72
+},
+{
+"text": "auto.",
+"start": 124.72,
+"end": 125.0
+},
+{
+"text": "Y",
+"start": 125.44,
+"end": 125.62
+},
+{
+"text": "no",
+"start": 125.62,
+"end": 125.8
+},
+{
+"text": "son",
+"start": 125.8,
+"end": 125.96
+},
+{
+"text": "números",
+"start": 125.96,
+"end": 126.3
+},
+{
+"text": "de",
+"start": 126.3,
+"end": 126.5
+},
+{
+"text": "escritorio.",
+"start": 126.5,
+"end": 127.18
+},
+{
+"text": "Gerardo,",
+"start": 127.48,
+"end": 127.78
+},
+{
+"text": "sesenta",
+"start": 127.8,
+"end": 128.24
+},
+{
+"text": "y",
+"start": 128.24,
+"end": 128.3
+},
+{
+"text": "dos",
+"start": 128.3,
+"end": 128.42
+},
+{
+"text": "años,",
+"start": 128.42,
+"end": 128.76
+},
+{
+"text": "alquila",
+"start": 128.96,
+"end": 129.14
+},
+{
+"text": "en",
+"start": 129.14,
+"end": 129.3
+},
+{
+"text": "Rosario",
+"start": 129.3,
+"end": 129.62
+},
+{
+"text": "a",
+"start": 129.62,
+"end": 129.9
+},
+{
+"text": "trescientos",
+"start": 129.9,
+"end": 130.38
+},
+{
+"text": "sesenta",
+"start": 130.38,
+"end": 130.76
+},
+{
+"text": "mil",
+"start": 130.76,
+"end": 130.88
+},
+{
+"text": "la",
+"start": 130.88,
+"end": 131.06
+},
+{
+"text": "semana.",
+"start": 131.06,
+"end": 131.4
+},
+{
+"text": "Maneja",
+"start": 131.82,
+"end": 132.16
+},
+{
+"text": "doce",
+"start": 132.16,
+"end": 132.46
+},
+{
+"text": "horas",
+"start": 132.46,
+"end": 132.76
+},
+{
+"text": "y",
+"start": 132.76,
+"end": 132.94
+},
+{
+"text": "le",
+"start": 132.94,
+"end": 133.08
+},
+{
+"text": "quedan",
+"start": 133.08,
+"end": 133.28
+},
+{
+"text": "entre",
+"start": 133.28,
+"end": 133.52
+},
+{
+"text": "sesenta",
+"start": 133.52,
+"end": 134.16
+},
+{
+"text": "y",
+"start": 134.16,
+"end": 134.26
+},
+{
+"text": "setenta",
+"start": 134.26,
+"end": 134.64
+},
+{
+"text": "mil",
+"start": 134.64,
+"end": 134.78
+},
+{
+"text": "por",
+"start": 134.78,
+"end": 135.0
+},
+{
+"text": "día.",
+"start": 135.0,
+"end": 135.26
+},
+{
+"text": "Claro,",
+"start": 135.82,
+"end": 136.06
+},
+{
+"text": "Lucas",
+"start": 136.12,
+"end": 136.44
+},
+{
+"text": "tuvo",
+"start": 136.44,
+"end": 136.66
+},
+{
+"text": "que",
+"start": 136.66,
+"end": 136.86
+},
+{
+"text": "comprar",
+"start": 136.86,
+"end": 137.12
+},
+{
+"text": "el",
+"start": 137.12,
+"end": 137.32
+},
+{
+"text": "auto.",
+"start": 137.32,
+"end": 137.5
+},
+{
+"text": "Y",
+"start": 137.84,
+"end": 137.98
+},
+{
+"text": "el",
+"start": 137.98,
+"end": 138.12
+},
+{
+"text": "desgaste",
+"start": 138.12,
+"end": 138.42
+},
+{
+"text": "no",
+"start": 138.42,
+"end": 138.56
+},
+{
+"text": "lo",
+"start": 138.56,
+"end": 138.7
+},
+{
+"text": "paga",
+"start": 138.7,
+"end": 138.92
+},
+{
+"text": "todos",
+"start": 138.92,
+"end": 139.24
+},
+{
+"text": "los",
+"start": 139.24,
+"end": 139.4
+},
+{
+"text": "meses.",
+"start": 139.4,
+"end": 139.62
+},
+{
+"text": "Lo",
+"start": 139.62,
+"end": 140.1
+},
+{
+"text": "paga",
+"start": 140.1,
+"end": 140.32
+},
+{
+"text": "de",
+"start": 140.32,
+"end": 140.56
+},
+{
+"text": "golpe,",
+"start": 140.56,
+"end": 140.88
+},
+{
+"text": "el",
+"start": 141.18,
+"end": 141.36
+},
+{
+"text": "día",
+"start": 141.36,
+"end": 141.54
+},
+{
+"text": "que",
+"start": 141.54,
+"end": 141.66
+},
+{
+"text": "hay",
+"start": 141.66,
+"end": 141.74
+},
+{
+"text": "que",
+"start": 141.74,
+"end": 141.94
+},
+{
+"text": "cambiarlo",
+"start": 141.94,
+"end": 142.32
+},
+{
+"text": "y",
+"start": 142.32,
+"end": 142.56
+},
+{
+"text": "la",
+"start": 142.56,
+"end": 142.72
+},
+{
+"text": "plata",
+"start": 142.72,
+"end": 142.9
+},
+{
+"text": "no",
+"start": 142.9,
+"end": 143.14
+},
+{
+"text": "está.",
+"start": 143.14,
+"end": 143.32
+},
+{
+"text": "Y",
+"start": 143.92,
+"end": 144.14
+},
+{
+"text": "ojo,",
+"start": 144.14,
+"end": 144.44
+},
+{
+"text": "si",
+"start": 144.62,
+"end": 144.74
+},
+{
+"text": "tu",
+"start": 144.74,
+"end": 144.92
+},
+{
+"text": "seguro",
+"start": 144.92,
+"end": 145.16
+},
+{
+"text": "dice",
+"start": 145.16,
+"end": 145.46
+},
+{
+"text": "uso",
+"start": 145.46,
+"end": 145.78
+},
+{
+"text": "particular",
+"start": 145.78,
+"end": 146.34
+},
+{
+"text": "y",
+"start": 146.34,
+"end": 146.7
+},
+{
+"text": "chocás",
+"start": 146.7,
+"end": 147.04
+},
+{
+"text": "en",
+"start": 147.04,
+"end": 147.18
+},
+{
+"text": "un",
+"start": 147.18,
+"end": 147.32
+},
+{
+"text": "viaje,",
+"start": 147.32,
+"end": 147.6
+},
+{
+"text": "te",
+"start": 147.8,
+"end": 147.96
+},
+{
+"text": "pueden",
+"start": 147.96,
+"end": 148.14
+},
+{
+"text": "rechazar",
+"start": 148.14,
+"end": 148.56
+},
+{
+"text": "el",
+"start": 148.56,
+"end": 148.74
+},
+{
+"text": "siniestro.",
+"start": 148.74,
+"end": 149.52
+},
+{
+"text": "Entonces,",
+"start": 149.72,
+"end": 150.12
+},
+{
+"text": "antes",
+"start": 150.32,
+"end": 150.6
+},
+{
+"text": "de",
+"start": 150.6,
+"end": 150.74
+},
+{
+"text": "largar",
+"start": 150.74,
+"end": 151.08
+},
+{
+"text": "o",
+"start": 151.08,
+"end": 151.22
+},
+{
+"text": "de",
+"start": 151.22,
+"end": 151.36
+},
+{
+"text": "alquilar,",
+"start": 151.36,
+"end": 151.8
+},
+{
+"text": "hace",
+"start": 152.06,
+"end": 152.2
+},
+{
+"text": "esta",
+"start": 152.2,
+"end": 152.6
+},
+{
+"text": "cuenta.",
+"start": 152.6,
+"end": 152.96
+},
+{
+"text": "Lo",
+"start": 153.42,
+"end": 153.56
+},
+{
+"text": "que",
+"start": 153.56,
+"end": 153.66
+},
+{
+"text": "te",
+"start": 153.66,
+"end": 153.82
+},
+{
+"text": "paga",
+"start": 153.82,
+"end": 153.94
+},
+{
+"text": "la",
+"start": 153.94,
+"end": 154.08
+},
+{
+"text": "app,",
+"start": 154.08,
+"end": 154.3
+},
+{
+"text": "menos",
+"start": 154.62,
+"end": 154.9
+},
+{
+"text": "todo",
+"start": 154.9,
+"end": 155.18
+},
+{
+"text": "lo",
+"start": 155.18,
+"end": 155.34
+},
+{
+"text": "que",
+"start": 155.34,
+"end": 155.46
+},
+{
+"text": "cuesta",
+"start": 155.46,
+"end": 155.62
+},
+{
+"text": "el",
+"start": 155.62,
+"end": 155.76
+},
+{
+"text": "auto,",
+"start": 155.76,
+"end": 155.96
+},
+{
+"text": "incluido",
+"start": 156.34,
+"end": 156.62
+},
+{
+"text": "lo",
+"start": 156.62,
+"end": 156.76
+},
+{
+"text": "que",
+"start": 156.76,
+"end": 156.86
+},
+{
+"text": "pierde",
+"start": 156.86,
+"end": 157.1
+},
+{
+"text": "de",
+"start": 157.1,
+"end": 157.24
+},
+{
+"text": "valor,",
+"start": 157.24,
+"end": 157.54
+},
+{
+"text": "dividido",
+"start": 158.04,
+"end": 158.32
+},
+{
+"text": "las",
+"start": 158.32,
+"end": 158.48
+},
+{
+"text": "horas",
+"start": 158.48,
+"end": 158.64
+},
+{
+"text": "que",
+"start": 158.64,
+"end": 158.84
+},
+{
+"text": "manejas.",
+"start": 158.84,
+"end": 159.14
+},
+{
+"text": "Ese",
+"start": 159.66,
+"end": 160.02
+},
+{
+"text": "es",
+"start": 160.02,
+"end": 160.24
+},
+{
+"text": "tu",
+"start": 160.24,
+"end": 160.38
+},
+{
+"text": "sueldo",
+"start": 160.38,
+"end": 160.74
+},
+{
+"text": "real",
+"start": 160.74,
+"end": 160.96
+},
+{
+"text": "por",
+"start": 160.96,
+"end": 161.2
+},
+{
+"text": "hora.",
+"start": 161.2,
+"end": 161.4
+},
+{
+"text": "¿Vos",
+"start": 162.02,
+"end": 162.16
+},
+{
+"text": "sos",
+"start": 162.16,
+"end": 162.32
+},
+{
+"text": "Martín",
+"start": 162.32,
+"end": 162.72
+},
+{
+"text": "o",
+"start": 162.72,
+"end": 162.88
+},
+{
+"text": "Lucas?",
+"start": 162.88,
+"end": 163.2
+},
+{
+"text": "Contalo",
+"start": 163.58,
+"end": 163.88
+},
+{
+"text": "en",
+"start": 163.88,
+"end": 163.96
+},
+{
+"text": "los",
+"start": 163.96,
+"end": 164.14
+},
+{
+"text": "comentarios.",
+"start": 164.14,
+"end": 164.42
+},
+{
+"text": "Y",
+"start": 164.88,
+"end": 165.08
+},
+{
+"text": "mandáselo",
+"start": 165.08,
+"end": 165.42
+},
+{
+"text": "a",
+"start": 165.42,
+"end": 165.5
+},
+{
+"text": "ese",
+"start": 165.5,
+"end": 165.62
+},
+{
+"text": "amigo",
+"start": 165.62,
+"end": 165.82
+},
+{
+"text": "que",
+"start": 165.82,
+"end": 166.0
+},
+{
+"text": "está",
+"start": 166.0,
+"end": 166.1
+},
+{
+"text": "por",
+"start": 166.1,
+"end": 166.32
+},
+{
+"text": "alquilar",
+"start": 166.32,
+"end": 166.64
+},
+{
+"text": "un",
+"start": 166.64,
+"end": 166.8
+},
+{
+"text": "auto",
+"start": 166.8,
+"end": 166.94
+},
+{
+"text": "para",
+"start": 166.94,
+"end": 167.14
+},
+{
+"text": "manejar.",
+"start": 167.14,
+"end": 167.68
+},
+{
+"text": "Seguime",
+"start": 167.68,
+"end": 168.28
+},
+{
+"text": "para",
+"start": 168.28,
+"end": 168.52
+},
+{
+"text": "más",
+"start": 168.52,
+"end": 168.74
+},
+{
+"text": "estrategias",
+"start": 168.74,
+"end": 169.16
+},
+{
+"text": "como",
+"start": 169.16,
+"end": 169.38
+},
+{
+"text": "esta.",
+"start": 169.38,
+"end": 169.58
+}
+]

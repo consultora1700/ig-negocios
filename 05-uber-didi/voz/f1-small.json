@@ -1,0 +1,82 @@
+[
+{
+"text": "Los",
+"start": 0.0,
+"end": 0.3
+},
+{
+"text": "primeros",
+"start": 0.3,
+"end": 0.68
+},
+{
+"text": "dos",
+"start": 0.68,
+"end": 0.84
+},
+{
+"text": "días",
+"start": 0.84,
+"end": 1.06
+},
+{
+"text": "y",
+"start": 1.06,
+"end": 1.28
+},
+{
+"text": "medio",
+"start": 1.28,
+"end": 1.62
+},
+{
+"text": "de",
+"start": 1.62,
+"end": 1.76
+},
+{
+"text": "cada",
+"start": 1.76,
+"end": 1.96
+},
+{
+"text": "semana,",
+"start": 1.96,
+"end": 2.42
+},
+{
+"text": "Martín",
+"start": 2.62,
+"end": 3.06
+},
+{
+"text": "trabaja",
+"start": 3.06,
+"end": 3.46
+},
+{
+"text": "para",
+"start": 3.46,
+"end": 3.6
+},
+{
+"text": "el",
+"start": 3.6,
+"end": 3.72
+},
+{
+"text": "dueño",
+"start": 3.72,
+"end": 3.96
+},
+{
+"text": "del",
+"start": 3.96,
+"end": 4.1
+},
+{
+"text": "auto.",
+"start": 4.1,
+"end": 4.3
+}
+]

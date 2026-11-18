@@ -1,0 +1,399 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="assets/lib/gsap.min.js"></script>
+    <style>
+      /* EL MÉTODO EMPRESARIAL — capa de marca (MARCA.md y /root/reels-ref/EDICION.md) */
+      :root { --plata-c: #E5E7EB; --plata-m: #BFC4CC; --plata-o: #9299A3; --azul-l: #00CFFF; --rojo: #FF6B6B;
+        --g-azul: linear-gradient(110deg, #0057D9 0%, #007BFF 35%, #009DFF 70%, #00CFFF 100%); }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1920px; overflow: hidden; background: #000000; }
+      #root { position: relative; width: 1080px; height: 1920px; font-family: "Montserrat"; }
+      #gl { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; }
+      #hud { position: absolute; inset: 0; pointer-events: none; z-index: 5; }
+      #marca { position: absolute; left: 44px; top: 96px; display: flex; align-items: center; gap: 12px; padding: 8px 16px 8px 8px; border-radius: 12px; background: rgba(0,0,0,.72); }
+      #marca img { width: 54px; height: 54px; }
+      #marca span { font-weight: 800; font-size: 19px; line-height: 1.05; letter-spacing: 0.12em; color: var(--plata-c); }
+      #marca span b { display: block; font-weight: 900; color: #FFFFFF; }
+      #titulo { position: absolute; left: 0; right: 0; top: 196px; display: grid; justify-items: center; gap: 10px; }
+      #titulo div { font-weight: 900; font-size: 58px; line-height: 1; letter-spacing: -0.01em; color: #FFFFFF; padding: 12px 24px 14px; border-radius: 10px; }
+      #titulo .a { background: #000000; border: 3px solid #9299A3; } #titulo .b { background: var(--g-azul); }
+      .ficha { position: absolute; left: 0; top: 0; background: #000000; border-radius: 14px; padding: 14px 24px 16px 30px; opacity: 0; border: 2px solid #3A3E46; }
+      .ficha::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 10px; border-radius: 14px 0 0 14px; background: var(--g-azul); }
+      .ficha::after { content: ""; position: absolute; left: 50%; bottom: -16px; margin-left: -14px; border: 14px solid transparent; border-bottom: 0; border-top: 16px solid #3A3E46; }
+      .ficha.fija::after { display: none; }
+      .ficha small { display: block; font-weight: 800; font-size: 24px; letter-spacing: 0.16em; color: var(--plata-m); }
+      .ficha b { display: block; font-weight: 900; font-size: 52px; line-height: 1.04; color: #FFFFFF; white-space: nowrap; font-variant-numeric: tabular-nums; }
+      .ficha.azul { background: var(--g-azul); border-color: #00CFFF; } .ficha.azul::before { display: none; } .ficha.azul::after { border-top-color: #007BFF; } .ficha.azul small { color: #E5F6FF; }
+      .ficha.gris b { color: #BFC4CC; } .ficha.rojo b { color: var(--rojo); }
+      #grande { position: absolute; left: 50%; top: 470px; transform: translateX(-50%); width: 950px; text-align: center; background: rgba(0,0,0,.86); border: 2px solid #3A3E46; border-radius: 18px; padding: 22px 26px 26px; opacity: 0; }
+      #grande small { display: block; font-weight: 800; font-size: 30px; letter-spacing: 0.14em; color: var(--plata-c); }
+      #grande b { display: block; font-weight: 900; font-size: 84px; line-height: 1.05; margin-top: 6px; color: #FFFFFF; font-variant-numeric: tabular-nums; }
+      #grande b.az { background: var(--g-azul); -webkit-background-clip: text; background-clip: text; color: transparent; }
+      #grande b.rj { color: var(--rojo); } #grande b.cita { font-size: 56px; line-height: 1.15; }
+      .card { position: absolute; left: 40px; top: 420px; width: 1000px; background: rgba(0,0,0,.9); border: 2px solid #3A3E46; border-radius: 22px; padding: 24px 30px 26px; display: grid; gap: 12px; opacity: 0; }
+      .card .cab { display: flex; justify-content: space-between; align-items: center; gap: 12px; } .card .cab b { font-weight: 900; font-size: 28px; letter-spacing: .14em; color: #BFC4CC; }
+      .card .cab span { font-weight: 900; font-size: 20px; letter-spacing: .14em; color: #000; background: #FFFFFF; padding: 4px 10px; border-radius: 6px; white-space: nowrap; }
+      .l { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; font-weight: 700; font-size: 32px; color: #E5E7EB; opacity: 0; font-variant-numeric: tabular-nums; }
+      .l b { font-weight: 900; color: #FFFFFF; white-space: nowrap; } .l.menos b { color: #FF8A8A; }
+      .l.total { border-top: 2px solid #3A3E46; padding-top: 12px; font-size: 40px; }
+      .l.total b { background: var(--g-azul); -webkit-background-clip: text; background-clip: text; color: transparent; font-size: 50px; }
+      .l.chica { font-size: 26px; color: #BFC4CC; } .l.chica b { color: #FFFFFF; } .nota { font-weight: 700; font-size: 22px; color: #9299A3; opacity: 0; }
+      .sello { justify-self: center; font-weight: 900; font-size: 34px; letter-spacing: .06em; color: #FFFFFF; background: #B3262E; padding: 10px 22px; border-radius: 12px; opacity: 0; }
+      .sello.az { background: var(--g-azul); }
+      /* ----- celular con la app (capa del mundo: interfaz genérica, sin marcas) ----- */
+      #tel { position: absolute; left: 290px; top: 410px; width: 500px; height: 900px; border-radius: 66px; background: #0B0C0E; border: 3px solid #4A4F59; box-shadow: 0 30px 80px rgba(0,0,0,.6), inset 0 0 0 10px #15171B; opacity: 0; overflow: hidden; }
+      #tel .pant { position: absolute; inset: 14px; border-radius: 54px; overflow: hidden; background: #E9ECF1; }
+      #tel .isla { position: absolute; left: 50%; top: 12px; width: 120px; height: 32px; margin-left: -60px; border-radius: 20px; background: #000; z-index: 4; }
+      #tel .barra-est { position: absolute; left: 34px; right: 30px; top: 16px; display: flex; justify-content: space-between; font: 800 20px Inter, Montserrat; color: #111; z-index: 3; }
+      #mapa { position: absolute; inset: 0; }
+      #tel .pill { position: absolute; left: 50%; top: 70px; transform: translateX(-50%); display: flex; align-items: center; gap: 12px; background: #111; color: #fff; padding: 12px 22px; border-radius: 40px; font: 900 30px Montserrat; white-space: nowrap; z-index: 3; font-variant-numeric: tabular-nums; }
+      #tel .pill i { width: 14px; height: 14px; border-radius: 50%; background: #00CFFF; box-shadow: 0 0 12px #00CFFF; }
+      #tel .pill small { font: 800 18px Montserrat; letter-spacing: .12em; color: #BFC4CC; }
+      .hoja { position: absolute; left: 0; right: 0; bottom: 0; background: #FFFFFF; border-radius: 34px 34px 0 0; padding: 26px 28px 32px; box-shadow: 0 -10px 30px rgba(0,0,0,.18); transform: translateY(110%); z-index: 3; }
+      .hoja small { display: block; font: 900 20px Montserrat; letter-spacing: .16em; color: #5A6070; }
+      .hoja .monto { font: 900 78px Montserrat; color: #0B0C0E; line-height: 1; margin: 8px 0 4px; font-variant-numeric: tabular-nums; }
+      .hoja .det { font: 700 26px Inter, Montserrat; color: #3A3E46; }
+      .hoja .pp { margin-top: 18px; padding: 14px 18px; border-radius: 16px; background: #F1F3F6; display: grid; gap: 4px; font: 800 22px Montserrat; letter-spacing: .04em; color: #3A3E46; }
+      .hoja .pp b { font: 900 30px Montserrat; color: #9299A3; letter-spacing: .08em; white-space: nowrap; }
+      .hoja .pp.rev { background: #FFE9E9; } .hoja .pp.rev b { color: #B3262E; letter-spacing: 0; }
+      .hoja .boton { margin-top: 18px; position: relative; height: 84px; border-radius: 20px; background: #111; color: #fff; display: grid; place-items: center; font: 900 32px Montserrat; letter-spacing: .1em; overflow: hidden; }
+      .hoja .boton i { position: absolute; left: 0; top: 0; bottom: 0; width: 0; background: var(--g-azul); }
+      .hoja .boton span { position: relative; }
+      .hoja .barra { margin-top: 14px; height: 30px; border-radius: 15px; background: #E5E7EB; overflow: hidden; } .hoja .barra i { display: block; height: 100%; width: 0; background: linear-gradient(90deg, #FF5A5A, #B3262E); }
+      .hoja .eti { margin-top: 10px; display: flex; justify-content: space-between; font: 800 22px Montserrat; color: #3A3E46; }
+      .toast { position: absolute; right: 26px; top: 150px; background: #111; color: #fff; font: 900 30px Montserrat; padding: 10px 18px; border-radius: 16px; opacity: 0; z-index: 3; white-space: nowrap; }
+      .toast em { font-style: normal; color: #00CFFF; }
+      /* ----- semana de Martín ----- */
+      #semana .dias { display: grid; grid-template-columns: repeat(7, 1fr); gap: 12px; height: 380px; align-items: end; }
+      #semana .d { position: relative; height: 100%; border-radius: 12px; background: #15171B; overflow: hidden; display: flex; flex-direction: column; justify-content: flex-end; }
+      #semana .d i { display: block; width: 100%; height: 0; }
+      #semana .d i.r { background: linear-gradient(180deg, #FF5A5A, #B3262E); } #semana .d i.a { background: var(--g-azul); }
+      #semana .d.dom { background: repeating-linear-gradient(45deg, #2A2E36 0 10px, #1A1D22 10px 20px); }
+      #semana .nom { display: grid; grid-template-columns: repeat(7, 1fr); gap: 12px; text-align: center; font-weight: 800; font-size: 24px; color: #9299A3; }
+      #semana .ley { display: flex; gap: 26px; font-weight: 800; font-size: 26px; color: #E5E7EB; } #semana .ley div { opacity: 0; display: flex; align-items: center; gap: 10px; }
+      #semana .ley i { width: 26px; height: 26px; border-radius: 6px; display: inline-block; } #semana .ley .r i { background: #D93A3A; } #semana .ley .a i { background: #007BFF; }
+      /* ----- comparación ----- */
+      #comp .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+      #comp .col { border: 2px solid #3A3E46; border-radius: 18px; padding: 18px 20px; display: grid; gap: 10px; }
+      #comp .col.colL { border-color: #007BFF; }
+      #comp .col h3 { font-weight: 900; font-size: 40px; color: #FFFFFF; } #comp .col h3 small { display: block; font-weight: 800; font-size: 20px; letter-spacing: .14em; color: #9299A3; }
+      #comp .fila { font-weight: 700; font-size: 22px; letter-spacing: .1em; color: #9299A3; } #comp .fila b { display: block; font-weight: 900; font-size: 46px; letter-spacing: 0; color: #FFFFFF; font-variant-numeric: tabular-nums; white-space: nowrap; }
+      #comp .col.colL .fila b.v { background: var(--g-azul); -webkit-background-clip: text; background-clip: text; color: transparent; }
+      #comp .tag { justify-self: start; font-weight: 900; font-size: 22px; color: #000; background: #FFFFFF; padding: 4px 10px; border-radius: 6px; opacity: 0; }
+      #comp .pie { text-align: center; font-weight: 800; font-size: 34px; color: #E5E7EB; opacity: 0; } #comp .pie b { font-weight: 900; font-size: 52px; color: #FFFFFF; display: block; }
+      #comp .pie b.rj { color: var(--rojo); } #comp .pie b.az { background: var(--g-azul); -webkit-background-clip: text; background-clip: text; color: transparent; }
+      /* ----- barras del costo del auto ----- */
+      #barras .fb { display: grid; gap: 8px; opacity: 0; } #barras .fb .t { display: flex; justify-content: space-between; font-weight: 800; font-size: 28px; color: #E5E7EB; } #barras .fb .t b { font-weight: 900; color: #FFFFFF; font-size: 36px; }
+      #barras .pista { position: relative; height: 70px; border-radius: 12px; background: #15171B; }
+      #barras .pista i { position: absolute; left: 0; top: 0; bottom: 0; border-radius: 12px; width: 0; }
+      #barras .pista i.az { background: var(--g-azul); } #barras .pista i.gr { background: #6B7280; }
+      #barras .pista i.du { background: repeating-linear-gradient(45deg, #FF5A5A 0 14px, #B3262E 14px 28px); border-radius: 0 12px 12px 0; opacity: 0; }
+      #barras .llave { opacity: 0; text-align: right; font-weight: 900; font-size: 34px; color: var(--rojo); }
+      /* ----- desgaste de golpe ----- */
+      #golpe .graf { position: relative; display: flex; align-items: flex-end; gap: 6px; height: 360px; border-bottom: 2px solid #3A3E46; }
+      #golpe .graf i { flex: 1; height: 0; border-radius: 4px 4px 0 0; border: 2px dashed #5A6070; border-bottom: 0; opacity: 0; }
+      #golpe .graf i.gran { flex: 6; border: 0; background: linear-gradient(180deg, #FF5A5A, #B3262E); }
+      #golpe .eti { display: flex; justify-content: space-between; font-weight: 800; font-size: 24px; color: #9299A3; }
+      /* ----- método ----- */
+      #regla { position: absolute; left: 70px; right: 70px; top: 470px; display: grid; gap: 22px; opacity: 0; }
+      #regla .et { justify-self: start; font-weight: 900; font-size: 30px; letter-spacing: 0.22em; color: #FFFFFF; background: var(--g-azul); padding: 10px 20px; border-radius: 10px; }
+      #regla .l1 { font-weight: 900; font-size: 74px; line-height: 1.05; color: #FFFFFF; } #regla .l1 em { font-style: normal; background: var(--g-azul); -webkit-background-clip: text; background-clip: text; color: transparent; }
+      #regla .f { font-weight: 900; font-size: 44px; line-height: 1.15; color: #FFFFFF; opacity: 0; } #regla .f.ch { font-size: 32px; color: #BFC4CC; } #regla .f.op b { color: var(--azul-l); }
+      #regla .res { justify-self: start; font-weight: 900; font-size: 46px; color: #000; background: #FFFFFF; padding: 12px 26px; border-radius: 14px; opacity: 0; }
+      #sub { position: absolute; left: 60px; right: 60px; top: 1330px; text-align: center; font-weight: 900; font-size: 60px; line-height: 1.1; color: #FFFFFF; -webkit-text-stroke: 12px #000000; paint-order: stroke fill; }
+      #sub em { font-style: normal; color: var(--azul-l); }
+      #fuente { position: absolute; left: 60px; right: 60px; top: 1478px; text-align: center; font-weight: 700; font-size: 23px; line-height: 1.3; color: var(--plata-m); opacity: 0; -webkit-text-stroke: 6px #000; paint-order: stroke fill; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="167.64" data-width="1080" data-height="1920">
+      <canvas id="gl" width="1080" height="1920"></canvas>
+      <div id="hud" data-layout-ignore>
+        <div id="marca"><img src="assets/marca/isotipo.png" alt=""><span>EL MÉTODO<b>EMPRESARIAL</b></span></div>
+        <div id="titulo"><div class="a">Uber y DiDi:</div><div class="b">¿cuánto te queda?</div></div>
+        <div id="grande"><small id="grande-s"></small><b id="grande-b"></b></div>
+
+        <div id="tel"><div class="pant">
+          <svg id="mapa" viewBox="0 0 472 872" preserveAspectRatio="xMidYMid slice"></svg>
+          <div class="isla"></div><div class="barra-est"><span id="hora">10:24</span><span>5G ▮▮▮</span></div>
+          <div class="pill"><i></i><small>HOY</small><span id="hoy">$0</span></div>
+          <div class="toast" id="toast"></div>
+          <div class="hoja" id="oferta"><small>NUEVO VIAJE</small><div class="monto" id="of-monto">$10.000</div><div class="det">6,2 km · 18 min · Palermo → Almagro</div>
+            <div class="pp" id="pp">Lo que paga el pasajero <b id="pp-b">• • • • •</b></div>
+            <div class="boton"><i id="of-anillo"></i><span>ACEPTAR</span></div></div>
+          <div class="hoja" id="semanaTel"><small>ESTA SEMANA · MARTÍN</small><div class="monto" id="sem-monto">$0</div><div class="det" id="sem-det">0 horas manejadas</div>
+            <div class="barra"><i id="sem-barra"></i></div><div class="eti"><span>ALQUILER DEL AUTO</span><span>$360.000</span></div></div>
+        </div></div>
+
+        <div class="card" id="semana"><div class="cab"><b>LA SEMANA DE MARTÍN</b><span>EJEMPLO</span></div>
+          <div class="dias">
+            <div class="d" data-r="1" data-a="0"><i class="a"></i><i class="r"></i></div><div class="d" data-r="1" data-a="0"><i class="a"></i><i class="r"></i></div>
+            <div class="d" data-r="0.5" data-a="0.5"><i class="a"></i><i class="r"></i></div><div class="d" data-r="0" data-a="1"><i class="a"></i><i class="r"></i></div>
+            <div class="d" data-r="0" data-a="1"><i class="a"></i><i class="r"></i></div><div class="d" data-r="0" data-a="1"><i class="a"></i><i class="r"></i></div>
+            <div class="d dom" data-r="0" data-a="0"><i class="a"></i><i class="r"></i></div></div>
+          <div class="nom"><span>LUN</span><span>MAR</span><span>MIÉ</span><span>JUE</span><span>VIE</span><span>SÁB</span><span>DOM</span></div>
+          <div class="ley"><div class="r" id="ley-r"><i></i>Para el dueño del auto · 30 h</div><div class="a" id="ley-a"><i></i>Para Martín</div></div></div>
+
+        <div class="card" id="cm"><div class="cab"><b>MARTÍN · ALQUILA · POR MES</b><span>EJEMPLO · NOV. 2026</span></div>
+          <div class="l" id="cm1">La app le paga <b id="cm1v">$0</b></div>
+          <div class="l menos" id="cm2">Alquiler del auto ($360.000 × 4,3 semanas) <b>−$1.560.000</b></div>
+          <div class="l menos" id="cm3">Gas (GNC) <b>−$427.000</b></div>
+          <div class="l menos" id="cm4">Monotributo + Ingresos Brutos (cat. F) <b>−$227.000</b></div>
+          <div class="l menos" id="cm5">Celular <b>−$23.000</b></div>
+          <div class="l total" id="cm6">Le quedan <b>$1.507.000</b></div>
+          <div class="l chica" id="cm7">12 h × 6 días = 312 horas al mes <b>$1.507.000 ÷ 312</b></div>
+          <div class="sello" id="cm8">$4.830 LA HORA</div></div>
+
+        <div class="card" id="cl"><div class="cab"><b>LUCAS · AUTO PROPIO · POR MES</b><span>EJEMPLO · NOV. 2026</span></div>
+          <div class="l" id="cl1">La app le paga <b id="cl1v">$0</b></div>
+          <div class="l menos" id="cl2">Gas (GNC) <b>−$285.000</b></div>
+          <div class="l menos" id="cl3">Service, cubiertas, frenos, amortiguadores <b>−$279.000</b></div>
+          <div class="l menos" id="cl4">Seguro <b>−$106.000</b></div>
+          <div class="l menos" id="cl5">Monotributo + Ingresos Brutos (cat. D) <b>−$125.000</b></div>
+          <div class="l menos" id="cl6">Patente, VTV, celular, lavado, equipo de GNC <b>−$97.000</b></div>
+          <div class="l total" id="cl7">Gastos del auto <b>−$892.000</b></div></div>
+
+        <div class="card" id="cl2c"><div class="cab"><b>LUCAS · AUTO PROPIO · POR MES</b><span>EJEMPLO · NOV. 2026</span></div>
+          <div class="l" id="cr1">La app le paga <b>$2.496.000</b></div>
+          <div class="l menos" id="cr2">Gastos del auto <b>−$892.000</b></div>
+          <div class="l menos" id="cr3">Lo que pierde de valor (4.160 km × $33) <b>−$137.000</b></div>
+          <div class="l total" id="cr4">Le quedan <b>$1.466.000</b></div>
+          <div class="l chica" id="cr5">8 h × 6 días = 208 horas al mes <b>$1.466.000 ÷ 208</b></div>
+          <div class="sello az" id="cr6">$7.050 LA HORA</div></div>
+
+        <div class="card" id="comp"><div class="cab"><b>MISMA APP · MISMA TARIFA</b><span>POR MES</span></div>
+          <div class="cols">
+            <div class="col colM"><h3><small>ALQUILA</small>Martín</h3>
+              <div class="fila">HORAS<b id="cp-hm">312 h</b></div><div class="fila">LE QUEDAN<b id="cp-qm">$1.507.000</b></div><div class="fila">POR HORA<b id="cp-pm">$4.830</b></div></div>
+            <div class="col colL"><h3><small>AUTO PROPIO</small>Lucas</h3>
+              <div class="fila">HORAS<b id="cp-hl">208 h</b></div><div class="fila">LE QUEDAN<b class="v" id="cp-ql">$1.466.000</b></div><div class="fila">POR HORA<b class="v" id="cp-pl">$7.050</b></div>
+              <div class="tag" id="cp-tag">SI MANEJA 12 H</div></div></div>
+          <div class="pie" id="cp-p1">Martín: +104 horas por mes<b class="rj">apenas +$40.000</b></div>
+          <div class="pie" id="cp-p2">Por cada hora extra<b>$386</b></div>
+          <div class="pie" id="cp-p3">Mismas horas, mismo trabajo<b class="az">Lucas: +$755.000</b></div></div>
+
+        <div class="card" id="barras"><div class="cab"><b>LO QUE CUESTA EL AUTO POR MES</b><span>12 H × 6 DÍAS · SIN GAS</span></div>
+          <div class="fb" id="b1"><div class="t">Lucas: su auto, con desgaste <b>$804.000</b></div><div class="pista"><i class="az" id="b1i"></i></div></div>
+          <div class="fb" id="b2"><div class="t">Martín: el alquiler <b>$1.560.000</b></div><div class="pista"><i class="gr" id="b2i"></i><i class="du" id="b2d"></i></div></div>
+          <div class="llave" id="b3">$755.000 → se los lleva el dueño del auto</div>
+          <div class="nota" id="b4">El dueño cubre seguro, service y desgaste… y le queda el resto.</div></div>
+
+        <div class="card" id="ger"><div class="cab"><b>CASO REAL · ROSARIO</b><span>LA CAPITAL · 26/04/2026</span></div>
+          <div class="l" id="g1">Gerardo <b>62 años</b></div>
+          <div class="l" id="g2">Alquila un auto con GNC <b>$360.000 / semana</b></div>
+          <div class="l" id="g3">Maneja <b>12 h por día</b></div>
+          <div class="l total" id="g4">«Limpios me quedan» <b>$60.000–70.000 / día</b></div>
+          <div class="nota" id="g5">Nuestra cuenta de Martín: ≈ $58.000 por día, ya pagados el monotributo y los impuestos.</div></div>
+
+        <div class="card" id="golpe"><div class="cab"><b>EL DESGASTE DE LUCAS</b><span>EJEMPLO</span></div>
+          <div class="graf" id="graf"></div>
+          <div class="eti"><span>36 meses: $137.000 por mes que no ves</span><span id="golpe-e">CAMBIAR EL AUTO</span></div>
+          <div class="sello" id="golpe-s">DE GOLPE: ≈ $4.900.000</div></div>
+
+        <div class="card" id="seg"><div class="cab"><b>PÓLIZA DE AUTO</b><span>OJO</span></div>
+          <div class="l" id="s1">Uso declarado <b>PARTICULAR</b></div>
+          <div class="l" id="s2">Choque durante un viaje con pasajero <b>¿?</b></div>
+          <div class="sello" id="s3">SINIESTRO RECHAZADO</div>
+          <div class="nota" id="s4">El seguro de la app cubre al pasajero durante el viaje, no los daños de tu auto. Si trabajás con apps, declaralo en tu póliza.</div></div>
+
+        <div id="regla"><div class="et">EL MÉTODO</div><div class="l1">Tu <em>sueldo real</em> por hora</div>
+          <div class="f op" id="f1">Lo que te paga la app</div>
+          <div class="f op" id="f2"><b>−</b> todo lo que cuesta el auto</div>
+          <div class="f ch" id="f3">(incluido lo que pierde de valor)</div>
+          <div class="f op" id="f4"><b>÷</b> las horas que manejás</div>
+          <div class="res" id="f5">= TU SUELDO REAL POR HORA</div></div>
+        <div id="sub"></div>
+        <div id="fuente"></div>
+      </div>
+      <div id="o-marca" data-composition-id="o-marca" data-composition-src="compositions/o-marca.html" data-start="162.24" data-duration="5.4" data-track-index="2" data-track-kind="graphics" data-width="1080" data-height="1920" style="z-index:30"></div>
+      <audio id="voz" class="clip" src="assets/audio/voz.wav" data-start="0" data-duration="164.6" data-track-index="5" data-volume="1"></audio>
+      <audio id="musica" class="clip" src="assets/audio/musica.wav" data-start="0" data-duration="167.64" data-track-index="6" data-volume="1"></audio>
+      <audio id="efectos" class="clip" src="assets/audio/efectos.wav" data-start="0" data-duration="167.64" data-track-index="7" data-volume="1"></audio>
+    </div>
+    <script>
+      window.__timelines = window.__timelines || {};
+      window.__timelines["main"] = gsap.timeline({ paused: true });
+    </script>
+    <script type="module">
+      window.__hf = window.__hf || {}; window.__hf.buildReady = window.__hf.buildReady || {};
+      let listo; window.__hf.buildReady["mundo"] = new Promise((r) => (listo = r));
+      await Promise.all(["900 70px Montserrat", "800 34px Montserrat", "700 22px Montserrat", "800 20px Inter"].map((f) => document.fonts.load(f)));
+      const Mu = await import("./assets/mundo.js");
+      const SUB = await fetch("assets/subtitulos.json").then((r) => r.json());
+      const { T } = Mu; const clamp = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x)); const $ = (id) => document.getElementById(id);
+      const eo = (u) => 1 - Math.pow(1 - clamp(u), 3); const back = (u) => { u = clamp(u); const c = 1.7; return 1 + (c + 1) * Math.pow(u - 1, 3) + c * Math.pow(u - 1, 2); };
+      const pesos = (v) => "$" + Math.round(v).toLocaleString("es-AR");
+      const hud = $("hud");
+
+      // ---------- mapa de la app (SVG): manzanas, ruta que se dibuja y el auto que la recorre ----------
+      const NS = "http://www.w3.org/2000/svg"; const svg = $("mapa");
+      const el = (n, a) => { const e = document.createElementNS(NS, n); for (const k in a) e.setAttribute(k, a[k]); svg.appendChild(e); return e; };
+      el("rect", { x: 0, y: 0, width: 472, height: 872, fill: "#E9ECF1" });
+      for (let i = 0; i < 7; i++) for (let j = 0; j < 11; j++) el("rect", { x: 14 + i * 70, y: 10 + j * 82, width: 58, height: 70, rx: 6, fill: (i * 7 + j * 3) % 11 === 0 ? "#CFE3C8" : "#DADFE6" });
+      el("path", { d: "M-10 520 Q 200 470 482 560", stroke: "#FFFFFF", "stroke-width": 26, fill: "none" });
+      const RUTA = "M 78 760 L 78 584 L 218 584 L 218 420 L 358 420 L 358 256 L 428 256 L 428 176";
+      const ruta = el("path", { d: RUTA, stroke: "#007BFF", "stroke-width": 12, fill: "none", "stroke-linecap": "round", "stroke-linejoin": "round" });
+      const LR = ruta.getTotalLength(); ruta.style.strokeDasharray = LR;
+      const dest = el("circle", { cx: 428, cy: 176, r: 14, fill: "#0B0C0E" });
+      const yo = el("g", {}); const yoC = document.createElementNS(NS, "circle"); yoC.setAttribute("r", 18); yoC.setAttribute("fill", "#FFFFFF"); yoC.setAttribute("stroke", "#007BFF"); yoC.setAttribute("stroke-width", 7); yo.appendChild(yoC);
+
+      // ---------- fichas pegadas a los autos o fijas ----------
+      // [rótulo, valor, clase, objeto 3D o null, punto [x, y] si es fija, desde, hasta, función(t) para el valor]
+      const VALOR0 = 15000000;
+      const FI = [
+        ["ALQUILA", "MARTÍN", "gris", Mu.marcaM, null, 0.3, T.uno - 0.1],
+        ["AUTO PROPIO", "LUCAS", "azul", Mu.marcaL, null, 0.6, T.uno - 0.1],
+        ["12 H × 6 DÍAS", "312 H", "gris", Mu.marcaM, null, T.uno + 0.2, T.donde - 0.1],
+        ["8 H × 6 DÍAS", "208 H", "azul", Mu.marcaL, null, T.uno + 0.5, T.donde - 0.1],
+        ["AUTO ALQUILADO", "$360.000 / SEMANA", "rojo", Mu.marcaM, null, T.s360 - 0.2, T.div - 0.1],
+        ["MARTÍN", "NO TIENE AUTO", "gris", Mu.marcaM, null, T.martin + 0.2, T.s360 - 0.3],
+        ["LUCAS", "AUTO PROPIO A GNC", "azul", Mu.marcaL, null, T.lucas + 0.4, T.ocho - 0.1],
+        ["LUCAS MANEJA", "8 H × 6 DÍAS", "azul", Mu.marcaL, null, T.ocho, T.mesL - 0.1],
+        ["VALOR DEL AUTO", "", "", Mu.marcaL, null, T.km, T.quedanL - 0.1, (t) => pesos(VALOR0 - 33 * kmMes(t))],
+        ["KM ESTE MES", "", "fija gris", null, [60, 420], T.km4000 - 0.3, T.quedanL - 0.1, (t) => Math.round(kmMes(t)).toLocaleString("es-AR") + " km"],
+        ["MARTÍN", "¿ALQUILA?", "gris", Mu.marcaM, null, T.vos + 0.2, T.seguime - 0.3],
+        ["LUCAS", "¿PROPIO?", "azul", Mu.marcaL, null, T.vos + 0.5, T.seguime - 0.3],
+      ];
+      function kmMes(t) { return 4160 * eo((t - T.km4000) / 2.2); }
+      const fels = FI.map((f) => { const d = document.createElement("div"); d.className = "ficha " + f[2] + (f[3] ? "" : " fija"); d.innerHTML = `<small>${f[0]}</small><b>${f[1]}</b>`; hud.appendChild(d); return d; });
+      // carteles grandes: [desde, hasta, rótulo, valor (texto o función), clase, top]
+      const reloj = (t) => { const u = clamp((t - T.h12) / (T.mes - 0.3 - T.h12)); const m = 8 * 60 + u * 12 * 60; return String(Math.floor(m / 60)).padStart(2, "0") + ":" + String(Math.floor(m % 60)).padStart(2, "0"); };
+      const GR = [
+        [T.uno + 0.1, T.apenas - 0.05, "UNO MANEJA", "+104 HORAS AL MES", "rj", 196],
+        [T.apenas, T.donde - 0.05, "Y SE LLEVA APENAS", "+$40.000", "az", 196],
+        [T.donde, T.tranq - 0.1, "", "¿DÓNDE SE VA LA PLATA?", "cita", 196],
+        [T.s12, T.sincom + 0.9, "LA APP LE PAGA", "≈ $12.000 / HORA", "az", 196],
+        [T.sincom + 0.9, T.viaje - 0.1, "", "YA SIN LA COMISIÓN", "cita", 230],
+        [T.h30, T.primeros - 0.1, "PARA PAGAR EL ALQUILER", "30 HORAS", "rj", 196],
+        [T.h12, T.mes - 0.2, "MARTÍN MANEJA", reloj, "az", 430],
+        [T.claro, T.desgaste - 0.1, "LUCAS PUSO", "$15.000.000 EN EL AUTO", "cita", 430],
+        [T.s33 - 0.1, T.km4000 - 0.4, "CADA KILÓMETRO", "−$33", "rj", 196],
+        [T.s137 - 0.1, T.quedanL - 0.1, "ESTE MES, SIN VERLO", "−$137.000", "rj", 196],
+        [T.vos, T.seguime - 0.3, "", "¿VOS SOS MARTÍN O LUCAS?", "cita", 196],
+      ];
+      // fuentes: [desde, hasta, texto]
+      const FU = [
+        [T.tranq, T.martin, "Ingreso por hora: choferes y la asociación ACAURA ($10.000–12.000/h entre semana, 2026) · Precio al pasajero: chofer «Don Uberto», El Economista 25/08/2026"],
+        [T.martin, T.mes, "Alquiler de autos para apps: $280.000–450.000 por semana (avisos y prensa, 2026) · 12 h por día: lo que cuentan los choferes que alquilan"],
+        [T.mes, T.lucas, "GNC $685/m³ (YPF, oct. 2026), 10 m³ cada 100 km y 20 km por hora con viajes y vacíos: estimación · Monotributo y Ingresos Brutos: ARCA y ARBA (ago. 2026)"],
+        [T.mesL, T.gasto, "Seguro terceros completo: La Nación 19/09/2026 · Service: plan oficial de fábrica · Cubiertas y frenos: precios nov. 2026 · Patente y VTV PBA 2026"],
+        [T.gasto, T.comp, "Desgaste: avisos del mismo modelo con distinto kilometraje, de $26 a $41 por km (nov. 2026) · Auto de $15 M: ejemplo"],
+        [T.comp, T.escritorio, "Mismo supuesto para los dos: $12.000 por hora, 6 días por semana, conurbano bonaerense"],
+        [T.escritorio, T.claro, "Testimonio: La Capital (Rosario), 26/04/2026"],
+        [T.ojo, T.entonces, "Uber (con Galicia Seguros) y DiDi cubren accidentes y responsabilidad civil durante el viaje, no los daños de tu auto"],
+      ];
+      // tarjetas: [id, desde, hasta]
+      const SEC = [["semana", T.primeros, T.poreso - 0.1], ["cm", T.mes + 0.2, T.lucas - 0.1], ["cl", T.mesL + 0.1, T.gasto - 0.1], ["cl2c", T.quedanL, T.comp - 0.1],
+        ["comp", T.comp, T.porque - 0.1], ["barras", T.porque, T.escritorio - 0.1], ["ger", T.escritorio + 1.6, T.claro - 0.1], ["golpe", T.desgaste, T.ojo - 0.1], ["seg", T.ojo, T.entonces - 0.1]];
+      const LIN = [["cm1", T.m3744 - 0.2], ["cm2", T.alq], ["cm3", T.gas], ["cm4", T.mono], ["cm5", T.cel], ["cm6", T.quedan], ["cm7", T.h312], ["cm8", T.m4830],
+        ["cl1", T.m2496 - 0.2], ["cl2", T.gasL], ["cl3", T.service], ["cl4", T.seguro], ["cl5", T.impuestos], ["cl6", T.patente], ["cl7", T.casi900],
+        ["cr1", T.quedanL + 0.1], ["cr2", T.quedanL + 0.35], ["cr3", T.quedanL + 0.6], ["cr4", T.m1466 - 0.1], ["cr5", T.m1466 + 0.8], ["cr6", T.m7050],
+        ["cp-p1", T.s40], ["b1", T.s800 - 0.2], ["b2", T.mpaga], ["b3", T.dif], ["b4", T.dueno2 + 0.4],
+        ["g1", T.gerardo], ["g2", T.alquilaG], ["g3", T.manejaG], ["g4", T.s6070], ["g5", T.s6070 + 0.9],
+        ["s1", T.uso], ["s2", T.chocas], ["s3", T.rechazar], ["s4", T.rechazar + 0.6],
+        ["f1", T.lo], ["f2", T.menos], ["f3", T.incluido], ["f4", T.dividido], ["f5", T.sueldo]];
+      // gráfico del desgaste: 36 meses punteados + una barra grande
+      const graf = $("graf"); for (let k = 0; k < 36; k++) graf.appendChild(document.createElement("i")); const gran = document.createElement("i"); gran.className = "gran"; graf.appendChild(gran);
+
+      function aparece(e, t, a, b = 1e9) { const u = clamp((t - a) / 0.3), o = clamp((b - t) / 0.25); e.style.opacity = t >= a && t < b ? Math.min(u, o) : 0; return u; }
+      function contar(t, a, d, v) { return v * eo((t - a) / d); }
+
+      // ---------- el celular ----------
+      const VIAJES = [10400, 9800, 12600, 8900, 11200, 13100, 9700, 10800, 12200, 9300, 11800, 10600];
+      function telAt(t) {
+        const A = t >= T.tranq - 0.3 && t < T.martin - 0.2, B = t >= T.div - 0.2 && t < T.primeros - 0.1;
+        const tel = $("tel"); if (!A && !B) { tel.style.opacity = 0; return; }
+        const a0 = A ? T.tranq - 0.3 : T.div - 0.2, a1 = A ? T.martin - 0.2 : T.primeros - 0.1;
+        const u = clamp((t - a0) / 0.45), o = clamp((a1 - t) / 0.3); tel.style.opacity = Math.min(u, o);
+        tel.style.transform = `translateY(${(1 - back(u)) * 160}px) rotate(${(1 - eo(u)) * -6}deg)`;
+        // ruta del viaje y el auto que la recorre (en loop)
+        const ciclo = ((t - a0) % 6.5) / 6.5; const dib = clamp(ciclo / 0.25), rec = clamp((ciclo - 0.25) / 0.7);
+        ruta.style.strokeDashoffset = LR * (1 - dib); const p = ruta.getPointAtLength(LR * rec); yo.setAttribute("transform", `translate(${p.x} ${p.y})`);
+        // hora del celular
+        $("hora").textContent = A ? "10:" + String(24 + Math.floor((t - a0) * 0.6)).padStart(2, "0") : "18:" + String(10 + Math.floor((t - a0) * 2)).padStart(2, "0");
+        // fase A: oferta de viaje
+        const of = $("oferta"), sem = $("semanaTel");
+        if (A) {
+          sem.style.transform = "translateY(110%)";
+          const uo = clamp((t - T.viaje + 0.1) / 0.45); of.style.transform = `translateY(${(1 - back(uo)) * 110}%)`;
+          const om = clamp((t - T.s10 + 0.1) / 0.25); $("of-monto").style.transform = `scale(${1 + 0.12 * Math.sin(Math.PI * om)})`;
+          const rv = t >= T.pasaj; $("pp").classList.toggle("rev", rv); $("pp-b").textContent = rv ? "$13.000–15.000" : "• • • • •";
+          $("pp").style.transform = rv ? `scale(${1 + 0.06 * Math.sin(Math.PI * clamp((t - T.pasaj) / 0.35))})` : "none";
+          $("of-anillo").style.width = (100 * clamp((t - T.viaje) / 4.0)) + "%";
+          // ganancias del día suben con cada viaje
+          let hoy = 38200; VIAJES.slice(0, 3).forEach((v, k) => { hoy += v * clamp((t - (T.tranq + 1.2 + k * 2.2)) / 0.5); }); $("hoy").textContent = pesos(hoy);
+          toast(t, [T.tranq + 1.2, T.tranq + 3.4, T.tranq + 5.6], VIAJES);
+        } else {
+          of.style.transform = "translateY(110%)";
+          const us = clamp((t - T.div) / 0.45); sem.style.transform = `translateY(${(1 - back(us)) * 110}%)`;
+          const f = clamp((t - T.div - 0.2) / (T.h30 - T.div - 0.2)); const fe = f;   // 0 → $360.000 en 30 h
+          $("sem-monto").textContent = pesos(Math.round(360 * fe) * 1000); $("sem-det").textContent = Math.round(30 * fe) + " horas manejadas"; $("sem-barra").style.width = (100 * fe) + "%";
+          $("hoy").textContent = pesos(Math.round(12000 * ((fe * 30) % 12) / 100) * 100);
+          const tiempos = []; for (let k = 0; k < 9; k++) tiempos.push(T.div + 0.3 + k * 0.32); toast(t, tiempos, VIAJES);
+        }
+      }
+      function toast(t, tiempos, montos) {
+        const e = $("toast"); let k = -1; tiempos.forEach((a, i) => { if (t >= a) k = i; });
+        if (k < 0 || t - tiempos[k] > 0.9) { e.style.opacity = 0; return; }
+        const u = clamp((t - tiempos[k]) / 0.2), o = clamp((tiempos[k] + 0.9 - t) / 0.25); e.style.opacity = Math.min(u, o); e.style.transform = `translateY(${(1 - eo(u)) * 30}px)`;
+        e.innerHTML = `<em>+</em> ${pesos(montos[k % montos.length])}`;
+      }
+
+      function hudAt(t) {
+        const enRegla = t >= T.entonces + 0.4 && t < T.vos - 0.1; const sec = SEC.find((x) => t >= x[1] && t < x[2]);
+        const telOn = (t >= T.tranq - 0.3 && t < T.martin - 0.2) || (t >= T.div - 0.2 && t < T.primeros - 0.1);
+        Mu.render(t, enRegla ? 0.86 * clamp((t - T.entonces - 0.4) / 0.4) * clamp((T.vos - 0.1 - t) / 0.3) : sec ? 0.45 : telOn ? 0.5 : 0);
+        FI.forEach((f, i) => {
+          const e = fels[i], on = t >= f[5] && t < f[6]; if (!on) { e.style.opacity = 0; return; }
+          if (f[7]) e.querySelector("b").textContent = f[7](t);
+          const u = clamp((t - f[5]) / 0.25), out = clamp((f[6] - t) / 0.15); const w = e.offsetWidth, h = e.offsetHeight; let x, y, s = { vis: true };
+          if (f[3]) { s = Mu.aPantalla(f[3]); x = Math.min(1080 - w - 40, Math.max(40, s.x - w / 2)); y = Math.min(1250 - h, Math.max(420, s.y - h - 22)); } else { x = f[4][0]; y = f[4][1]; }
+          e.style.opacity = s.vis ? Math.min(u, out) : 0; e.style.transform = `translate(${x}px, ${y + (1 - u) * 26}px) scale(${0.86 + 0.14 * eo(u)})`;
+        });
+        // si dos fichas pegadas a autos se pisan, la de Lucas sube
+        const vis = FI.map((f, i) => [f, fels[i]]).filter(([f, e]) => f[3] && +e.style.opacity > 0);
+        if (vis.length === 2) { const [a, b] = vis.map((v) => v[1]); const ra = a.getBoundingClientRect(), rb = b.getBoundingClientRect();
+          if (ra.left < rb.right && rb.left < ra.right && ra.top < rb.bottom && rb.top < ra.bottom) {   // se pisan: Martín a la izquierda, Lucas a la derecha
+            const ya = Math.max(ra.top, rb.top); a.style.transform = `translate(40px, ${ya}px)`; b.style.transform = `translate(${1040 - rb.width}px, ${ya}px)`; } }
+        const g = GR.find((r) => t >= r[0] && t < r[1]);
+        if (g) { const u = clamp((t - g[0]) / 0.3), o = clamp((g[1] - t) / 0.2); const G = $("grande"); G.style.opacity = Math.min(u, o); G.style.top = g[5] + "px"; G.style.transform = `translateX(-50%) translateY(${(1 - u) * 26}px) scale(${0.92 + 0.08 * back(u)})`;
+          $("grande-s").textContent = g[2]; $("grande-s").style.display = g[2] ? "block" : "none"; $("grande-b").textContent = typeof g[3] === "function" ? g[3](t) : g[3]; $("grande-b").className = g[4]; }
+        else $("grande").style.opacity = 0;
+        telAt(t);
+        SEC.forEach(([id, a, b]) => { const u = aparece($(id), t, a, b); $(id).style.transform = `translateY(${(1 - eo(u)) * 30}px)`; });
+        LIN.forEach(([id, a]) => { const e = $(id), u = clamp((t - a) / 0.3); e.style.opacity = u; if (!e.classList.contains("sello")) e.style.transform = `translateX(${(1 - eo(u)) * -20}px)`; else e.style.transform = `scale(${0.85 + 0.15 * back(u)})`; });
+        $("cm1v").textContent = pesos(contar(t, T.m3744 - 0.2, 1.6, 3744000)); $("cl1v").textContent = pesos(contar(t, T.m2496 - 0.2, 1.4, 2496000));
+        // semana de Martín
+        [...document.querySelectorAll("#semana .d")].forEach((d, k) => { const ar = T.primeros + 0.2 + k * 0.18; const ur = eo((t - ar) / 0.5), ua = eo((t - (T.dueno + 0.8) - k * 0.12) / 0.5);
+          const [ir, ia] = [d.querySelector(".r"), d.querySelector(".a")]; ir.style.height = (100 * +d.dataset.r * ur) + "%"; ia.style.height = (100 * +d.dataset.a * ua) + "%"; });
+        $("ley-r").style.opacity = clamp((t - T.dueno + 0.2) / 0.3); $("ley-a").style.opacity = clamp((t - T.dueno - 0.8) / 0.3);
+        // comparación: los números de Lucas pasan a 12 h
+        const u12 = eo((t - T.quedarian) / 1.4);
+        $("cp-hl").textContent = Math.round(208 + 104 * u12) + " h"; $("cp-ql").textContent = pesos(1466000 + (2262000 - 1466000) * u12); $("cp-pl").textContent = pesos(7050 + 200 * u12);
+        $("cp-hl").style.color = t >= T.quedarian ? "#00CFFF" : ""; $("cp-tag").style.opacity = clamp((t - T.ysi) / 0.3);
+        $("cp-p1").style.display = t < T.ysi ? "block" : "none"; $("cp-p2").style.display = t < T.ysi ? "block" : "none"; $("cp-p3").style.display = t >= T.ysi ? "block" : "none";
+        $("cp-p2").style.opacity = clamp((t - T.s386) / 0.3); $("cp-p3").style.opacity = clamp((t - T.s755) / 0.3);
+        $("cp-p3").style.transform = `scale(${0.9 + 0.1 * back((t - T.s755) / 0.35)})`;
+        // barras del costo del auto
+        $("b1i").style.width = (100 * 804000 / 1560000 * eo((t - T.s800) / 0.8)) + "%"; $("b2i").style.width = (100 * eo((t - T.mpaga - 0.2) / 0.9)) + "%";
+        const ud = clamp((t - T.dif) / 0.4); $("b2d").style.left = (100 * 804000 / 1560000) + "%"; $("b2d").style.width = (100 * (1 - 804000 / 1560000)) + "%"; $("b2d").style.opacity = ud;
+        // desgaste de golpe
+        [...graf.children].forEach((b, k) => { if (b === gran) { const ug = eo((t - T.golpe) / 0.6); b.style.height = (100 * ug) + "%"; b.style.opacity = ug > 0 ? 1 : 0; return; }
+          const a = T.desgaste + 0.2 + k * 0.045; b.style.opacity = clamp((t - a) / 0.15); b.style.height = (2.8 * clamp((t - a) / 0.15)) + "%"; });
+        $("golpe-s").style.opacity = clamp((t - T.golpe - 0.3) / 0.3); $("golpe-s").style.transform = `scale(${0.85 + 0.15 * back((t - T.golpe - 0.3) / 0.35)})`;
+        $("golpe-e").style.opacity = clamp((t - T.cambiarlo) / 0.3);
+        // método
+        const ug = clamp((t - T.entonces - 0.5) / 0.4); $("regla").style.opacity = enRegla ? Math.min(ug, clamp((T.vos - 0.1 - t) / 0.3)) : 0; $("regla").style.transform = `translateY(${(1 - eo(ug)) * 30}px)`;
+        // subtítulos, fuentes y título
+        let s = ""; for (const [a, txt] of SUB) if (t >= a) s = txt; $("sub").innerHTML = t < T.seguime - 0.3 && !enRegla ? s : "";
+        const fu = FU.find((r) => t >= r[0] + 0.3 && t < r[1]); $("fuente").style.opacity = fu && !enRegla ? 1 : 0; if (fu) $("fuente").textContent = fu[2];
+        const grTop = g && g[5] < 400;
+        $("titulo").style.opacity = sec || enRegla || telOn || grTop || t >= T.seguime - 0.3 ? 0 : 1;
+      }
+      window.addEventListener("hf-seek", (e) => hudAt(e.detail.time)); hudAt(0); listo();
+    </script>
+  </body>
+</html>
