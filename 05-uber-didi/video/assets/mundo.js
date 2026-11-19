@@ -77,7 +77,7 @@ set.traverse((o) => {
   const v = new THREE.Mesh(new THREE.BoxGeometry(60, 0.15, 3.2), new THREE.MeshStandardMaterial({ map: losa, roughness: 0.9 })); v.position.set(0, 0.075, 8.6); v.receiveShadow = true; scene.add(v);
   const p = new THREE.Mesh(new THREE.PlaneGeometry(80, 40), new THREE.MeshStandardMaterial({ color: "#5E6B4A", roughness: 1 })); p.rotation.x = -Math.PI / 2; p.position.set(0, 0.02, 30); p.receiveShadow = true; scene.add(p); }
 // semáforo en la esquina
-const SEMAF = new THREE.Group(); scene.add(SEMAF); SEMAF.position.set(6.0, 0.15, 7.4);
+const SEMAF = new THREE.Group(); scene.add(SEMAF); SEMAF.position.set(4.4, 0.15, 7.4);
 { const metal = new THREE.MeshStandardMaterial({ color: "#2B2E33", roughness: 0.5, metalness: 0.6 });
   const poste = new THREE.Mesh(new THREE.CylinderGeometry(0.07, 0.09, 3.4, 12), metal); poste.position.y = 1.7; SEMAF.add(poste);
   const caja = new THREE.Mesh(new RoundedBoxGeometry(0.34, 0.95, 0.28, 3, 0.05), metal); caja.position.set(0, 3.3, 0); SEMAF.add(caja);
@@ -98,13 +98,45 @@ const VENT = new THREE.MeshBasicMaterial({ color: "#FFCF8A", transparent: true, 
 // ---------- autos (sedán Sloyd, CC-BY 4.0 TopoSphere; ruedas separadas; frente hacia +z) ----------
 const PROTO = {};
 await Promise.all([["martin", "assets/p2/auto-martin.glb"], ["lucas", "assets/p2/auto-lucas.glb"]].map(async ([k, u]) => { PROTO[k] = (await carga(u)).scene; }));
+const llantaTex = tex(256, 256, (g, w, h) => { g.fillStyle = "#B9BDC3"; g.fillRect(0, 0, w, h); const c = w / 2; const gr = g.createRadialGradient(c, c, 10, c, c, c); gr.addColorStop(0, "#E4E6EA"); gr.addColorStop(0.7, "#A9AEB5"); gr.addColorStop(1, "#6E737B"); g.fillStyle = gr; g.beginPath(); g.arc(c, c, c - 4, 0, 7); g.fill();
+  g.fillStyle = "#3A3E46"; for (let i = 0; i < 5; i++) { g.save(); g.translate(c, c); g.rotate(i * Math.PI * 2 / 5); g.beginPath(); g.ellipse(0, -70, 16, 34, 0, 0, 7); g.fill(); g.restore(); }
+  g.fillStyle = "#2A2D33"; g.beginPath(); g.arc(c, c, 22, 0, 7); g.fill(); g.strokeStyle = "#7D828A"; g.lineWidth = 6; g.beginPath(); g.arc(c, c, c - 8, 0, 7); g.stroke(); });
+const gomaMat = new THREE.MeshStandardMaterial({ color: "#1B1C1F", roughness: 0.92 }), llantaMat = new THREE.MeshStandardMaterial({ map: llantaTex, roughness: 0.35, metalness: 0.75 });
+// rueda 3D: neumático con perfil redondeado (LatheGeometry) + llanta con grosor real
+const TIRE_PROFILE = (() => { const pts = []; const R = 0.352, r = 0.235, hw = 0.105;
+  // perfil del neumático: labio interior → banda de rodadura abombada → labio interior (lado opuesto)
+  pts.push(new THREE.Vector2(r + 0.01, -hw));       // labio interno (pegado a la llanta)
+  pts.push(new THREE.Vector2(R - 0.01, -hw + 0.005));
+  pts.push(new THREE.Vector2(R, -hw * 0.6));         // flanco curvo
+  pts.push(new THREE.Vector2(R + 0.006, -hw * 0.2)); // banda de rodadura (leve abombamiento)
+  pts.push(new THREE.Vector2(R + 0.006, hw * 0.2));
+  pts.push(new THREE.Vector2(R, hw * 0.6));
+  pts.push(new THREE.Vector2(R - 0.01, hw - 0.005));
+  pts.push(new THREE.Vector2(r + 0.01, hw));         // labio interno opuesto
+  return pts; })();
+const TIRE_G = new THREE.LatheGeometry(TIRE_PROFILE, 48);
+const RIM_G = new THREE.CylinderGeometry(0.235, 0.235, 0.045, 40, 1, false);
+const SIDEWALL_PTS = (() => { const pts = []; const R = 0.352, r = 0.235, hw = 0.105;
+  for (let i = 0; i <= 12; i++) { const f = i / 12; const rr = r + (R - r) * f; const bulge = Math.sin(f * Math.PI) * 0.012; pts.push(new THREE.Vector2(rr, -hw + bulge)); }
+  return pts; })();
+const SIDEWALL_G = new THREE.LatheGeometry(SIDEWALL_PTS, 40);
+function rueda() {
+  const g = new THREE.Group();
+  // inner group rotado para que el eje de giro sea X (igual que antes), compatible con ubicar()
+  const inner = new THREE.Group(); inner.rotation.z = Math.PI / 2; g.add(inner);
+  const tire = new THREE.Mesh(TIRE_G, gomaMat); tire.castShadow = true; inner.add(tire);
+  const rim = new THREE.Mesh(RIM_G, llantaMat); rim.castShadow = true; inner.add(rim);
+  [-1, 1].forEach((s) => { const sw = new THREE.Mesh(SIDEWALL_G, gomaMat); sw.scale.y = s; inner.add(sw); });
+  return g; }
 const PINTURA = {}; ['martin', 'lucas'].forEach((k) => { const t = texLoader.load(`assets/p2/pintura-${k}.jpg`); t.flipY = false; t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = 8; PINTURA[k] = t; });
 function auto(k) {
   const o = PROTO[k].clone(true); scene.add(o); let cuerpo = null;
   const ruedas = []; o.traverse((m) => { if (m.isMesh) { m.castShadow = true; m.receiveShadow = true; if (m.material) { m.material = m.material.clone(); m.material.side = THREE.FrontSide; if (m.material.map) m.material.map = PINTURA[k]; } if (m.name === 'carroceria') cuerpo = m; } if (/^rueda/.test(m.name)) ruedas.push(m); });
   const faros = [[0.62, 0.62, 2.22, "#EAF2FF", 1.1], [-0.62, 0.62, 2.22, "#EAF2FF", 1.1], [0.66, 0.66, -2.24, "#FF3A3A", 0.7], [-0.66, 0.66, -2.24, "#FF3A3A", 0.7]].map(([x, y, z, c, s]) => [halo(0, 0, 0, s, c), [x, y, z]]);
   const luz = new THREE.SpotLight("#EAF2FF", 0, 22, 0.55, 0.5, 1.4); scene.add(luz, luz.target);
-  return { o, ruedas, faros, luz, cuerpo };
+  // las ruedas del modelo se rompían al girar: se ocultan y se reemplazan por ruedas hechas acá
+  const nuevas = ruedas.map((r) => { r.visible = false; const g = rueda(); g.position.copy(r.position); r.parent.add(g); return g; });
+  return { o, ruedas: nuevas, faros, luz, cuerpo };
 }
 export const autoM = auto("martin"), autoL = auto("lucas");
 const _p = new THREE.Vector3();
@@ -120,7 +152,6 @@ export const marcaM = new THREE.Object3D(), marcaL = new THREE.Object3D(); scene
 const INT = new THREE.Group();
 const plast = new THREE.MeshStandardMaterial({ color: "#1C1E22", roughness: 0.75 }), plast2 = new THREE.MeshStandardMaterial({ color: "#2A2D33", roughness: 0.6 });
 { const tab = new THREE.Mesh(new RoundedBoxGeometry(1.72, 0.32, 0.55, 4, 0.08), plast); tab.position.set(0, 0.8, 0.85); INT.add(tab);
-  const cap = new THREE.Mesh(new RoundedBoxGeometry(1.7, 0.08, 0.32, 3, 0.03), plast2); cap.position.set(0, 0.97, 0.72); cap.rotation.x = 0.25; INT.add(cap);
   const consola = new THREE.Mesh(new RoundedBoxGeometry(0.3, 0.5, 0.5, 3, 0.04), plast); consola.position.set(0, 0.5, 0.5); INT.add(consola);
   [1, -1].forEach((x) => { const pil = new THREE.Mesh(new THREE.BoxGeometry(0.07, 0.62, 0.07), plast); pil.position.set(x * 0.8, 1.15, 0.72); pil.rotation.x = 0.75; INT.add(pil); });
   const techo = new THREE.Mesh(new THREE.BoxGeometry(1.7, 0.04, 1.6), new THREE.MeshStandardMaterial({ color: "#8B8680", roughness: 0.9, side: THREE.DoubleSide })); techo.position.set(0, 1.29, -0.3); INT.add(techo);
@@ -133,9 +164,9 @@ export const ODO = lienzo(512, 256);
 { const m = new THREE.Mesh(new THREE.PlaneGeometry(0.34, 0.17), new THREE.MeshBasicMaterial({ map: ODO.t, toneMapped: false })); m.position.set(0.38, 0.86, 0.568); m.rotation.set(0, Math.PI, 0); INT.add(m); }
 // soporte y celular con la app (lienzo); la pantalla mira hacia el conductor (−z)
 export const TEL = lienzo(540, 1170);
-const telG = new THREE.Group(); telG.position.set(0.08, 1.04, 0.56); telG.rotation.order = "YXZ"; telG.rotation.set(0.22, Math.PI - 0.3, 0); INT.add(telG);
+const telG = new THREE.Group(); telG.position.set(0.06, 1.1, 0.52); telG.rotation.order = "YXZ"; telG.rotation.set(0.22, Math.PI - 0.3, 0); INT.add(telG);
 { const cuerpo = new THREE.Mesh(new RoundedBoxGeometry(0.078, 0.162, 0.009, 4, 0.008), new THREE.MeshStandardMaterial({ color: "#101114", roughness: 0.3, metalness: 0.5 })); telG.add(cuerpo);
-  const pant = new THREE.Mesh(new THREE.PlaneGeometry(0.072, 0.156), new THREE.MeshBasicMaterial({ map: TEL.t, toneMapped: false })); pant.position.z = 0.0047; telG.add(pant);
+  const pant = new THREE.Mesh(new THREE.PlaneGeometry(0.072, 0.156), new THREE.MeshBasicMaterial({ map: TEL.t, color: "#E6E6E6" })); pant.position.z = 0.0047; telG.add(pant);
   const brazo = new THREE.Mesh(new THREE.CylinderGeometry(0.006, 0.006, 0.08, 10), plast); brazo.position.set(0, -0.11, -0.02); telG.add(brazo); }
 export const marcaTel = new THREE.Object3D(); marcaTel.position.set(0, 0.085, 0); telG.add(marcaTel);
 // etiqueta de precio colgada del espejo (lienzo)
@@ -196,10 +227,10 @@ function papel(w, h, cw, ch, x, z, ry = 0) {
   m.rotation.x = -Math.PI / 2; m.rotation.z = ry; m.position.set(x, MY() + 0.0015, z); m.receiveShadow = true; scene.add(m); L.mesh = m; return L;
 }
 export const RECIBO = papel(0.21, 0.15, 840, 600, OX + 0.05, 0.12, 0.06);
-export const TICKET_M = papel(0.09, 0.42, 360, 1680, OX - 0.12, 0.08, -0.04);
-export const TICKET_L = papel(0.09, 0.42, 360, 1680, OX + 0.14, 0.08, 0.05);
+export const TICKET_M = papel(0.12, 0.30, 480, 1200, OX - 0.1, 0.04, -0.03);
+export const TICKET_L = papel(0.12, 0.30, 480, 1200, OX + 0.1, 0.04, 0.03);
 export const POLIZA = papel(0.21, 0.297, 840, 1188, OX - 0.02, 0.1, -0.05);
-export const CASO = papel(0.21, 0.297, 840, 1188, OX + 0.02, 0.1, 0.04);
+export const CASO = papel(0.21, 0.16, 840, 640, OX + 0.02, 0.08, 0.03);
 const sello = new THREE.Group(); scene.add(sello);
 { const madera = new THREE.MeshStandardMaterial({ color: "#6B4A2E", roughness: 0.55 }); const goma = new THREE.MeshStandardMaterial({ color: "#2A2A2A", roughness: 0.9 });
   const base = new THREE.Mesh(new RoundedBoxGeometry(0.075, 0.025, 0.045, 2, 0.004), madera); base.position.y = 0.0185; sello.add(base);
@@ -265,34 +296,34 @@ composer.addPass(grado);
 // ---------- planos ----------
 // [desde, zona, ref ('M','L','ML' siguen al auto; 'iM','iL' = coordenadas dentro del auto; null = mundo), pos0, pos1, mira0, mira1, fov, apertura]
 const PL = [
-  [T.dos, "calle", "sem", [3.0, 1.5, 14.5], [2.0, 1.45, 13.5], [-0.3, 0.9, 4.4], [-0.5, 0.9, 4.4], 36, 0.0008],
+  [T.dos, "calle", "sem", [7.2, 1.55, 13.2], [6.4, 1.5, 12.5], [0.2, 0.85, 4.4], [0.0, 0.85, 4.4], 34, 0.0008],
   [T.uno, "calle", "ML", [-1.0, 7.5, 10.5], [-0.5, 6.8, 9.5], [0.5, 0.6, 4.4], [0.3, 0.6, 4.4], 38, 0.0008],
-  [T.tranq, "int", "iM", [0.12, 1.2, -0.4], [0.1, 1.17, -0.28], [0.07, 1.02, 0.6], [0.07, 1.02, 0.6], 46, 0.004],
-  [T.nisiq, "int", "iM", [0.02, 1.1, 0.2], [0.03, 1.09, 0.26], [0.08, 1.04, 0.56], [0.08, 1.04, 0.56], 40, 0.02],
+  [T.tranq, "int", "iM", [0.03, 1.15, 0.12], [0.03, 1.14, 0.2], [0.06, 1.1, 0.52], [0.06, 1.1, 0.52], 44, 0.012],
+  [T.nisiq, "int", "iM", [0.04, 1.14, 0.12], [0.045, 1.135, 0.18], [0.06, 1.1, 0.52], [0.06, 1.1, 0.52], 40, 0.014],
   [T.martin, "ofi", null, [OX + 0.85, 1.22, 1.15], [OX + 0.6, 1.12, 0.95], [OX + 0.05, 0.8, 0.12], [OX + 0.05, 0.78, 0.12], 34, 0.012],
-  [T.div, "int", "iM", [0.02, 1.1, 0.22], [0.03, 1.09, 0.26], [0.08, 1.04, 0.56], [0.08, 1.04, 0.56], 40, 0.02],
+  [T.div, "int", "iM", [0.04, 1.14, 0.14], [0.045, 1.135, 0.19], [0.06, 1.1, 0.52], [0.06, 1.1, 0.52], 40, 0.014],
   [T.primeros, "ofi", null, [OX + 0.6, 1.6, -1.2], [OX + 0.75, 1.65, -1.6], [OX + 0.9, 1.75, -4.5], [OX + 0.9, 1.75, -4.5], 44, 0.002],
   [T.poreso, "calle", null, [0.0, 7.5, 21.0], [0.0, 6.8, 19.0], [0.0, 2.6, -1.0], [0.0, 2.6, -1.0], 44, 0.0004],
-  [T.mes, "ofi", null, [OX - 0.12, MESA + 0.3, 0.12], [OX - 0.12, MESA + 0.29, 0.18], [OX - 0.12, MESA, -0.08], [OX - 0.12, MESA, 0.0], 36, 0.01],
+  [T.mes, "ofi", null, [OX - 0.1, MESA + 0.47, 0.33], [OX - 0.1, MESA + 0.43, 0.29], [OX - 0.1, MESA, 0.03], [OX - 0.1, MESA, 0.04], 38, 0.006],
   [T.gas, "estacion", null, [-58.2, 1.6, 3.8], [-58.8, 1.55, 3.2], [-61.6, 1.3, -0.8], [-61.6, 1.4, -0.9], 40, 0.003],
-  [T.mono, "ofi", null, [OX - 0.12, MESA + 0.29, 0.2], [OX - 0.12, MESA + 0.3, 0.3], [OX - 0.12, MESA, 0.0], [OX - 0.12, MESA, 0.15], 36, 0.01],
+  [T.mono, "ofi", null, [OX - 0.1, MESA + 0.47, 0.33], [OX - 0.1, MESA + 0.43, 0.29], [OX - 0.1, MESA, 0.03], [OX - 0.1, MESA, 0.04], 38, 0.006],
   [T.lucas, "calle", "L", [4.8, 1.25, 11.8], [3.8, 1.2, 11.0], [0.0, 0.9, 5.4], [0.0, 0.9, 5.4], 34, 0.0012],
-  [T.mesL, "ofi", null, [OX + 0.14, MESA + 0.3, 0.12], [OX + 0.14, MESA + 0.29, 0.16], [OX + 0.14, MESA, -0.08], [OX + 0.14, MESA, -0.02], 36, 0.01],
+  [T.mesL, "ofi", null, [OX + 0.1, MESA + 0.47, 0.33], [OX + 0.1, MESA + 0.43, 0.29], [OX + 0.1, MESA, 0.03], [OX + 0.1, MESA, 0.04], 38, 0.006],
   [T.pero, "estacion", null, [-58.2, 1.6, 3.8], [-58.8, 1.55, 3.2], [-61.6, 1.3, -0.8], [-61.6, 1.4, -0.9], 40, 0.003],
   [T.service, "taller", null, [TX + 4.8, 1.9, 5.2], [TX + 3.6, 1.8, 4.4], [TX, 1.7, -0.6], [TX - 0.2, 1.7, -0.6], 40, 0.001],
-  [T.seguro, "ofi", null, [OX + 0.14, MESA + 0.29, 0.18], [OX + 0.14, MESA + 0.3, 0.24], [OX + 0.14, MESA, -0.02], [OX + 0.14, MESA, 0.06], 36, 0.01],
-  [T.gasto, "int", "iL", [0.44, 1.0, 0.04], [0.42, 0.99, 0.1], [0.38, 0.86, 0.568], [0.38, 0.86, 0.568], 44, 0.008],
-  [T.vale, "int", "iL", [-0.15, 1.16, 0.12], [-0.1, 1.15, 0.18], [0.0, 1.04, 0.46], [0.0, 1.04, 0.46], 40, 0.015],
-  [T.km4000, "int", "iL", [0.43, 1.0, 0.06], [0.41, 0.99, 0.12], [0.38, 0.86, 0.568], [0.38, 0.86, 0.568], 44, 0.008],
-  [T.quedanL, "ofi", null, [OX + 0.14, MESA + 0.3, 0.3], [OX + 0.14, MESA + 0.32, 0.4], [OX + 0.14, MESA, 0.1], [OX + 0.14, MESA, 0.2], 36, 0.01],
-  [T.comp, "ofi", null, [OX + 0.01, MESA + 0.62, 0.45], [OX + 0.01, MESA + 0.58, 0.4], [OX + 0.01, MESA, 0.06], [OX + 0.01, MESA, 0.06], 36, 0.006],
+  [T.seguro, "ofi", null, [OX + 0.1, MESA + 0.47, 0.33], [OX + 0.1, MESA + 0.43, 0.29], [OX + 0.1, MESA, 0.03], [OX + 0.1, MESA, 0.04], 38, 0.006],
+  [T.gasto, "calle", "L", [4.2, 1.45, 12.6], [3.4, 1.4, 11.9], [0.0, 0.95, 5.5], [0.0, 0.95, 5.5], 34, 0.001],
+  [T.km4000, "calle", "L", [-4.6, 1.7, 12.4], [-3.8, 1.6, 11.8], [0.6, 0.95, 5.5], [0.6, 0.95, 5.5], 34, 0.001],
+  [T.quedanL, "ofi", null, [OX + 0.1, MESA + 0.47, 0.33], [OX + 0.1, MESA + 0.43, 0.29], [OX + 0.1, MESA, 0.03], [OX + 0.1, MESA, 0.04], 38, 0.006],
+  [T.comp, "ofi", null, [OX, MESA + 0.74, 0.5], [OX, MESA + 0.7, 0.46], [OX, MESA, 0.03], [OX, MESA, 0.03], 40, 0.003],
   [T.ysi, "calle", "L", [4.8, 1.25, 11.8], [3.8, 1.2, 11.0], [0.0, 0.9, 5.4], [0.0, 0.9, 5.4], 34, 0.0012],
-  [T.porque, "ofi", null, [OX + 0.09, MESA + 0.5, 1.45], [OX + 0.09, MESA + 0.47, 1.35], [OX + 0.09, MESA + 0.08, 0.04], [OX + 0.09, MESA + 0.08, 0.04], 46, 0.003],
-  [T.escritorio, "ofi", null, [OX + 0.02, MESA + 0.5, 0.42], [OX + 0.02, MESA + 0.46, 0.36], [OX + 0.02, MESA, 0.1], [OX + 0.02, MESA, 0.1], 36, 0.006],
-  [T.claro, "ofi", null, [OX + 0.0, 1.45, 0.95], [OX + 0.0, 1.38, 0.82], [OX + 0.0, 0.78, 0.0], [OX + 0.0, 0.78, 0.0], 34, 0.006],
+  [T.porque, "ofi", null, [OX + 0.1, MESA + 0.36, 0.78], [OX + 0.1, MESA + 0.34, 0.7], [OX + 0.1, MESA + 0.08, 0.05], [OX + 0.1, MESA + 0.08, 0.05], 40, 0.003],
+  [T.escritorio, "ofi", null, [OX + 0.02, MESA + 0.33, 0.3], [OX + 0.02, MESA + 0.31, 0.27], [OX + 0.02, MESA, 0.08], [OX + 0.02, MESA, 0.08], 40, 0.005],
+  [T.claro, "calle", "L", [4.2, 1.45, 12.6], [3.6, 1.4, 12.0], [0.0, 0.95, 5.5], [0.0, 0.95, 5.5], 34, 0.001],
+  [T.desgaste, "ofi", null, [OX, MESA + 0.72, 0.62], [OX, MESA + 0.5, 0.8], [OX, MESA, -0.02], [OX, MESA + 0.2, 0.05], 40, 0.003],
   [T.ojo, "ofi", null, [OX - 0.02, MESA + 0.5, 0.42], [OX - 0.02, MESA + 0.46, 0.36], [OX - 0.02, MESA, 0.1], [OX - 0.02, MESA, 0.1], 36, 0.006],
   [T.entonces, "ofi", null, [OX + 0.4, 1.3, 1.1], [OX + 0.3, 1.25, 1.0], [OX, 0.8, 0], [OX, 0.8, 0], 36, 0.008],
-  [T.vos, "calle", "sem", [3.0, 1.5, 14.5], [2.2, 1.45, 13.7], [-0.3, 0.9, 4.4], [-0.5, 0.9, 4.4], 36, 0.0008],
+  [T.vos, "calle", "sem", [7.2, 1.55, 13.2], [6.6, 1.5, 12.7], [0.2, 0.85, 4.4], [0.0, 0.85, 4.4], 34, 0.0008],
 ];
 function plano(t) { let i = 0; while (i + 1 < PL.length && t >= PL[i + 1][0]) i++; return i; }
 export function nocheAt(t) {
@@ -312,33 +343,177 @@ function telAt(t) {
   const fe = clamp((t - T.div - 0.2) / (T.h30 - T.div - 0.2)); const of = clamp((t - T.viaje + 0.1) / 0.45); const rv = t >= T.pasaj;
   const ciclo = ((t - a0) % 6.5) / 6.5; const ac = Math.round(clamp((t - T.viaje) / 4) * 30);
   dibujar(TEL, [B, Math.round(hoy / 100), Math.round(fe * 360), Math.round(of * 20), rv, Math.round(ciclo * 60), ac].join("|"), (g, w, h) => {
-    g.fillStyle = "#E9ECF1"; g.fillRect(0, 0, w, h);
-    for (let i = 0; i < 7; i++) for (let j = 0; j < 14; j++) { g.fillStyle = (i * 7 + j * 3) % 11 === 0 ? "#CFE3C8" : "#DADFE6"; redondo(g, 12 + i * 78, 10 + j * 86, 64, 72, 8); g.fill(); }
-    const R = [[90, 1010], [90, 810], [250, 810], [250, 610], [410, 610], [410, 420], [490, 420], [490, 300]]; let tot = 0; const seg = []; for (let k = 1; k < R.length; k++) { const d = Math.hypot(R[k][0] - R[k - 1][0], R[k][1] - R[k - 1][1]); seg.push(d); tot += d; }
-    const dib = clamp(ciclo / 0.25), rec = clamp((ciclo - 0.25) / 0.7); g.strokeStyle = AZ; g.lineWidth = 14; g.lineCap = g.lineJoin = "round"; g.beginPath(); g.moveTo(...R[0]); let acc = 0; let pos = R[0];
-    for (let k = 1; k < R.length; k++) { const lim = tot * dib; if (acc >= lim) break; const f = Math.min(1, (lim - acc) / seg[k - 1]); g.lineTo(mix(R[k - 1][0], R[k][0], f), mix(R[k - 1][1], R[k][1], f)); acc += seg[k - 1]; } g.stroke();
-    acc = 0; for (let k = 1; k < R.length; k++) { const lim = tot * rec; if (acc + seg[k - 1] >= lim) { const f = clamp((lim - acc) / seg[k - 1]); pos = [mix(R[k - 1][0], R[k][0], f), mix(R[k - 1][1], R[k][1], f)]; break; } acc += seg[k - 1]; pos = R[k]; }
-    g.fillStyle = "#fff"; g.beginPath(); g.arc(...pos, 20, 0, 7); g.fill(); g.strokeStyle = AZ; g.lineWidth = 8; g.stroke();
-    g.fillStyle = "#111"; g.font = F(800, 26, "Inter"); g.fillText(B ? "18:12" : "10:26", 40, 50); g.textAlign = "right"; g.fillText("5G ▮▮▮", w - 34, 50); g.textAlign = "left";
-    g.fillStyle = "#111"; redondo(g, w / 2 - 170, 80, 340, 70, 35); g.fill(); g.fillStyle = AZL; g.beginPath(); g.arc(w / 2 - 130, 115, 9, 0, 7); g.fill();
-    g.fillStyle = "#BFC4CC"; g.font = F(800, 22); g.fillText("HOY", w / 2 - 110, 123); g.fillStyle = "#fff"; g.font = F(900, 36); g.fillText(B ? pesos(Math.round(12000 * ((fe * 30) % 12) / 100) * 100) : pesos(hoy), w / 2 - 50, 128);
-    const hy = h - 470;
-    if (!B && of > 0) {
-      const y = hy + (1 - eo(of)) * 480; g.fillStyle = "#fff"; redondo(g, 0, y, w, 520, 40); g.fill();
-      g.fillStyle = "#5A6070"; g.font = F(900, 24); g.fillText("NUEVO VIAJE", 40, y + 56); g.fillStyle = NEG; g.font = F(900, 104); g.fillText("$10.000", 36, y + 160);
-      g.fillStyle = "#3A3E46"; g.font = F(700, 28, "Inter"); g.fillText("6,2 km · 18 min", 40, y + 205);
-      g.fillStyle = rv ? "#FFE9E9" : "#F1F3F6"; redondo(g, 30, y + 230, w - 60, 100, 18); g.fill(); g.fillStyle = "#3A3E46"; g.font = F(800, 24); g.fillText("Lo que paga el pasajero", 52, y + 268);
-      g.fillStyle = rv ? "#B3262E" : "#9299A3"; g.font = F(900, 36); g.fillText(rv ? "$13.000 – 15.000" : "• • • • •", 52, y + 312);
-      g.fillStyle = "#111"; redondo(g, 30, y + 350, w - 60, 90, 20); g.fill(); g.save(); redondo(g, 30, y + 350, w - 60, 90, 20); g.clip(); const gr = g.createLinearGradient(30, 0, w - 30, 0); gr.addColorStop(0, "#0057D9"); gr.addColorStop(1, AZL); g.fillStyle = gr; g.fillRect(30, y + 350, (w - 60) * ac / 30, 90); g.restore();
-      g.fillStyle = "#fff"; g.font = F(900, 34); g.textAlign = "center"; g.fillText("ACEPTAR", w / 2, y + 407); g.textAlign = "left";
+    // ── mapa: fondo con calles, manzanas, parque y río ──
+    g.fillStyle = "#EDF0F4"; g.fillRect(0, 0, w, h);
+    // manzanas (bloques con sutil relleno)
+    const BW = 72, BH = 88, GAP = 10, OX2 = 8, OY2 = 60;
+    for (let i = 0; i < 8; i++) for (let j = 0; j < 14; j++) {
+      const bx = OX2 + i * (BW + GAP), by = OY2 + j * (BH + GAP);
+      g.fillStyle = "#E3E6EB"; redondo(g, bx, by, BW, BH, 4); g.fill();
     }
+    // calles: líneas horizontales y verticales
+    g.strokeStyle = "#D5D9E0"; g.lineWidth = GAP;
+    for (let i = 0; i <= 8; i++) { const x = OX2 + i * (BW + GAP) - GAP / 2; g.beginPath(); g.moveTo(x, 0); g.lineTo(x, h); g.stroke(); }
+    for (let j = 0; j <= 14; j++) { const y = OY2 + j * (BH + GAP) - GAP / 2; g.beginPath(); g.moveTo(0, y); g.lineTo(w, y); g.stroke(); }
+    // líneas centrales amarillas en las calles principales
+    g.strokeStyle = "rgba(220,195,120,.35)"; g.lineWidth = 1.5; g.setLineDash([6, 8]);
+    [OX2 + 3 * (BW + GAP) - GAP / 2, OX2 + 5 * (BW + GAP) - GAP / 2].forEach((x) => { g.beginPath(); g.moveTo(x, 0); g.lineTo(x, h); g.stroke(); });
+    [OY2 + 4 * (BH + GAP) - GAP / 2, OY2 + 9 * (BH + GAP) - GAP / 2].forEach((y) => { g.beginPath(); g.moveTo(0, y); g.lineTo(w, y); g.stroke(); });
+    g.setLineDash([]);
+    // parque (verde suave)
+    g.fillStyle = "#D4E8D0"; redondo(g, 345, 180, 160, 190, 16); g.fill();
+    g.fillStyle = "#BCD9B4"; g.beginPath(); g.arc(395, 240, 22, 0, 7); g.fill(); g.beginPath(); g.arc(445, 290, 18, 0, 7); g.fill(); g.beginPath(); g.arc(410, 320, 14, 0, 7); g.fill();
+    // río diagonal (azul suave)
+    g.save(); g.beginPath(); g.moveTo(0, 100); g.quadraticCurveTo(140, 60, 280, 95); g.quadraticCurveTo(420, 130, 540, 80);
+    g.lineTo(540, 140); g.quadraticCurveTo(420, 190, 280, 155); g.quadraticCurveTo(140, 120, 0, 160); g.closePath();
+    g.fillStyle = "#C4DAF0"; g.fill(); g.restore();
+
+    // ── ruta ──
+    const R = [[90, 1010], [90, 810], [250, 810], [250, 610], [410, 610], [410, 420], [490, 420], [490, 300]];
+    let tot = 0; const seg = []; for (let k = 1; k < R.length; k++) { const d = Math.hypot(R[k][0] - R[k - 1][0], R[k][1] - R[k - 1][1]); seg.push(d); tot += d; }
+    const dib = clamp(ciclo / 0.25), rec = clamp((ciclo - 0.25) / 0.7);
+    // sombra de la ruta
+    g.save(); g.strokeStyle = "rgba(0,80,180,.12)"; g.lineWidth = 28; g.lineCap = g.lineJoin = "round";
+    g.beginPath(); g.moveTo(R[0][0] + 3, R[0][1] + 3); let acc2 = 0;
+    for (let k = 1; k < R.length; k++) { const lim = tot * dib; if (acc2 >= lim) break; const f = Math.min(1, (lim - acc2) / seg[k - 1]); g.lineTo(mix(R[k - 1][0], R[k][0], f) + 3, mix(R[k - 1][1], R[k][1], f) + 3); acc2 += seg[k - 1]; } g.stroke(); g.restore();
+    // ruta principal con gradiente
+    const rGr = g.createLinearGradient(R[0][0], R[0][1], R[R.length - 1][0], R[R.length - 1][1]);
+    rGr.addColorStop(0, "#0057D9"); rGr.addColorStop(0.5, AZ); rGr.addColorStop(1, AZL);
+    g.strokeStyle = rGr; g.lineWidth = 18; g.lineCap = g.lineJoin = "round";
+    g.beginPath(); g.moveTo(...R[0]); let acc = 0;
+    for (let k = 1; k < R.length; k++) { const lim = tot * dib; if (acc >= lim) break; const f = Math.min(1, (lim - acc) / seg[k - 1]); g.lineTo(mix(R[k - 1][0], R[k][0], f), mix(R[k - 1][1], R[k][1], f)); acc += seg[k - 1]; } g.stroke();
+    // origen: punto verde con anillo
+    g.fillStyle = "#fff"; g.beginPath(); g.arc(R[0][0], R[0][1], 18, 0, 7); g.fill();
+    g.fillStyle = "#22C55E"; g.beginPath(); g.arc(R[0][0], R[0][1], 12, 0, 7); g.fill();
+    // destino: pin rojo
+    if (dib >= 0.95) { const dx = R[R.length - 1][0], dy = R[R.length - 1][1];
+      g.fillStyle = "#DC2626"; g.beginPath(); g.arc(dx, dy - 16, 14, 0, 7); g.fill(); g.beginPath(); g.moveTo(dx - 10, dy - 8); g.lineTo(dx, dy + 6); g.lineTo(dx + 10, dy - 8); g.fill();
+      g.fillStyle = "#fff"; g.beginPath(); g.arc(dx, dy - 16, 5, 0, 7); g.fill(); }
+    // auto sobre la ruta (posición animada)
+    let pos = R[0]; acc = 0;
+    for (let k = 1; k < R.length; k++) { const lim = tot * rec; if (acc + seg[k - 1] >= lim) { const f = clamp((lim - acc) / seg[k - 1]); pos = [mix(R[k - 1][0], R[k][0], f), mix(R[k - 1][1], R[k][1], f)]; break; } acc += seg[k - 1]; pos = R[k]; }
+    // sombra del auto
+    g.fillStyle = "rgba(0,0,0,.15)"; g.beginPath(); g.ellipse(pos[0] + 2, pos[1] + 4, 20, 14, 0, 0, 7); g.fill();
+    // cuerpo del auto (vista cenital simplificada)
+    g.save(); g.translate(pos[0], pos[1]);
+    const ang = rec > 0.01 && rec < 0.99 ? (() => { let a2 = 0; for (let k = 1; k < R.length; k++) { if (a2 + seg[k - 1] >= tot * rec) { return Math.atan2(R[k][1] - R[k - 1][1], R[k][0] - R[k - 1][0]); } a2 += seg[k - 1]; } return 0; })() : -Math.PI / 2;
+    g.rotate(ang);
+    g.fillStyle = "#1A1C20"; redondo(g, -16, -10, 32, 20, 6); g.fill();
+    g.fillStyle = "#E8EAEE"; g.fillRect(-10, -7, 20, 14);
+    g.fillStyle = "#AAD4FF"; g.fillRect(-4, -6, 10, 12); // ventana
+    g.restore();
+
+    // ── barra de estado ──
+    g.fillStyle = "rgba(237,240,244,.85)"; g.fillRect(0, 0, w, 56);
+    g.fillStyle = "#1A1C20"; g.font = F(700, 28, "Inter"); g.fillText(B ? "18:12" : "10:26", 24, 40);
+    g.textAlign = "right"; g.font = F(600, 22, "Inter"); g.fillStyle = "#5A6070";
+    // signal bars
+    const sx = w - 24; [0, 8, 16, 22].forEach((bh, i) => { g.fillStyle = i < 3 ? "#3A3E46" : "#C5C9D0"; g.fillRect(sx - 56 + i * 12, 24 - bh * 0.6, 8, 10 + bh * 0.6); });
+    // battery
+    g.fillStyle = "#3A3E46"; redondo(g, sx - 8, 16, 32, 18, 4); g.fill(); g.fillStyle = "#22C55E"; redondo(g, sx - 6, 18, 24, 14, 3); g.fill();
+    g.fillStyle = "#3A3E46"; g.fillRect(sx + 24, 21, 3, 8);
+    g.textAlign = "left";
+
+    // ── pill de ganancias del día ──
+    g.save();
+    g.shadowColor = "rgba(0,0,0,.18)"; g.shadowBlur = 16; g.shadowOffsetY = 4;
+    const pw = 320, px = (w - pw) / 2, py = 72;
+    const pg = g.createLinearGradient(px, py, px + pw, py);
+    pg.addColorStop(0, "#0A0C10"); pg.addColorStop(1, "#1C2030");
+    g.fillStyle = pg; redondo(g, px, py, pw, 72, 36); g.fill();
+    g.shadowColor = "transparent"; g.restore();
+    // led pulsante
+    g.fillStyle = AZL; g.beginPath(); g.arc(px + 32, py + 36, 8, 0, 7); g.fill();
+    g.fillStyle = "rgba(0,207,255,.3)"; g.beginPath(); g.arc(px + 32, py + 36, 13, 0, 7); g.fill();
+    g.fillStyle = "#7A808C"; g.font = F(800, 20); g.fillText("HOY", px + 50, py + 32);
+    g.fillStyle = "#FFFFFF"; g.font = F(900, 38); g.fillText(B ? pesos(Math.round(12000 * ((fe * 30) % 12) / 100) * 100) : pesos(hoy), px + 50, py + 62);
+
+    // ── tarjeta inferior ──
+    const hy = h - 500;
+
+    if (!B && of > 0) {
+      const y = hy + (1 - eo(of)) * 520;
+      // sombra de la tarjeta
+      g.save(); g.shadowColor = "rgba(0,0,0,.22)"; g.shadowBlur = 32; g.shadowOffsetY = -8;
+      g.fillStyle = "#FFFFFF"; redondo(g, 0, y, w, 560, 32); g.fill(); g.restore();
+      // acento superior
+      const tg = g.createLinearGradient(0, y, w, y); tg.addColorStop(0, "#0057D9"); tg.addColorStop(1, AZL);
+      g.fillStyle = tg; g.fillRect(32, y + 2, w - 64, 4);
+      // "NUEVO VIAJE"
+      g.fillStyle = "#9299A3"; g.font = F(800, 22, "Inter"); g.fillText("NUEVO VIAJE", 36, y + 50);
+      // precio grande
+      g.fillStyle = NEG; g.font = F(900, 108); g.fillText("$10.000", 32, y + 158);
+      // distancia y tiempo con íconos
+      g.fillStyle = "#5A6070"; g.font = F(700, 26, "Inter");
+      // pin ícono
+      g.fillStyle = AZ; g.beginPath(); g.arc(48, y + 198, 7, 0, 7); g.fill(); g.fillStyle = "#fff"; g.beginPath(); g.arc(48, y + 198, 3, 0, 7); g.fill();
+      g.fillStyle = "#5A6070"; g.font = F(700, 26, "Inter"); g.fillText("6,2 km", 66, y + 206);
+      // reloj ícono
+      g.strokeStyle = "#5A6070"; g.lineWidth = 2.5; g.beginPath(); g.arc(186, y + 198, 10, 0, 7); g.stroke();
+      g.beginPath(); g.moveTo(186, y + 191); g.lineTo(186, y + 198); g.lineTo(192, y + 198); g.stroke();
+      g.fillStyle = "#5A6070"; g.fillText("18 min", 204, y + 206);
+      // separador
+      g.strokeStyle = "#ECEEF2"; g.lineWidth = 1.5; g.beginPath(); g.moveTo(32, y + 230); g.lineTo(w - 32, y + 230); g.stroke();
+      // "Lo que paga el pasajero"
+      g.fillStyle = rv ? "#FEF2F2" : "#F5F6F8"; redondo(g, 28, y + 248, w - 56, 108, 16); g.fill();
+      if (rv) { g.strokeStyle = "rgba(185,28,28,.2)"; g.lineWidth = 1.5; redondo(g, 28, y + 248, w - 56, 108, 16); g.stroke(); }
+      g.fillStyle = "#7A808C"; g.font = F(700, 22, "Inter"); g.fillText("Lo que paga el pasajero", 48, y + 286);
+      g.fillStyle = rv ? "#B91C1C" : "#BFC4CC"; g.font = F(900, 42); g.fillText(rv ? "$13.000 – 15.000" : "• • • • •", 48, y + 338);
+      // botón ACEPTAR
+      g.save();
+      g.fillStyle = "#111"; redondo(g, 28, y + 378, w - 56, 86, 20); g.fill();
+      redondo(g, 28, y + 378, w - 56, 86, 20); g.clip();
+      const bg = g.createLinearGradient(28, 0, w - 28, 0); bg.addColorStop(0, "#0057D9"); bg.addColorStop(0.6, AZ); bg.addColorStop(1, AZL);
+      g.fillStyle = bg; g.fillRect(28, y + 378, (w - 56) * ac / 30, 86);
+      // brillo en el borde superior del botón
+      const sh = g.createLinearGradient(0, y + 378, 0, y + 396);
+      sh.addColorStop(0, "rgba(255,255,255,.18)"); sh.addColorStop(1, "rgba(255,255,255,0)");
+      g.fillStyle = sh; g.fillRect(28, y + 378, w - 56, 18);
+      g.restore();
+      g.fillStyle = "#FFFFFF"; g.font = F(900, 36); g.textAlign = "center"; g.fillText("ACEPTAR", w / 2, y + 432); g.textAlign = "left";
+      // flecha sutil dentro del botón
+      if (ac >= 30) { g.fillStyle = "rgba(255,255,255,.5)"; g.font = F(700, 32, "Inter"); g.textAlign = "center"; g.fillText("›", w / 2 + 70, y + 430); g.textAlign = "left"; }
+    }
+
     if (B) {
-      const y = hy + (1 - eo(clamp((t - T.div) / 0.45))) * 480; g.fillStyle = "#fff"; redondo(g, 0, y, w, 520, 40); g.fill();
-      g.fillStyle = "#5A6070"; g.font = F(900, 24); g.fillText("ESTA SEMANA", 40, y + 56); g.fillStyle = NEG; g.font = F(900, 96); g.fillText(pesos(Math.round(360 * fe) * 1000), 36, y + 155);
-      g.fillStyle = "#3A3E46"; g.font = F(700, 28, "Inter"); g.fillText(Math.round(30 * fe) + " horas manejadas", 40, y + 200);
-      g.fillStyle = "#E5E7EB"; redondo(g, 40, y + 235, w - 80, 34, 17); g.fill(); const gr = g.createLinearGradient(40, 0, w - 40, 0); gr.addColorStop(0, "#FF5A5A"); gr.addColorStop(1, "#B3262E"); g.fillStyle = gr; redondo(g, 40, y + 235, Math.max(34, (w - 80) * fe), 34, 17); g.fill();
-      g.fillStyle = "#3A3E46"; g.font = F(800, 24); g.fillText("ALQUILER DEL AUTO", 40, y + 310); g.textAlign = "right"; g.fillText("$360.000", w - 40, y + 310); g.textAlign = "left";
-      if (fe >= 1) { g.save(); g.translate(w / 2, y + 395); g.rotate(-0.08); g.strokeStyle = "#B3262E"; g.lineWidth = 6; redondo(g, -190, -40, 380, 80, 10); g.stroke(); g.fillStyle = "#B3262E"; g.font = F(900, 40); g.textAlign = "center"; g.fillText("30 HORAS", 0, 15); g.restore(); g.textAlign = "left"; }
+      const y = hy + (1 - eo(clamp((t - T.div) / 0.45))) * 520;
+      // sombra
+      g.save(); g.shadowColor = "rgba(0,0,0,.22)"; g.shadowBlur = 32; g.shadowOffsetY = -8;
+      g.fillStyle = "#FFFFFF"; redondo(g, 0, y, w, 560, 32); g.fill(); g.restore();
+      // acento superior rojo
+      const rg = g.createLinearGradient(0, y, w, y); rg.addColorStop(0, "#DC2626"); rg.addColorStop(1, "#FF5A5A");
+      g.fillStyle = rg; g.fillRect(32, y + 2, w - 64, 4);
+      // "ESTA SEMANA"
+      g.fillStyle = "#9299A3"; g.font = F(800, 22, "Inter"); g.fillText("ESTA SEMANA", 36, y + 50);
+      // monto grande
+      g.fillStyle = NEG; g.font = F(900, 100); g.fillText(pesos(Math.round(360 * fe) * 1000), 32, y + 155);
+      // horas
+      g.fillStyle = "#5A6070"; g.font = F(700, 28, "Inter"); g.fillText(Math.round(30 * fe) + " horas manejadas", 36, y + 200);
+      // barra de progreso (track)
+      g.fillStyle = "#ECEEF2"; redondo(g, 36, y + 230, w - 72, 32, 16); g.fill();
+      // barra de progreso (fill con gradiente)
+      g.save(); redondo(g, 36, y + 230, w - 72, 32, 16); g.clip();
+      const bg = g.createLinearGradient(36, 0, w - 36, 0); bg.addColorStop(0, "#FF5A5A"); bg.addColorStop(1, "#B91C1C");
+      g.fillStyle = bg; g.fillRect(36, y + 230, Math.max(32, (w - 72) * fe), 32);
+      // brillo en la barra
+      const sh = g.createLinearGradient(0, y + 230, 0, y + 244);
+      sh.addColorStop(0, "rgba(255,255,255,.25)"); sh.addColorStop(1, "rgba(255,255,255,0)");
+      g.fillStyle = sh; g.fillRect(36, y + 230, Math.max(32, (w - 72) * fe), 14);
+      g.restore();
+      // separador
+      g.strokeStyle = "#ECEEF2"; g.lineWidth = 1.5; g.beginPath(); g.moveTo(32, y + 286); g.lineTo(w - 32, y + 286); g.stroke();
+      // fila "ALQUILER DEL AUTO"
+      g.fillStyle = "#F5F6F8"; redondo(g, 28, y + 300, w - 56, 68, 14); g.fill();
+      g.fillStyle = "#5A6070"; g.font = F(800, 22, "Inter"); g.fillText("ALQUILER DEL AUTO", 48, y + 342);
+      g.textAlign = "right"; g.fillStyle = "#B91C1C"; g.font = F(900, 28, "Inter"); g.fillText("$360.000", w - 48, y + 342); g.textAlign = "left";
+      // sello 30 HORAS
+      if (fe >= 1) {
+        g.save(); g.translate(w / 2, y + 430); g.rotate(-0.08);
+        g.shadowColor = "rgba(185,28,28,.25)"; g.shadowBlur = 12;
+        g.strokeStyle = "#B91C1C"; g.lineWidth = 6; redondo(g, -190, -40, 380, 80, 10); g.stroke();
+        g.fillStyle = "#B91C1C"; g.font = F(900, 44); g.textAlign = "center"; g.fillText("30 HORAS", 0, 17);
+        g.restore(); g.textAlign = "left";
+      }
     }
   });
 }
@@ -389,17 +564,23 @@ function calAt(t) {
     if (ua > 0) { g.fillStyle = AZ; g.fillRect(40, 770, 30, 30); g.fillStyle = NEG; g.fillText("Para Martín", 84, 796); }
   });
 }
+function partir(g, txt, ancho) { const out = []; for (const par of txt.split("\n")) { let l = ""; for (const w of par.split(" ")) { const p = l ? l + " " + w : w; if (g.measureText(p).width > ancho && l) { out.push(l); l = w; } else l = p; } out.push(l); } return out; }
 function ticketAt(L, t, lineas, cab, sellos) {
   const vis = lineas.filter((l) => t >= l[0]).length; const sv = sellos.filter((s) => t >= s[0]).length;
   dibujar(L, vis + "|" + sv, (g, w, h) => {
-    g.fillStyle = "#FBFAF7"; g.fillRect(0, 0, w, h); g.fillStyle = NEG; g.font = F(900, 30, "Inter"); g.textAlign = "center"; g.fillText(cab[0], w / 2, 60); g.font = F(700, 20, "Inter"); g.fillStyle = "#5A6070"; g.fillText(cab[1], w / 2, 92); g.fillText(cab[2], w / 2, 118); g.textAlign = "left";
-    g.strokeStyle = "#BDB7AA"; g.setLineDash([6, 6]); g.beginPath(); g.moveTo(20, 140); g.lineTo(w - 20, 140); g.stroke(); g.setLineDash([]);
-    let y = 190; lineas.slice(0, vis).forEach(([, txt, val, tipo]) => {
-      if (tipo === "total") { g.strokeStyle = NEG; g.lineWidth = 2; g.beginPath(); g.moveTo(20, y - 30); g.lineTo(w - 20, y - 30); g.stroke(); y += 10; }
-      g.fillStyle = tipo === "menos" ? "#B3262E" : NEG; g.font = F(tipo === "total" ? 900 : 700, tipo === "total" ? 26 : 21, "Inter");
-      const partes = txt.split("\n"); partes.forEach((p, i) => g.fillText(p, 20, y + i * 26)); g.textAlign = "right"; g.font = F(900, tipo === "total" ? 32 : 25, "Inter"); g.fillText(val, w - 20, y + (partes.length - 1) * 26); g.textAlign = "left";
-      y += 52 + (partes.length - 1) * 26; });
-    sellos.slice(0, sv).forEach(([, txt, color, yy]) => selloSobre(g, w / 2, yy, txt, color, -0.1, 0.62));
+    g.fillStyle = "#FBFAF7"; g.fillRect(0, 0, w, h); const M = 28;
+    g.fillStyle = NEG; g.font = F(900, 36, "Inter"); g.textAlign = "center"; g.fillText(cab[0], w / 2, 70); g.font = F(700, 24, "Inter"); g.fillStyle = "#5A6070"; g.fillText(cab[1], w / 2, 108); g.fillText(cab[2], w / 2, 140); g.textAlign = "left";
+    g.strokeStyle = "#BDB7AA"; g.lineWidth = 2; g.setLineDash([8, 8]); g.beginPath(); g.moveTo(M, 170); g.lineTo(w - M, 170); g.stroke(); g.setLineDash([]);
+    let y = 210;
+    lineas.slice(0, vis).forEach(([, txt, val, tipo]) => {
+      const tot = tipo === "total"; if (tot) { g.strokeStyle = NEG; g.lineWidth = 3; g.beginPath(); g.moveTo(M, y - 26); g.lineTo(w - M, y - 26); g.stroke(); y += 6; }
+      const vSz = tot ? 30 : 24, lSz = tot ? 26 : 22, lh = tot ? 28 : 24;
+      g.font = F(900, vSz, "Inter"); const vw = g.measureText(val).width;
+      g.font = F(tot ? 900 : 600, lSz, "Inter"); const filas = partir(g, txt, w - 2 * M - vw - 14);
+      g.fillStyle = tipo === "menos" ? "#9E2A30" : NEG; filas.forEach((f, i) => g.fillText(f, M, y + i * lh));
+      g.font = F(900, vSz, "Inter"); g.textAlign = "right"; g.fillText(val, w - M, y + (tot ? 2 : 0)); g.textAlign = "left";
+      y += lh * filas.length + (tot ? 26 : 22); });
+    sellos.slice(0, sv).forEach(([, txt, color]) => { g.font = F(900, 54); const ancho = g.measureText(txt).width + 60; const sy = Math.max(y + 50, h * 0.82); selloSobre(g, w / 2, Math.min(h - 70, sy), txt, color, -0.08, Math.min(0.85, (w - 50) / ancho)); });
   });
 }
 const TM = [[T.m3744 - 0.2, "La app le paga", "$3.744.000"], [T.alq, "Alquiler del auto\n($360.000 × 4,3 sem.)", "−$1.560.000", "menos"], [T.gas, "Gas (GNC)", "−$427.000", "menos"],
@@ -419,11 +600,10 @@ function polizaAt(t) {
 }
 function casoAt(t) {
   const k = [T.escritorio + 1.6, T.alquilaG, T.manejaG, T.s6070].filter((a) => t >= a).length; dibujar(CASO, String(k), (g, w, h) => {
-    g.fillStyle = "#FBF8F2"; g.fillRect(0, 0, w, h); g.fillStyle = AZ; g.fillRect(40, 60, 12, 120); g.fillStyle = NEG; g.font = F(900, 46); g.fillText("CASO REAL · ROSARIO", 76, 110); g.fillStyle = "#5A6070"; g.font = F(700, 26, "Inter"); g.fillText("Testimonio publicado en La Capital, 26/04/2026", 76, 160);
-    const L = [["Gerardo", "62 años"], ["Alquila un auto con GNC", "$360.000 / semana"], ["Maneja", "12 h por día"]];
-    L.slice(0, k).forEach(([a, b], i) => { g.fillStyle = "#3A3E46"; g.font = F(700, 32, "Inter"); g.fillText(a, 40, 270 + i * 100); g.fillStyle = NEG; g.font = F(900, 40, "Inter"); g.textAlign = "right"; g.fillText(b, w - 40, 270 + i * 100); g.textAlign = "left"; });
-    if (k >= 4) { g.fillStyle = "#EEF4FF"; redondo(g, 30, 600, w - 60, 330, 20); g.fill(); g.fillStyle = NEG; g.font = F(900, 52, "Inter"); ["«Limpios me quedan", "entre $60.000 y", "$70.000 por día»"].forEach((s, i) => g.fillText(s, 60, 690 + i * 70));
-      g.fillStyle = "#5A6070"; g.font = F(700, 24, "Inter"); g.fillText("Nuestra cuenta de Martín: ≈ $58.000 por día,", 40, 1010); g.fillText("ya pagados el monotributo y los impuestos.", 40, 1044); }
+    g.fillStyle = "#FBF8F2"; g.fillRect(0, 0, w, h); g.fillStyle = AZ; g.fillRect(36, 34, 10, 82); g.fillStyle = NEG; g.font = F(900, 48); g.fillText("CASO REAL · ROSARIO", 64, 78); g.fillStyle = "#5A6070"; g.font = F(700, 24, "Inter"); g.fillText("Publicado en La Capital, 26/04/2026", 64, 112);
+    const L = [["Gerardo", "62 años"], ["Alquila con GNC", "$360.000 / sem."], ["Maneja", "12 h por día"]];
+    L.slice(0, k).forEach(([a, b], i) => { const y = 180 + i * 62; g.fillStyle = "#3A3E46"; g.font = F(700, 34, "Inter"); g.fillText(a, 36, y); g.fillStyle = NEG; g.font = F(900, 40, "Inter"); g.textAlign = "right"; g.fillText(b, w - 36, y); g.textAlign = "left"; });
+    if (k >= 4) { g.fillStyle = "#E7F0FF"; redondo(g, 24, 384, w - 48, 232, 18); g.fill(); g.fillStyle = NEG; g.font = F(900, 50, "Inter"); ["«Limpios me quedan entre", "$60.000 y $70.000", "por día»"].forEach((x, i) => g.fillText(x, 52, 450 + i * 64)); }
   });
 }
 function surtAt(t, total, desde) {
@@ -447,11 +627,11 @@ export function render(t, oscuro = 0) {
   // --- autos ---
   let mx = 999, lx = 999; const ry = Math.PI / 2;
   const enSem = ref === "sem"; const verde = P[0] === T.vos && t > T.mandaselo + 0.6;
-  if (enSem) { const arr = verde ? Math.pow(Math.max(0, t - T.mandaselo - 0.6), 2) * 1.2 : 0; mx = 2.2 + arr; lx = -2.8 + arr * 0.92; }
+  if (enSem) { const arr = verde ? Math.pow(Math.max(0, t - T.mandaselo - 0.6), 2) * 1.2 : 0; mx = 0.4 + arr; lx = 0.0 + arr * 0.94; }
   else if (P[0] === T.uno) { mx = -2 + s * 1.2; lx = -7 + s * 1.2; }
   else if (zona === "int") { const v = 4.5; if (ref === "iM") mx = -14 + ((s * v) % 26); else lx = -14 + ((s * v) % 26); }
   else if (P[0] === T.poreso) { mx = -14 + ((s * 7) % 30); }
-  else if (P[0] === T.lucas || P[0] === T.ysi) { lx = -9 + s * 1.6; }
+  else if (P[0] === T.lucas || P[0] === T.ysi || P[0] === T.gasto || P[0] === T.km4000 || P[0] === T.claro) { lx = -9 + s * 1.5; }
   const est = zona === "estacion" ? (t < T.lucas ? "M" : "L") : null;
   ubicar(autoM, est === "M" ? -61.8 : mx, 0, est === "M" ? 0.9 : CARRIL_M, ry, n, est === "M" || mx < 900, mx < 900 ? mx : 0);
   const enTaller = zona === "taller";
@@ -463,7 +643,7 @@ export function render(t, oscuro = 0) {
   // --- personas ---
   transeuntes.forEach((p, k) => { const L = 26, v = 1.1, ss = ((t * v + k * 9) % L); const ida = k % 2 === 0; mover(p, ss / v, 0.15, [ida ? -13 : 13, -0.3 - k * 0.6], [ida ? 13 : -13, -0.3 - k * 0.6], 0, L / v, null, "parado", k * 0.7); });
   mover(playero, t, 0, [-64.2, 0.6], [-64.2, 0.6], 0, 0.01, [-61.6, 0.7], "parado", 0.4);
-  mover(empleado, t, 0, [OX + 0.1, -0.85], [OX + 0.1, -0.85], 0, 0.01, [OX + 0.1, 1], "parado", 1.2); empleado.o.visible = !(t >= T.porque && t < T.escritorio);
+  mover(empleado, t, 0, [OX + 0.1, -0.85], [OX + 0.1, -0.85], 0, 0.01, [OX + 0.1, 1], "parado", 1.2); empleado.o.visible = false;
   mover(mecanico, t, 0, [TX - 1.7, 1.5], [TX - 1.7, 1.5], 0, 0.01, [TX, -0.6], "parado", 0.6);
   // --- oficina: qué hay sobre la mesa ---
   const entre = (a, b) => t >= a && t < b;
@@ -471,25 +651,25 @@ export function render(t, oscuro = 0) {
   const enComp = entre(T.comp - 0.5, T.porque);
   TICKET_M.mesh.visible = entre(T.mes - 0.5, T.lucas) || enComp; TICKET_L.mesh.visible = entre(T.mesL - 0.5, T.gasto) || entre(T.quedanL - 0.5, T.porque);
   POLIZA.mesh.visible = entre(T.ojo - 0.5, T.vos); CASO.mesh.visible = entre(T.escritorio - 0.5, T.claro);
-  TICKET_M.mesh.position.x = enComp ? OX - 0.08 : OX - 0.12; TICKET_L.mesh.position.x = enComp ? OX + 0.1 : OX + 0.14;
+  
   const baja = (ta) => { const d = t - ta; return d < -0.35 || d > 0.6 ? 1 : d < 0 ? 1 - eo((d + 0.35) / 0.35) : d < 0.25 ? 0 : eo((d - 0.25) / 0.35); };
   const selloRecibo = entre(T.martin + 1, T.div), selloPoliza = entre(T.ojo, T.entonces); sello.visible = selloRecibo || selloPoliza;
   if (selloRecibo) sello.position.set(OX + 0.12, MY() + 0.16 * baja(T.s360 + 0.25), 0.13); else sello.position.set(OX - 0.02, MY() + 0.16 * baja(T.rechazar + 0.2), 0.08);
-  marcaRecibo.position.set(OX + 0.05, MY() + 0.05, 0.12); marcaTicketM.position.set(TICKET_M.mesh.position.x, MY() + 0.01, -0.12); marcaTicketL.position.set(TICKET_L.mesh.position.x, MY() + 0.01, -0.12);
+  marcaRecibo.position.set(OX + 0.05, MY() + 0.05, 0.12); marcaTicketM.position.set(OX - 0.1, MY() + 0.002, 0.17); marcaTicketL.position.set(OX + 0.1, MY() + 0.002, 0.17);
   marcaCal.position.set(OX + 0.9, 2.18, -4.49); marcaPapel.position.set(OX, MY() + 0.03, -0.05);
   // fajos: costo del auto de Lucas vs alquiler de Martín (cada fajo = $100.000) y el desgaste de 36 meses
-  FAJOS.forEach((f) => (f.visible = false));
+  FAJOS.forEach((f) => { f.visible = false; f.scale.setScalar(1); });
   if (entre(T.porque, T.escritorio)) {
     const nL = 8, nM = 16; const uL = clamp((t - T.s800 + 0.3) / 1.2), uM = clamp((t - T.mpaga + 0.2) / 1.6), ud = eo((t - T.dif - 0.2) / 0.9);
-    for (let k = 0; k < nL; k++) { const f = FAJOS[k]; const a = clamp(uL * nL - k); f.visible = a > 0; f.position.set(OX - 0.2, MY() + 0.006 + k * 0.0125 + (1 - eo(a)) * 0.15, 0.1); f.rotation.set(0, 0.04 * Math.sin(k * 2.1), 0); }
-    for (let k = 0; k < nM; k++) { const f = FAJOS[nL + k]; const a = clamp(uM * nM - k); f.visible = a > 0; const sale = k >= nL ? ud : 0; f.position.set(OX + 0.12 + sale * 0.26, MY() + 0.006 + (k - (k >= nL ? nL * sale : 0)) * 0.0125 + (1 - eo(a)) * 0.15 + Math.sin(Math.PI * sale) * 0.05, 0.1 - sale * 0.1); f.rotation.set(0, 0.04 * Math.sin(k * 1.7), 0); }
-    llaves.visible = true; llaves.position.set(OX + 0.42, MY(), 0.12);
-    marcaPilaL.position.set(OX - 0.2, MY() + 0.12, 0.1); marcaPilaM.position.set(OX + 0.12, MY() + 0.21, 0.1); marcaPilaD.position.set(OX + 0.38, MY() + 0.12, 0.0);
+    for (let k = 0; k < nL; k++) { const f = FAJOS[k]; const a = clamp(uL * nL - k); f.visible = a > 0; f.position.set(OX - 0.08, MY() + 0.006 + k * 0.0125 + (1 - eo(a)) * 0.15, 0.06); f.rotation.set(0, 0.04 * Math.sin(k * 2.1), 0); }
+    for (let k = 0; k < nM; k++) { const f = FAJOS[nL + k]; const a = clamp(uM * nM - k); f.visible = a > 0; const sale = k >= nL ? ud : 0; f.position.set(OX + 0.1 + sale * 0.18, MY() + 0.006 + (k - (k >= nL ? nL * sale : 0)) * 0.0125 + (1 - eo(a)) * 0.15 + Math.sin(Math.PI * sale) * 0.05, 0.06 - sale * 0.02); f.rotation.set(0, 0.04 * Math.sin(k * 1.7), 0); }
+    llaves.visible = true; llaves.position.set(OX + 0.3, MY(), 0.13);
+    marcaPilaL.position.set(OX - 0.08, MY() + 0.11, 0.06); marcaPilaM.position.set(OX + 0.1, MY() + 0.21, 0.06); marcaPilaD.position.set(OX + 0.28, MY() + 0.11, 0.04);
   }
   if (entre(T.desgaste - 0.3, T.ojo)) {
     const ug = eo((t - T.golpe) / 0.7);
     for (let k = 0; k < 36; k++) { const f = FAJOS[k]; const a = clamp((t - T.desgaste - k * 0.045) / 0.2); f.visible = a > 0;
-      const gx = OX - 0.42 + (k % 9) * 0.105, gz = -0.14 + Math.floor(k / 9) * 0.08, px = OX, pz = 0.05, py = MY() + 0.006 + k * 0.0125;
+      const gx = OX - 0.25 + (k % 6) * 0.1, gz = -0.12 + Math.floor(k / 6) * 0.05, px = OX, pz = 0.05, py = MY() + 0.006 + k * 0.0125; f.scale.setScalar(mix(0.6, 1, ug));
       f.position.set(mix(gx, px, ug), mix(MY() + 0.006 + (1 - eo(a)) * 0.08, py, ug) + Math.sin(Math.PI * ug) * 0.12, mix(gz, pz, ug)); f.rotation.set(0, mix(0, 0.05 * Math.sin(k * 1.3), ug), 0); }
     marcaGolpe.position.set(OX, MY() + 0.48, 0.05);
   }
@@ -526,8 +706,9 @@ export function render(t, oscuro = 0) {
   renderer.toneMappingExposure = zona === "ofi" ? 1.05 : mix(1.0, 1.25, n);
   // --- profundidad de campo: foco donde mira la cámara ---
   bokeh.uniforms.focus.value = cam.position.distanceTo(cm); bokeh.uniforms.aperture.value = P[8]; bokeh.uniforms.maxblur.value = 0.014;
-  bloom.strength = zona === "int" || n > 0.3 ? 0.45 : 0.2;
+  bloom.strength = zona === "int" ? 0.12 : n > 0.3 ? 0.4 : 0.18;
   grado.uniforms.vin.value = mix(0.4, 0.75, n); grado.uniforms.oscuro.value = oscuro; grado.uniforms.noche.value = n;
   composer.render();
   estado.plano = i; estado.zona = zona; return { plano: i, noche: n, zona };
 }
+calAt(T.dueno + 3);

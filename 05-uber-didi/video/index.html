@@ -94,7 +94,6 @@
         [Mu.marcaTel, T.h30 - 0.1, T.primeros + 0.3, "rojo", "Para pagar el alquiler", "30 horas", "$360.000 ÷ $12.000", 0, 120],
         [Mu.marcaCal, T.dueno, T.poreso - 0.1, "rojo", "Para el dueño del auto", "2,5 días", "Lunes, martes y medio miércoles", 0, 60],
         [Mu.marcaSurt, T.gas + 0.1, T.mono - 0.1, "rojo", "Gas del mes", "−$427.000", "GNC $685/m³ (YPF, oct. 2026) · 20 km por hora con vacíos: estimación", 0, 100],
-        [Mu.marcaTicketM, T.m4830, T.lucas - 0.1, "rojo", "Martín gana", "$4.830 / h", "$1.507.000 ÷ 312 h", 0, 90],
         [Mu.marcaL, T.lucas + 0.4, T.ocho - 0.1, "azul", "Lucas", "Auto propio a GNC", "", 0, 120],
         [Mu.marcaL, T.ocho, T.mesL - 0.1, "azul", "Lucas maneja", "8 h × 6 días", "", 0, 120],
         [Mu.marcaSurt, T.pero + 0.6, T.service - 0.1, "rojo", "Gas del mes", "−$285.000", "Menos horas, menos kilómetros", 0, 100],
@@ -102,11 +101,11 @@
         [Mu.marcaCubierta, T.cubiertas, T.seguro - 0.1, "negro", "Cubiertas", "cada ~45.000 km", "", 0, 70],
         [Mu.marcaFreno, T.frenos, T.seguro - 0.1, "negro", "Frenos", "pastillas y discos", "", 0, 70],
         [Mu.marcaTicketL, T.casi900, T.gasto - 0.1, "rojo", "Gastos del auto", "≈ $900.000", "Seguro: La Nación 19/09/2026 · patente y VTV PBA", 0, 90],
-        [Mu.marcaOdo, T.km - 0.2, T.vale - 0.1, "negro", "Cada kilómetro", "el auto vale menos", "Avisos del mismo modelo con distinto kilometraje", 0, 120],
-        [Mu.marcaEtq, T.s33, T.km4000 - 0.1, "rojo", "Pierde", "$33 por km", "Rango: $26 a $41 por km (avisos, nov. 2026)", 0, 70],
-        [Mu.marcaOdo, T.km4000, T.quedanL - 0.1, "negro", "Este mes", "", "", 0, 120, (t) => Math.round(kmMes(t)).toLocaleString("es-AR") + " km"],
-        [Mu.marcaOdo, T.s137 - 0.1, T.quedanL - 0.1, "rojo", "Sin verlo", "−$137.000", "4.160 km × $33", 300, 260],
-        [Mu.marcaTicketL, T.m7050, T.comp - 0.1, "azul", "Lucas gana", "$7.050 / h", "$1.466.000 ÷ 208 h", 0, 90],
+        [Mu.marcaL, T.gasto + 0.3, T.quedanL - 0.1, "", "Tu auto vale", "", "Ejemplo: auto de $15.000.000", -170, 110, (t) => "$" + Math.round(15000000 - 33 * kmMes(t)).toLocaleString("es-AR")],
+        [Mu.marcaL, T.km4000, T.s137 - 0.1, "negro", "Este mes", "", "", 170, 110, (t) => Math.round(kmMes(t)).toLocaleString("es-AR") + " km"],
+        [Mu.marcaL, T.s137 - 0.1, T.quedanL - 0.1, "rojo", "Este mes, sin verlo", "−$137.000", "4.160 km × $33 por km (avisos: de $26 a $41)", 170, 110],
+        [Mu.marcaTicketM, T.comp + 0.3, T.ysi - 0.1, "rojo", "Martín · 312 h", "$4.830 / h", "", -60, -30],
+        [Mu.marcaTicketL, T.comp + 0.6, T.ysi - 0.1, "azul", "Lucas · 208 h", "$7.050 / h", "", 60, -30],
         [Mu.marcaL, T.quedarian, T.porque - 0.1, "azul", "Lucas · 12 h × 6 días", "$2.262.000", "Mismo supuesto: $12.000 por hora", 0, 140],
         [Mu.marcaPilaL, T.s800 - 0.1, T.escritorio - 0.1, "azul", "Auto de Lucas, con desgaste", "$804.000 / mes", "Cada fajo: $100.000", -170, 110],
         [Mu.marcaPilaM, T.mpaga, T.escritorio - 0.1, "", "Alquiler de Martín", "$1.560.000 / mes", "", 120, 130],
@@ -135,13 +134,18 @@
         [T.mes, T.lucas, "Monotributo y Ingresos Brutos: ARCA y ARBA (ago. 2026) · alquiler con seguro y service incluidos"],
         [T.mesL, T.gasto, "Seguro terceros completo: La Nación 19/09/2026 · auto de $15 M: ejemplo"],
         [T.comp, T.escritorio, "Mismo supuesto para los dos: $12.000 por hora, 6 días por semana"],
-        [T.escritorio, T.claro, "Testimonio: La Capital (Rosario), 26/04/2026"],
+        [T.escritorio, T.claro, "La Capital (Rosario), 26/04/2026 · nuestra cuenta de Martín: ≈ $58.000 por día, ya pagados los impuestos"],
         [T.ojo, T.entonces, "Uber (con Galicia Seguros) y DiDi cubren al pasajero durante el viaje, no los daños de tu auto"],
       ];
       function hudAt(t) {
         const enRegla = t >= T.entonces + 0.4 && t < T.vos - 0.1;
         Mu.render(t, enRegla ? 0.8 * clamp((t - T.entonces - 0.4) / 0.4) * clamp((T.vos - 0.1 - t) / 0.3) : 0);
-        const ocupados = [];
+        // el cartel grande va primero: las etiquetas lo esquivan
+        const g = GR.find((r) => t >= r[0] && t < r[1]); const G = $("grande");
+        if (g) { const u = clamp((t - g[0]) / 0.3), o = clamp((g[1] - t) / 0.2); G.style.opacity = Math.min(u, o); G.className = g[4]; G.style.transform = `translateX(-50%) translateY(${(1 - back(u)) * -30}px)`;
+          $("grande-s").textContent = g[2]; $("grande-s").style.display = g[2] ? "block" : "none"; $("grande-b").textContent = typeof g[3] === "function" ? g[3](t) : g[3]; }
+        else G.style.opacity = 0;
+        const ocupados = []; if (g) { const r = G.getBoundingClientRect(); ocupados.push([r.left, r.top, r.width, r.height]); }
         ET.forEach((e, i) => {
           const d = tels[i], [l, c] = lins[i]; const on = t >= e[1] && t < e[2];
           const apagar = () => { d.style.opacity = 0; l.setAttribute("d", ""); c.setAttribute("r", 0); };
@@ -149,17 +153,13 @@
           if (e[9]) d.querySelector("b").textContent = e[9](t);
           const p = Mu.aPantalla(e[0]); if (!p.vis) return apagar();
           const u = clamp((t - e[1]) / 0.35), o = clamp((e[2] - t) / 0.2); const w = d.offsetWidth, h = d.offsetHeight;
-          const techo = t < T.uno ? 400 : 190; let x = Math.min(1040 - w, Math.max(40, p.x - w / 2 + e[7])), y = Math.min(1200 - h, Math.max(techo, p.y - e[8] - h));
-          for (const r of ocupados) if (x < r[0] + r[2] && r[0] < x + w && y < r[1] + r[3] && r[1] < y + h) y = Math.max(techo, r[1] - h - 18);
+          const techo = t < T.uno ? 400 : 190; let x = Math.min(1040 - w, Math.max(40, p.x - w / 2 + e[7])), y = Math.min(1200 - h, Math.max(techo, e[8] < 0 ? p.y - e[8] : p.y - e[8] - h));
+          for (let pasada = 0; pasada < 3; pasada++) for (const r of ocupados) if (x < r[0] + r[2] && r[0] < x + w && y < r[1] + r[3] && r[1] < y + h) { const abajo = r[1] + r[3] + 16; y = abajo + h <= 1220 ? abajo : Math.max(techo, r[1] - h - 16); }
           ocupados.push([x, y, w, h]);
           const sw = Math.sin((t - e[1]) * 2.2 + i) * 1.6 * eo(u);
           d.style.opacity = Math.min(u, o); d.style.transform = `translate(${x}px, ${y - (1 - back(u)) * 40}px) rotate(${sw}deg) scale(${0.9 + 0.1 * eo(u)})`;
-          const m = Math.min(u, o); l.setAttribute("d", `M ${x + w / 2} ${y + h - 4} L ${p.x} ${p.y}`); l.setAttribute("opacity", m); c.setAttribute("cx", p.x); c.setAttribute("cy", p.y); c.setAttribute("r", 6 * m);
+          const m = Math.min(u, o); const ty = p.y > y + h / 2 ? y + h - 4 : y + 4; l.setAttribute("d", `M ${x + w / 2} ${ty} L ${p.x} ${p.y}`); l.setAttribute("opacity", m); c.setAttribute("cx", p.x); c.setAttribute("cy", p.y); c.setAttribute("r", 6 * m);
         });
-        const g = GR.find((r) => t >= r[0] && t < r[1]); const G = $("grande");
-        if (g) { const u = clamp((t - g[0]) / 0.3), o = clamp((g[1] - t) / 0.2); G.style.opacity = Math.min(u, o); G.className = g[4]; G.style.transform = `translateX(-50%) translateY(${(1 - back(u)) * -30}px)`;
-          $("grande-s").textContent = g[2]; $("grande-s").style.display = g[2] ? "block" : "none"; $("grande-b").textContent = typeof g[3] === "function" ? g[3](t) : g[3]; }
-        else G.style.opacity = 0;
         const ug = clamp((t - T.entonces - 0.5) / 0.4); $("regla").style.opacity = enRegla ? Math.min(ug, clamp((T.vos - 0.1 - t) / 0.3)) : 0; $("regla").style.transform = `translateY(${(1 - eo(ug)) * 30}px)`;
         [["f1", T.lo], ["f2", T.menos], ["f3", T.incluido], ["f4", T.dividido], ["f5", T.sueldo]].forEach(([id, a]) => { const e = $(id), uu = clamp((t - a) / 0.3); e.style.opacity = uu; e.style.transform = `translateX(${(1 - eo(uu)) * -24}px)`; });
         let s = ""; for (const [a, txt] of SUB) if (t >= a) s = txt; $("sub").innerHTML = t < T.seguime - 0.3 && !enRegla ? s : "";
