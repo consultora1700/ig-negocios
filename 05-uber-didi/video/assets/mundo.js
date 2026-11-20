@@ -111,18 +111,18 @@ function auto(pintura) {
       m.castShadow = true; m.receiveShadow = true;
       const mats = (Array.isArray(m.material) ? m.material : [m.material]).map((src) => {
         const mn = src.name || "";
-        if (/Paint 1/.test(mn)) return new THREE.MeshPhysicalMaterial({ name: mn, color: pintura, metalness: 0.45, roughness: 0.32, clearcoat: 1, clearcoatRoughness: 0.06 });
-        if (/Glass/.test(mn)) return new THREE.MeshPhysicalMaterial({ name: mn, color: "#06080B", metalness: 0, roughness: 0.03, clearcoat: 1, clearcoatRoughness: 0.02, envMapIntensity: 1.6 });
+        if (/Paint 1|^Blue$/.test(mn)) return new THREE.MeshPhysicalMaterial({ name: mn, color: pintura, metalness: 0.45, roughness: 0.32, clearcoat: 1, clearcoatRoughness: 0.06 });
+        if (/Glass|^Windows$/.test(mn)) return new THREE.MeshPhysicalMaterial({ name: mn, color: "#06080B", metalness: 0, roughness: 0.03, clearcoat: 1, clearcoatRoughness: 0.02, envMapIntensity: 1.6 });
         if (/Headlight/.test(mn)) return new THREE.MeshStandardMaterial({ name: mn, color: "#EDEDE6", roughness: 0.1, emissive: "#FFF6E0", emissiveIntensity: 0 });
-        if (/Taillight/.test(mn)) return new THREE.MeshStandardMaterial({ name: mn, color: "#8A0A0A", roughness: 0.15, emissive: "#FF1A1A", emissiveIntensity: 0 });
-        if (/Rim/.test(mn)) return new THREE.MeshStandardMaterial({ name: mn, color: "#B9BDC4", metalness: 1, roughness: 0.28 });
+        if (/Taillight|^TailLights$/i.test(mn)) return new THREE.MeshStandardMaterial({ name: mn, color: "#8A0A0A", roughness: 0.15, emissive: "#FF1A1A", emissiveIntensity: 0 });
+        if (/Rim|^Grey$/.test(mn)) return new THREE.MeshStandardMaterial({ name: mn, color: "#B9BDC4", metalness: 1, roughness: 0.28 });
         const c = src.clone(); c.side = THREE.FrontSide; return c;
       });
       m.material = Array.isArray(m.material) ? mats : mats[0];
       if (!wheelMeshes.has(m)) bodyMeshes.push(m);
     }
   });
-  const luces = []; o.traverse((m) => { if (m.isMesh) (Array.isArray(m.material) ? m.material : [m.material]).forEach((x) => { if (/light/.test(x.name)) luces.push(x); }); });
+  const luces = []; o.traverse((m) => { if (m.isMesh) (Array.isArray(m.material) ? m.material : [m.material]).forEach((x) => { if (/light/i.test(x.name)) luces.push(x); }); });
   const cuerpo = { set visible(v) { bodyMeshes.forEach((m) => (m.visible = v)); }, get visible() { return bodyMeshes[0]?.visible ?? true; } };
   const faros = [[0.75, 0.55, 2.1, "#EAF2FF", 1.1], [-0.75, 0.55, 2.1, "#EAF2FF", 1.1], [0.75, 0.55, -2.1, "#FF3A3A", 0.7], [-0.75, 0.55, -2.1, "#FF3A3A", 0.7]].map(([x, y, z, c, s]) => [halo(0, 0, 0, s, c), [x, y, z]]);
   const luz = new THREE.SpotLight("#EAF2FF", 0, 22, 0.55, 0.5, 1.4); scene.add(luz, luz.target);
@@ -190,7 +190,7 @@ function mover(p, t, y, a, b, t0, t1, mira, quieto = "parado", fase = 0) {
   pose(p, [["caminar", (dist / 1.35) * 1.333 + fase, w], [quieto, t + fase, 1 - w]]);
 }
 const transeuntes = [persona("clienta"), persona("clienta")];
-const playero = persona("vendedor"), mecanico = persona("vendedor");
+const playero = persona("clienta"), mecanico = persona("clienta");
 // los tres protagonistas: Martín (alquila), el dueño, Lucas (maneja lo suyo)
 export const martinP = persona("repartidor"), duenoP = persona("vendedor"), lucasP = persona("vecino");
 export const marcaMartin = new THREE.Object3D(), marcaDueno = new THREE.Object3D(), marcaLucas = new THREE.Object3D(); scene.add(marcaMartin, marcaDueno, marcaLucas);
@@ -331,7 +331,7 @@ const PL = [
   [T.seguro, "ofi", null, [OX - 0.02, MESA + 0.5, 0.42], [OX - 0.02, MESA + 0.46, 0.36], [OX - 0.02, MESA, 0.1], [OX - 0.02, MESA, 0.1], 36, 0.006],
   [T.monoD, "ofi", null, [OX + 0.1, MESA + 0.45, 0.31], [OX + 0.1, MESA + 0.41, 0.27], [OX + 0.1, MESA, 0.04], [OX + 0.1, MESA, 0.05], 38, 0.006],
   [T.bolsillo, "ofi", null, [OX + 0.5, MESA + 0.3, 0.5], [OX + 0.4, MESA + 0.24, 0.42], [OX + 0.12, MESA + 0.07, 0.05], [OX + 0.12, MESA + 0.09, 0.05], 34, 0.01],
-  [T.invisible, "int", "iM", [0.38, 1.13, 0.33], [0.38, 1.11, 0.39], [0.38, 0.86, 0.565], [0.38, 0.86, 0.565], 40, 0.01, "rodandoM"],
+  [T.invisible, "int", "iM", [0.33, 1.05, 0.22], [0.36, 1.0, 0.32], [0.38, 0.86, 0.565], [0.38, 0.86, 0.565], 40, 0.01, "rodandoM"],
   [T.s33, "int", "iM", [-0.05, 1.12, 0.18], [-0.08, 1.11, 0.24], [-0.12, 1.07, 0.46], [-0.12, 1.07, 0.46], 40, 0.012, "rodandoM"],
   [T.s206, "ofi", null, [OX + 0.1, MESA + 0.42, 0.3], [OX + 0.1, MESA + 0.34, 0.22], [OX + 0.1, MESA, 0.0], [OX + 0.1, MESA, -0.02], 38, 0.008],
   [T.recupera, "calle", null, [-3.8, 1.5, 11.8], [-1.6, 1.3, 10.6], [0.0, 0.8, PARK_Z], [0.0, 0.8, PARK_Z], 34, 0.0012, "parado"],
@@ -340,7 +340,7 @@ const PL = [
   [T.riesgo, "calle", "M", [3.0, 1.0, 9.2], [1.4, 1.2, 8.2], [0.0, 0.9, 3.0], [0.3, 0.9, 3.0], 36, 0.001, "rodandoM"],
   [T.caja, "taller", null, [TX - 3.5, 1.2, 4.0], [TX - 2.4, 1.4, 3.2], [TX, 1.6, -0.6], [TX, 1.7, -0.6], 38, 0.001],
   [T.choca, "ofi", null, [OX - 0.02, MESA + 0.5, 0.42], [OX - 0.02, MESA + 0.46, 0.36], [OX - 0.02, MESA, 0.1], [OX - 0.02, MESA, 0.1], 36, 0.006],
-  [T.kmAno, "int", "iM", [0.38, 1.13, 0.33], [0.38, 1.11, 0.39], [0.38, 0.86, 0.565], [0.38, 0.86, 0.565], 40, 0.01, "rodandoM"],
+  [T.kmAno, "int", "iM", [0.33, 1.05, 0.22], [0.36, 1.0, 0.32], [0.38, 0.86, 0.565], [0.38, 0.86, 0.565], 40, 0.01, "rodandoM"],
   // CAP. 3 — LUCAS, MANEJA LO SUYO (atardecer)
   [T.cap3, "calle", null, [7.0, 0.6, 10.6], [3.6, 0.7, 10.1], [3.8, 0.95, 7.7], [1.4, 1.0, 7.3], 34, 0.0015, "subeL"],
   [T.noAlq, "calle", "L", [-3.4, 1.0, 9.2], [-1.4, 1.2, 8.6], [0.0, 0.9, 3.0], [-0.3, 0.9, 3.0], 36, 0.001, "rodandoL"],
@@ -679,7 +679,7 @@ export function render(t, oscuro = 0) {
   marcaGolpe.position.set(autoD2.o.position.x, 1.75, PARK_Z);
   const enInt = zona === "int"; const carInt = ref === "iL" ? autoL : autoM;
   autoM.cuerpo.visible = !(enInt && ref === "iM"); autoL.cuerpo.visible = !(enInt && ref === "iL");
-  if (enInt) { if (INT.parent !== carInt.o) carInt.o.add(INT); INT.visible = true; etqG.visible = ref === "iM" && t >= T.invisible && t < T.s206 + 0.2; volante.visible = true; volante.rotation.z = Math.sin(t * 0.7) * 0.08; } else INT.visible = false;
+  if (enInt) { if (INT.parent !== carInt.o) carInt.o.add(INT); INT.visible = true; etqG.visible = ref === "iM" && t >= T.invisible && t < T.s206 + 0.2; volante.visible = !(t >= T.invisible && t < T.s33) && !(t >= T.kmAno && t < T.cap3); volante.rotation.z = Math.sin(t * 0.7) * 0.08; } else INT.visible = false;
   const verde = esc === "semaforo" ? false : true; SEMAF.userData.focos[0].emissiveIntensity = esc === "semaforo" ? 5 : 0; SEMAF.userData.focos[2].emissiveIntensity = esc === "trio" && t > T.mandaselo ? 5 : 0;
   // --- personas ---
   transeuntes.forEach((p, k) => { const L = 26, v = 1.1, ss = ((t * v + k * 13) % L); const ida = k % 2 === 0; mover(p, ss / v, 0.15, [ida ? -13 : 13, -0.3 - k * 0.6], [ida ? 13 : -13, -0.3 - k * 0.6], 0, L / v, null, "parado", k * 0.7); p.o.visible = zona === "calle"; });
