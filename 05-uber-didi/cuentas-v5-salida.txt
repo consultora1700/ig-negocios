@@ -1,0 +1,57 @@
+
+== MARTÍN alquila 12 h
+  entra: $3,744,000
+   − alquiler: $1,560,000
+   − GNC: $427,440
+   − monotributo F: $227,034
+   − celular: $23,000
+   − lavado (lo paga el chofer): $10,000
+  LE QUEDA: $1,496,526/mes = $4,797/h (312 h)
+
+== DUEÑO con 1 auto(s), no maneja
+  entra: $1,560,000
+   − service/cubiertas/frenos/amort/distrib: $305,947
+   − seguro: $160,000
+   − patente+VTV: $24,259
+   − equipo GNC /36: $0
+   − pérdida de valor: $205,920
+   − monotributo C: $95,280
+  LE QUEDA: $768,594/mes
+  plata al bolsillo (sin pérdida de valor ni GNC ya pagado): $974,514 · invirtió $15,900,000 · recupera en 20.7 meses
+
+== DUEÑO con 2 auto(s), no maneja
+  entra: $3,120,000
+   − service/cubiertas/frenos/amort/distrib: $611,894
+   − seguro: $320,000
+   − patente+VTV: $48,518
+   − equipo GNC /36: $0
+   − pérdida de valor: $411,840
+   − monotributo F: $227,034
+  LE QUEDA: $1,500,714/mes
+  plata al bolsillo (sin pérdida de valor ni GNC ya pagado): $1,912,554 · invirtió $31,800,000 · recupera en 21.2 meses
+
+== LUCAS maneja su Cronos 8 h
+  entra: $2,496,000
+   − service/cubiertas/frenos/amort/distrib: $203,965
+   − seguro: $160,000
+   − patente+VTV: $24,259
+   − equipo GNC /36: $0
+   − pérdida de valor: $137,280
+   − GNC: $284,960
+   − monotributo D: $125,298
+   − celular: $23,000
+   − lavado: $10,000
+  LE QUEDA: $1,527,238/mes = $7,342/h (208 h)
+
+== LUCAS maneja su Cronos 12 h
+  entra: $3,744,000
+   − service/cubiertas/frenos/amort/distrib: $305,947
+   − seguro: $160,000
+   − patente+VTV: $24,259
+   − equipo GNC /36: $0
+   − pérdida de valor: $205,920
+   − GNC: $427,440
+   − monotributo F: $227,034
+   − celular: $23,000
+   − lavado: $10,000
+  LE QUEDA: $2,360,400/mes = $7,565/h (312 h)

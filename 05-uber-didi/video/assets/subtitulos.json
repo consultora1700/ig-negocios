@@ -1,104 +1,542 @@
 [
-  [-0.05, "Un chofer cobra <em>$12.000 por hora</em>"],
-  [1.5, "manejando para Uber."],
-  [2.0, "Trabaja <em>12 horas</em> por día,"],
-  [3.0, "seis días por semana."],
-  [4.0, "¿Cuánto se lleva?"],
-  [5.0, "Hacemos la cuenta."],
-  [6.0, "Un día tranquilo,"],
-  [7.0, "la app le paga al chofer"],
-  [8.0, "unos <em>$12.000 por hora</em>."],
-  [8.5, "Ya sin la comisión."],
-  [10.0, "El pasajero paga más:"],
-  [11.0, "un viaje que al chofer le dan $10.000,"],
-  [12.0, "el pasajero lo paga"],
-  [12.8, "entre <em>$13.000 y $15.000</em>."],
-  [14.0, "Martín no tiene auto."],
-  [15.5, "Lo alquila:"],
-  [16.2, "<em>$360.000 por semana</em>,"],
-  [17.0, "con GNC, seguro y service incluidos."],
-  [18.5, "$360.000 ÷ $12.000:"],
-  [19.5, "<em>30 horas</em>."],
-  [20.0, "Los primeros <em>dos días y medio</em>,"],
-  [21.0, "Martín trabaja para el dueño del auto."],
-  [22.0, "Por eso maneja 12 horas, seis días."],
-  [23.0, "Tiene que cubrir el alquiler"],
-  [23.8, "y que le quede algo."],
-  [24.0, "Al mes, la app le paga"],
-  [25.0, "<em>$3.744.000</em>."],
-  [27.0, "Alquiler: <em>$1.560.000</em>."],
-  [29.5, "Gas: <em>$427.000</em>."],
-  [31.5, "Monotributo e Ingresos Brutos:"],
-  [33.0, "<em>$227.000</em>."],
-  [34.5, "Celular: <em>$23.000</em>."],
-  [36.0, "Le quedan <em>$1.507.000</em>."],
-  [38.0, "Por 312 horas:"],
-  [39.5, "<em>$4.830 la hora</em>."],
-  [42.0, "Ahora miremos el otro lado."],
-  [44.0, "Martín le paga <em>$1.560.000</em> al mes"],
-  [45.5, "al dueño del auto."],
-  [46.5, "¿Se queda con todo?"],
-  [47.5, "Vamos a hacer <em>su</em> cuenta."],
-  [50.0, "El dueño compró un sedán usado:"],
-  [51.0, "<em>$15.000.000</em>."],
-  [52.0, "Le puso equipo de GNC:"],
-  [53.0, "<em>$1.500.000</em>."],
-  [54.0, "Total invertido:"],
-  [55.0, "<em>$16.500.000</em>."],
-  [56.0, "Cobra <em>$1.560.000</em> por mes."],
-  [58.0, "Seguro terceros completo:"],
-  [59.0, "<em>$106.000</em>."],
-  [60.0, "Service, cubiertas, frenos:"],
-  [61.0, "<em>$418.000</em>."],
-  [62.0, "Patente más VTV:"],
-  [63.0, "<em>$23.000</em>."],
-  [63.5, "Lavado: <em>$10.000</em>."],
-  [65.0, "Equipo de GNC:"],
-  [66.0, "<em>$42.000</em>."],
-  [67.0, "Subtotal: <em>$961.000</em>."],
-  [68.5, "Pero falta el gasto invisible:"],
-  [69.5, "el auto pierde valor"],
-  [70.0, "cada kilómetro."],
-  [70.5, "6.240 km por mes."],
-  [72.0, "A $33 por kilómetro:"],
-  [73.0, "<em>$206.000</em>."],
-  [74.0, "Le quedan al dueño:"],
-  [75.0, "<em>$755.000 por mes</em>."],
-  [76.0, "$755.000 sobre una inversión"],
-  [77.0, "de <em>$16.500.000</em>."],
-  [78.0, "Rentabilidad mensual:"],
-  [79.0, "<em>4,6%</em>."],
-  [80.0, "¿En cuánto tiempo recupera?"],
-  [81.0, "<em>22 meses</em>."],
-  [83.0, "Pero en 22 meses,"],
-  [84.0, "el auto ya tiene <em>137.000 km</em>."],
-  [85.5, "Vale menos de la mitad."],
-  [88.0, "¿Y si el chofer no paga una semana?"],
-  [89.5, "<em>$360.000</em> de pérdida."],
-  [91.0, "¿Y si se rompe el motor o la caja?"],
-  [92.0, "<em>$500.000 a $2.000.000</em>."],
-  [93.5, "¿Y si choca?"],
-  [94.5, "La póliza dice <em>uso particular</em>."],
-  [96.0, "Si es un viaje de Uber,"],
-  [97.0, "te lo pueden rechazar."],
-  [98.0, "El auto de la app"],
-  [99.0, "no tiene seguro de la app."],
-  [100.0, "Si vas a manejar:"],
-  [101.0, "lo que te paga la app,"],
-  [102.0, "<em>menos</em> todo lo que cuesta el auto,"],
-  [103.5, "incluido lo que pierde de valor,"],
-  [105.0, "<em>dividido</em> las horas reales."],
-  [106.0, "Si vas a invertir en un auto:"],
-  [107.0, "alquiler que cobrás,"],
-  [108.0, "<em>menos</em> todo lo que pagás de verdad,"],
-  [109.5, "incluido lo que se desgasta,"],
-  [111.0, "<em>dividido</em> lo que pusiste."],
-  [112.0, "Ese es tu retorno real."],
-  [115.0, "¿Estás pensando en alquilar"],
-  [116.0, "un auto para manejar?"],
-  [117.0, "¿O en comprar uno para alquilar?"],
-  [119.0, "Hacé la cuenta primero."],
-  [120.5, "Y mandáselo a ese amigo"],
-  [121.5, "que está por meterse."],
-  [124.0, "Seguime para más estrategias."]
+[
+-0.05,
+"Manejar para Uber:"
+],
+[
+1.17,
+"¿cuánto deja de verdad?"
+],
+[
+3.25,
+"Depende de qué lado"
+],
+[
+4.03,
+"del auto estés."
+],
+[
+5.07,
+"Hay tres lados."
+],
+[
+6.35,
+"Hacemos la cuenta de"
+],
+[
+7.09,
+"los tres."
+],
+[
+8.29,
+"Uno, el que alquila."
+],
+[
+10.25,
+"Martín no tiene auto."
+],
+[
+11.43,
+"Un día normal la"
+],
+[
+12.17,
+"app le paga unos"
+],
+[
+12.83,
+"<em>$12.000</em> pesos por hora,"
+],
+[
+14.15,
+"ya sin la comisión."
+],
+[
+15.55,
+"Pero el auto no"
+],
+[
+16.15,
+"es suyo."
+],
+[
+16.81,
+"Lo alquila a <em>$360.000</em>"
+],
+[
+18.37,
+"pesos por semana,"
+],
+[
+19.45,
+"con seguro y service."
+],
+[
+21.03,
+"<em>$360.000</em> ÷ <em>$12.000</em> ="
+],
+[
+23.65,
+"30 horas."
+],
+[
+24.49,
+"Lunes, martes y medio"
+],
+[
+25.75,
+"miércoles Martín maneja para"
+],
+[
+27.27,
+"pagar el auto."
+],
+[
+27.97,
+"Por eso hace 12"
+],
+[
+29.19,
+"horas por día,"
+],
+[
+30.03,
+"seis días por semana."
+],
+[
+31.89,
+"Al mes la app"
+],
+[
+32.57,
+"le paga <em>$3.744.000</em>."
+],
+[
+35.25,
+"Alquiler:"
+],
+[
+35.81,
+"menos <em>$1.560.000</em>."
+],
+[
+37.55,
+"Gas, menos <em>$427.000</em>."
+],
+[
+40.09,
+"Monotributo e Ingresos Brutos:"
+],
+[
+41.45,
+"menos <em>$227.000</em>."
+],
+[
+43.39,
+"Celular y lavado,"
+],
+[
+44.33,
+"menos <em>$33.000</em>."
+],
+[
+45.65,
+"Le queda <em>$1.497.000</em>."
+],
+[
+48.47,
+"Por 312 horas,"
+],
+[
+50.01,
+"<em>$4.800</em> pesos la hora."
+],
+[
+51.79,
+"Dos, el que pone"
+],
+[
+52.89,
+"el auto."
+],
+[
+54.19,
+"Esos <em>$360.000</em> por semana,"
+],
+[
+56.13,
+"¿quién los cobra?"
+],
+[
+56.67,
+"El dueño."
+],
+[
+58.15,
+"Compró un Cronos 2020"
+],
+[
+59.29,
+"con 96.000 kilómetros y"
+],
+[
+61.11,
+"GNC."
+],
+[
+61.97,
+"<em>$15.900.000</em>."
+],
+[
+63.69,
+"Cobra <em>$1.560.000</em> por mes."
+],
+[
+66.19,
+"Y paga service,"
+],
+[
+67.55,
+"cubiertas, frenos y amortiguadores,"
+],
+[
+69.71,
+"menos <em>$306.000</em>."
+],
+[
+71.19,
+"Seguro, menos <em>$160.000</em>."
+],
+[
+73.35,
+"Monotributo, menos <em>$95.000</em>."
+],
+[
+75.09,
+"Patente y VTV:"
+],
+[
+76.19,
+"menos <em>$24.000</em>."
+],
+[
+77.51,
+"En el bolsillo le"
+],
+[
+78.41,
+"entran <em>$975.000</em>."
+],
+[
+80.61,
+"Pero hay un gasto"
+],
+[
+81.39,
+"que no se ve."
+],
+[
+82.55,
+"Martín le hace 6.240"
+],
+[
+84.53,
+"kilómetros por mes."
+],
+[
+85.23,
+"Y por cada kilómetro,"
+],
+[
+86.87,
+"el auto vale 33"
+],
+[
+87.99,
+"pesos menos."
+],
+[
+89.25,
+"<em>$206.000</em> por mes."
+],
+[
+90.83,
+"Ganancia real,"
+],
+[
+92.01,
+"<em>$769.000</em>."
+],
+[
+93.61,
+"Sin manejar."
+],
+[
+94.63,
+"Recupera lo que puso"
+],
+[
+95.43,
+"en 21 meses."
+],
+[
+97.09,
+"Y con dos autos,"
+],
+[
+98.29,
+"pone <em>$31.800.000</em>."
+],
+[
+100.35,
+"Y le queda <em>$1.500.000</em>"
+],
+[
+101.93,
+"por mes."
+],
+[
+102.75,
+"Lo mismo que Martín."
+],
+[
+104.05,
+"Martín maneja 312 horas."
+],
+[
+105.97,
+"El dueño cero."
+],
+[
+107.47,
+"Pero el dueño también"
+],
+[
+108.61,
+"arriesga."
+],
+[
+109.31,
+"Si el chofer no"
+],
+[
+110.03,
+"paga una semana,"
+],
+[
+111.07,
+"pierde <em>$360.000</em>."
+],
+[
+112.69,
+"Si se rompe la"
+],
+[
+113.49,
+"caja, <em>$800.000</em>."
+],
+[
+114.65,
+"Si choca en un viaje"
+],
+[
+116.03,
+"y la póliza no"
+],
+[
+116.81,
+"es para apps,"
+],
+[
+117.63,
+"el seguro lo puede"
+],
+[
+118.33,
+"rechazar."
+],
+[
+119.37,
+"Y a 75.000 kilómetros"
+],
+[
+120.97,
+"por año,"
+],
+[
+121.81,
+"en dos años el"
+],
+[
+122.69,
+"Cronos pasa los 240.000."
+],
+[
+124.71,
+"Tres."
+],
+[
+125.19,
+"El que maneja su"
+],
+[
+126.01,
+"propio auto."
+],
+[
+127.11,
+"Lucas tiene su Cronos."
+],
+[
+128.29,
+"No paga alquiler."
+],
+[
+129.29,
+"Pero paga todo lo"
+],
+[
+130.15,
+"del dueño más el"
+],
+[
+131.01,
+"gas y el lavado."
+],
+[
+132.13,
+"Maneja ocho horas seis"
+],
+[
+133.39,
+"días."
+],
+[
+133.95,
+"La app le paga"
+],
+[
+134.63,
+"<em>$2.496.000</em>."
+],
+[
+136.87,
+"Le queda <em>$1.527.000</em>."
+],
+[
+139.25,
+"Más que Martín."
+],
+[
+140.29,
+"Con 104 horas menos."
+],
+[
+142.21,
+"<em>$7.340</em> la hora."
+],
+[
+143.97,
+"Y si hace doce"
+],
+[
+145.19,
+"horas, como Martín,"
+],
+[
+146.45,
+"<em>$2.360.000</em>."
+],
+[
+148.35,
+"Martín pone las horas."
+],
+[
+149.59,
+"El dueño pone la"
+],
+[
+150.27,
+"plata."
+],
+[
+150.87,
+"Lucas pone las dos"
+],
+[
+151.71,
+"cosas y se lleva"
+],
+[
+152.55,
+"las dos ganancias."
+],
+[
+153.81,
+"La cuenta sirve para"
+],
+[
+154.53,
+"cualquiera."
+],
+[
+155.27,
+"Lo que entra,"
+],
+[
+156.19,
+"menos todo lo que"
+],
+[
+157.01,
+"cuesta el auto."
+],
+[
+157.87,
+"También lo que se"
+],
+[
+158.47,
+"gasta."
+],
+[
+159.17,
+"Dividido las horas o"
+],
+[
+160.23,
+"la plata que pusiste."
+],
+[
+161.49,
+"¿Vos de qué lado"
+],
+[
+162.05,
+"estás?"
+],
+[
+162.81,
+"Comentalo."
+],
+[
+163.43,
+"Y mandáselo a ese"
+],
+[
+164.11,
+"amigo que está por"
+],
+[
+164.71,
+"meterse."
+],
+[
+165.51,
+"Seguime para más estrategias"
+],
+[
+166.51,
+"como esta."
+]
 ]

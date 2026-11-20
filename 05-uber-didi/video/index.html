@@ -45,37 +45,43 @@
       #sub { position: absolute; left: 80px; right: 80px; top: 1300px; text-align: center; font-weight: 800; font-size: 46px; line-height: 1.25; color: #FFFFFF; -webkit-text-stroke: 9px rgba(0,0,0,.85); paint-order: stroke fill; }
       #sub em { font-style: normal; -webkit-text-stroke: 0; color: #fff; background: #007BFF; padding: 0 10px 2px; border-radius: 8px; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
       #fuente { position: absolute; left: 70px; right: 70px; top: 1450px; text-align: center; font-family: Inter; font-weight: 600; font-size: 20px; line-height: 1.3; color: var(--plata-c); opacity: 0; -webkit-text-stroke: 5px rgba(0,0,0,.8); paint-order: stroke fill; }
+      #capitulo { position: absolute; inset: 0; display: grid; place-content: center; justify-items: center; gap: 26px; background: radial-gradient(ellipse at 50% 45%, rgba(0,0,0,.55), rgba(0,0,0,.85)); opacity: 0; z-index: 8; }
+      #capitulo .n { width: 168px; height: 168px; border-radius: 50%; background: var(--g-azul); display: grid; place-items: center; font-weight: 900; font-size: 96px; color: #fff; box-shadow: 0 0 60px rgba(0,157,255,.45); }
+      #capitulo .de { font-weight: 800; font-size: 26px; letter-spacing: .3em; color: var(--plata-m); }
+      #capitulo .t { font-weight: 900; font-size: 84px; line-height: 1.02; color: #fff; text-align: center; max-width: 900px; }
+      #marcador { position: absolute; left: 40px; right: 40px; top: 186px; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; opacity: 0; z-index: 6; }
+      #marcador .c { border-radius: 14px; padding: 12px 14px 14px; background: rgba(11,12,14,.86); box-shadow: 0 8px 22px rgba(0,0,0,.35); border-top: 5px solid #3A3E46; }
+      #marcador .c small { display: block; font-weight: 800; font-size: 17px; letter-spacing: .12em; color: var(--plata-m); }
+      #marcador .c b { display: block; font-weight: 900; font-size: 36px; color: #fff; font-variant-numeric: tabular-nums; white-space: nowrap; }
+      #marcador .c i { display: block; font-style: normal; font-family: Inter; font-weight: 700; font-size: 17px; color: var(--plata-o); margin-top: 2px; }
+      #marcador .c.m { border-top-color: #C9343C; } #marcador .c.d { border-top-color: #BFC4CC; } #marcador .c.l { border-top-color: #00CFFF; }
     </style>
   </head>
   <body>
-    <div id="root" data-composition-id="main" data-start="0" data-duration="130" data-width="1080" data-height="1920">
+    <div id="root" data-composition-id="main" data-start="0" data-duration="171" data-width="1080" data-height="1920">
       <canvas id="gl" width="1080" height="1920"></canvas>
       <div id="hud" data-layout-ignore>
         <svg id="hilos" viewBox="0 0 1080 1920"></svg>
         <div id="marca"><img src="assets/marca/isotipo.png" alt=""><span>EL MÉTODO<b>EMPRESARIAL</b></span></div>
-        <div id="titulo"><div class="a">Uber y DiDi:</div><div class="b">¿cuánto te queda?</div></div>
+        <div id="titulo"><div class="a">Uber y DiDi:</div><div class="b">¿cuánto deja de verdad?</div></div>
+        <div id="marcador"><div class="c m"><small>1 · MARTÍN</small><b id="mk-m">—</b><i id="mk-mi">alquila · 312 h</i></div><div class="c d"><small>2 · EL DUEÑO</small><b id="mk-d">—</b><i id="mk-di">pone el auto · 0 h</i></div><div class="c l"><small>3 · LUCAS</small><b id="mk-l">—</b><i id="mk-li">su auto · 208 h</i></div></div>
+        <div id="capitulo"><div class="n" id="cap-n">1</div><div class="de">CAPÍTULO <span id="cap-d">1</span> DE 3</div><div class="t" id="cap-t"></div></div>
         <div id="grande"><small id="grande-s"></small><b id="grande-b"></b></div>
         <div id="regla">
-          <div id="formula1"><div class="et">EL MÉTODO</div><div class="l1">Si vas a <em>manejar</em></div>
-            <div class="f" id="f1">Lo que te paga la app</div>
+          <div id="formula1"><div class="et">LA CUENTA</div><div class="l1">Para <em>cualquiera</em></div>
+            <div class="f" id="f1">Lo que entra</div>
             <div class="f" id="f2"><b>−</b> todo lo que cuesta el auto</div>
-            <div class="f ch" id="f3">(incluido lo que pierde de valor)</div>
-            <div class="f" id="f4"><b>÷</b> las horas reales</div>
-            <div class="res" id="f5">= TU SUELDO REAL POR HORA</div></div>
-          <div id="formula2" style="display:none"><div class="et">EL MÉTODO</div><div class="l1">Si vas a <em>invertir</em></div>
-            <div class="f" id="g1">Alquiler que cobrás</div>
-            <div class="f" id="g2"><b>−</b> todo lo que pagás de verdad</div>
-            <div class="f ch" id="g3">(incluido lo que se desgasta)</div>
-            <div class="f" id="g4"><b>÷</b> lo que pusiste</div>
-            <div class="res" id="g5">= TU RETORNO REAL</div></div>
+            <div class="f ch" id="f3">(también lo que se gasta)</div>
+            <div class="f" id="f4"><b>÷</b> las horas o la plata que pusiste</div>
+            <div class="res" id="f5">= LO QUE GANÁS DE VERDAD</div></div>
         </div>
         <div id="sub"></div>
         <div id="fuente"></div>
       </div>
-      <div id="o-marca" data-composition-id="o-marca" data-composition-src="compositions/o-marca.html" data-start="124" data-duration="6" data-track-index="2" data-track-kind="graphics" data-width="1080" data-height="1920" style="z-index:30"></div>
-      <audio id="voz" class="clip" src="assets/audio/voz.wav" data-start="0" data-duration="130" data-track-index="5" data-volume="1"></audio>
-      <audio id="musica" class="clip" src="assets/audio/musica.wav" data-start="0" data-duration="130" data-track-index="6" data-volume="1"></audio>
-      <audio id="efectos" class="clip" src="assets/audio/efectos.wav" data-start="0" data-duration="130" data-track-index="7" data-volume="1"></audio>
+      <div id="o-marca" data-composition-id="o-marca" data-composition-src="compositions/o-marca.html" data-start="165.3" data-duration="5.7" data-track-index="2" data-track-kind="graphics" data-width="1080" data-height="1920" style="z-index:30"></div>
+      <audio id="voz" class="clip" src="assets/audio/voz.wav" data-start="0" data-duration="171" data-track-index="5" data-volume="1"></audio>
+      <audio id="musica" class="clip" src="assets/audio/musica.wav" data-start="0" data-duration="171" data-track-index="6" data-volume="1"></audio>
+      <audio id="efectos" class="clip" src="assets/audio/efectos.wav" data-start="0" data-duration="171" data-track-index="7" data-volume="1"></audio>
     </div>
     <script>
       window.__timelines = window.__timelines || {};
@@ -90,82 +96,112 @@
       const { T } = Mu; const clamp = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x)); const $ = (id) => document.getElementById(id);
       const eo = (u) => 1 - Math.pow(1 - clamp(u), 3); const back = (u) => { u = clamp(u); const c = 1.7; return 1 + (c + 1) * Math.pow(u - 1, 3) + c * Math.pow(u - 1, 2); };
       const hud = $("hud"), hilos = $("hilos");
-      // etiquetas: [ancla 3D, desde, hasta, clase, rótulo, valor, fuente, dx, alto del hilo, función del valor]
+      const P$ = (v) => "$" + Math.round(v).toLocaleString("es-AR");
+      const cuenta = (t, desde, hasta, dur = 1.2) => P$(hasta * eo((t - desde) / dur));
+      // etiquetas: [ancla 3D, desde, hasta, clase, rótulo, valor (texto o función), fuente, dx, alto del hilo]
       const ET = [
-        // 1. GANCHO
-        [Mu.marcaM, T.chofer + 0.3, T.tranq - 0.1, "", "Chofer", "MARTÍN", "", 0, 120],
-        // 2. LO QUE COBRA
-        [Mu.marcaTel, T.tranq + 0.3, T.sincom - 0.1, "azul", "La app le paga", "≈ $12.000 / h", "Ya sin la comisión · choferes y ACAURA, 2026", 0, 140],
-        [Mu.marcaTel, T.pasaj + 0.1, T.martin - 0.1, "rojo", "El pasajero paga", "$13.000–15.000", "Chofer «Don Uberto», El Economista, 25/08/2026", 0, 120],
-        // 3. MARTÍN ALQUILA
-        [Mu.marcaRecibo, T.alquila, T.div - 0.1, "rojo", "Alquiler del auto", "$360.000 / semana", "Avisos de flotas: $280.000 a $450.000 (nov. 2026)", 0, 170],
-        [Mu.marcaTel, T.h30 - 0.1, T.primeros + 0.3, "rojo", "Para pagar el alquiler", "30 horas", "$360.000 ÷ $12.000", 0, 120],
-        [Mu.marcaCal, T.primeros + 0.3, T.mes - 0.1, "rojo", "Para el dueño del auto", "2,5 días", "Lunes, martes y medio miércoles", 0, 60],
-        // 4. CUENTA DE MARTÍN
-        [Mu.marcaSurt, T.gas + 0.1, T.mono - 0.1, "rojo", "Gas del mes", "−$427.000", "GNC $685/m³ (YPF, oct. 2026)", 0, 100],
-        // 5. AHORA EL DUEÑO
-        [Mu.marcaM, T.otroLado + 0.3, T.suCuenta - 0.1, "", "Este auto", "Es del dueño", "", 0, 120],
-        // 7. COSTOS DEL DUEÑO
-        [Mu.marcaService, T.service + 0.3, T.lavado - 0.1, "rojo", "Service, cubiertas y frenos", "−$418.000 / mes", "Plan de service y precios de taller, nov. 2026", 0, 80],
-        // 9. RIESGOS
-        [Mu.marcaM, T.noPaga + 0.3, T.rompe - 0.1, "rojo", "El chofer no paga", "−$360.000", "", 0, 120],
-        [Mu.marcaM, T.rompe + 0.3, T.choca - 0.1, "rojo", "Se rompe motor o caja", "$500K–$2M", "", 0, 120],
-        // 11. CIERRE
-        [Mu.marcaM, T.pensando + 0.3, T.seguime - 0.3, "", "¿Alquilás o invertís?", "", "", 0, 120],
+        // GANCHO
+        [Mu.marcaTel, 0.7, T.depende - 0.1, "azul", "La app le paga", "≈ $12.000 / h", "Ya sin la comisión · choferes y ACAURA, 2026", 0, 140],
+        [Mu.marcaMartin, T.tres + 0.2, T.cap1 - 0.15, "rojo", "1 · Alquila", "MARTÍN", "", 0, 330],
+        [Mu.marcaDueno, T.tres + 0.5, T.cap1 - 0.15, "negro", "2 · Pone el auto", "EL DUEÑO", "", 0, 120],
+        [Mu.marcaLucas, T.tres + 0.8, T.cap1 - 0.15, "azul", "3 · Maneja lo suyo", "LUCAS", "", 0, 330],
+        // CAP. 1
+        [Mu.marcaMartin, T.martin + 0.1, T.dia - 0.1, "rojo", "No tiene auto", "MARTÍN", "", 0, 140],
+        [Mu.marcaTel, T.dia + 0.6, T.noEsSuyo - 0.1, "azul", "La app le paga", "≈ $12.000 / h", "Ya sin la comisión", 0, 140],
+        [Mu.marcaRecibo, T.noEsSuyo + 0.3, T.div - 0.1, "rojo", "Alquiler del auto", "$360.000 / semana", "Con seguro y service · avisos de flotas, nov. 2026", 0, 170],
+        [Mu.marcaTel, T.h30 - 0.1, T.lunes - 0.1, "rojo", "Para pagar el alquiler", "30 horas", "$360.000 ÷ $12.000", 0, 120],
+        [Mu.marcaCal, T.lunes + 0.3, T.poreso - 0.1, "rojo", "Maneja para el dueño", "2,5 días", "Lunes, martes y medio miércoles", 0, 60],
+        [Mu.marcaM, T.poreso + 0.3, T.mes - 0.1, "negro", "Martín", "12 h × 6 días", "", 0, 130],
+        [Mu.marcaSurt, T.gas + 0.1, T.mono - 0.1, "rojo", "Gas del mes", "−$427.000", "GNC $685 el m³ (oct. 2026)", 0, 100],
+        // CAP. 2
+        [Mu.marcaDueno, T.quien + 0.7, T.dueno - 0.1, "azul", "Cobra el alquiler", "EL DUEÑO", "", 0, 120],
+        [Mu.marcaM, T.compro + 0.1, T.cobra - 0.1, "negro", "Cronos 2020 · 96.000 km · GNC", (t) => (t < T.s159 ? "Usado" : "$15.900.000"), "Aviso de Autocosmos, 18/11/2026", 0, 150],
+        [Mu.marcaService, T.service + 0.3, T.seguro - 0.1, "rojo", "Service, cubiertas, frenos", "−$306.000 / mes", "Precios de taller de barrio, nov. 2026", 0, 80],
+        [Mu.marcaPapel, T.seguro + 0.3, T.monoD - 0.1, "rojo", "Seguro", "−$160.000 / mes", "", 0, 220],
+        [Mu.marcaPilaD, T.bolsillo + 0.5, T.invisible - 0.1, "azul", "Le entra al bolsillo", (t) => cuenta(t, T.bolsillo, 975000, 2.4), "", 0, 160],
+        [Mu.marcaOdo, T.km + 0.2, T.s33 - 0.1, "rojo", "Martín le hace", "6.240 km / mes", "20 km por hora × 312 h", 0, 160],
+        [Mu.marcaM, T.pone318, T.igual - 0.1, "negro", "Auto 1", "$15.900.000", "", 0, 120],
+        [Mu.marcaGolpe, T.pone318 + 0.3, T.igual - 0.1, "negro", "Auto 2", "$15.900.000", "", 0, 120],
+        [Mu.marcaPilaM, T.igual + 0.3, T.riesgo - 0.1, "rojo", "Martín", (t) => (t < T.h312b ? "$1.497.000" : "312 horas"), "", 0, 140],
+        [Mu.marcaPilaD, T.igual + 0.6, T.riesgo - 0.1, "azul", "Dueño · 2 autos", (t) => (t < T.cero ? "$1.501.000" : "0 horas"), "", 0, 140],
+        [Mu.marcaM, T.noPaga + 0.2, T.caja - 0.1, "rojo", "El chofer no paga 1 semana", "−$360.000", "", 0, 130],
+        [Mu.marcaService, T.caja + 0.3, T.choca - 0.1, "rojo", "Se rompe la caja", "−$800.000", "Ejemplo · presupuesto de taller", 0, 80],
+        [Mu.marcaOdo, T.kmAno + 0.3, T.cap3 - 0.1, "rojo", "En 2 años", "≈ 246.000 km", "75.000 km por año", 0, 160],
+        // CAP. 3
+        [Mu.marcaLucas, T.lucas, T.noAlq - 0.1, "azul", "Maneja su propio auto", "LUCAS", "", 0, 140],
+        [Mu.marcaL, T.noAlq + 0.3, T.maneja8 - 0.1, "azul", "Alquiler", "$0", "Pero paga todo lo del dueño", 0, 130],
+        [Mu.marcaTel, T.maneja8 + 0.3, T.app2496 - 0.1, "azul", "Lucas maneja", "8 h × 6 días", "", 0, 140],
+        [Mu.marcaPilaM, T.masQue + 0.3, T.si12 - 0.1, "rojo", "Martín", (t) => (t < T.h104 ? "$1.497.000" : "312 horas"), "", 0, 140],
+        [Mu.marcaPilaL, T.masQue + 0.6, T.si12 - 0.1, "azul", "Lucas", (t) => (t < T.h104 ? "$1.527.000" : "208 horas"), "", 0, 140],
+        // CIERRE
+        [Mu.marcaMartin, T.cierre + 0.2, T.metodo - 0.1, "rojo", "Martín", "Pone las horas", "", 0, 330],
+        [Mu.marcaDueno, T.duenoPlata + 0.1, T.metodo - 0.1, "negro", "El dueño", "Pone la plata", "", 0, 120],
+        [Mu.marcaLucas, T.lucasDos + 0.1, T.metodo - 0.1, "azul", "Lucas", "Pone las dos", "", 0, 330],
+        [Mu.marcaDueno, T.lado + 0.2, T.seguime - 0.3, "azul", "¿De qué lado estás?", "Comentalo", "", 0, 120],
       ];
-      const tels = ET.map((e) => { const d = document.createElement("div"); d.className = "tag " + e[3]; d.innerHTML = `<small>${e[4]}</small><b>${e[5]}</b>${e[6] ? `<i>${e[6]}</i>` : ""}`; hud.appendChild(d); return d; });
+      const tels = ET.map((e) => { const d = document.createElement("div"); d.className = "tag " + e[3]; d.innerHTML = `<small>${e[4]}</small><b>${typeof e[5] === "function" ? "" : e[5]}</b>${e[6] ? `<i>${e[6]}</i>` : ""}`; hud.appendChild(d); return d; });
       const lins = ET.map(() => { const l = document.createElementNS("http://www.w3.org/2000/svg", "path"); l.setAttribute("stroke", "rgba(255,255,255,.9)"); l.setAttribute("stroke-width", "2.5"); l.setAttribute("fill", "none"); hilos.appendChild(l);
         const c = document.createElementNS("http://www.w3.org/2000/svg", "circle"); c.setAttribute("r", "0"); c.setAttribute("fill", "#fff"); c.setAttribute("stroke", "rgba(0,0,0,.4)"); c.setAttribute("stroke-width", "2"); hilos.appendChild(c); return [l, c]; });
+      // carteles grandes
       const GR = [
-        [T.chofer, T.trabaja, "Un chofer cobra", "$12.000 / hora", "az"],
-        [T.trabaja, T.cuanto, "12 horas por día", "6 días por semana", "cita"],
-        [T.cuanto, T.tranq - 0.1, "", "¿Cuánto se lleva?", "cita"],
-        [T.m4830 + 0.3, T.otroLado - 0.3, "Por 312 horas al mes", "$4.830 la hora", "rj"],
-        [T.otroLado, T.suCuenta, "Ahora miremos", "el otro lado", "cita"],
-        [T.roi, T.payback, "Rentabilidad mensual", "4,6%", "az"],
-        [T.payback, T.kmTotal, "Recupera en", "22 meses", "rj"],
-        [T.noSeguro, T.siManejas - 0.1, "El auto de la app", "no tiene seguro de la app", "rj"],
+        [T.tres, T.hacemos, "", "Hay 3 lados", "cita"],
+        [T.m4800 + 0.1, T.cap2 - 0.3, "Martín · 312 horas al mes", "$4.800 la hora", "rj"],
+        [T.recupera, T.dos - 0.1, "Recupera lo que puso en", "21 meses", "az"],
+        [T.m1500, T.igual - 0.1, "Con 2 autos le queda", "$1.501.000 / mes", "az"],
+        [T.m7340, T.si12 - 0.1, "Lucas · 208 horas al mes", "$7.340 la hora", "az"],
+        [T.si12 + 0.3, T.cierre - 0.2, "Lucas a 12 horas por día", "$2.360.000 / mes", "az"],
       ];
       const FU = [
-        [T.tranq, T.martin, "Precios de noviembre de 2026 · ejemplo en el conurbano bonaerense"],
-        [T.mes, T.otroLado, "Monotributo e Ingresos Brutos: ARCA y ARBA (ago. 2026) · alquiler con seguro y service incluidos"],
-        [T.compro, T.noPaga, "Auto usado $15M: Mercado Libre, nov. 2026 · seguro TC: La Nación 19/09/2026"],
-        [T.noPaga, T.siManejas, "Uber y DiDi cubren al pasajero durante el viaje, no los daños de tu auto"],
+        [T.dia, T.noEsSuyo, "Ejemplo con precios de noviembre de 2026 · conurbano bonaerense"],
+        [T.noEsSuyo, T.div, "Caso real: Gerardo (Rosario) paga $360.000 por semana y maneja 12 h · La Capital, 26/04/2026"],
+        [T.mes, T.cap2, "Monotributo e Ingresos Brutos: ARCA y ARBA · GNC: YPF, oct. 2026"],
+        [T.cobra, T.bolsillo, "Service a precio de taller de barrio · patente PBA y VTV · el lavado lo paga el chofer"],
+        [T.invisible, T.ganancia, "Pérdida de valor: pares de avisos de usados, nov. 2026 ($26 a $41 por km)"],
+        [T.riesgo, T.cap3, "Uber y DiDi cubren al pasajero durante el viaje, no los daños de tu auto"],
+        [T.app2496, T.masQue, "Lucas paga los mismos costos por km que el dueño, más gas, monotributo y celular"],
       ];
+      const CAPS = [[T.cap1, T.martin, "1", "EL QUE ALQUILA"], [T.cap2, T.quien + 0.2, "2", "EL QUE PONE EL AUTO"], [T.cap3, T.lucas, "3", "EL QUE MANEJA LO SUYO"]];
       function hudAt(t) {
-        const enRegla = t >= T.siManejas + 0.4 && t < T.pensando - 0.1;
-        const enF1 = t >= T.siManejas + 0.4 && t < T.siInvertis - 0.1;
-        const enF2 = t >= T.siInvertis + 0.2 && t < T.pensando - 0.1;
-        Mu.render(t, enRegla ? 0.8 * clamp((t - T.siManejas - 0.4) / 0.4) * clamp((T.pensando - 0.1 - t) / 0.3) : 0);
+        const enRegla = t >= T.metodo + 0.3 && t < T.lado - 0.1;
+        Mu.render(t, enRegla ? 0.8 * clamp((t - T.metodo - 0.3) / 0.4) * clamp((T.lado - 0.1 - t) / 0.3) : 0);
+        // placa de capítulo
+        const cp = CAPS.find((c) => t >= c[0] - 0.05 && t < c[1]); const C = $("capitulo");
+        if (cp) { const ui = clamp((t - cp[0]) / 0.35), uo = clamp((cp[1] - t) / 0.35); C.style.opacity = Math.min(ui, uo); $("cap-n").textContent = cp[2]; $("cap-d").textContent = cp[2]; $("cap-t").textContent = cp[3];
+          $("cap-n").style.transform = `scale(${0.6 + 0.4 * back(ui)})`; $("cap-t").style.transform = `translateY(${(1 - eo(clamp((t - cp[0] - 0.15) / 0.4))) * 40}px)`; } else C.style.opacity = 0;
+        // marcador de los tres lados
+        const mk = t >= T.m4800 + 1.0 && !cp && !enRegla && t < T.lado; const M = $("marcador"); M.style.opacity = mk ? clamp((t - T.m4800 - 1.0) / 0.4) : 0;
+        $("mk-m").textContent = "$1.497.000";
+        $("mk-d").textContent = t >= T.ganancia + 0.6 ? "$769.000" : "—"; $("mk-di").textContent = t >= T.m1500 ? "2 autos: $1.501.000" : "pone el auto · 0 h";
+        $("mk-l").textContent = t >= T.quedaL + 0.6 ? "$1.527.000" : "—";
+        const techoHUD = mk ? 340 : 190;
         // el cartel grande va primero: las etiquetas lo esquivan
-        const g = GR.find((r) => t >= r[0] && t < r[1]); const G = $("grande");
+        const g = GR.find((r) => t >= r[0] && t < r[1]); const G = $("grande"); G.style.top = (mk ? 340 : 250) + "px";
         if (g) { const u = clamp((t - g[0]) / 0.3), o = clamp((g[1] - t) / 0.2); G.style.opacity = Math.min(u, o); G.className = g[4]; G.style.transform = `translateX(-50%) translateY(${(1 - back(u)) * -30}px)`;
-          $("grande-s").textContent = g[2]; $("grande-s").style.display = g[2] ? "block" : "none"; $("grande-b").textContent = typeof g[3] === "function" ? g[3](t) : g[3]; }
+          $("grande-s").textContent = g[2]; $("grande-s").style.display = g[2] ? "block" : "none"; $("grande-b").textContent = g[3]; }
         else G.style.opacity = 0;
         const ocupados = []; if (g) { const r = G.getBoundingClientRect(); ocupados.push([r.left, r.top, r.width, r.height]); }
         ET.forEach((e, i) => {
-          const d = tels[i], [l, c] = lins[i]; const on = t >= e[1] && t < e[2];
+          const d = tels[i], [l, c] = lins[i]; const on = t >= e[1] && t < e[2] && !cp;
           const apagar = () => { d.style.opacity = 0; l.setAttribute("d", ""); c.setAttribute("r", 0); };
           if (!on) return apagar();
-          if (e[9]) d.querySelector("b").textContent = e[9](t);
+          if (typeof e[5] === "function") d.querySelector("b").textContent = e[5](t);
           const p = Mu.aPantalla(e[0]); if (!p.vis) return apagar();
           const u = clamp((t - e[1]) / 0.35), o = clamp((e[2] - t) / 0.2); const w = d.offsetWidth, h = d.offsetHeight;
-          const techo = t < T.cuanto ? 400 : 190; let x = Math.min(1040 - w, Math.max(40, p.x - w / 2 + e[7])), y = Math.min(1200 - h, Math.max(techo, e[8] < 0 ? p.y - e[8] : p.y - e[8] - h));
+          const techo = t < T.depende ? 420 : techoHUD; let x = Math.min(1040 - w, Math.max(40, p.x - w / 2 + e[7])), y = Math.min(1200 - h, Math.max(techo, p.y - e[8] - h));
           for (let pasada = 0; pasada < 3; pasada++) for (const r of ocupados) if (x < r[0] + r[2] && r[0] < x + w && y < r[1] + r[3] && r[1] < y + h) { const abajo = r[1] + r[3] + 16; y = abajo + h <= 1220 ? abajo : Math.max(techo, r[1] - h - 16); }
           ocupados.push([x, y, w, h]);
           const sw = Math.sin((t - e[1]) * 2.2 + i) * 1.6 * eo(u);
           d.style.opacity = Math.min(u, o); d.style.transform = `translate(${x}px, ${y - (1 - back(u)) * 40}px) rotate(${sw}deg) scale(${0.9 + 0.1 * eo(u)})`;
           const m = Math.min(u, o); const ty = p.y > y + h / 2 ? y + h - 4 : y + 4; l.setAttribute("d", `M ${x + w / 2} ${ty} L ${p.x} ${p.y}`); l.setAttribute("opacity", m); c.setAttribute("cx", p.x); c.setAttribute("cy", p.y); c.setAttribute("r", 6 * m);
         });
-        // fórmulas
-        $("formula1").style.display = enF1 ? "grid" : "none"; $("formula2").style.display = enF2 ? "grid" : "none";
-        const ugR = enF1 ? clamp((t - T.siManejas - 0.5) / 0.4) : clamp((t - T.siInvertis - 0.3) / 0.4);
-        $("regla").style.opacity = enRegla ? Math.min(ugR, clamp((T.pensando - 0.1 - t) / 0.3)) : 0; $("regla").style.transform = `translateY(${(1 - eo(ugR)) * 30}px)`;
-        if (enF1) [["f1", T.formula1], ["f2", T.formula1 + 0.6], ["f3", T.formula1 + 1.2], ["f4", T.formula1 + 1.8], ["f5", T.formula1 + 2.4]].forEach(([id, a]) => { const e = $(id), uu = clamp((t - a) / 0.3); e.style.opacity = uu; e.style.transform = `translateX(${(1 - eo(uu)) * -24}px)`; });
-        if (enF2) [["g1", T.formula2], ["g2", T.formula2 + 0.6], ["g3", T.formula2 + 1.2], ["g4", T.formula2 + 1.8], ["g5", T.formula2 + 2.4]].forEach(([id, a]) => { const e = $(id), uu = clamp((t - a) / 0.3); e.style.opacity = uu; e.style.transform = `translateX(${(1 - eo(uu)) * -24}px)`; });
-        let s = ""; for (const [a, txt] of SUB) if (t >= a) s = txt; $("sub").innerHTML = t < T.seguime - 0.3 && !enRegla ? s : "";
-        const fu = FU.find((r) => t >= r[0] + 0.3 && t < r[1]); $("fuente").style.opacity = fu && !enRegla ? 1 : 0; if (fu) $("fuente").textContent = fu[2];
-        const ut = clamp(t / 0.4) * clamp((T.cuanto - 0.2 - t) / 0.3); $("titulo").style.opacity = ut; $("titulo").style.transform = `translateY(${(1 - eo(clamp(t / 0.5))) * 20}px)`;
+        // fórmula
+        $("formula1").style.display = enRegla ? "grid" : "none";
+        const ugR = clamp((t - T.metodo - 0.4) / 0.4);
+        $("regla").style.opacity = enRegla ? Math.min(ugR, clamp((T.lado - 0.1 - t) / 0.3)) : 0; $("regla").style.transform = `translateY(${(1 - eo(ugR)) * 30}px)`;
+        if (enRegla) [["f1", T.entra], ["f2", T.menos], ["f3", T.tambien], ["f4", T.dividido], ["f5", T.dividido + 1.4]].forEach(([id, a]) => { const e = $(id), uu = clamp((t - a) / 0.3); e.style.opacity = uu; e.style.transform = `translateX(${(1 - eo(uu)) * -24}px)`; });
+        let s = ""; for (const [a, txt] of SUB) if (t >= a) s = txt; $("sub").innerHTML = t >= T.depende - 0.1 && t < T.seguime - 0.3 && !enRegla && !cp ? s : "";
+        const fu = FU.find((r) => t >= r[0] + 0.3 && t < r[1]); $("fuente").style.opacity = fu && !enRegla && !cp ? 1 : 0; if (fu) $("fuente").textContent = fu[2];
+        const ut = clamp(t / 0.4) * clamp((T.depende - 0.2 - t) / 0.3); $("titulo").style.opacity = ut; $("titulo").style.transform = `translateY(${(1 - eo(clamp(t / 0.5))) * 20}px)`;
       }
       window.addEventListener("hf-seek", (e) => hudAt(e.detail.time)); hudAt(0); listo();
     </script>

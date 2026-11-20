@@ -1,0 +1,32 @@
+# Capturas de control de un reel HyperFrames en una máquina de GitHub (para no cargar el VPS).
+name: snapshot
+on:
+  workflow_dispatch:
+    inputs:
+      proyecto:
+        description: "Carpeta del proyecto HyperFrames"
+        required: true
+      at:
+        description: "Segundos separados por coma"
+        required: true
+      salida:
+        description: "Nombre del artifact"
+        default: "capturas"
+        required: true
+jobs:
+  capturas:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg > /dev/null
+      - name: Capturas
+        working-directory: ${{ inputs.proyecto }}
+        run: npx --yes hyperframes@0.9.41 snapshot --at "${{ inputs.at }}" --no-end --timeout 170000 -o capturas
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ${{ inputs.salida }}
+          path: ${{ inputs.proyecto }}/capturas
+          retention-days: 3
