@@ -1,0 +1,70 @@
+========================================================================
+  1. EL CHOFER QUE ALQUILA (Martín)
+========================================================================
+  Jornada: 12 h × 6 días = 312 h/mes · 6,240 km/mes
+  La app le paga: $3,744,000/mes  ($12,000/h)
+    − alquiler: $1,560,000  (41.7%)
+    − GNC: $427,440  (11.4%)
+    − monotributo+IIBB (F): $227,034  (6.1%)
+    − celular: $23,000  (0.6%)
+  TOTAL costos: $2,237,474 (59.8%)
+  LE QUEDAN: $1,506,526/mes = $4,829/h
+  Por día: $57,943
+
+========================================================================
+  2. EL DUEÑO DEL AUTO (inversor)
+========================================================================
+  Inversión inicial: auto $15,000,000 + GNC $1,500,000 = $16,500,000
+  Cobra del chofer: $1,560,000/mes  ($360,000/sem × 4.33)
+
+    − mantenimiento (service, cubiertas, frenos, amort, distrib): $417,830  (26.8%)
+    − seguro TC particular: $106,147  (6.8%)
+    − patente PBA + VTV: $22,759  (1.5%)
+    − lavado: $10,000  (0.6%)
+    − equipo GNC (amort. 36 meses): $41,667  (2.7%)
+    − DEPRECIACIÓN ($33/km): $205,920  (13.2%)
+  TOTAL costos: $804,323 (51.6%)
+  GANANCIA NETA: $755,677/mes
+
+========================================================================
+  3. RETORNO DE LA INVERSIÓN
+========================================================================
+  Retorno mensual:  4.58% sobre $16,500,000
+  Retorno anual:    55.0%
+  Recupero:         21.8 meses (1.8 años)
+
+========================================================================
+  4. RIESGOS
+========================================================================
+  Semanas sin cobrar que absorbe la ganancia del mes: 2.1
+  → Si el chofer se va 1 semana, pierde $360,000 de ingreso
+     pero ahorra mantenimiento y GNC: gasto real sin chofer ≈ $128,906/mes
+  Reparación mayor (ej. caja, $800.000): 1.1 meses de ganancia
+  Si el chofer choca y el seguro rechaza (uso particular):
+     → pierde el auto completo: $15,000,000
+  Desgaste acelerado: 6,240 km/mes = 74,880 km/año
+     → En 3 años: 224,640 km (un auto particular hace ~15.000 km/año)
+
+========================================================================
+  5. BALANCE A 3 AÑOS (36 meses)
+========================================================================
+  Ganancia acumulada:   $27,204,376
+  Depreciación total:   $7,413,120
+  Valor residual auto:  $7,586,880  (de $15,000,000)
+  Equipo GNC:           amortizado ($0)
+  Inversión original:   $16,500,000
+
+  BALANCE = ganancia + residual − inversión
+         = $27,204,376 + $7,586,880 − $16,500,000
+         = $18,291,256
+  → Ganó $18,291,256 en 3 años (110.9% sobre la inversión)
+
+========================================================================
+  RESUMEN PARA EL VIDEO
+========================================================================
+  El chofer cobra $3,744,000/mes, le quedan $1,506,526 ($4,829/h)
+  El dueño cobra $1,560,000/mes, le quedan $755,677 (sin manejar)
+  El dueño invirtió $16,500,000 y lo recupera en 22 meses (55% anual)
+  En 3 años el auto vale $7,586,880 (perdió $7,413,120)
+  El chofer puso 0 pesos y 312 horas de su vida por mes
+  El dueño puso $16,500,000 y 0 horas

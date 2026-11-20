@@ -41,32 +41,41 @@
       #regla .l1 { font-weight: 900; font-size: 74px; line-height: 1.05; color: #FFFFFF; } #regla .l1 em { font-style: normal; background: var(--g-azul); -webkit-background-clip: text; background-clip: text; color: transparent; }
       #regla .f { font-weight: 900; font-size: 44px; line-height: 1.15; color: #FFFFFF; opacity: 0; } #regla .f.ch { font-size: 32px; color: #BFC4CC; } #regla .f b { color: var(--azul-l); }
       #regla .res { justify-self: start; font-weight: 900; font-size: 46px; color: #000; background: #FFFFFF; padding: 12px 26px; border-radius: 14px; opacity: 0; }
+      #formula1, #formula2 { display: grid; gap: 22px; }
       #sub { position: absolute; left: 80px; right: 80px; top: 1300px; text-align: center; font-weight: 800; font-size: 46px; line-height: 1.25; color: #FFFFFF; -webkit-text-stroke: 9px rgba(0,0,0,.85); paint-order: stroke fill; }
       #sub em { font-style: normal; -webkit-text-stroke: 0; color: #fff; background: #007BFF; padding: 0 10px 2px; border-radius: 8px; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
       #fuente { position: absolute; left: 70px; right: 70px; top: 1450px; text-align: center; font-family: Inter; font-weight: 600; font-size: 20px; line-height: 1.3; color: var(--plata-c); opacity: 0; -webkit-text-stroke: 5px rgba(0,0,0,.8); paint-order: stroke fill; }
     </style>
   </head>
   <body>
-    <div id="root" data-composition-id="main" data-start="0" data-duration="167.64" data-width="1080" data-height="1920">
+    <div id="root" data-composition-id="main" data-start="0" data-duration="130" data-width="1080" data-height="1920">
       <canvas id="gl" width="1080" height="1920"></canvas>
       <div id="hud" data-layout-ignore>
         <svg id="hilos" viewBox="0 0 1080 1920"></svg>
         <div id="marca"><img src="assets/marca/isotipo.png" alt=""><span>EL MÉTODO<b>EMPRESARIAL</b></span></div>
         <div id="titulo"><div class="a">Uber y DiDi:</div><div class="b">¿cuánto te queda?</div></div>
         <div id="grande"><small id="grande-s"></small><b id="grande-b"></b></div>
-        <div id="regla"><div class="et">EL MÉTODO</div><div class="l1">Tu <em>sueldo real</em> por hora</div>
-          <div class="f" id="f1">Lo que te paga la app</div>
-          <div class="f" id="f2"><b>−</b> todo lo que cuesta el auto</div>
-          <div class="f ch" id="f3">(incluido lo que pierde de valor)</div>
-          <div class="f" id="f4"><b>÷</b> las horas que manejás</div>
-          <div class="res" id="f5">= TU SUELDO REAL POR HORA</div></div>
+        <div id="regla">
+          <div id="formula1"><div class="et">EL MÉTODO</div><div class="l1">Si vas a <em>manejar</em></div>
+            <div class="f" id="f1">Lo que te paga la app</div>
+            <div class="f" id="f2"><b>−</b> todo lo que cuesta el auto</div>
+            <div class="f ch" id="f3">(incluido lo que pierde de valor)</div>
+            <div class="f" id="f4"><b>÷</b> las horas reales</div>
+            <div class="res" id="f5">= TU SUELDO REAL POR HORA</div></div>
+          <div id="formula2" style="display:none"><div class="et">EL MÉTODO</div><div class="l1">Si vas a <em>invertir</em></div>
+            <div class="f" id="g1">Alquiler que cobrás</div>
+            <div class="f" id="g2"><b>−</b> todo lo que pagás de verdad</div>
+            <div class="f ch" id="g3">(incluido lo que se desgasta)</div>
+            <div class="f" id="g4"><b>÷</b> lo que pusiste</div>
+            <div class="res" id="g5">= TU RETORNO REAL</div></div>
+        </div>
         <div id="sub"></div>
         <div id="fuente"></div>
       </div>
-      <div id="o-marca" data-composition-id="o-marca" data-composition-src="compositions/o-marca.html" data-start="162.24" data-duration="5.4" data-track-index="2" data-track-kind="graphics" data-width="1080" data-height="1920" style="z-index:30"></div>
-      <audio id="voz" class="clip" src="assets/audio/voz.wav" data-start="0" data-duration="164.6" data-track-index="5" data-volume="1"></audio>
-      <audio id="musica" class="clip" src="assets/audio/musica.wav" data-start="0" data-duration="167.64" data-track-index="6" data-volume="1"></audio>
-      <audio id="efectos" class="clip" src="assets/audio/efectos.wav" data-start="0" data-duration="167.64" data-track-index="7" data-volume="1"></audio>
+      <div id="o-marca" data-composition-id="o-marca" data-composition-src="compositions/o-marca.html" data-start="124" data-duration="6" data-track-index="2" data-track-kind="graphics" data-width="1080" data-height="1920" style="z-index:30"></div>
+      <audio id="voz" class="clip" src="assets/audio/voz.wav" data-start="0" data-duration="130" data-track-index="5" data-volume="1"></audio>
+      <audio id="musica" class="clip" src="assets/audio/musica.wav" data-start="0" data-duration="130" data-track-index="6" data-volume="1"></audio>
+      <audio id="efectos" class="clip" src="assets/audio/efectos.wav" data-start="0" data-duration="130" data-track-index="7" data-volume="1"></audio>
     </div>
     <script>
       window.__timelines = window.__timelines || {};
@@ -81,65 +90,53 @@
       const { T } = Mu; const clamp = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x)); const $ = (id) => document.getElementById(id);
       const eo = (u) => 1 - Math.pow(1 - clamp(u), 3); const back = (u) => { u = clamp(u); const c = 1.7; return 1 + (c + 1) * Math.pow(u - 1, 3) + c * Math.pow(u - 1, 2); };
       const hud = $("hud"), hilos = $("hilos");
-      const kmMes = (t) => (t >= T.km4000 ? 4160 * eo((t - T.km4000) / 2.2) : 0);
       // etiquetas: [ancla 3D, desde, hasta, clase, rótulo, valor, fuente, dx, alto del hilo, función del valor]
       const ET = [
-        [Mu.marcaM, 0.3, T.uno - 0.1, "", "Alquila", "MARTÍN", "", 0, 120],
-        [Mu.marcaL, 0.6, T.uno - 0.1, "azul", "Auto propio", "LUCAS", "", 0, 120],
-        [Mu.marcaM, T.uno + 0.2, T.tranq - 0.1, "", "12 h × 6 días", "312 h/mes", "", 0, 110],
-        [Mu.marcaL, T.uno + 0.5, T.tranq - 0.1, "azul", "8 h × 6 días", "208 h/mes", "", 0, 110],
-        [Mu.marcaTel, T.s12, T.viaje - 0.2, "azul", "La app te paga", "≈ $12.000 / h", "Ya sin la comisión · choferes y ACAURA, 2026", 0, 140],
+        // 1. GANCHO
+        [Mu.marcaM, T.chofer + 0.3, T.tranq - 0.1, "", "Chofer", "MARTÍN", "", 0, 120],
+        // 2. LO QUE COBRA
+        [Mu.marcaTel, T.tranq + 0.3, T.sincom - 0.1, "azul", "La app le paga", "≈ $12.000 / h", "Ya sin la comisión · choferes y ACAURA, 2026", 0, 140],
         [Mu.marcaTel, T.pasaj + 0.1, T.martin - 0.1, "rojo", "El pasajero paga", "$13.000–15.000", "Chofer «Don Uberto», El Economista, 25/08/2026", 0, 120],
-        [Mu.marcaRecibo, T.s360 - 0.1, T.div - 0.1, "rojo", "Alquiler del auto", "$360.000 / semana", "Avisos de flotas: $280.000 a $450.000 (nov. 2026)", 0, 170],
+        // 3. MARTÍN ALQUILA
+        [Mu.marcaRecibo, T.alquila, T.div - 0.1, "rojo", "Alquiler del auto", "$360.000 / semana", "Avisos de flotas: $280.000 a $450.000 (nov. 2026)", 0, 170],
         [Mu.marcaTel, T.h30 - 0.1, T.primeros + 0.3, "rojo", "Para pagar el alquiler", "30 horas", "$360.000 ÷ $12.000", 0, 120],
-        [Mu.marcaCal, T.dueno, T.poreso - 0.1, "rojo", "Para el dueño del auto", "2,5 días", "Lunes, martes y medio miércoles", 0, 60],
-        [Mu.marcaSurt, T.gas + 0.1, T.mono - 0.1, "rojo", "Gas del mes", "−$427.000", "GNC $685/m³ (YPF, oct. 2026) · 20 km por hora con vacíos: estimación", 0, 100],
-        [Mu.marcaL, T.lucas + 0.4, T.ocho - 0.1, "azul", "Lucas", "Auto propio a GNC", "", 0, 120],
-        [Mu.marcaL, T.ocho, T.mesL - 0.1, "azul", "Lucas maneja", "8 h × 6 días", "", 0, 120],
-        [Mu.marcaSurt, T.pero + 0.6, T.service - 0.1, "rojo", "Gas del mes", "−$285.000", "Menos horas, menos kilómetros", 0, 100],
-        [Mu.marcaService, T.service + 0.3, T.seguro - 0.1, "rojo", "Service, cubiertas y frenos", "−$279.000 / mes", "Plan oficial de service y precios de taller, nov. 2026", 0, 80],
-        [Mu.marcaCubierta, T.cubiertas, T.seguro - 0.1, "negro", "Cubiertas", "cada ~45.000 km", "", 0, 70],
-        [Mu.marcaFreno, T.frenos, T.seguro - 0.1, "negro", "Frenos", "pastillas y discos", "", 0, 70],
-        [Mu.marcaTicketL, T.casi900, T.gasto - 0.1, "rojo", "Gastos del auto", "≈ $900.000", "Seguro: La Nación 19/09/2026 · patente y VTV PBA", 0, 90],
-        [Mu.marcaL, T.gasto + 0.3, T.quedanL - 0.1, "", "Tu auto vale", "", "Ejemplo: auto de $15.000.000", -170, 110, (t) => "$" + Math.round(15000000 - 33 * kmMes(t)).toLocaleString("es-AR")],
-        [Mu.marcaL, T.km4000, T.s137 - 0.1, "negro", "Este mes", "", "", 170, 110, (t) => Math.round(kmMes(t)).toLocaleString("es-AR") + " km"],
-        [Mu.marcaL, T.s137 - 0.1, T.quedanL - 0.1, "rojo", "Este mes, sin verlo", "−$137.000", "4.160 km × $33 por km (avisos: de $26 a $41)", 170, 110],
-        [Mu.marcaTicketM, T.comp + 0.3, T.ysi - 0.1, "rojo", "Martín · 312 h", "$4.830 / h", "", -60, -30],
-        [Mu.marcaTicketL, T.comp + 0.6, T.ysi - 0.1, "azul", "Lucas · 208 h", "$7.050 / h", "", 60, -30],
-        [Mu.marcaL, T.quedarian, T.porque - 0.1, "azul", "Lucas · 12 h × 6 días", "$2.262.000", "Mismo supuesto: $12.000 por hora", 0, 140],
-        [Mu.marcaPilaL, T.s800 - 0.1, T.escritorio - 0.1, "azul", "Auto de Lucas, con desgaste", "$804.000 / mes", "Cada fajo: $100.000", -170, 110],
-        [Mu.marcaPilaM, T.mpaga, T.escritorio - 0.1, "", "Alquiler de Martín", "$1.560.000 / mes", "", 120, 130],
-        [Mu.marcaPilaD, T.dif + 0.3, T.escritorio - 0.1, "rojo", "Se lo lleva el dueño", "$755.000", "Cubre seguro, service y desgaste… y le queda esto", 160, 330],
-        [Mu.marcaGolpe, T.desgaste + 0.3, T.golpe - 0.1, "negro", "36 meses × $137.000", "no lo ves", "", 0, 60],
-        [Mu.marcaGolpe, T.golpe + 0.3, T.ojo - 0.1, "rojo", "De golpe", "≈ $4.900.000", "El día que hay que cambiar el auto", 0, 60],
-        [Mu.marcaM, T.vos + 0.2, T.seguime - 0.3, "", "Martín", "¿Alquilás?", "", 0, 120],
-        [Mu.marcaL, T.vos + 0.5, T.seguime - 0.3, "azul", "Lucas", "¿Auto propio?", "", 0, 120],
+        [Mu.marcaCal, T.primeros + 0.3, T.mes - 0.1, "rojo", "Para el dueño del auto", "2,5 días", "Lunes, martes y medio miércoles", 0, 60],
+        // 4. CUENTA DE MARTÍN
+        [Mu.marcaSurt, T.gas + 0.1, T.mono - 0.1, "rojo", "Gas del mes", "−$427.000", "GNC $685/m³ (YPF, oct. 2026)", 0, 100],
+        // 5. AHORA EL DUEÑO
+        [Mu.marcaM, T.otroLado + 0.3, T.suCuenta - 0.1, "", "Este auto", "Es del dueño", "", 0, 120],
+        // 7. COSTOS DEL DUEÑO
+        [Mu.marcaService, T.service + 0.3, T.lavado - 0.1, "rojo", "Service, cubiertas y frenos", "−$418.000 / mes", "Plan de service y precios de taller, nov. 2026", 0, 80],
+        // 9. RIESGOS
+        [Mu.marcaM, T.noPaga + 0.3, T.rompe - 0.1, "rojo", "El chofer no paga", "−$360.000", "", 0, 120],
+        [Mu.marcaM, T.rompe + 0.3, T.choca - 0.1, "rojo", "Se rompe motor o caja", "$500K–$2M", "", 0, 120],
+        // 11. CIERRE
+        [Mu.marcaM, T.pensando + 0.3, T.seguime - 0.3, "", "¿Alquilás o invertís?", "", "", 0, 120],
       ];
       const tels = ET.map((e) => { const d = document.createElement("div"); d.className = "tag " + e[3]; d.innerHTML = `<small>${e[4]}</small><b>${e[5]}</b>${e[6] ? `<i>${e[6]}</i>` : ""}`; hud.appendChild(d); return d; });
       const lins = ET.map(() => { const l = document.createElementNS("http://www.w3.org/2000/svg", "path"); l.setAttribute("stroke", "rgba(255,255,255,.9)"); l.setAttribute("stroke-width", "2.5"); l.setAttribute("fill", "none"); hilos.appendChild(l);
         const c = document.createElementNS("http://www.w3.org/2000/svg", "circle"); c.setAttribute("r", "0"); c.setAttribute("fill", "#fff"); c.setAttribute("stroke", "rgba(0,0,0,.4)"); c.setAttribute("stroke-width", "2"); hilos.appendChild(c); return [l, c]; });
-      const reloj = (t) => { const u = clamp((t - T.h12) / (T.mes - 0.3 - T.h12)); const m = 8 * 60 + u * 12 * 60; return String(Math.floor(m / 60)).padStart(2, "0") + ":" + String(Math.floor(m % 60)).padStart(2, "0"); };
       const GR = [
-        [T.apenas, T.donde - 0.05, "Uno maneja +104 h y se lleva", "apenas +$40.000", "rj"],
-        [T.donde, T.tranq - 0.1, "", "¿Dónde se va la plata?", "cita"],
-        [T.h12, T.mes - 0.2, "Martín maneja", reloj, "az"],
-        [T.s40, T.ysi - 0.1, "+104 horas por mes", "apenas +$40.000", "rj"],
-        [T.s755, T.porque - 0.1, "Mismas horas, mismo trabajo", "Lucas: +$755.000", "az"],
-        [T.claro, T.desgaste - 0.1, "Claro: Lucas tuvo que comprar", "un auto de $15.000.000", "cita"],
-        [T.ojo + 0.3, T.rechazar - 0.1, "Ojo con la póliza", "Uso particular", "cita"],
-        [T.vos, T.seguime - 0.3, "", "¿Vos sos Martín o Lucas?", "cita"],
+        [T.chofer, T.trabaja, "Un chofer cobra", "$12.000 / hora", "az"],
+        [T.trabaja, T.cuanto, "12 horas por día", "6 días por semana", "cita"],
+        [T.cuanto, T.tranq - 0.1, "", "¿Cuánto se lleva?", "cita"],
+        [T.m4830 + 0.3, T.otroLado - 0.3, "Por 312 horas al mes", "$4.830 la hora", "rj"],
+        [T.otroLado, T.suCuenta, "Ahora miremos", "el otro lado", "cita"],
+        [T.roi, T.payback, "Rentabilidad mensual", "4,6%", "az"],
+        [T.payback, T.kmTotal, "Recupera en", "22 meses", "rj"],
+        [T.noSeguro, T.siManejas - 0.1, "El auto de la app", "no tiene seguro de la app", "rj"],
       ];
       const FU = [
         [T.tranq, T.martin, "Precios de noviembre de 2026 · ejemplo en el conurbano bonaerense"],
-        [T.mes, T.lucas, "Monotributo y Ingresos Brutos: ARCA y ARBA (ago. 2026) · alquiler con seguro y service incluidos"],
-        [T.mesL, T.gasto, "Seguro terceros completo: La Nación 19/09/2026 · auto de $15 M: ejemplo"],
-        [T.comp, T.escritorio, "Mismo supuesto para los dos: $12.000 por hora, 6 días por semana"],
-        [T.escritorio, T.claro, "La Capital (Rosario), 26/04/2026 · nuestra cuenta de Martín: ≈ $58.000 por día, ya pagados los impuestos"],
-        [T.ojo, T.entonces, "Uber (con Galicia Seguros) y DiDi cubren al pasajero durante el viaje, no los daños de tu auto"],
+        [T.mes, T.otroLado, "Monotributo e Ingresos Brutos: ARCA y ARBA (ago. 2026) · alquiler con seguro y service incluidos"],
+        [T.compro, T.noPaga, "Auto usado $15M: Mercado Libre, nov. 2026 · seguro TC: La Nación 19/09/2026"],
+        [T.noPaga, T.siManejas, "Uber y DiDi cubren al pasajero durante el viaje, no los daños de tu auto"],
       ];
       function hudAt(t) {
-        const enRegla = t >= T.entonces + 0.4 && t < T.vos - 0.1;
-        Mu.render(t, enRegla ? 0.8 * clamp((t - T.entonces - 0.4) / 0.4) * clamp((T.vos - 0.1 - t) / 0.3) : 0);
+        const enRegla = t >= T.siManejas + 0.4 && t < T.pensando - 0.1;
+        const enF1 = t >= T.siManejas + 0.4 && t < T.siInvertis - 0.1;
+        const enF2 = t >= T.siInvertis + 0.2 && t < T.pensando - 0.1;
+        Mu.render(t, enRegla ? 0.8 * clamp((t - T.siManejas - 0.4) / 0.4) * clamp((T.pensando - 0.1 - t) / 0.3) : 0);
         // el cartel grande va primero: las etiquetas lo esquivan
         const g = GR.find((r) => t >= r[0] && t < r[1]); const G = $("grande");
         if (g) { const u = clamp((t - g[0]) / 0.3), o = clamp((g[1] - t) / 0.2); G.style.opacity = Math.min(u, o); G.className = g[4]; G.style.transform = `translateX(-50%) translateY(${(1 - back(u)) * -30}px)`;
@@ -153,18 +150,22 @@
           if (e[9]) d.querySelector("b").textContent = e[9](t);
           const p = Mu.aPantalla(e[0]); if (!p.vis) return apagar();
           const u = clamp((t - e[1]) / 0.35), o = clamp((e[2] - t) / 0.2); const w = d.offsetWidth, h = d.offsetHeight;
-          const techo = t < T.uno ? 400 : 190; let x = Math.min(1040 - w, Math.max(40, p.x - w / 2 + e[7])), y = Math.min(1200 - h, Math.max(techo, e[8] < 0 ? p.y - e[8] : p.y - e[8] - h));
+          const techo = t < T.cuanto ? 400 : 190; let x = Math.min(1040 - w, Math.max(40, p.x - w / 2 + e[7])), y = Math.min(1200 - h, Math.max(techo, e[8] < 0 ? p.y - e[8] : p.y - e[8] - h));
           for (let pasada = 0; pasada < 3; pasada++) for (const r of ocupados) if (x < r[0] + r[2] && r[0] < x + w && y < r[1] + r[3] && r[1] < y + h) { const abajo = r[1] + r[3] + 16; y = abajo + h <= 1220 ? abajo : Math.max(techo, r[1] - h - 16); }
           ocupados.push([x, y, w, h]);
           const sw = Math.sin((t - e[1]) * 2.2 + i) * 1.6 * eo(u);
           d.style.opacity = Math.min(u, o); d.style.transform = `translate(${x}px, ${y - (1 - back(u)) * 40}px) rotate(${sw}deg) scale(${0.9 + 0.1 * eo(u)})`;
           const m = Math.min(u, o); const ty = p.y > y + h / 2 ? y + h - 4 : y + 4; l.setAttribute("d", `M ${x + w / 2} ${ty} L ${p.x} ${p.y}`); l.setAttribute("opacity", m); c.setAttribute("cx", p.x); c.setAttribute("cy", p.y); c.setAttribute("r", 6 * m);
         });
-        const ug = clamp((t - T.entonces - 0.5) / 0.4); $("regla").style.opacity = enRegla ? Math.min(ug, clamp((T.vos - 0.1 - t) / 0.3)) : 0; $("regla").style.transform = `translateY(${(1 - eo(ug)) * 30}px)`;
-        [["f1", T.lo], ["f2", T.menos], ["f3", T.incluido], ["f4", T.dividido], ["f5", T.sueldo]].forEach(([id, a]) => { const e = $(id), uu = clamp((t - a) / 0.3); e.style.opacity = uu; e.style.transform = `translateX(${(1 - eo(uu)) * -24}px)`; });
+        // fórmulas
+        $("formula1").style.display = enF1 ? "grid" : "none"; $("formula2").style.display = enF2 ? "grid" : "none";
+        const ugR = enF1 ? clamp((t - T.siManejas - 0.5) / 0.4) : clamp((t - T.siInvertis - 0.3) / 0.4);
+        $("regla").style.opacity = enRegla ? Math.min(ugR, clamp((T.pensando - 0.1 - t) / 0.3)) : 0; $("regla").style.transform = `translateY(${(1 - eo(ugR)) * 30}px)`;
+        if (enF1) [["f1", T.formula1], ["f2", T.formula1 + 0.6], ["f3", T.formula1 + 1.2], ["f4", T.formula1 + 1.8], ["f5", T.formula1 + 2.4]].forEach(([id, a]) => { const e = $(id), uu = clamp((t - a) / 0.3); e.style.opacity = uu; e.style.transform = `translateX(${(1 - eo(uu)) * -24}px)`; });
+        if (enF2) [["g1", T.formula2], ["g2", T.formula2 + 0.6], ["g3", T.formula2 + 1.2], ["g4", T.formula2 + 1.8], ["g5", T.formula2 + 2.4]].forEach(([id, a]) => { const e = $(id), uu = clamp((t - a) / 0.3); e.style.opacity = uu; e.style.transform = `translateX(${(1 - eo(uu)) * -24}px)`; });
         let s = ""; for (const [a, txt] of SUB) if (t >= a) s = txt; $("sub").innerHTML = t < T.seguime - 0.3 && !enRegla ? s : "";
         const fu = FU.find((r) => t >= r[0] + 0.3 && t < r[1]); $("fuente").style.opacity = fu && !enRegla ? 1 : 0; if (fu) $("fuente").textContent = fu[2];
-        const ut = clamp(t / 0.4) * clamp((T.uno - 0.2 - t) / 0.3); $("titulo").style.opacity = ut; $("titulo").style.transform = `translateY(${(1 - eo(clamp(t / 0.5))) * 20}px)`;
+        const ut = clamp(t / 0.4) * clamp((T.cuanto - 0.2 - t) / 0.3); $("titulo").style.opacity = ut; $("titulo").style.transform = `translateY(${(1 - eo(clamp(t / 0.5))) * 20}px)`;
       }
       window.addEventListener("hf-seek", (e) => hudAt(e.detail.time)); hudAt(0); listo();
     </script>
